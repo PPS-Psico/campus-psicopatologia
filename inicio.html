@@ -189,9 +189,9 @@
     }
 
     #psi-campus-inicio .pci-welcome-signature {
-      align-items: center;
+      align-items: flex-start;
       display: flex;
-      gap: 14px;
+      gap: 16px;
       margin-top: 64px;
       position: relative;
       z-index: 1;
@@ -201,15 +201,43 @@
       background: rgba(255, 255, 255, 0.65);
       content: "";
       height: 1px;
+      margin-top: 8px;
       width: 48px;
     }
 
-    #psi-campus-inicio .pci-welcome-signature span {
+    #psi-campus-inicio .pci-team-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    #psi-campus-inicio .pci-team-label {
       color: var(--pci-paper);
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.09em;
       text-transform: uppercase;
+    }
+
+    #psi-campus-inicio .pci-team-members {
+      align-items: baseline;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 13px;
+    }
+
+    #psi-campus-inicio .pci-team-members strong {
+      color: var(--pci-paper);
+      font-family: "Outfit", system-ui, sans-serif;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    #psi-campus-inicio .pci-team-members span {
+      color: #d7efeb;
+      font-size: 13px;
+      font-weight: 600;
     }
 
     #psi-campus-inicio .pci-meeting {
@@ -615,8 +643,11 @@
               <h1 class="pci-title" id="pci-title">Bienvenidas<span>y bienvenidos.</span></h1>
               <p class="pci-lead">Este espacio va a acompañar la cursada de Psicopatología I. Para comenzar, acá tienen el acceso directo a nuestro primer encuentro.</p>
             </div>
-            <div class="pci-welcome-signature" aria-hidden="true">
-              <span>Aula virtual</span>
+            <div class="pci-welcome-signature">
+              <div class="pci-team-copy">
+                <span class="pci-team-label">Equipo docente</span>
+                <span class="pci-team-members"><strong>Blas Rivera</strong><span>Segundo docente: a confirmar</span></span>
+              </div>
             </div>
           </section>
 
