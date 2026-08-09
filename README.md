@@ -3,6 +3,7 @@
 Primera versión de la portada del aula. Por ahora comunica sólo lo necesario para el inicio de la cursada:
 
 - bienvenida institucional;
+- identificación de la Comisión 3, turno mañana;
 - primer encuentro: lunes 10 de agosto de 2026, de 8:30 a 10:30, hora de Buenos Aires;
 - acceso a Google Meet;
 - aviso de que el resto del aula se habilitará próximamente;
@@ -34,6 +35,7 @@ URL pública del aula: <https://pps-psico.github.io/campus-psicopatologia/inicio
 ## Datos del encuentro
 
 - Materia: Psicopatología I.
+- Comisión: 3, turno mañana.
 - Día: lunes.
 - Horario: 8:30 a 10:30.
 - Zona horaria: America/Argentina/Buenos_Aires.

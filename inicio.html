@@ -99,10 +99,20 @@
     }
 
     #psi-campus-inicio .pci-course-state {
+      align-items: flex-end;
       color: var(--pci-muted);
+      display: flex;
+      flex-direction: column;
       font-size: 13px;
       font-weight: 600;
+      line-height: 1.35;
       margin: 0;
+      text-align: right;
+    }
+
+    #psi-campus-inicio .pci-course-state strong {
+      color: var(--pci-accent);
+      font-weight: 700;
     }
 
     #psi-campus-inicio .pci-stage {
@@ -478,6 +488,11 @@
         gap: 5px;
       }
 
+      #psi-campus-inicio .pci-course-state {
+        align-items: flex-start;
+        text-align: left;
+      }
+
       #psi-campus-inicio .pci-stage {
         grid-template-columns: 1fr;
       }
@@ -589,7 +604,7 @@
           <span class="pci-brand-mark" aria-hidden="true"></span>
           UFLO | Psicopatología I
         </p>
-        <p class="pci-course-state">Segundo cuatrimestre 2026</p>
+        <p class="pci-course-state"><strong>Comisión 3 | Turno mañana</strong><span>Segundo cuatrimestre 2026</span></p>
       </header>
 
       <main>
