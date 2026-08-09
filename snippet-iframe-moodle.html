@@ -1,28 +1,279 @@
-<!--
-  Pegar el bloque completo desde el editor HTML de Moodle.
--->
-<div id="psi-campus-frame-wrap" style="width:100%;max-width:1100px;margin:0 auto;">
+<!-- AULA MOODLE | PSICOPATOLOGÍA I | COMISIÓN 3 | TURNO MAÑANA -->
+<style id="psi-aula-style">
+  body.psi-rol-estudiante .secondary-navigation,
+  body.psi-rol-estudiante nav.secondary-navigation,
+  body.psi-rol-estudiante [data-region="secondary-navigation"],
+  body.userswitchedrole .secondary-navigation {
+    display: none !important;
+  }
+
+  #page-header::after,
+  #page-header::before,
+  header#page-header::after {
+    display: none !important;
+    content: none !important;
+    background: none !important;
+    background-image: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    border: 0 !important;
+  }
+
+  #page-header {
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .page-header-headings,
+  #page-header .page-header-headings,
+  #page-header h1,
+  .page-context-header {
+    display: none !important;
+  }
+
+  #page-content,
+  #region-main,
+  #region-main-box,
+  [role="main"] {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  .secondary-navigation {
+    margin-bottom: 0 !important;
+  }
+
+  #region-main .activitysection,
+  #region-main .course-content,
+  #region-main .section {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  body.limitedwidth #page.drawers .main-inner,
+  #page.drawers .main-inner,
+  .main-inner-wrapper,
+  #topofscroll,
+  #region-main,
+  #region-main-box,
+  #page-content,
+  .course-content,
+  #region-main .content,
+  [role="main"],
+  #page .container,
+  #page .container-fluid {
+    max-width: none !important;
+    width: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  #region-main .activity,
+  #region-main .section .content,
+  #region-main ul.topics li.section .content {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  button[data-target="theme_boost-drawers-courseindex"],
+  button[data-target="theme_boost-drawers-blocks"],
+  [data-toggler="drawers"][data-action="toggle"],
+  .drawer-toggles,
+  .drawer-toggles .drawer-toggler-start,
+  .drawer-toggles .drawer-toggler-end {
+    display: none !important;
+  }
+
+  #page.drawers {
+    --drawer-left-width: 0px !important;
+    --drawer-right-width: 0px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  #theme_boost-drawers-blocks,
+  #theme_boost-drawers-courseindex,
+  .drawer.drawer-right,
+  .drawer.drawer-left,
+  [data-region="blocks-column"],
+  .block-region-side-post,
+  #block-region-side-post {
+    display: none !important;
+  }
+
+  #region-main .activity.label,
+  #region-main .activity-item {
+    border: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  #region-main .activity.label .contentwithoutlink,
+  #region-main .activity-item .description {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+  }
+
+  #psi-aula-embed {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 16px 18px;
+    background: transparent;
+    line-height: 0;
+  }
+
+  #psi-aula-frame {
+    width: 100%;
+    height: 1100px;
+    min-height: 300px;
+    border: 0;
+    border-radius: 16px;
+    display: block;
+    vertical-align: top;
+    background: transparent;
+    overflow: hidden;
+  }
+
+  html,
+  body {
+    overflow-x: hidden !important;
+  }
+
+  #page-content,
+  #region-main {
+    overflow-x: hidden;
+  }
+
+  @media (max-width: 600px) {
+    #psi-aula-embed {
+      padding: 0;
+    }
+
+    #psi-aula-frame {
+      border-radius: 0;
+    }
+  }
+</style>
+
+<div id="psi-aula-embed">
   <iframe
-    id="psi-campus-frame"
-    src="https://pps-psico.github.io/campus-psicopatologia/inicio.html"
-    title="Inicio de Psicopatología I"
-    scrolling="no"
-    allow="fullscreen"
+    id="psi-aula-frame"
+    src="https://pps-psico.github.io/campus-psicopatologia/inicio.html?v=4"
+    title="Aula de Psicopatología I | Comisión 3 | Turno mañana"
     loading="eager"
-    style="width:100%;height:820px;border:0;display:block;background:transparent;"
+    scrolling="auto"
+    allowtransparency="true"
+    allow="fullscreen"
   ></iframe>
 </div>
+
 <script>
   (function () {
     "use strict";
-    var frame = document.getElementById("psi-campus-frame");
+
+    var frame = document.getElementById("psi-aula-frame");
+    if (!frame) return;
+
+    function esEstudiante() {
+      var body = document.body;
+      if (body.classList.contains("userswitchedrole")) return true;
+
+      var nav = document.querySelector(
+        '.secondary-navigation, nav.secondary-navigation, [data-region="secondary-navigation"]'
+      );
+
+      if (!nav) return false;
+
+      if (
+        nav.querySelector(
+          'a[href*="course/edit.php"], a[href*="/admin/roles"], a[href*="/group/index.php"], a[href*="report/"], a[href*="enrol/"]'
+        )
+      ) {
+        return false;
+      }
+
+      var texto = (nav.textContent || "").toLowerCase();
+      if (
+        texto.indexOf("configuraci") > -1 ||
+        texto.indexOf("settings") > -1 ||
+        texto.indexOf("ajustes") > -1
+      ) {
+        return false;
+      }
+
+      return true;
+    }
+
+    function aplicarRol() {
+      if (esEstudiante()) {
+        document.body.classList.add("psi-rol-estudiante");
+      } else {
+        document.body.classList.remove("psi-rol-estudiante");
+      }
+    }
+
+    function cerrarCajones() {
+      [
+        "drawer-open-blocks",
+        "drawer-open-right",
+        "show-drawer-blocks",
+        "show-drawer-right",
+        "drawer-open-index",
+        "show-drawer-left"
+      ].forEach(function (clase) {
+        document.body.classList.remove(clase);
+        var pagina = document.getElementById("page");
+        if (pagina) pagina.classList.remove(clase);
+      });
+
+      [
+        "theme_boost-drawers-blocks",
+        "theme_boost-drawers-courseindex"
+      ].forEach(function (id) {
+        var cajon = document.getElementById(id);
+        if (!cajon) return;
+        cajon.classList.remove("show");
+        cajon.setAttribute("aria-hidden", "true");
+        var boton = cajon.querySelector('[data-action="closedrawer"]');
+        if (boton) boton.click();
+      });
+    }
 
     window.addEventListener("message", function (event) {
       var data = event.data;
-      if (!frame || event.source !== frame.contentWindow) return;
-      if (!data || data.psiCampus !== true || data.source !== "campus-psicopatologia-i") return;
-      if (typeof data.height !== "number" || data.height < 200 || data.height > 4000) return;
+
+      if (event.source !== frame.contentWindow) return;
+      if (event.origin !== "https://pps-psico.github.io") return;
+      if (!data || data.psiCampus !== true) return;
+      if (data.source !== "campus-psicopatologia-i") return;
+      if (typeof data.height !== "number") return;
+      if (data.height < 200 || data.height > 4000) return;
+
       frame.style.height = Math.ceil(data.height + 2) + "px";
     });
+
+    aplicarRol();
+    cerrarCajones();
+
+    window.addEventListener("load", function () {
+      aplicarRol();
+      cerrarCajones();
+    });
+
+    setTimeout(aplicarRol, 300);
+    setTimeout(aplicarRol, 800);
+    setTimeout(aplicarRol, 1500);
+    setTimeout(cerrarCajones, 500);
+    setTimeout(cerrarCajones, 1500);
   }());
 </script>
