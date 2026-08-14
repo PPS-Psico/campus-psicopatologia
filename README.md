@@ -12,7 +12,8 @@ Primera versión de la portada del aula. Por ahora comunica sólo lo necesario p
 
 ## Archivos
 
-- `inicio.html`: contenido que se publica y se muestra dentro del iframe.
+- `index.html`: el campus completo (portada, cronograma, unidades y clases). Es lo que se muestra dentro del iframe.
+- `inicio.html`: redirección a `index.html`; se conserva sólo porque el iframe publicado en Moodle apunta a esta URL.
 - `vista-previa-moodle.html`: simulación local del ancho y el marco habitual de Moodle.
 - `snippet-iframe-moodle.html`: bloque para pegar en el editor HTML de Moodle una vez que `inicio.html` tenga una URL pública.
 
