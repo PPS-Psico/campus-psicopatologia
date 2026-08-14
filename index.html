@@ -207,8 +207,7 @@
       document.getElementById('facts').innerHTML = `
         <div><dt>Cuándo</dt><dd>${CONFIG.diaClase} · ${CONFIG.horario}</dd></div>
         <div><dt>Modalidad</dt><dd>Online sincrónica</dd></div>
-        <div><dt>Equipo docente</dt><dd>${CONFIG.docentes.join(', ')}<br>
-          <span class="text-muted" style="font-weight:400">${CONFIG.docentePendiente}</span></dd></div>`;
+        <div><dt>Equipo docente</dt><dd>${CONFIG.docentes.join('<br>')}</dd></div>`;
 
       /* ---- Lo que viene ---- */
       const futuras = PROGRAMA
