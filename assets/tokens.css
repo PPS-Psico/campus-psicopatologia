@@ -1,0 +1,358 @@
+/* ==========================================================================
+   CAMPUS PSICOPATOLOGÍA I · Sistema de diseño
+   tokens.css — Variables semánticas, modo claro/oscuro, acento por unidad
+   ==========================================================================
+
+   Hereda deliberadamente el sistema del Campus Psicoanálisis (misma cátedra):
+   una sola fuente de verdad para color, tipografía, espacio y forma.
+   Los componentes (ui.css) NUNCA usan colores crudos: solo tokens semánticos.
+   El acento cambia según la unidad activa vía body[data-unit="N"].
+
+   Específico de esta materia: los tokens --paper-*. La bibliografía incluye
+   escaneos de libros que se muestran embebidos; esas superficies conservan su
+   blanco de fotocopia en ambos temas, porque invertirlas vuelve el texto ilegible.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. MODO CLARO (default)
+   -------------------------------------------------------------------------- */
+:root {
+  /* ---- Paleta cruda (no usar directamente en componentes) ---- */
+  --raw-teal-50:  #f0fdfa;
+  --raw-teal-100: #ccfbf1;
+  --raw-teal-400: #2dd4bf;
+  --raw-teal-500: #14b8a6;
+  --raw-teal-600: #0d9488;  /* acento de marca · U1 */
+  --raw-teal-700: #0f766e;
+
+  --raw-amber-500: #f59e0b;
+  --raw-amber-600: #d97706;  /* U2 */
+  --raw-violet-500: #8b5cf6;
+  --raw-violet-600: #7c3aed; /* U3 */
+  --raw-blue-500:  #3b82f6;
+  --raw-blue-600:  #2563eb;  /* U4 */
+
+  --raw-slate-50:  #f8fafc;
+  --raw-slate-100: #f1f5f9;
+  --raw-slate-200: #e2e8f0;
+  --raw-slate-300: #cbd5e1;
+  --raw-slate-400: #94a3b8;
+  --raw-slate-500: #64748b;
+  --raw-slate-600: #475569;
+  --raw-slate-700: #334155;
+  --raw-slate-800: #1e293b;
+  --raw-slate-900: #0f172a;
+
+  --raw-red-600: #dc2626;
+  --raw-red-700: #b91c1c;
+
+  /* ---- Superficie ---- */
+  --bg:            #ffffff;
+  --bg-subtle:     var(--raw-slate-50);
+  --surface:       #ffffff;
+  --surface-hover: var(--raw-slate-50);
+  --surface-sunken: var(--raw-slate-50);
+
+  /* ---- Texto ---- */
+  --text:         var(--raw-slate-700);
+  --text-strong:  var(--raw-slate-900);
+  --text-muted:   var(--raw-slate-500);
+  --text-subtle:  var(--raw-slate-400);
+  --text-on-accent: #ffffff;
+
+  /* ---- Borde ---- */
+  --border:        rgba(15, 23, 42, 0.09);
+  --border-strong: rgba(15, 23, 42, 0.16);
+  --border-subtle: rgba(15, 23, 42, 0.05);
+
+  /* ---- Acento (cambia por unidad) ---- */
+  --accent:         var(--raw-teal-600);
+  --accent-strong:  var(--raw-teal-700);
+  --accent-soft:    rgba(13, 148, 136, 0.10);
+  --accent-softer:  rgba(13, 148, 136, 0.05);
+  --accent-contrast: #ffffff;
+  /* Versión del acento con contraste AA garantizado sobre --surface,
+     para texto chico. En claro es más oscura que --accent. */
+  --accent-text:    var(--raw-teal-700);
+
+  /* Superficies RELLENAS de acento: botón primario, chips, marcadores.
+     --accent no sirve para esto: blanco sobre #0d9488 da 3.74:1 y no llega a AA.
+     Estos tres tokens se redefinen por unidad y por tema para que el par
+     fondo/texto siempre pase. */
+  --accent-fill:       var(--raw-teal-700);
+  --accent-fill-hover: #0b5f59;
+  --on-accent-fill:    #ffffff;
+
+  /* ---- Señal de atención: se usa solo para lo que vence o falta ---- */
+  --warn:      #b45309;
+  --warn-soft: rgba(180, 83, 9, 0.10);
+
+  /* ---- Papel: superficies que replican una página impresa ----
+     No cambian con el tema. Los escaneos son fotocopias en blanco. */
+  --paper:        #fbfaf7;
+  --paper-ink:    #1c1917;
+  --paper-muted:  #6b6560;
+  --paper-border: rgba(28, 25, 23, 0.14);
+  --paper-mark:   rgba(217, 119, 6, 0.22);
+
+  /* ---- Sombras ---- */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 12px 30px rgba(15, 23, 42, 0.07), 0 4px 10px rgba(15, 23, 42, 0.04);
+  --shadow-xl: 0 24px 50px rgba(15, 23, 42, 0.09), 0 8px 20px rgba(15, 23, 42, 0.05);
+
+  /* ---- Tipografía ---- */
+  --font-display: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   clamp(1.2rem, 1.12rem + 0.35vw, 1.45rem);
+  --text-2xl:  clamp(1.45rem, 1.28rem + 0.75vw, 1.95rem);
+  --text-3xl:  clamp(1.9rem, 1.62rem + 1.3vw, 2.6rem);
+  --text-4xl:  clamp(2.35rem, 1.9rem + 2.2vw, 3.5rem);
+
+  --leading-tight:   1.1;
+  --leading-snug:    1.3;
+  --leading-normal:  1.6;
+  --leading-relaxed: 1.75;
+
+  --tracking-tight:   -0.02em;
+  --tracking-tighter: -0.035em;
+  --tracking-wide:     0.04em;
+  --tracking-wider:    0.09em;
+
+  /* ---- Espaciado ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* ---- Forma: una sola familia de radios ---- */
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   22px;
+  --radius-2xl:  28px;
+  --radius-pill: 999px;
+
+  /* ---- Layout ---- */
+  --container-max:    1160px;
+  --container-narrow: 720px;
+  --measure:          68ch;   /* medida de lectura */
+
+  /* ---- Movimiento ----
+     Una sola curva: desaceleración exponencial, como frena un objeto real.
+     No hay curva elástica: el rebote envejece mal y acá no representa nada. */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 0.18s;
+  --dur-base: 0.28s;
+  --dur-slow: 0.5s;
+}
+
+/* --------------------------------------------------------------------------
+   2. ACENTO POR UNIDAD
+   U1 usa el teal de marca, que es además el color de la portada ya publicada.
+   -------------------------------------------------------------------------- */
+:root,
+body[data-unit="1"] {
+  --accent:        var(--raw-teal-600);
+  --accent-strong: var(--raw-teal-700);
+  --accent-text:   var(--raw-teal-700);
+  --accent-soft:   rgba(13, 148, 136, 0.10);
+  --accent-softer: rgba(13, 148, 136, 0.05);
+  --accent-fill:       var(--raw-teal-700);
+  --accent-fill-hover: #0b5f59;
+  --on-accent-fill:    #ffffff;
+}
+
+body[data-unit="2"] {
+  --accent:        var(--raw-amber-600);
+  --accent-strong: #b45309;
+  --accent-text:   #b45309;
+  --accent-soft:   rgba(217, 119, 6, 0.10);
+  --accent-softer: rgba(217, 119, 6, 0.05);
+  --accent-fill:       #b45309;
+  --accent-fill-hover: #92400e;
+  --on-accent-fill:    #ffffff;
+}
+
+body[data-unit="3"] {
+  --accent:        var(--raw-violet-600);
+  --accent-strong: #6d28d9;
+  --accent-text:   #6d28d9;
+  --accent-soft:   rgba(124, 58, 237, 0.10);
+  --accent-softer: rgba(124, 58, 237, 0.05);
+  --accent-fill:       #6d28d9;
+  --accent-fill-hover: #5b21b6;
+  --on-accent-fill:    #ffffff;
+}
+
+body[data-unit="4"] {
+  --accent:        var(--raw-blue-600);
+  --accent-strong: #1d4ed8;
+  --accent-text:   #1d4ed8;
+  --accent-soft:   rgba(37, 99, 235, 0.10);
+  --accent-softer: rgba(37, 99, 235, 0.05);
+  --accent-fill:       #1d4ed8;
+  --accent-fill-hover: #1e40af;
+  --on-accent-fill:    #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   3. MODO OSCURO
+   ui.js aplica data-theme según localStorage o preferencia del sistema.
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] {
+  --bg:            #0b1120;
+  --bg-subtle:     #0f172a;
+  --surface:       #131c31;
+  --surface-hover: #1a2540;
+  --surface-sunken: #0a0f1d;
+
+  --text:        #cbd5e1;
+  --text-strong: #f1f5f9;
+  --text-muted:  #9aa9bd;
+  --text-subtle: #6b7c93;
+
+  --border:        rgba(148, 163, 184, 0.16);
+  --border-strong: rgba(148, 163, 184, 0.28);
+  --border-subtle: rgba(148, 163, 184, 0.09);
+
+  --warn:      #fbbf24;
+  --warn-soft: rgba(251, 191, 36, 0.14);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.45), 0 4px 10px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 24px 50px rgba(0, 0, 0, 0.55), 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* Sobre fondo oscuro el acento se ilumina: --accent-text debe ser el claro. */
+:root[data-theme="dark"] body[data-unit="1"],
+:root[data-theme="dark"] {
+  --accent:        var(--raw-teal-500);
+  --accent-strong: var(--raw-teal-400);
+  --accent-text:   var(--raw-teal-400);
+  --accent-soft:   rgba(20, 184, 166, 0.16);
+  --accent-softer: rgba(20, 184, 166, 0.08);
+  --accent-fill:       var(--raw-teal-400);
+  --accent-fill-hover: #7ff0e0;
+  --on-accent-fill:    #04201d;
+}
+:root[data-theme="dark"] body[data-unit="2"] {
+  --accent:        var(--raw-amber-500);
+  --accent-strong: #fbbf24;
+  --accent-text:   #fbbf24;
+  --accent-soft:   rgba(245, 158, 11, 0.16);
+  --accent-softer: rgba(245, 158, 11, 0.08);
+  --accent-fill:       #fbbf24;
+  --accent-fill-hover: #fcd34d;
+  --on-accent-fill:    #251603;
+}
+:root[data-theme="dark"] body[data-unit="3"] {
+  --accent:        var(--raw-violet-500);
+  --accent-strong: #a78bfa;
+  --accent-text:   #a78bfa;
+  --accent-soft:   rgba(139, 92, 246, 0.16);
+  --accent-softer: rgba(139, 92, 246, 0.08);
+  --accent-fill:       #a78bfa;
+  --accent-fill-hover: #c4b5fd;
+  --on-accent-fill:    #1b0f36;
+}
+:root[data-theme="dark"] body[data-unit="4"] {
+  --accent:        var(--raw-blue-500);
+  --accent-strong: #60a5fa;
+  --accent-text:   #60a5fa;
+  --accent-soft:   rgba(59, 130, 246, 0.16);
+  --accent-softer: rgba(59, 130, 246, 0.08);
+  --accent-fill:       #60a5fa;
+  --accent-fill-hover: #93c5fd;
+  --on-accent-fill:    #06203f;
+}
+
+/* --------------------------------------------------------------------------
+   4. RESET MÍNIMO + BASE
+   -------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  transition: background-color var(--dur-base) var(--ease-out),
+              color var(--dur-base) var(--ease-out);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--text-strong);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  font-weight: 800;
+  text-wrap: balance;
+}
+h1 { font-size: var(--text-4xl); letter-spacing: var(--tracking-tighter); }
+h2 { font-size: var(--text-3xl); }
+h3 { font-size: var(--text-2xl); }
+h4 { font-size: var(--text-xl); }
+
+p { line-height: var(--leading-relaxed); }
+a { color: var(--accent-text); text-decoration: none; }
+a:hover { text-decoration: underline; }
+strong { color: var(--text-strong); font-weight: 650; }
+em { font-style: italic; }
+
+img { max-width: 100%; height: auto; display: block; }
+button { font-family: inherit; cursor: pointer; }
+ul, ol { padding-left: 1.15rem; }
+li { line-height: var(--leading-relaxed); }
+
+::selection { background: var(--accent-soft); color: var(--text-strong); }
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+* { scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent; }
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: var(--radius-pill); }
+
+/* --------------------------------------------------------------------------
+   5. MOVIMIENTO REDUCIDO
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

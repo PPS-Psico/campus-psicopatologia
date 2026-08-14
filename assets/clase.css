@@ -1,0 +1,169 @@
+/* ==========================================================================
+   CAMPUS PSICOPATOLOGÍA I · Página de clase
+   clase.css — Componentes que sólo aparecen dentro de un plan de lectura
+   ==========================================================================
+   Depende de tokens.css y ui.css.
+   ========================================================================== */
+
+/* Las páginas de clase son documentos, no paneles: se leen más angostas
+   que el índice para que la medida de lectura no se estire. */
+.container--reading { max-width: 1020px; }
+
+/* ==========================================================================
+   TEXTO NORMATIVO CITADO ENTERO
+   Se usa cuando la fuente es tan breve que reproducirla es mejor que enlazarla.
+   ========================================================================== */
+.statute {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: clamp(var(--space-5), 3vw, var(--space-8));
+  max-width: var(--measure);
+  display: grid;
+  gap: var(--space-4);
+}
+.statute p { font-size: var(--text-sm); line-height: var(--leading-relaxed); }
+.statute__num {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--accent-text);
+}
+.statute__list {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding-left: var(--space-5);
+  list-style: lower-alpha;
+}
+.statute__list li { font-size: var(--text-sm); }
+
+/* ==========================================================================
+   PREGUNTAS SOBRE EL TEXTO
+   Dos o más por lectura. Es lo que el estudiante trae respondido.
+   Numeradas con marcador posicionado, no con grid: el enunciado lleva <em> y
+   <strong> adentro y con grid cada uno se volvía una celda suelta.
+   ========================================================================== */
+.ask {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  background: var(--bg-subtle);
+  border-radius: var(--radius-lg);
+}
+.ask__title {
+  display: flex; align-items: center; gap: var(--space-2);
+  font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
+  letter-spacing: var(--tracking-wide); color: var(--text-muted);
+}
+.ask__list {
+  display: grid; gap: var(--space-4);
+  list-style: none; padding: 0; margin: 0;
+  counter-reset: ask;
+}
+.ask__list li {
+  position: relative;
+  padding-left: var(--space-8);
+  font-size: var(--text-sm);
+  max-width: var(--measure);
+}
+.ask__list li::before {
+  counter-increment: ask;
+  content: counter(ask);
+  position: absolute; left: 0; top: 0;
+  display: grid; place-items: center;
+  width: 22px; height: 22px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-fill); color: var(--on-accent-fill);
+  font-family: var(--font-display);
+  font-size: var(--text-xs); font-weight: 800;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   DÓNDE PONER ATENCIÓN
+   Bloque que acompaña a un recorte: por qué esa página y no otra.
+   ========================================================================== */
+/* Sin recuadro: el acento vive en la etiqueta, no en un borde de color.
+   Va pegado al recorte que introduce, así que no lleva separación abajo. */
+.spotlight {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-6);
+  background: var(--accent-softer);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  margin-bottom: calc(var(--space-5) * -1);
+}
+.spotlight__title {
+  display: flex; align-items: center; gap: var(--space-2);
+  font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
+  letter-spacing: var(--tracking-wide); color: var(--accent-text);
+}
+.spotlight__copy { font-size: var(--text-sm); max-width: var(--measure); }
+.spotlight__copy p + p { margin-top: var(--space-3); }
+
+/* ==========================================================================
+   AJUSTES DEL RECORTE EMBEBIDO
+   ========================================================================== */
+.excerpt { margin-top: var(--space-2); }
+
+/* El escaneo es una fotocopia: en tema oscuro se apoya sobre su propio papel,
+   nunca se invierte, porque invertir vuelve ilegible el gris del original. */
+:root[data-theme="dark"] .excerpt__figure img { mix-blend-mode: normal; }
+:root[data-theme="dark"] .excerpt { border-color: rgba(148, 163, 184, 0.28); }
+
+/* Abrir el escaneo a tamaño completo, para leerlo fuera del ancho de la página. */
+.excerpt__zoom {
+  display: flex; align-items: center; gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border-top: 1px solid var(--paper-border);
+  background: var(--paper);
+  color: var(--paper-muted);
+  font-size: var(--text-xs); font-weight: 650;
+}
+.excerpt__zoom:hover { color: var(--paper-ink); text-decoration: none; }
+.excerpt__zoom:focus-visible { outline-offset: -3px; }
+
+/* Aviso de paneo: sólo aparece cuando el escaneo desborda. */
+.excerpt__pan {
+  display: none;
+  padding: var(--space-2) var(--space-5) 0;
+  background: var(--paper);
+  color: var(--paper-muted);
+  font-size: var(--text-xs);
+}
+@media (max-width: 720px) {
+  .excerpt__pan { display: block; }
+}
+
+/* ==========================================================================
+   ORDEN SUGERIDO DE LECTURA
+   ========================================================================== */
+.order {
+  display: grid;
+  gap: var(--space-3);
+  counter-reset: paso;
+  margin-bottom: var(--space-8);
+}
+.order__step {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: baseline;
+  font-size: var(--text-sm);
+  color: var(--text);
+}
+.order__step::before {
+  counter-increment: paso;
+  content: counter(paso);
+  display: grid; place-items: center;
+  width: 28px; height: 28px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-strong);
+  font-family: var(--font-display);
+  font-size: var(--text-xs); font-weight: 800;
+  color: var(--text-muted);
+}
+.order__step strong { color: var(--text-strong); }

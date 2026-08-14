@@ -1,0 +1,574 @@
+/* ==========================================================================
+   CAMPUS PSICOPATOLOGÍA I · Componentes
+   ui.css — Cromado, layout y los componentes propios del plan de lectura
+   ==========================================================================
+   Depende de tokens.css. Ningún color crudo acá: solo tokens semánticos.
+   ========================================================================== */
+
+/* ==========================================================================
+   1. LAYOUT
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: clamp(var(--space-5), 4vw, var(--space-10));
+}
+.container--narrow { max-width: var(--container-narrow); }
+
+.section { margin-top: var(--space-20); }
+.section:first-of-type { margin-top: var(--space-12); }
+
+.section-head { margin-bottom: var(--space-8); max-width: var(--measure); }
+.section-head__title { font-size: var(--text-2xl); margin-bottom: var(--space-3); }
+.section-head__subtitle { color: var(--text-muted); font-size: var(--text-base); }
+
+.prose { max-width: var(--measure); }
+.prose p + p { margin-top: var(--space-4); }
+
+.grid { display: grid; gap: var(--space-5); }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.flex-wrap { flex-wrap: wrap; }
+.gap-2 { gap: var(--space-2); }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
+
+.mt-4 { margin-top: var(--space-4); }
+.mt-6 { margin-top: var(--space-6); }
+.mt-8 { margin-top: var(--space-8); }
+.mb-4 { margin-bottom: var(--space-4); }
+.mb-6 { margin-bottom: var(--space-6); }
+.mb-8 { margin-bottom: var(--space-8); }
+
+.text-muted  { color: var(--text-muted); }
+.text-strong { color: var(--text-strong); }
+.text-accent { color: var(--accent-text); }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: absolute; left: var(--space-4); top: var(--space-4);
+  transform: translateY(-200%);
+  background: var(--accent-fill); color: var(--on-accent-fill);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-md); font-weight: 650;
+  z-index: 100; transition: transform var(--dur-fast) var(--ease-out);
+}
+.skip-link:focus { transform: translateY(0); text-decoration: none; }
+
+/* ==========================================================================
+   2. NAV
+   ========================================================================== */
+.nav {
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  position: sticky; top: 0; z-index: 50;
+}
+.nav__inner {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: var(--space-3) clamp(var(--space-5), 4vw, var(--space-10));
+  display: flex; align-items: center; gap: var(--space-5);
+  min-height: 60px;
+}
+.nav__brand {
+  display: inline-flex; align-items: center; gap: var(--space-3);
+  font-family: var(--font-display); font-weight: 800;
+  font-size: var(--text-sm); letter-spacing: var(--tracking-tight);
+  color: var(--text-strong); white-space: nowrap;
+}
+.nav__brand:hover { text-decoration: none; color: var(--accent-text); }
+.nav__brand-dot {
+  width: 22px; height: 22px; flex: none; position: relative;
+}
+.nav__brand-dot::before,
+.nav__brand-dot::after { content: ""; position: absolute; border-radius: 4px; }
+.nav__brand-dot::before {
+  inset: 0 5px 5px 0; background: var(--accent);
+}
+.nav__brand-dot::after {
+  inset: 9px 0 0 9px; border: 2px solid var(--text-strong);
+}
+
+.nav__links { display: flex; gap: var(--space-1); margin-left: auto; }
+.nav__link {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm); font-weight: 600;
+  color: var(--text-muted);
+  transition: background-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out);
+}
+.nav__link:hover { background: var(--surface-hover); color: var(--text-strong); text-decoration: none; }
+.nav__link.is-active { background: var(--accent-soft); color: var(--accent-text); }
+
+.nav__actions { display: flex; gap: var(--space-2); margin-left: var(--space-2); }
+.nav__links + .nav__actions { margin-left: var(--space-2); }
+.nav__brand + .nav__actions { margin-left: auto; }
+
+.icon-btn {
+  width: 38px; height: 38px; flex: none;
+  display: grid; place-items: center;
+  border: 1px solid var(--border);
+  background: var(--surface); color: var(--text-muted);
+  border-radius: var(--radius-md);
+  transition: color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              background-color var(--dur-fast) var(--ease-out);
+}
+.icon-btn:hover { color: var(--accent-text); border-color: var(--accent); background: var(--accent-softer); }
+
+.nav__menu-toggle { display: none; }
+.nav__mobile {
+  display: none; flex-direction: column; gap: var(--space-1);
+  padding: var(--space-2) clamp(var(--space-5), 4vw, var(--space-10)) var(--space-5);
+  border-top: 1px solid var(--border);
+}
+.nav__mobile[hidden] { display: none; }
+.nav__mobile-link {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  font-weight: 600; color: var(--text);
+}
+.nav__mobile-link.is-active { background: var(--accent-soft); color: var(--accent-text); }
+
+@media (max-width: 800px) {
+  .nav__links { display: none; }
+  .nav__menu-toggle { display: grid; }
+  .nav__mobile:not([hidden]) { display: flex; }
+}
+
+/* ==========================================================================
+   3. BOTONES Y ETIQUETAS
+   ========================================================================== */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm); font-weight: 650;
+  line-height: 1.2; min-height: 44px;
+  transition: background-color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              transform var(--dur-fast) var(--ease-out);
+}
+.btn:hover { text-decoration: none; }
+.btn:active { transform: translateY(1px); }
+
+.btn--primary { background: var(--accent-fill); color: var(--on-accent-fill); }
+.btn--primary:hover { background: var(--accent-fill-hover); }
+
+.btn--secondary {
+  background: var(--surface); color: var(--text-strong); border-color: var(--border-strong);
+}
+.btn--secondary:hover { border-color: var(--accent); color: var(--accent-text); background: var(--accent-softer); }
+
+.btn--ghost { background: transparent; color: var(--text-muted); }
+.btn--ghost:hover { background: var(--surface-hover); color: var(--text-strong); }
+
+.btn--lg { padding: var(--space-4) var(--space-6); font-size: var(--text-base); min-height: 52px; }
+
+.btn[aria-disabled="true"] {
+  opacity: 0.55; pointer-events: none;
+}
+
+.back-link {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-size: var(--text-sm); font-weight: 650;
+  color: var(--text-muted); margin-bottom: var(--space-6);
+}
+.back-link:hover { color: var(--accent-text); text-decoration: none; }
+.back-link svg { transition: transform var(--dur-fast) var(--ease-out); }
+.back-link:hover svg { transform: translateX(-3px); }
+
+.badge {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-xs); font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+  background: var(--surface-hover); color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+.badge--accent { background: var(--accent-soft); color: var(--accent-text); border-color: transparent; }
+.badge--warn   { background: var(--warn-soft); color: var(--warn); border-color: transparent; }
+.badge--quiet  { background: transparent; }
+
+/* ==========================================================================
+   4. TARJETAS
+   ========================================================================== */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+}
+.card--lg { padding: clamp(var(--space-6), 4vw, var(--space-10)); border-radius: var(--radius-2xl); }
+.card--sunken { background: var(--bg-subtle); }
+
+.card--hoverable {
+  transition: border-color var(--dur-base) var(--ease-out),
+              box-shadow var(--dur-base) var(--ease-out),
+              transform var(--dur-base) var(--ease-out);
+}
+.card--hoverable:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   5. HERO DE UNIDAD
+   ========================================================================== */
+.hero { padding-top: var(--space-10); }
+.hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: clamp(var(--space-6), 4vw, var(--space-12));
+  align-items: start;
+}
+.hero__title { margin-bottom: var(--space-5); max-width: 17ch; }
+.hero__lead {
+  font-size: var(--text-lg); color: var(--text-muted);
+  max-width: var(--measure); margin-bottom: var(--space-8);
+}
+.hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+.pull {
+  background: var(--accent-softer);
+  border: 1px solid var(--accent-soft);
+  border-radius: var(--radius-2xl);
+  padding: clamp(var(--space-6), 3vw, var(--space-8));
+}
+.pull__quote {
+  font-size: var(--text-xl); font-family: var(--font-display);
+  font-weight: 600; font-style: italic;
+  color: var(--text-strong); line-height: var(--leading-snug);
+  margin-bottom: var(--space-4);
+}
+.pull__source { font-size: var(--text-sm); color: var(--text-muted); font-weight: 600; }
+
+@media (max-width: 860px) {
+  .hero__grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   6. HOJA DE RUTA / CRONOGRAMA
+   ========================================================================== */
+.roadmap { display: grid; gap: var(--space-3); }
+
+.stop {
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr) auto;
+  gap: var(--space-5); align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  color: inherit;
+}
+.stop__date {
+  text-align: center; padding: var(--space-2) 0;
+  border-radius: var(--radius-md); background: var(--bg-subtle);
+}
+.stop__day {
+  font-family: var(--font-display); font-size: var(--text-xl);
+  font-weight: 800; color: var(--text-strong); line-height: 1;
+}
+.stop__month {
+  font-size: var(--text-xs); font-weight: 700; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: var(--tracking-wide);
+  margin-top: var(--space-1);
+}
+.stop__title { font-size: var(--text-lg); margin-bottom: var(--space-1); }
+.stop__desc { font-size: var(--text-sm); color: var(--text-muted); }
+.stop__meta {
+  display: flex; align-items: center; gap: var(--space-3);
+  color: var(--text-subtle);
+}
+
+a.stop:hover { text-decoration: none; }
+a.stop:hover .stop__title { color: var(--accent-text); }
+
+.stop--event { background: var(--bg-subtle); border-style: dashed; }
+.stop--event .stop__date { background: transparent; }
+.stop--pending { opacity: 0.72; }
+
+@media (max-width: 640px) {
+  .stop { grid-template-columns: 56px minmax(0, 1fr); }
+  .stop__meta { grid-column: 1 / -1; }
+}
+
+/* ==========================================================================
+   7. CABECERA DE CLASE
+   ========================================================================== */
+.class-head { padding-top: var(--space-8); }
+.class-head__meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+.class-head__title { font-size: var(--text-3xl); margin-bottom: var(--space-5); max-width: 20ch; }
+.class-head__lead {
+  font-size: var(--text-lg); color: var(--text-muted); max-width: var(--measure);
+}
+
+/* Preguntas que la clase deja responder.
+   El número va posicionado, no como celda de grid: el texto lleva <em> y
+   <strong> adentro, y con grid cada uno de esos elementos se volvía una celda
+   propia y rompía el párrafo en pedazos. */
+.questions {
+  display: grid; gap: var(--space-3);
+  counter-reset: q; list-style: none; padding: 0;
+}
+.question {
+  position: relative;
+  padding: var(--space-4) var(--space-5);
+  padding-left: calc(var(--space-5) + 24px);
+  background: var(--bg-subtle);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-base); color: var(--text);
+}
+.question::before {
+  counter-increment: q; content: counter(q);
+  position: absolute; left: var(--space-5); top: var(--space-4);
+  font-family: var(--font-display); font-weight: 800;
+  color: var(--accent-text); font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+
+/* ==========================================================================
+   8. PLAN DE LECTURA  ← el componente propio de esta materia
+   ========================================================================== */
+
+/* Una lectura */
+.readings { display: grid; gap: var(--space-12); }
+
+/* Una lectura NO es una tarjeta: es una sección del documento, separada por una
+   regla. Encerrarla en un recuadro obligaba a anidar el recorte y el recuadro de
+   atención dentro de otro recuadro, y tres bordes concéntricos no ayudan a leer. */
+.reading {
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-6);
+}
+.reading--central { border-top-color: var(--accent); }
+
+.reading__head {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-4); align-items: start;
+  padding: 0;
+}
+.reading__tier {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-size: var(--text-xs); font-weight: 700;
+  letter-spacing: var(--tracking-wide); text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: var(--space-3);
+}
+.reading__tier b {
+  display: grid; place-items: center;
+  width: 22px; height: 22px; border-radius: var(--radius-sm);
+  background: var(--surface-hover); color: var(--text-muted);
+  font-size: var(--text-xs); font-weight: 800;
+}
+.reading--central .reading__tier { color: var(--accent-text); }
+.reading--central .reading__tier b { background: var(--accent-fill); color: var(--on-accent-fill); }
+
+.reading__title { font-size: var(--text-lg); margin-bottom: var(--space-2); }
+.reading__cite { font-size: var(--text-sm); color: var(--text-muted); }
+.reading__cite em { font-style: italic; }
+
+.reading__stats {
+  display: flex; flex-direction: column; align-items: flex-end; gap: var(--space-1);
+  text-align: right; white-space: nowrap;
+}
+
+/* En pantallas chicas el rango de páginas pasa arriba del título, en una fila
+   propia: comprimido en una columna lateral dejaba la cita en 15 caracteres. */
+@media (max-width: 620px) {
+  .reading__head { grid-template-columns: 1fr; gap: var(--space-3); }
+  .reading__head > div:first-child { order: 2; }
+  .reading__stats {
+    order: 1;
+    flex-direction: row; align-items: baseline; gap: var(--space-3);
+    text-align: left; white-space: normal;
+  }
+  .reading__pages { font-size: var(--text-base); }
+}
+.reading__pages {
+  font-family: var(--font-display); font-size: var(--text-lg);
+  font-weight: 800; color: var(--text-strong); line-height: 1.1;
+}
+
+.reading__body {
+  padding: var(--space-5) 0 0;
+  display: grid; gap: var(--space-5);
+}
+
+/* "Qué buscar": la consigna de lectura */
+.lookfor { display: grid; gap: var(--space-3); }
+.lookfor__title {
+  font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
+  letter-spacing: var(--tracking-wide); color: var(--text-muted);
+}
+.lookfor__list { display: grid; gap: var(--space-3); list-style: none; padding: 0; }
+/* Misma razón que en .question: el viñetado va posicionado para no partir el
+   texto en celdas cada vez que aparece un <em> o un <strong>. */
+.lookfor__list li {
+  position: relative;
+  padding-left: var(--space-5);
+  font-size: var(--text-sm);
+}
+.lookfor__list li::before {
+  content: ""; position: absolute; left: 0; top: 0.62em;
+  width: 6px; height: 6px;
+  border-radius: 2px; background: var(--accent);
+}
+
+.reading__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+/* Aviso sobre el archivo (escaneo sin OCR, doble página, etc.) */
+.filenote {
+  display: grid; grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-3); align-items: start;
+  padding: var(--space-4) var(--space-5);
+  background: var(--warn-soft);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm); color: var(--text);
+}
+.filenote svg { color: var(--warn); margin-top: 2px; }
+.filenote strong { color: var(--text-strong); }
+
+/* ==========================================================================
+   9. RECORTE EMBEBIDO  ← la página del libro, con el pasaje señalado
+   ========================================================================== */
+.excerpt {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--paper-border);
+  background: var(--paper);
+  margin: 0;
+}
+/* El escaneo puede desbordar horizontalmente en pantallas chicas: se panea,
+   no se encoge, porque encogido no se lee. */
+.excerpt__scroll {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  background: var(--paper);
+}
+.excerpt__figure { position: relative; margin: 0; background: var(--paper); }
+.excerpt__figure img {
+  width: 100%; display: block;
+  mix-blend-mode: multiply;
+}
+@media (max-width: 720px) {
+  .excerpt__figure { min-width: 640px; }
+}
+.excerpt__mark {
+  position: absolute;
+  background: var(--paper-mark);
+  border-radius: 3px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+.excerpt.is-lit .excerpt__mark {
+  animation: mark-sweep 620ms var(--ease-out) forwards;
+  animation-delay: var(--mark-delay, 0ms);
+}
+@keyframes mark-sweep { to { transform: scaleX(1); } }
+
+.excerpt__caption {
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid var(--paper-border);
+  background: var(--paper);
+  color: var(--paper-muted);
+  font-size: var(--text-xs);
+  display: grid; gap: var(--space-1);
+}
+.excerpt__caption b { color: var(--paper-ink); font-weight: 700; }
+
+/* Transcripción accesible del pasaje: los escaneos no tienen capa de texto */
+.excerpt__quote {
+  padding: var(--space-5) var(--space-6);
+  background: var(--bg-subtle);
+  font-size: var(--text-sm);
+  color: var(--text);
+  line-height: var(--leading-relaxed);
+}
+.excerpt__quote q { font-style: italic; color: var(--text-strong); }
+
+@media (prefers-reduced-motion: reduce) {
+  .excerpt__mark { transform: scaleX(1); }
+}
+
+/* ==========================================================================
+   10. AVISOS Y PUENTE
+   ========================================================================== */
+.notice {
+  display: grid; grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-4); align-items: start;
+  padding: var(--space-5) var(--space-6);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.notice svg { color: var(--accent); margin-top: 2px; }
+.notice__title { font-size: var(--text-base); margin-bottom: var(--space-1); }
+.notice__copy { font-size: var(--text-sm); color: var(--text-muted); }
+
+.bridge {
+  background: var(--accent-softer);
+  border: 1px solid var(--accent-soft);
+  border-radius: var(--radius-2xl);
+  padding: clamp(var(--space-6), 4vw, var(--space-10));
+}
+.bridge__title { font-size: var(--text-2xl); margin-bottom: var(--space-4); max-width: 22ch; }
+.bridge__copy { max-width: var(--measure); color: var(--text); }
+.bridge__copy p + p { margin-top: var(--space-4); }
+
+.pager {
+  display: flex; flex-wrap: wrap; gap: var(--space-3);
+  justify-content: space-between; align-items: center;
+  margin-top: var(--space-12);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border);
+}
+
+/* ==========================================================================
+   11. PIE
+   ========================================================================== */
+.site-footer {
+  margin-top: var(--space-24);
+  padding: var(--space-8) 0 var(--space-12);
+  border-top: 1px solid var(--border);
+  color: var(--text-subtle);
+  font-size: var(--text-xs);
+  display: flex; flex-wrap: wrap; gap: var(--space-3);
+  justify-content: space-between;
+}
+
+/* ==========================================================================
+   12. ENTRADA
+   Un solo momento de movimiento: el contenido asienta al cargar.
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  .settle { animation: settle var(--dur-slow) var(--ease-out) both; }
+  .settle:nth-of-type(2) { animation-delay: 60ms; }
+  .settle:nth-of-type(3) { animation-delay: 110ms; }
+}
+@keyframes settle {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
