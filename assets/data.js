@@ -110,7 +110,8 @@ window.CAMPUS_DATA = (function () {
         // Corrección bibliográfica: el prólogo de la edición argentina no es de
         // Kraepelin, sino de sus traductores y editores.
         { tier: 'F', cita: 'Carbone, N. y Piazze, G. (2005). Prólogo. En E. Kraepelin, <em>Dementia praecox y paranoia</em> (pp. 3-8). La Plata: De la Campana.' },
-        { tier: 'F', cita: 'Bleuler, E. (1911/1993). <em>Demencia precoz: el grupo de las esquizofrenias</em>. Prefacio del autor e Introducción general, pp. 7-13. Hormé.' }
+        { tier: 'F', cita: 'Bleuler, E. (1911/1993). <em>Demencia precoz: el grupo de las esquizofrenias</em>. Prefacio del autor e Introducción general, pp. 7-13. Hormé.' },
+        { tier: 'A', cita: 'Godoy, C. (2013). La psicopatología: de la psiquiatría al psicoanálisis. En F. Schejtman (comp.), <em>Psicopatología: clínica y ética</em>. Grama.' }
       ]
     },
     {
