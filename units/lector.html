@@ -58,13 +58,35 @@
       position: relative; background: #fff; flex-shrink: 0;
       box-shadow: var(--shadow-lg); border-radius: 4px; overflow: hidden;
     }
-    .pdf-page canvas { display: block; }
+    .pdf-page canvas { display: block; transition: filter 0.2s ease-in-out; }
     .pdf-page__placeholder {
       display: flex; align-items: center; justify-content: center;
       color: var(--text-subtle); font-size: var(--text-sm); gap: var(--space-2);
     }
     .textLayer { opacity: 1; mix-blend-mode: multiply; }
     .textLayer ::selection { background: rgba(13, 148, 136, 0.28); color: transparent; }
+
+    /* Modo Oscuro auténtico para el PDF */
+    [data-theme="dark"] .pdf-pane {
+      background: #090d16;
+    }
+    [data-theme="dark"] .pdf-page {
+      background: #151c2c;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.8);
+    }
+    [data-theme="dark"] .pdf-page canvas {
+      filter: invert(0.92) hue-rotate(180deg) contrast(0.92) brightness(1.05);
+    }
+    [data-theme="dark"] .textLayer {
+      mix-blend-mode: screen;
+    }
+    [data-theme="dark"] .textLayer ::selection {
+      background: rgba(45, 212, 191, 0.45);
+      color: transparent;
+    }
+    [data-theme="dark"] .hl-layer {
+      mix-blend-mode: screen;
+    }
 
     /* Capa de resaltados del estudiante */
     .hl-layer { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: multiply; z-index: 1; }
