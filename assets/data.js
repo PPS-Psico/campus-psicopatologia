@@ -5,7 +5,7 @@
    ==========================================================================
    Fechas: { año, mes (1-12), dia }.
    tipo: 'clase' | 'feriado' | 'parcial' | 'recuperatorio'
-   estado (solo clases): 'listo' | 'pendiente' | 'sin-definir'
+   estado (solo clases): 'listo' | 'pendiente'
    ========================================================================== */
 
 window.CAMPUS_DATA = (function () {
@@ -46,29 +46,31 @@ window.CAMPUS_DATA = (function () {
     },
     {
       numero: 2,
-      titulo: 'Síntoma, defensa y etiología',
-      resumen: 'Cómo se forma un síntoma y por qué el psicoanálisis lo lee como una ' +
-               'solución de compromiso y no como un déficit.',
+      titulo: 'El síntoma y la histeria',
+      resumen: 'El mecanismo y el primer caso. Cómo se forma un síntoma, y cómo se lee un ' +
+               'historial clínico cuando el síntoma deja de ser un signo de enfermedad para ' +
+               'volverse una formación con sentido.',
       href: null,
       clases: ['c04', 'c05'],
       estado: 'pendiente'
     },
     {
       numero: 3,
-      titulo: 'Las neurosis',
-      resumen: 'Histeria, neurosis obsesiva y fobia, cada una entrada por su historial ' +
-               'clínico: Dora, el Hombre de las Ratas y Juanito.',
+      titulo: 'Obsesión y fobia',
+      resumen: 'El método de lectura aprendido con Dora, aplicado dos veces más: al Hombre ' +
+               'de las Ratas y a Juanito, con las reformulaciones que Freud hace en los ' +
+               'años veinte en el medio.',
       href: null,
-      clases: ['c06', 'c07', 'c08', 'c09'],
+      clases: ['c06', 'c07', 'c08'],
       estado: 'pendiente'
     },
     {
       numero: 4,
-      titulo: 'Las psicosis',
-      resumen: 'De la paranoia de la psiquiatría clásica al Schreber de Freud, y el ' +
-               'intento final de formular juntas neurosis y psicosis.',
+      titulo: 'Las psicosis y el cierre del recorrido',
+      resumen: 'De la paranoia de la psiquiatría clásica al Schreber de Freud, y el intento ' +
+               'final de formular juntas las dos series: neurosis y psicosis.',
       href: null,
-      clases: ['c10', 'c11', 'c12'],
+      clases: ['c09', 'c10', 'c11'],
       estado: 'pendiente'
     }
   ];
@@ -128,29 +130,23 @@ window.CAMPUS_DATA = (function () {
       ]
     },
     {
-      id: 'c04', tipo: 'clase', unidad: 2, numero: 4, estado: 'sin-definir',
+      id: 'c04', tipo: 'clase', unidad: 2, numero: 4, estado: 'pendiente',
       fecha: { año: 2026, mes: 9, dia: 7 },
-      titulo: 'Tema a definir',
-      desc: 'El encuentro está en el calendario y la fecha está reservada. El contenido y ' +
-            'la bibliografía se anuncian antes de la Clase 3.',
-      href: null,
-      biblio: []
-    },
-    {
-      id: 'c05', tipo: 'clase', unidad: 2, numero: 5, estado: 'pendiente',
-      fecha: { año: 2026, mes: 9, dia: 14 },
       titulo: 'Síntoma, defensa y etiología',
       desc: 'Los caminos de la formación de síntoma. Represión y etiología sexual.',
       href: null,
       biblio: [
         { tier: 'C', cita: 'Freud, S. (1916-1917). 23.ª conferencia: Los caminos de la formación de síntoma. <em>Obras completas</em>, tomo XVI. Amorrortu.' },
         { tier: 'F', cita: 'Freud, S. (1915). La represión. <em>Obras completas</em>, tomo XIV. Amorrortu.' },
-        { tier: 'F', cita: 'Mazzuca, R. (2013). Los conceptos lacanianos en la enseñanza de la Psicopatología. Grama.' }
+        { tier: 'F', cita: 'Freud, S. (1906). Mis tesis sobre el papel de la sexualidad en la etiología de las neurosis. <em>Obras completas</em>, tomo VII. Amorrortu.' },
+        // Sostiene solo el concepto de estructura, que antes se introducia en la clase de
+        // personalidad y diagnostico. Su guia de lectura tiene que cargar esa funcion.
+        { tier: 'F', cita: 'Mazzuca, R. (2013). Los conceptos lacanianos en la enseñanza de la Psicopatología. En <em>Psicopatología: clínica y ética</em>. Grama.' }
       ]
     },
     {
-      id: 'c06', tipo: 'clase', unidad: 3, numero: 6, estado: 'pendiente',
-      fecha: { año: 2026, mes: 9, dia: 21 },
+      id: 'c05', tipo: 'clase', unidad: 2, numero: 5, estado: 'pendiente',
+      fecha: { año: 2026, mes: 9, dia: 14 },
       titulo: 'Histeria y Dora: síntoma, fantasía y transferencia',
       desc: 'El primer historial. Por qué el caso fracasa y qué inaugura ese fracaso.',
       href: null,
@@ -162,15 +158,14 @@ window.CAMPUS_DATA = (function () {
     },
     {
       id: 'p01', tipo: 'parcial',
-      fecha: { año: 2026, mes: 9, dia: 22 },
-      fechaFin: { año: 2026, mes: 9, dia: 24 },
-      titulo: 'Primer parcial online',
-      desc: 'Contenidos de las clases 1 a 5. Un intento de 90 minutos dentro de la ventana ' +
-            'de disponibilidad.',
-      alcance: 'Clases 1 a 5'
+      fecha: { año: 2026, mes: 9, dia: 21 },
+      titulo: 'Primer parcial',
+      desc: 'Contenidos de las clases 1 a 5, es decir las unidades 1 y 2. En el horario ' +
+            'de la cursada, de 8:30 a 10:30.',
+      alcance: 'Unidades 1 y 2 · Clases 1 a 5'
     },
     {
-      id: 'c07', tipo: 'clase', unidad: 3, numero: 7, estado: 'pendiente',
+      id: 'c06', tipo: 'clase', unidad: 3, numero: 6, estado: 'pendiente',
       fecha: { año: 2026, mes: 9, dia: 28 },
       titulo: 'Neurosis obsesiva y Hombre de las Ratas',
       desc: 'La duda, el aislamiento y el pensamiento como escenario del conflicto.',
@@ -183,7 +178,7 @@ window.CAMPUS_DATA = (function () {
       ]
     },
     {
-      id: 'c08', tipo: 'clase', unidad: 3, numero: 8, estado: 'pendiente',
+      id: 'c07', tipo: 'clase', unidad: 3, numero: 7, estado: 'pendiente',
       fecha: { año: 2026, mes: 10, dia: 5 },
       titulo: 'Neurosis obsesiva: las reformulaciones de los años veinte',
       desc: 'Angustia señal, superyó y culpa. Freud reescribe lo que había dicho.',
@@ -202,7 +197,7 @@ window.CAMPUS_DATA = (function () {
             'IV Jornadas de Salud Mental; no se programa evaluación.'
     },
     {
-      id: 'c09', tipo: 'clase', unidad: 3, numero: 9, estado: 'pendiente',
+      id: 'c08', tipo: 'clase', unidad: 3, numero: 8, estado: 'pendiente',
       fecha: { año: 2026, mes: 10, dia: 19 },
       titulo: 'Fobia, angustia y caso Juanito',
       desc: 'La fobia como intento de tratamiento de la angustia.',
@@ -214,7 +209,7 @@ window.CAMPUS_DATA = (function () {
       ]
     },
     {
-      id: 'c10', tipo: 'clase', unidad: 4, numero: 10, estado: 'pendiente',
+      id: 'c09', tipo: 'clase', unidad: 4, numero: 9, estado: 'pendiente',
       fecha: { año: 2026, mes: 10, dia: 26 },
       titulo: 'Construcción histórica y freudiana de la psicosis',
       desc: 'De la paranoia de Kraepelin a la defensa en las neuropsicosis.',
@@ -226,7 +221,7 @@ window.CAMPUS_DATA = (function () {
       ]
     },
     {
-      id: 'c11', tipo: 'clase', unidad: 4, numero: 11, estado: 'pendiente',
+      id: 'c10', tipo: 'clase', unidad: 4, numero: 10, estado: 'pendiente',
       fecha: { año: 2026, mes: 11, dia: 2 },
       titulo: 'Schreber, narcisismo y reconstrucción delirante',
       desc: 'El delirio como intento de curación, no como el núcleo de la enfermedad.',
@@ -239,12 +234,20 @@ window.CAMPUS_DATA = (function () {
       ]
     },
     {
-      id: 'c12', tipo: 'clase', unidad: 4, numero: 12, estado: 'pendiente',
+      id: 'p02', tipo: 'parcial',
       fecha: { año: 2026, mes: 11, dia: 9 },
+      titulo: 'Segundo parcial',
+      desc: 'Contenidos de las clases 6 a 10, es decir la unidad 3 y la unidad 4 hasta ' +
+            'Schreber. En el horario de la cursada. La Clase 11 queda fuera: es de integración.',
+      alcance: 'Unidades 3 y 4 · Clases 6 a 10'
+    },
+    {
+      id: 'c11', tipo: 'clase', unidad: 4, numero: 11, estado: 'pendiente',
+      fecha: { año: 2026, mes: 11, dia: 16 },
       titulo: 'Neurosis, psicosis y formulación integradora',
       desc: 'Cierre integrador. Qué separa y qué reúne a las dos series.',
       href: null,
-      nota: 'Clase de integración, sin contenido nuevo evaluable en el segundo parcial.',
+      nota: 'Clase de integración. Se dicta después del segundo parcial y no se evalúa.',
       biblio: [
         { tier: 'C', cita: 'Freud, S. (1924). Neurosis y psicosis. Texto completo. <em>Obras completas</em>, tomo XIX. Amorrortu.' },
         { tier: 'F', cita: 'Freud, S. (1924). La pérdida de realidad en la neurosis y la psicosis. <em>Obras completas</em>, tomo XIX. Amorrortu.' },
@@ -252,28 +255,19 @@ window.CAMPUS_DATA = (function () {
       ]
     },
     {
-      id: 'p02', tipo: 'parcial',
-      fecha: { año: 2026, mes: 11, dia: 10 },
-      fechaFin: { año: 2026, mes: 11, dia: 12 },
-      titulo: 'Segundo parcial online',
-      desc: 'Contenidos de las clases 6 a 11. Un intento de 90 minutos dentro de la ventana ' +
-            'de disponibilidad. La Clase 12 queda fuera: es de integración.',
-      alcance: 'Clases 6 a 11'
-    },
-    {
-      id: 'r01', tipo: 'recuperatorio',
-      fecha: { año: 2026, mes: 11, dia: 16 },
-      titulo: 'Recuperatorio único online',
-      desc: 'De 8:30 a 10:30. Permite recuperar cualquiera de los dos parciales mediante ' +
-            'una versión equivalente. No incorpora bibliografía nueva.'
-    },
-    {
       id: 'h03', tipo: 'feriado',
       fecha: { año: 2026, mes: 11, dia: 23 },
       titulo: 'Feriado nacional · Sin clase',
       desc: 'Día de la Soberanía Nacional, trasladado del viernes 20 al lunes 23 según la ' +
             'Ley 27.399.'
-    }
+    },
+    {
+      id: 'r01', tipo: 'recuperatorio',
+      fecha: { año: 2026, mes: 11, dia: 30 },
+      titulo: 'Recuperatorio único',
+      desc: 'En el horario de la cursada. Permite recuperar cualquiera de los dos parciales ' +
+            'mediante una versión equivalente. No incorpora bibliografía nueva.'
+    },
   ];
 
   /* ========================================================================

@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/tokens.css?v=3">
-  <link rel="stylesheet" href="assets/ui.css?v=3">
+  <link rel="stylesheet" href="assets/tokens.css?v=4">
+  <link rel="stylesheet" href="assets/ui.css?v=4">
 </head>
 <body data-unit="1">
 <!--
@@ -80,8 +80,8 @@
       <div class="section-head">
         <h2 class="section-head__title">Cronograma completo</h2>
         <p class="section-head__subtitle">
-          Doce clases, tres feriados, dos parciales y un recuperatorio, del 10 de agosto
-          al 23 de noviembre.
+          Once clases, tres feriados, dos parciales y un recuperatorio, del 10 de agosto
+          al 30 de noviembre. Todo cae lunes, en el horario de la cursada.
         </p>
       </div>
       <div class="roadmap" id="cronograma-lista"></div>
@@ -94,9 +94,9 @@
       <div class="section-head">
         <h2 class="section-head__title">Cómo se aprueba</h2>
         <p class="section-head__subtitle">
-          Dos parciales online y un recuperatorio único. Ningún parcial evalúa la clase
-          del día anterior: entre la última clase de cada corte y su parcial hay siempre
-          una semana.
+          Dos parciales y un recuperatorio único, los tres en el horario de la cursada.
+          Cada parcial evalúa dos unidades completas, y entre la última clase de cada
+          corte y su parcial hay siempre una semana.
         </p>
       </div>
       <div class="grid grid-3" id="evaluacion-grid"></div>
@@ -203,9 +203,9 @@
     }
   </style>
 
-  <script src="assets/icons.js?v=3"></script>
-  <script src="assets/data.js?v=3"></script>
-  <script src="assets/ui.js?v=3"></script>
+  <script src="assets/icons.js?v=4"></script>
+  <script src="assets/data.js?v=4"></script>
+  <script src="assets/ui.js?v=4"></script>
   <script>
     (function () {
       'use strict';
@@ -224,8 +224,8 @@
         <div><dt>Equipo docente</dt><dd>${CONFIG.docentes.join('<br>')}</dd></div>
         <div><dt>Cuatrimestre</dt><dd>${D.short(primera)} – ${D.short(ultima)}
           <small>${clases.length} clases de contenidos</small></dd></div>
-        <div><dt>Evaluación</dt><dd>2 parciales online
-          <small>Recuperatorio único el 16 de noviembre</small></dd></div>`;
+        <div><dt>Evaluación</dt><dd>2 parciales
+          <small>Recuperatorio único el ${D.short(PROGRAMA.find((e) => e.tipo === 'recuperatorio').fecha)}</small></dd></div>`;
 
       /* ---- Lo que viene ---- */
       const futuras = PROGRAMA
