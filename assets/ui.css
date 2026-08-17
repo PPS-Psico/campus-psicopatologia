@@ -451,33 +451,37 @@ a.stop:hover .stop__title { color: var(--accent-text); }
 .filenote strong { color: var(--text-strong); }
 
 /* ==========================================================================
-   9. PASAJE CLAVE / RECORTE EDITORIAL ← Cita decisiva con tipografía de imprenta
+   9. DÓNDE PONER ATENCIÓN & PASAJE CLAVE  ← Tarjeta editorial integrada
    ========================================================================== */
-.excerpt {
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  border: 1px solid var(--border);
+.spotlight {
+  position: relative;
   background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+  margin: var(--space-2) 0 var(--space-4);
   box-shadow: var(--shadow-sm);
-  margin: var(--space-4) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
   transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
 }
-.excerpt:hover {
-  border-color: var(--accent-strong);
+.spotlight:hover {
   box-shadow: var(--shadow-md);
 }
 
-.excerpt__header {
+.spotlight__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-3) var(--space-5);
-  background: var(--bg-subtle);
-  border-bottom: 1px solid var(--border);
-  gap: var(--space-2);
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-.excerpt__badge {
+.spotlight__tag {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -487,73 +491,69 @@ a.stop:hover .stop__title { color: var(--accent-text); }
   letter-spacing: var(--tracking-wide);
   color: var(--accent-text);
 }
-.excerpt__badge::before {
-  content: '';
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent);
+.spotlight__tag svg {
+  color: var(--accent);
 }
 
-.excerpt__direct-link {
+.spotlight__link {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   font-size: var(--text-xs);
   font-weight: 700;
   color: var(--accent-text);
   text-decoration: none;
-  padding: 3px 8px;
-  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
   background: var(--accent-soft);
   transition: all var(--dur-fast);
 }
-.excerpt__direct-link:hover {
+.spotlight__link:hover {
   background: var(--accent-fill);
   color: var(--on-accent-fill);
+  text-decoration: none;
 }
 
-.excerpt__body {
-  padding: var(--space-6) var(--space-6) var(--space-5);
-  position: relative;
+.spotlight__context {
+  font-size: var(--text-sm);
+  color: var(--text);
+  line-height: var(--leading-relaxed);
+  max-width: var(--measure);
 }
 
-.excerpt__quote {
+.spotlight__quote {
+  margin: 0;
+  padding: var(--space-4) var(--space-5);
+  background: var(--bg-subtle);
+  border-radius: var(--radius-md);
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
   line-height: 1.6;
   color: var(--text-strong);
   font-style: italic;
-  position: relative;
-  padding-left: var(--space-2);
-  border-left: 3px solid var(--accent);
-  margin: 0;
 }
 
-.excerpt__quote mark {
+.spotlight__quote mark {
   background: var(--accent-soft);
   color: var(--text-strong);
   font-style: italic;
   font-weight: 600;
-  padding: 2px 4px;
+  padding: 2px 5px;
   border-radius: 3px;
-  transition: background 0.3s;
 }
 
-.excerpt__meta {
-  margin-top: var(--space-4);
-  padding-top: var(--space-3);
-  border-top: 1px dashed var(--border);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-2);
+.spotlight__source {
+  display: block;
+  margin-top: var(--space-3);
+  font-family: var(--font-body);
   font-size: var(--text-xs);
+  font-style: normal;
   color: var(--text-muted);
 }
-.excerpt__source { font-weight: 600; color: var(--text); }
-.excerpt__source em { font-style: normal; color: var(--text-muted); }
+.spotlight__source b {
+  color: var(--text);
+  font-weight: 600;
+}
 
 /* ==========================================================================
    10. AVISOS Y PUENTE
