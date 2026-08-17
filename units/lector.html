@@ -568,10 +568,17 @@
       ps.el.style.height = vp.height + 'px';
       ps.el.innerHTML = '';
 
+      const dpr = Math.max(window.devicePixelRatio || 1, 2); // Ensure at least 2x HiDPI crispness
       const canvas = document.createElement('canvas');
-      canvas.width = vp.width; canvas.height = vp.height;
+      canvas.width = Math.floor(vp.width * dpr);
+      canvas.height = Math.floor(vp.height * dpr);
+      canvas.style.width = vp.width + 'px';
+      canvas.style.height = vp.height + 'px';
       ps.el.appendChild(canvas);
-      await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
+
+      const ctx = canvas.getContext('2d');
+      const transform = [dpr, 0, 0, dpr, 0, 0];
+      await page.render({ canvasContext: ctx, viewport: vp, transform: transform }).promise;
 
       // Capa de resaltados (entre el canvas y la capa de texto)
       const hlLayer = document.createElement('div');
