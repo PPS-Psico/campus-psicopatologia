@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/tokens.css?v=4">
-  <link rel="stylesheet" href="../assets/ui.css?v=5">
+  <link rel="stylesheet" href="../assets/tokens.css?v=5">
+  <link rel="stylesheet" href="../assets/ui.css?v=6">
 </head>
 <body data-unit="1">
 <!--
@@ -232,6 +232,25 @@
       background: var(--surface-hover); color: var(--text-muted);
     }
     .biblio-list li[data-tier="C"] b { background: var(--accent-fill); color: var(--on-accent-fill); }
+
+    @media (min-width: 1200px) {
+      .moves {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--space-8);
+        max-width: none;
+      }
+      .move {
+        padding-top: var(--space-16);
+        padding-left: 0;
+      }
+      .move::before { top: var(--space-6); }
+      #biblio-unidad {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--space-8);
+      }
+      .biblio-group { margin-bottom: 0; }
+    }
   </style>
 
   <script src="../assets/icons.js?v=4"></script>

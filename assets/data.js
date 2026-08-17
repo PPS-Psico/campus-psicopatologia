@@ -21,7 +21,7 @@ window.CAMPUS_DATA = (function () {
     cuatrimestre: 'Segundo cuatrimestre 2026',
     docentes: ['Blas Rivera', 'Guadalupe Guzmán'],
     diaClase: 'Lunes',
-    horario: '8:30 a 10:30',
+    horario: 'Inicio 8:30',
     zona: 'America/Argentina/Buenos_Aires',
     meetUrl: 'https://meet.google.com/ppm-khgg-ohk',
   };
@@ -50,7 +50,7 @@ window.CAMPUS_DATA = (function () {
       resumen: 'El mecanismo y el primer caso. Cómo se forma un síntoma, y cómo se lee un ' +
                'historial clínico cuando el síntoma deja de ser un signo de enfermedad para ' +
                'volverse una formación con sentido.',
-      href: null,
+      href: 'units/unidad-02.html',
       clases: ['c04', 'c05'],
       estado: 'pendiente'
     },
@@ -134,14 +134,14 @@ window.CAMPUS_DATA = (function () {
       fecha: { año: 2026, mes: 9, dia: 7 },
       titulo: 'Síntoma, defensa y etiología',
       desc: 'Los caminos de la formación de síntoma. Represión y etiología sexual.',
-      href: null,
+      href: 'units/clase-04.html',
       biblio: [
-        { tier: 'C', cita: 'Freud, S. (1916-1917). 23.ª conferencia: Los caminos de la formación de síntoma. <em>Obras completas</em>, tomo XVI. Amorrortu.' },
-        { tier: 'F', cita: 'Freud, S. (1915). La represión. <em>Obras completas</em>, tomo XIV. Amorrortu.' },
-        { tier: 'F', cita: 'Freud, S. (1906). Mis tesis sobre el papel de la sexualidad en la etiología de las neurosis. <em>Obras completas</em>, tomo VII. Amorrortu.' },
+        { tier: 'C', cita: 'Freud, S. (1916-1917). 23.ª conferencia: Los caminos de la formación de síntoma. Texto completo. <em>Obras completas</em>, tomo XVI. Amorrortu.' },
+        { tier: 'F', cita: 'Freud, S. (1915). La represión. Texto completo. <em>Obras completas</em>, tomo XIV. Amorrortu.' },
+        { tier: 'F', cita: 'Freud, S. (1906). Mis tesis sobre el papel de la sexualidad en la etiología de las neurosis. Texto completo. <em>Obras completas</em>, tomo VII. Amorrortu.' },
         // Sostiene solo el concepto de estructura, que antes se introducia en la clase de
         // personalidad y diagnostico. Su guia de lectura tiene que cargar esa funcion.
-        { tier: 'F', cita: 'Mazzuca, R. (2013). Los conceptos lacanianos en la enseñanza de la Psicopatología. En <em>Psicopatología: clínica y ética</em>. Grama.' }
+        { tier: 'F', cita: 'Mazzuca, R. (2013). Los conceptos lacanianos en la enseñanza de la Psicopatología. Selección: pp. 301-304 y 310-312. En <em>Psicopatología: clínica y ética</em>. Grama.' }
       ]
     },
     {
@@ -149,7 +149,7 @@ window.CAMPUS_DATA = (function () {
       fecha: { año: 2026, mes: 9, dia: 14 },
       titulo: 'Histeria y Dora: síntoma, fantasía y transferencia',
       desc: 'El primer historial. Por qué el caso fracasa y qué inaugura ese fracaso.',
-      href: null,
+      href: 'units/clase-05.html',
       biblio: [
         { tier: 'C', cita: 'Freud, S. (1905 [1901]). Fragmento de análisis de un caso de histeria (Dora). Selección clínica y Epílogo. <em>Obras completas</em>, tomo VII. Amorrortu.' },
         { tier: 'F', cita: 'Charcot, J.-M. (1984). Acerca de la histeroepilepsia. En J. Saurí (comp.), <em>Las histerias</em>. Nueva Visión.' },

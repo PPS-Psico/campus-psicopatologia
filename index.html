@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/tokens.css?v=4">
-  <link rel="stylesheet" href="assets/ui.css?v=5">
+  <link rel="stylesheet" href="assets/tokens.css?v=5">
+  <link rel="stylesheet" href="assets/ui.css?v=6">
 </head>
 <body data-unit="1">
 <!--
@@ -46,7 +46,7 @@
         <div class="hero__intro">
           <h1 class="hero__title">Psicopatología&nbsp;I</h1>
           <p class="hero__lead">
-            Comisión 3, turno mañana. Cursamos los lunes de 8:30 a 10:30, online.
+            Comisión 3, turno mañana. Cursamos los lunes desde las 8:30, online.
             Acá vas a encontrar, clase por clase, qué leer y hasta dónde.
           </p>
           <dl class="facts" id="facts"></dl>
@@ -141,7 +141,7 @@
     .upnext {
       background: var(--bg-subtle); border: 1px solid var(--border);
       border-radius: var(--radius-2xl); padding: clamp(var(--space-6), 3vw, var(--space-8));
-      position: sticky; top: 84px;
+      position: sticky; top: 84px; width: 100%; max-width: 440px; justify-self: end;
     }
     .upnext__title {
       font-size: var(--text-xs); font-weight: 700; color: var(--text-muted);
@@ -205,6 +205,10 @@
       .hero__intro .hero__lead { order: 2; }
       .upnext { order: 3; }
       .hero__intro .facts { order: 4; }
+    }
+
+    @media (min-width: 1200px) {
+      #unidades-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     }
   </style>
 

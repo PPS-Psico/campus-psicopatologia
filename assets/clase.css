@@ -5,9 +5,66 @@
    Depende de tokens.css y ui.css.
    ========================================================================== */
 
-/* Las páginas de clase son documentos, no paneles: se leen más angostas
-   que el índice para que la medida de lectura no se estire. */
-.container--reading { max-width: 1020px; }
+/* La página ocupa el lienzo ancho del campus, pero la prosa conserva su medida.
+   En escritorio, el ancho extra se convierte en navegación contextual útil. */
+.container--reading { max-width: var(--container-reading); }
+
+.class-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: clamp(var(--space-12), 5vw, var(--space-20));
+  align-items: start;
+}
+.class-document { min-width: 0; }
+.class-rail {
+  position: sticky;
+  top: 84px;
+  margin-top: var(--space-8);
+  padding: var(--space-6) 0;
+  border-top: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--border);
+}
+.class-rail__title {
+  margin-bottom: var(--space-4);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 800;
+  color: var(--text-strong);
+}
+.class-rail__nav { display: grid; gap: var(--space-1); }
+.class-rail__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: 44px;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  font-weight: 650;
+  transition: color var(--dur-fast) var(--ease-out),
+              background-color var(--dur-fast) var(--ease-out);
+}
+.class-rail__link:hover {
+  color: var(--accent-text);
+  background: var(--accent-softer);
+  text-decoration: none;
+}
+.class-rail__link svg { flex: none; color: var(--accent); }
+.class-rail__note {
+  margin-top: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+  line-height: var(--leading-relaxed);
+}
+
+@media (max-width: 1180px) {
+  .class-layout { grid-template-columns: minmax(0, 1fr); }
+  .class-rail { display: none; }
+}
 
 /* ==========================================================================
    TEXTO NORMATIVO CITADO ENTERO

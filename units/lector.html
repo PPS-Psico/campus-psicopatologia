@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/tokens.css?v=4">
-  <link rel="stylesheet" href="../assets/ui.css?v=5">
+  <link rel="stylesheet" href="../assets/tokens.css?v=5">
+  <link rel="stylesheet" href="../assets/ui.css?v=6">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf_viewer.min.css">
   <style>
     html, body { height: 100%; overflow: hidden; }
@@ -597,7 +597,7 @@
 
     const state = {
       pdf: null, scale: 1.25, fileUrl: '', fileName: '',
-      pages: {}, currentPage: 1,
+      pages: {}, currentPage: 1, initialPage: null,
       highlights: [],            // [{id, page, color, text, note, rects:[{x,y,w,h}]}] en escala 1
       pendingSelection: null,    // {page, text, rects} esperando color
       editingId: null,           // id del resaltado abierto en el popover
@@ -696,6 +696,9 @@
     async function load() {
       const params = new URLSearchParams(location.search);
       state.fileUrl = params.get('file') || '';
+      state.initialPage = params.has('pagina')
+        ? Math.max(1, parseInt(params.get('pagina'), 10) || 1)
+        : null;
       if (!state.fileUrl) return showError('No se especificó ningún archivo PDF en la dirección.');
 
       const titulo = params.get('titulo');
@@ -722,7 +725,34 @@
         } catch (e) { console.error('Error al precalcular ancho', e); }
 
         await buildPages();
-        restoreLastPage();
+        if (state.initialPage !== null) {
+          const requestedPage = Math.min(state.initialPage, state.pdf.numPages);
+          const nearbyPages = Array.from(
+            { length: 7 },
+            (_, index) => requestedPage - 3 + index
+          ).filter((pageNumber) => pageNumber >= 1 && pageNumber <= state.pdf.numPages);
+          await Promise.all(nearbyPages.map((pageNumber) => renderPage(pageNumber)));
+          const pane = document.getElementById('pdf-pane');
+          pane.style.scrollBehavior = 'auto';
+          const alignRequestedPage = () => {
+            const paneTop = pane.getBoundingClientRect().top;
+            const pageTop = state.pages[requestedPage].el.getBoundingClientRect().top;
+            const paddingTop = parseFloat(getComputedStyle(pane).paddingTop) || 0;
+            pane.scrollTop += pageTop - paneTop - paddingTop;
+          };
+          alignRequestedPage();
+          await new Promise((resolve) => requestAnimationFrame(resolve));
+          alignRequestedPage();
+          updatePageIndicator(requestedPage);
+          [500, 1200].forEach((delay) => {
+            setTimeout(() => {
+              alignRequestedPage();
+              updatePageIndicator(requestedPage);
+            }, delay);
+          });
+        } else {
+          restoreLastPage();
+        }
       } catch (err) {
         console.error(err);
         showError('No se pudo cargar el archivo PDF.', err.message);

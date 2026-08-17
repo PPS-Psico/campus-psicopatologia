@@ -12,7 +12,7 @@
   width: 100%;
   max-width: var(--container-max);
   margin-inline: auto;
-  padding-inline: clamp(var(--space-5), 4vw, var(--space-10));
+  padding-inline: var(--page-gutter);
 }
 .container--narrow { max-width: var(--container-narrow); }
 
@@ -77,7 +77,7 @@
 .nav__inner {
   max-width: var(--container-max);
   margin-inline: auto;
-  padding: var(--space-3) clamp(var(--space-5), 4vw, var(--space-10));
+  padding: var(--space-3) var(--page-gutter);
   display: flex; align-items: center; gap: var(--space-5);
   min-height: 60px;
 }
@@ -236,8 +236,8 @@
 .hero { padding-top: var(--space-10); }
 .hero__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
-  gap: clamp(var(--space-6), 4vw, var(--space-12));
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 440px);
+  gap: var(--layout-gap);
   align-items: start;
 }
 .hero__title { margin-bottom: var(--space-5); max-width: 17ch; }

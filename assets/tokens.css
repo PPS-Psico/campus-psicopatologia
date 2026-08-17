@@ -147,9 +147,12 @@
   --radius-pill: 999px;
 
   /* ---- Layout ---- */
-  --container-max:    1160px;
-  --container-narrow: 720px;
-  --measure:          68ch;   /* medida de lectura */
+  --container-max:     1520px;
+  --container-reading: 1520px;
+  --container-narrow:  720px;
+  --measure:           68ch;   /* medida de lectura */
+  --page-gutter:       clamp(var(--space-5), 3.25vw, var(--space-12));
+  --layout-gap:        clamp(var(--space-8), 5vw, var(--space-20));
 
   /* ---- Movimiento ----
      Una sola curva: desaceleración exponencial, como frena un objeto real.

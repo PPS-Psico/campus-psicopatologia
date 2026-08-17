@@ -9,9 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/tokens.css?v=4">
-  <link rel="stylesheet" href="../assets/ui.css?v=5">
-  <link rel="stylesheet" href="../assets/clase.css?v=5">
+  <link rel="stylesheet" href="../assets/tokens.css?v=5">
+  <link rel="stylesheet" href="../assets/ui.css?v=6">
+  <link rel="stylesheet" href="../assets/clase.css?v=6">
 </head>
 <body data-unit="1">
 <!--
@@ -32,6 +32,8 @@
   <div data-ui="nav" data-active="clases" data-depth="../"></div>
 
   <main class="container container--reading" id="contenido">
+    <div class="class-layout">
+      <div class="class-document">
 
     <!-- ============================================================
          CABECERA
@@ -44,7 +46,7 @@
       <div class="class-head__meta">
         <span class="badge badge--accent">Clase 1</span>
         <span class="badge"><span data-icon="calendar" data-size="14"></span> Lunes 10 de agosto</span>
-        <span class="badge"><span data-icon="clock" data-size="14"></span> 8:30 a 10:30</span>
+        <span class="badge"><span data-icon="clock" data-size="14"></span> Inicio 8:30</span>
       </div>
 
       <h1 class="class-head__title">El campo de la psicopatología, normalidad y salud mental</h1>
@@ -89,7 +91,7 @@
     <!-- ============================================================
          PREGUNTAS
          ============================================================ -->
-    <section class="section">
+    <section class="section" id="objetivos">
       <div class="section-head">
         <h2 class="section-head__title">Al terminar la clase vas a poder responder</h2>
       </div>
@@ -283,7 +285,7 @@
     <!-- ============================================================
          PUENTE
          ============================================================ -->
-    <section class="section">
+    <section class="section" id="cierre">
       <div class="bridge">
         <h2 class="bridge__title">Lo que queda abierto para la Clase 2</h2>
         <div class="bridge__copy">
@@ -321,6 +323,28 @@
         <span data-icon="arrowRight" data-size="18"></span>
       </a>
     </nav>
+
+      </div>
+
+      <aside class="class-rail" aria-label="Navegación de esta clase">
+        <p class="class-rail__title">En esta clase</p>
+        <nav class="class-rail__nav">
+          <a class="class-rail__link" href="#contenido">
+            Apertura <span data-icon="arrowRight" data-size="16"></span>
+          </a>
+          <a class="class-rail__link" href="#objetivos">
+            Objetivos <span data-icon="arrowRight" data-size="16"></span>
+          </a>
+          <a class="class-rail__link" href="#lecturas">
+            Plan de lectura <span data-icon="arrowRight" data-size="16"></span>
+          </a>
+          <a class="class-rail__link" href="#cierre">
+            Cierre <span data-icon="arrowRight" data-size="16"></span>
+          </a>
+        </nav>
+        <p class="class-rail__note">Lunes 10 de agosto · Inicio 8:30</p>
+      </aside>
+    </div>
 
     <footer class="site-footer">
       <span><strong class="text-strong">Psicopatología I</strong> · UFLO · <span id="year"></span></span>

@@ -5,7 +5,7 @@ Primera versión de la portada del aula. Por ahora comunica sólo lo necesario p
 - bienvenida institucional;
 - identificación de la Comisión 3, turno mañana;
 - equipo docente: Blas Rivera y Guadalupe Guzmán;
-- primer encuentro: lunes 10 de agosto de 2026, de 8:30 a 10:30, hora de Buenos Aires;
+- primer encuentro: lunes 10 de agosto de 2026, desde las 8:30, hora de Buenos Aires;
 - acceso a Google Meet;
 - aviso de que el resto del aula se habilitará próximamente;
 - esquema de las cuatro áreas que ordenarán el campus.
@@ -24,7 +24,7 @@ Primera versión de la portada del aula. Por ahora comunica sólo lo necesario p
 3. Actividades y evaluaciones.
 4. Consultas y avisos.
 
-La estructura queda deliberadamente liviana para una materia cuatrimestral de dos horas semanales. No se publican todavía programa, bibliografía ni criterios de evaluación.
+La estructura queda deliberadamente liviana para una materia cuatrimestral con un encuentro semanal. No se publican todavía programa, bibliografía ni criterios de evaluación.
 
 ## Inserción en Moodle
 
@@ -40,8 +40,8 @@ URL pública del aula: <https://pps-psico.github.io/campus-psicopatologia/inicio
 - Comisión: 3, turno mañana.
 - Equipo docente: Blas Rivera y Guadalupe Guzmán.
 - Día: lunes.
-- Horario: 8:30 a 10:30.
+- Inicio: 8:30.
 - Zona horaria: America/Argentina/Buenos_Aires.
 - Meet: <https://meet.google.com/ppm-khgg-ohk>
 
-Horario confirmado: de 8:30 a 10:30 de la mañana.
+Hora de inicio confirmada: 8:30 de la mañana. La finalización puede variar según la extensión del encuentro.
