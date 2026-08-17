@@ -330,20 +330,25 @@ a.stop:hover .stop__title { color: var(--accent-text); }
    <strong> adentro, y con grid cada uno de esos elementos se volvía una celda
    propia y rompía el párrafo en pedazos. */
 .questions {
-  display: grid; gap: var(--space-3);
-  counter-reset: q; list-style: none; padding: 0;
+  display: grid;
+  gap: 0;
+  width: 100%;
+  max-width: var(--measure);
+  border-top: 1px solid var(--border-strong);
+  counter-reset: q;
+  list-style: none;
+  padding: 0;
 }
 .question {
   position: relative;
-  padding: var(--space-4) var(--space-5);
-  padding-left: calc(var(--space-5) + 24px);
-  background: var(--bg-subtle);
-  border-radius: var(--radius-lg);
+  padding: var(--space-4) 0 var(--space-4) calc(var(--space-8) + var(--space-2));
+  border-bottom: 1px solid var(--border-subtle);
+  background: transparent;
   font-size: var(--text-base); color: var(--text);
 }
 .question::before {
   counter-increment: q; content: counter(q);
-  position: absolute; left: var(--space-5); top: var(--space-4);
+  position: absolute; left: 0; top: var(--space-4);
   font-family: var(--font-display); font-weight: 800;
   color: var(--accent-text); font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
@@ -413,22 +418,28 @@ a.stop:hover .stop__title { color: var(--accent-text); }
 
 .reading__body {
   padding: var(--space-5) 0 0;
-  display: grid; gap: var(--space-5);
+  display: grid; gap: var(--space-6);
 }
 
 /* "Qué buscar": la consigna de lectura */
-.lookfor { display: grid; gap: var(--space-3); }
+.lookfor {
+  display: grid;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: var(--measure);
+}
 .lookfor__title {
   font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
   letter-spacing: var(--tracking-wide); color: var(--text-muted);
 }
-.lookfor__list { display: grid; gap: var(--space-3); list-style: none; padding: 0; }
+.lookfor__list { display: grid; gap: var(--space-4); list-style: none; padding: 0; }
 /* Misma razón que en .question: el viñetado va posicionado para no partir el
    texto en celdas cada vez que aparece un <em> o un <strong>. */
 .lookfor__list li {
   position: relative;
   padding-left: var(--space-5);
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
 }
 .lookfor__list li::before {
   content: ""; position: absolute; left: 0; top: 0.62em;
@@ -436,12 +447,19 @@ a.stop:hover .stop__title { color: var(--accent-text); }
   border-radius: 2px; background: var(--accent);
 }
 
-.reading__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.reading__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  width: 100%;
+  max-width: var(--measure);
+}
 
 /* Aviso sobre el archivo (escaneo sin OCR, doble página, etc.) */
 .filenote {
   display: grid; grid-template-columns: auto minmax(0, 1fr);
   gap: var(--space-3); align-items: start;
+  width: 100%; max-width: var(--measure);
   padding: var(--space-4) var(--space-5);
   background: var(--warn-soft);
   border-radius: var(--radius-lg);
@@ -449,111 +467,6 @@ a.stop:hover .stop__title { color: var(--accent-text); }
 }
 .filenote svg { color: var(--warn); margin-top: 2px; }
 .filenote strong { color: var(--text-strong); }
-
-/* ==========================================================================
-   9. DÓNDE PONER ATENCIÓN & PASAJE CLAVE  ← Tarjeta editorial integrada
-   ========================================================================== */
-.spotlight {
-  position: relative;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-left: 4px solid var(--accent);
-  border-radius: var(--radius-lg);
-  padding: var(--space-5) var(--space-6);
-  margin: var(--space-2) 0 var(--space-4);
-  box-shadow: var(--shadow-sm);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
-}
-.spotlight:hover {
-  box-shadow: var(--shadow-md);
-}
-
-.spotlight__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  flex-wrap: wrap;
-  padding-bottom: var(--space-3);
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.spotlight__tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: var(--text-xs);
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-wide);
-  color: var(--accent-text);
-}
-.spotlight__tag svg {
-  color: var(--accent);
-}
-
-.spotlight__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: var(--text-xs);
-  font-weight: 700;
-  color: var(--accent-text);
-  text-decoration: none;
-  padding: 4px 10px;
-  border-radius: var(--radius-pill);
-  background: var(--accent-soft);
-  transition: all var(--dur-fast);
-}
-.spotlight__link:hover {
-  background: var(--accent-fill);
-  color: var(--on-accent-fill);
-  text-decoration: none;
-}
-
-.spotlight__context {
-  font-size: var(--text-sm);
-  color: var(--text);
-  line-height: var(--leading-relaxed);
-  max-width: var(--measure);
-}
-
-.spotlight__quote {
-  margin: 0;
-  padding: var(--space-4) var(--space-5);
-  background: var(--bg-subtle);
-  border-radius: var(--radius-md);
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(1rem, 1.8vw, 1.15rem);
-  line-height: 1.6;
-  color: var(--text-strong);
-  font-style: italic;
-}
-
-.spotlight__quote mark {
-  background: var(--accent-soft);
-  color: var(--text-strong);
-  font-style: italic;
-  font-weight: 600;
-  padding: 2px 5px;
-  border-radius: 3px;
-}
-
-.spotlight__source {
-  display: block;
-  margin-top: var(--space-3);
-  font-family: var(--font-body);
-  font-size: var(--text-xs);
-  font-style: normal;
-  color: var(--text-muted);
-}
-.spotlight__source b {
-  color: var(--text);
-  font-weight: 600;
-}
 
 /* ==========================================================================
    10. AVISOS Y PUENTE
@@ -595,7 +508,7 @@ a.stop:hover .stop__title { color: var(--accent-text); }
   margin-top: var(--space-24);
   padding: var(--space-8) 0 var(--space-12);
   border-top: 1px solid var(--border);
-  color: var(--text-subtle);
+  color: var(--text-muted);
   font-size: var(--text-xs);
   display: flex; flex-wrap: wrap; gap: var(--space-3);
   justify-content: space-between;
