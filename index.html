@@ -43,7 +43,7 @@
          ============================================================ -->
     <section class="hero settle">
       <div class="hero__grid">
-        <div>
+        <div class="hero__intro">
           <h1 class="hero__title">Psicopatología&nbsp;I</h1>
           <p class="hero__lead">
             Comisión 3, turno mañana. Cursamos los lunes de 8:30 a 10:30, online.
@@ -200,6 +200,11 @@
 
     @media (max-width: 860px) {
       .upnext { position: static; }
+      .hero__intro { display: contents; }
+      .hero__intro .hero__title { order: 1; }
+      .hero__intro .hero__lead { order: 2; }
+      .upnext { order: 3; }
+      .hero__intro .facts { order: 4; }
     }
   </style>
 
