@@ -124,9 +124,9 @@ window.CAMPUS_DATA = (function () {
       href: 'units/clase-03.html',
       biblio: [
         { tier: 'C', cita: 'Jaspers, K. (1913/1966). <em>Psicopatología general</em>. Introducción, § 3: Prejuicios y presuposiciones, pp. 31-35. Beta.' },
-        { tier: 'F', cita: 'Freud, S. (1916-1917). 16.ª conferencia: Psicoanálisis y psiquiatría. <em>Obras completas</em>, tomo XVI. Amorrortu.' },
+        { tier: 'F', cita: 'Freud, S. (1916-1917). 16.ª conferencia: Psicoanálisis y psiquiatría. Texto completo. <em>Obras completas</em>, tomo XVI. Amorrortu.' },
         { tier: 'F', cita: 'De Battista, J. (coord.) (2019). <em>Aportes interdisciplinarios en psicopatología</em>, tomo I. Capítulo 6, selección: Binomio metodológico y organización de la clínica, pp. 85-91. EDULP.' },
-        { tier: 'A', cita: 'Freud, S. (1916-1917). 17.ª conferencia: El sentido de los síntomas. <em>Obras completas</em>, tomo XVI. Amorrortu.' }
+        { tier: 'F', cita: 'Freud, S. (1916-1917). 17.ª conferencia: El sentido de los síntomas. Texto completo. <em>Obras completas</em>, tomo XVI. Amorrortu.' }
       ]
     },
     {
@@ -281,8 +281,8 @@ window.CAMPUS_DATA = (function () {
     },
     F: {
       sigla: 'F',
-      nombre: 'Fragmento guiado',
-      desc: 'Obligatorio, pero acotado: se lee sólo el rango indicado y con una consigna.'
+      nombre: 'Lectura obligatoria',
+      desc: 'Acompaña al texto central. Se lee completa o en el rango indicado.'
     },
     A: {
       sigla: 'A',

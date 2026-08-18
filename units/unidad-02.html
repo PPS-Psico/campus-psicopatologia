@@ -257,12 +257,12 @@
   </style>
 
   <script src="../assets/icons.js?v=4"></script>
-  <script src="../assets/data.js?v=5"></script>
+  <script src="../assets/data.js?v=6"></script>
   <script src="../assets/ui.js?v=4"></script>
   <script>
     (function () {
       'use strict';
-      const { PROGRAMA, UNIDADES } = CAMPUS_DATA;
+      const { PROGRAMA, UNIDADES, TIERS } = CAMPUS_DATA;
       const D = CampusUI.Dates;
       const esc = (s) => String(s).replace(/[&<>"]/g, (c) => (
         { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]
@@ -293,7 +293,7 @@
           <ul class="biblio-list">
             ${c.biblio.map((b) => `
               <li data-tier="${b.tier}">
-                <b title="${b.tier === 'C' ? 'Lectura central' : b.tier === 'F' ? 'Fragmento guiado' : 'Apoyo'}">${b.tier}</b>
+                <b title="${TIERS[b.tier]?.nombre || b.tier}">${b.tier}</b>
                 <span>${b.cita}</span>
               </li>`).join('')}
           </ul>
