@@ -1,6 +1,6 @@
 import { ExamApi, requestMoodleContext } from "./api.js?v=2";
 import { MockExamApi } from "./mock-api.js?v=4";
-import { assertSafeExamBrowser, getSafeExamBrowserProof } from "./seb-guard.js?v=2";
+import { assertSafeExamBrowser, getSafeExamBrowserProof } from "./seb-guard.js?v=3";
 import {
   buildResponse,
   firstUnansweredIndex,

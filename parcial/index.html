@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/tokens.css?v=6">
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
   <script src="../assets/ui.js?v=6" defer></script>
 </head>
 <body data-unit="1">
@@ -99,7 +99,12 @@
         <div><dt>Hora del servidor</dt><dd id="receipt-time">—</dd></div>
         <div><dt>Comprobante</dt><dd id="receipt-id">—</dd></div>
       </dl>
-      <p class="completion__note">Podés cerrar el navegador seguro cuando el equipo docente lo indique.</p>
+      <div class="completion__actions">
+        <a class="button button--primary" href="https://pps-psico.github.io/campus-psicopatologia/parcial/salir.html" target="_top">
+          Cerrar Safe Exam Browser
+        </a>
+      </div>
+      <p class="completion__note">Usá el botón sólo después de comprobar que la entrega figure como registrada.</p>
     </div>
   </div>
 
@@ -115,6 +120,6 @@
   </dialog>
 
   <script src="config.js"></script>
-  <script type="module" src="app.js?v=8"></script>
+  <script type="module" src="app.js?v=9"></script>
 </body>
 </html>

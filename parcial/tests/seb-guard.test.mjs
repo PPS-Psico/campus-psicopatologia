@@ -69,3 +69,24 @@ test("espera updateKeys en versiones que cargan las claves de forma asíncrona",
   });
   assert.equal(proof.configKey, "c".repeat(64));
 });
+
+test("actualiza las claves aunque el frame haya heredado valores previos", async () => {
+  let calls = 0;
+  const security = {
+    configKey: "a".repeat(64),
+    browserExamKey: "b".repeat(64),
+    updateKeys(callback) {
+      calls += 1;
+      security.configKey = "c".repeat(64);
+      security.browserExamKey = "d".repeat(64);
+      callback();
+    },
+  };
+  const proof = await getSafeExamBrowserProof({
+    safeExamBrowser: { version: "SEB_macOS_3.7", security },
+    pageUrl: "https://example.edu/parcial/index.html",
+  });
+  assert.equal(calls, 1);
+  assert.equal(proof.configKey, "c".repeat(64));
+  assert.equal(proof.browserExamKey, "d".repeat(64));
+});

@@ -175,6 +175,7 @@
 .exam-step__title { margin-bottom: var(--space-2); font-size: var(--text-lg); }
 .exam-step__copy { max-width: var(--measure); color: var(--text-muted); }
 .exam-step__copy p + p { margin-top: var(--space-3); }
+.exam-step__fallback { color: var(--text-subtle); font-size: var(--text-sm); }
 
 .readiness-grid {
   display: grid;

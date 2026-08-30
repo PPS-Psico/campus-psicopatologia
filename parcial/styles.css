@@ -256,6 +256,8 @@ button { color: inherit; }
 .receipt dt { color: var(--text-muted); font-size: var(--text-sm); }
 .receipt dd { margin: 0; color: var(--text-strong); font-size: var(--text-sm); font-weight: 600; overflow-wrap: anywhere; }
 .completion__note { margin: var(--space-8) 0 0; color: var(--text-muted); font-size: var(--text-sm); }
+.completion__actions { margin-top: var(--space-8); }
+.completion__actions .button { width: 100%; }
 
 @media (max-width: 1120px) {
   .exam-layout { grid-template-columns: 190px minmax(0, 760px); }

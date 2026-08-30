@@ -33,7 +33,7 @@ export async function getSafeExamBrowserProof({
   if (!isSafeExamBrowser({ safeExamBrowser, userAgent: "" })) return null;
   const security = safeExamBrowser?.security;
 
-  if (security && typeof security.updateKeys === "function" && !security.configKey) {
+  if (security && typeof security.updateKeys === "function") {
     await new Promise((resolve) => {
       let settled = false;
       const finish = () => {

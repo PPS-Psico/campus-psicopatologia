@@ -2,6 +2,12 @@
 
 Para el estudiante el flujo sigue teniendo un solo paso: abre desde el Campus el archivo `.seb`. La aplicación realiza las verificaciones sin pedir códigos ni configuraciones adicionales.
 
+## Simulacro publicado
+
+`simulacro-psicopatologia.seb` es un archivo independiente para probar el circuito técnico. Abre directamente el multiple choice de Clase 3, mantiene la ventana en pantalla completa, impide cambiar de aplicación, bloquea descargas y permite salir sin código únicamente desde el botón posterior a la entrega. La clave de salida manual de emergencia queda guardada sólo en `.codex/simulacro-seb-docente.json`, que Git ignora.
+
+El simulacro usa datos locales y no registra una nota. Sus Config Key y Browser Exam Key no deben reutilizarse para el parcial real. El archivo definitivo se generará recién cuando exista la URL exacta de la actividad del Campus que contendrá el examen.
+
 ## Qué controla el sistema
 
 1. La pantalla bloquea navegadores comunes antes de mostrar preguntas.
@@ -15,8 +21,8 @@ La detección visual usa la API JavaScript de SEB y, por compatibilidad, su iden
 ## Configuración docente, una sola vez
 
 1. Abrir SEB Config Tool y crear una configuración para iniciar un examen.
-2. Definir como URL de inicio `https://campus.uflo.edu.ar/course/view.php?id=12209`. El estudiante inicia sesión y entra a la sección Parcial dentro del mismo navegador seguro.
-3. Activar **Use Browser & Config Keys** y, para versiones actuales, seleccionar el motor moderno compatible con la API JavaScript de SEB.
+2. Crear en el curso `12209` una Página o recurso dedicado al parcial y usar su URL exacta como inicio. El estudiante inicia sesión dentro de SEB y llega directamente a esa actividad; no conviene iniciar el examen desde la portada completa del curso porque dejaría visibles Clases y Unidades.
+3. Seleccionar el motor moderno (**Prefer Modern**, `browserWindowWebView=3`) y usar la API JavaScript de SEB. No hace falta activar el envío de claves por encabezados (`sendBrowserExamKey=false`).
 4. Guardar el archivo `.seb` definitivo. No modificarlo después de copiar la clave.
 5. Copiar la **Config Key** de 64 caracteres y las **Browser Exam Keys** de las versiones de Windows, macOS y iOS que se admitirán. La Config Key es común; la Browser Exam Key cambia según la plataforma y la versión.
 6. Configurar los secretos de la función:
@@ -39,3 +45,5 @@ La API y la base se ejecutan en el proyecto gratuito de Supabase `zprvefdhcxnivd
 Durante el simulacro técnico se habilita temporalmente `identity_linking_enabled` para asociar cada fila del padrón con la cuenta Moodle que informó el Campus. Esa asociación ocurre en segundo plano y no pide otro dato al estudiante. En el parcial real la opción debe permanecer desactivada: sólo ingresan combinaciones de DNI, nombre y cuenta Moodle que ya quedaron verificadas.
 
 Las claves originales son datos de configuración del servidor: no deben escribirse en `config.js`, HTML ni JavaScript público.
+
+El archivo `.seb` se publica sin contraseña de apertura para evitar un paso adicional al estudiante. Si alguien lo modifica, cambia su Config Key y el backend del parcial real rechaza el acceso. La salida manual sí utiliza una contraseña docente aleatoria; la salida normal se realiza mediante `parcial/salir.html` después de una entrega confirmada.
