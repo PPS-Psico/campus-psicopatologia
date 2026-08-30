@@ -3,7 +3,10 @@ export class ExamApi {
     this.url = config.apiUrl;
     this.key = config.publishableKey;
     this.timeoutMs = config.requestTimeoutMs ?? 15000;
+    this.safeExamBrowserProof = null;
   }
+
+  setSafeExamBrowserProof(proof) { this.safeExamBrowserProof = proof; }
 
   async request(action, payload = {}, attemptToken = "") {
     if (!this.url || !this.key) throw new Error("missing_api_config");
@@ -15,7 +18,7 @@ export class ExamApi {
       const response = await fetch(this.url, {
         method: "POST",
         headers,
-        body: JSON.stringify({ action, ...payload }),
+        body: JSON.stringify({ action, ...payload, seb: this.safeExamBrowserProof }),
         cache: "no-store",
         signal: controller.signal,
       });

@@ -1,10 +1,15 @@
+const examParams = new URLSearchParams(location.search);
+const isLocalExam = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+
 window.EXAM_CONFIG = Object.freeze({
   examId: "11111111-1111-4111-8111-111111111111",
-  apiUrl: "http://127.0.0.1:54321/functions/v1/exam-api",
-  publishableKey: "",
+  apiUrl: "https://zprvefdhcxnivdgsbpkw.supabase.co/functions/v1/exam-api",
+  publishableKey: "sb_publishable_RH2Gj2j_K83BPWH_LX5I_w_9BsUT8ax",
   moodleOrigin: "https://campus.uflo.edu.ar",
   requestTimeoutMs: 15000,
   contextTimeoutMs: 12000,
-  demo: new URLSearchParams(location.search).get("demo") === "1"
-    || (location.hostname === "localhost" && !location.search.includes("production=1")),
+  requireSafeExamBrowser: true,
+  allowUnsafeBrowser: isLocalExam && examParams.get("dev") === "1",
+  demo: examParams.get("demo") === "1"
+    || (isLocalExam && !location.search.includes("production=1")),
 });

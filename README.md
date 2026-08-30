@@ -16,6 +16,12 @@ Primera versión de la portada del aula. Por ahora comunica sólo lo necesario p
 - `inicio.html`: redirección a `index.html`; se conserva sólo porque el iframe publicado en Moodle apunta a esta URL.
 - `vista-previa-moodle.html`: simulación local del ancho y el marco habitual de Moodle.
 - `snippet-iframe-moodle.html`: bloque para pegar en el editor HTML de Moodle una vez que `inicio.html` tenga una URL pública.
+- `parcial/`: aplicación de evaluación, simulacro y verificación automática de Safe Exam Browser.
+- `supabase/`: migraciones, función `exam-api` y pruebas del backend del parcial. Los archivos `.env` locales quedan excluidos de Git.
+
+La puesta en marcha del navegador seguro está documentada en [`parcial/SEGURIDAD-SEB.md`](parcial/SEGURIDAD-SEB.md). Para el estudiante el flujo consiste únicamente en abrir desde el Campus el archivo `.seb`; las claves y verificaciones se administran en el servidor.
+
+El backend está desplegado en el proyecto gratuito y separado `Psicopatología I - Parciales` de Supabase, región São Paulo (`zprvefdhcxnivdgsbpkw`). Permanece cerrado hasta cargar las claves del archivo `.seb` definitivo.
 
 ## Estructura prevista
 
@@ -29,8 +35,8 @@ La estructura queda deliberadamente liviana para una materia cuatrimestral con u
 ## Inserción en Moodle
 
 1. Abrir `snippet-iframe-moodle.html`.
-2. Pegar el bloque completo desde la vista de código HTML de una etiqueta o página de Moodle.
-3. Si Moodle elimina el bloque `script`, dejar el iframe y conservar la altura fija de `820px`. La portada seguirá funcionando, aunque no ajustará su altura automáticamente.
+2. Pegar el bloque completo desde la vista de código HTML de una etiqueta o página de Moodle. El mismo bloque reenvía al parcial el nombre, DNI, ID de usuario y curso que completa FilterCodes; no requiere plugin.
+3. Comprobar con una cuenta de prueba que FilterCodes reemplazó los datos. Si Moodle elimina el bloque `script`, la portada seguirá visible, pero el parcial no podrá identificar automáticamente al estudiante; en ese caso hay que pegarlo en el mismo tipo de recurso HTML que ya usa Consultas PPS.
 
 URL pública del aula: <https://pps-psico.github.io/campus-psicopatologia/inicio.html>
 

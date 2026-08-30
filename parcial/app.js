@@ -1,5 +1,6 @@
 import { ExamApi, requestMoodleContext } from "./api.js?v=2";
 import { MockExamApi } from "./mock-api.js?v=4";
+import { assertSafeExamBrowser, getSafeExamBrowserProof } from "./seb-guard.js?v=2";
 import {
   buildResponse,
   firstUnansweredIndex,
@@ -42,6 +43,7 @@ const errorCopy = {
   moodle_context_failed: ["El Campus no pudo identificarte", "Volvé al aula virtual y abrí nuevamente el parcial."],
   invalid_moodle_context: ["El Campus no envió datos válidos", "El equipo docente debe revisar la configuración del acceso al parcial."],
   identity_not_registered: ["No figurás en el padrón", "Tu DNI no está habilitado para esta materia. Avisá al equipo docente antes de comenzar."],
+  identity_not_verified: ["Tu cuenta todavía no fue verificada", "Abrí primero el simulacro técnico desde tu cuenta del Campus o avisá al equipo docente antes de comenzar."],
   identity_mismatch: ["Tus datos no coinciden", "El nombre informado por el Campus no coincide con el padrón cargado. Avisá al equipo docente."],
   moodle_account_conflict: ["La cuenta del Campus no coincide", "Este DNI ya quedó asociado a otra cuenta del Campus. Avisá al equipo docente."],
   invalid_attempt_session: ["La sesión del parcial no es válida", "Volvé al Campus para recuperar tu intento de forma segura."],
@@ -49,6 +51,9 @@ const errorCopy = {
   exam_closed: ["El horario del parcial finalizó", "Consultá al equipo docente si necesitás verificar el estado de tu entrega."],
   exam_not_available: ["El parcial no está publicado", "El equipo docente debe revisar la configuración de esta actividad."],
   exam_has_no_questions: ["El parcial todavía no tiene consignas", "El equipo docente debe revisar el banco de preguntas antes de habilitar esta actividad."],
+  safe_exam_browser_required: ["Abrí esta actividad con Safe Exam Browser", "Cerrá esta pestaña, volvé a la sección Parcial del Campus y abrí el archivo de acceso .seb. Las preguntas no están disponibles en un navegador común."],
+  safe_browser_invalid: ["La configuración del navegador no es válida", "Volvé al Campus y abrí nuevamente el archivo .seb publicado para este parcial."],
+  safe_browser_not_configured: ["El acceso seguro todavía no está habilitado", "El equipo docente debe terminar la configuración técnica antes de publicar esta actividad."],
 };
 
 function showOnly(name) {
@@ -388,6 +393,9 @@ function openSubmitDialog() {
 
 async function bootstrap() {
   try {
+    setBoot("Verificando el navegador seguro…");
+    assertSafeExamBrowser(config);
+    if (!config.demo) api.setSafeExamBrowserProof(await getSafeExamBrowserProof());
     setBoot("Verificando tu ingreso desde el Campus…");
     if (config.demo && new URLSearchParams(location.search).get("reset") === "1") {
       localStorage.removeItem("psicopato-exam-demo-v1");

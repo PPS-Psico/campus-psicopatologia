@@ -3,3 +3,8 @@
 
 # Configuración local de Codex
 .codex/
+
+# Supabase local: credenciales y estado de la CLI
+supabase/.env*
+supabase/.temp/
+supabase/.branches/
