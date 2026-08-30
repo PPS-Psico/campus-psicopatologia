@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fechas de parciales, parcial de prueba e instalación de Safe Exam Browser para Psicopatología I.">
+  <title>Parcial · Psicopatología I</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/tokens.css?v=5">
+  <link rel="stylesheet" href="assets/ui.css?v=6">
+  <link rel="stylesheet" href="assets/parcial-info.css?v=5">
+</head>
+<body data-unit="1">
+<!--
+  THESIS: La preparación técnica forma parte del parcial. Esta página reemplaza
+  instrucciones dispersas por un recorrido único que distingue lo confirmado de
+  lo que todavía se está probando.
+  OWN-WORLD: Hereda el teal, la tipografía Outfit/Inter, las reglas editoriales,
+  los bordes de 1px y las superficies claras/oscuras del campus.
+  STORY: El estudiante encuentra las fechas confirmadas, instala SEB, completa un
+  parcial de prueba y distingue esa práctica de la modalidad todavía no definida.
+  FIRST VIEWPORT: Orientación y acceso a la prueba a la izquierda; fecha, alcance y
+  estado de definición del primer parcial en un panel compacto a la derecha.
+  FORM: Guía de preparación cronológica; extensión estrecha modelada directamente
+  según new-work. Clave rastreable: PARCIAL-READINESS-12209.
+  FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+-->
+
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <div data-ui="nav" data-active="parcial"></div>
+
+  <main class="container" id="contenido">
+    <section class="exam-info-hero settle" aria-labelledby="page-title">
+      <div>
+        <h1 id="page-title">Parcial</h1>
+        <p class="exam-info-hero__lead">
+          El parcial se abrirá desde el Campus y se responderá en una ventana cerrada de
+          Safe Exam Browser. En esta sección vamos a publicar el acceso, la modalidad
+          definitiva y cualquier ajuste técnico antes de la fecha de evaluación.
+        </p>
+        <div class="exam-info-hero__actions">
+          <a class="btn btn--primary btn--lg" href="parcial/index.html?demo=1&amp;reset=1">
+            Abrir multiple choice de Clase 3
+            <span data-icon="arrowRight" data-size="18"></span>
+          </a>
+        </div>
+      </div>
+
+      <aside class="exam-overview" aria-labelledby="first-exam-title">
+        <div class="exam-overview__status">
+          <span class="badge badge--warn">Modalidad a confirmar</span>
+        </div>
+        <h2 class="sr-only" id="first-exam-title">Datos del primer parcial</h2>
+        <p class="exam-overview__date" id="first-exam-date">21 de septiembre · 8:30 a 10:30</p>
+        <p class="exam-overview__scope" id="first-exam-scope">Unidades 1 y 2 · Clases 1 a 5</p>
+        <ul class="exam-overview__facts">
+          <li><span data-icon="calendar" data-size="18"></span><span>La fecha, el horario y los contenidos ya están confirmados.</span></li>
+          <li><span data-icon="alert" data-size="18"></span><span>El formato de las consignas todavía está en definición.</span></li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="section settle" id="evaluaciones" aria-labelledby="evaluation-title">
+      <div class="section-head">
+        <h2 class="section-head__title" id="evaluation-title">Fechas de evaluación</h2>
+        <p class="section-head__subtitle">
+          Dos parciales y un recuperatorio único, los tres en el horario de la cursada.
+          La modalidad de las consignas se informará cuando quede definida.
+        </p>
+      </div>
+      <div class="grid grid-3" id="evaluacion-grid"></div>
+      <p class="source-note">Las fechas quedan sujetas a la validación institucional del equipo docente y del Jefe de Área.</p>
+    </section>
+
+    <section class="section settle" id="instalacion" aria-labelledby="install-title">
+      <div class="section-head">
+        <h2 class="section-head__title" id="install-title">Instalá Safe Exam Browser</h2>
+        <p class="section-head__subtitle">
+          Instalalo antes del simulacro. Abrir el programa por sí solo no inicia el
+          parcial: el día de la prueba vas a usar un archivo de acceso <strong>.seb</strong>
+          publicado en esta misma sección del Campus.
+        </p>
+      </div>
+
+      <div class="platform-grid">
+        <article class="card platform">
+          <div class="platform__head">
+            <span data-icon="panel" data-size="22"></span>
+            <h3 class="platform__title">Windows</h3>
+          </div>
+          <p class="platform__version">Windows 10 versión 1803 o posterior · Windows 11</p>
+          <p class="platform__copy">
+            Descargá el instalador oficial, ejecutá el archivo <strong>SetupBundle.exe</strong>
+            y seguí los pasos. Al finalizar aparecerá Safe Exam Browser en el menú Inicio.
+          </p>
+          <a class="btn btn--secondary"
+             href="https://github.com/SafeExamBrowser/seb-win-refactoring/releases/download/v3.10.2/SEB_3.10.2.920_SetupBundle.exe"
+             download="SEB_3.10.2.920_SetupBundle.exe">
+            Descargar para Windows <span data-icon="download" data-size="16"></span>
+          </a>
+        </article>
+
+        <article class="card platform">
+          <div class="platform__head">
+            <span data-icon="panel" data-size="22"></span>
+            <h3 class="platform__title">macOS</h3>
+          </div>
+          <p class="platform__version">macOS 11 a 26 · versión vigente 3.7</p>
+          <p class="platform__copy">
+            Descargá el archivo <strong>.dmg</strong>, abrilo y arrastrá Safe Exam Browser
+            a la carpeta Aplicaciones. En macOS 26.6 o posterior debe usarse SEB 3.7.
+          </p>
+          <a class="btn btn--secondary"
+             href="https://github.com/SafeExamBrowser/seb-mac/releases/download/3.7/SafeExamBrowser-3.7.dmg"
+             download="SafeExamBrowser-3.7.dmg">
+            Descargar para macOS <span data-icon="download" data-size="16"></span>
+          </a>
+        </article>
+
+        <article class="card platform">
+          <div class="platform__head">
+            <span data-icon="panel" data-size="22"></span>
+            <h3 class="platform__title">iPad o iPhone</h3>
+          </div>
+          <p class="platform__version">iOS/iPadOS 12 o posterior</p>
+          <p class="platform__copy">
+            Instalá SafeExamBrowser desde App Store. Antes de rendir, comprobá que el
+            archivo de acceso <strong>.seb</strong> se abra correctamente en el dispositivo.
+          </p>
+          <a class="btn btn--secondary" href="https://apps.apple.com/app/safeexambrowser/id1155002964"
+             target="_blank" rel="noopener noreferrer">
+            Instalar desde App Store <span data-icon="arrowUpRight" data-size="16"></span>
+          </a>
+        </article>
+      </div>
+
+      <p class="source-note">
+        Compatibilidad y versiones verificadas el 25 de agosto de 2026 en el
+        <a href="https://safeexambrowser.org/download_en.html" target="_blank" rel="noopener noreferrer">sitio oficial de Safe Exam Browser</a>.
+        Conviene descargar siempre desde esa página para obtener la versión vigente.
+      </p>
+    </section>
+
+    <section class="section settle" id="paso-a-paso" aria-labelledby="steps-title">
+      <div class="section-head">
+        <h2 class="section-head__title" id="steps-title">Paso a paso completo</h2>
+        <p class="section-head__subtitle">
+          Los primeros cinco pasos ya se pueden probar. Los restantes se habilitarán
+          cuando publiquemos el archivo <strong>.seb</strong>; el recorrido técnico no
+          define el formato final de las consignas.
+        </p>
+      </div>
+
+      <div class="exam-phase">
+        <h3 class="exam-phase__title">Preparación y prueba del sistema</h3>
+        <p class="exam-phase__copy">Completá estos pasos ahora, en el mismo equipo que pensás usar para rendir.</p>
+        <ol class="exam-steps">
+          <li class="exam-step">
+            <div>
+              <h4 class="exam-step__title">Descargá la versión para tu equipo</h4>
+              <div class="exam-step__copy"><p>Usá uno de los enlaces oficiales de Windows, macOS o App Store que aparecen arriba. En Windows y macOS el botón inicia la descarga del instalador.</p></div>
+            </div>
+          </li>
+          <li class="exam-step">
+            <div>
+              <h4 class="exam-step__title">Instalá Safe Exam Browser</h4>
+              <div class="exam-step__copy"><p>Ejecutá el instalador y aceptá los permisos del sistema. No abras el programa para configurarlo ni cambies opciones por tu cuenta: el archivo <strong>.seb</strong> aplicará la configuración correcta.</p></div>
+            </div>
+          </li>
+          <li class="exam-step">
+            <div>
+              <h4 class="exam-step__title">Comprobá tu acceso al Campus</h4>
+              <div class="exam-step__copy"><p>Ingresá con tu DNI y contraseña habituales. Verificá que el nombre de la sesión sea el tuyo; esa cuenta será la que identifique tu intento.</p></div>
+            </div>
+          </li>
+          <li class="exam-step">
+            <div>
+              <h4 class="exam-step__title">Abrí el multiple choice de Clase 3</h4>
+              <div class="exam-step__copy">
+                <p>La prueba actual tiene diez preguntas y veinte minutos. Funciona en el navegador común, guarda sólo en este dispositivo y no registra una nota.</p>
+                <p><a class="btn btn--secondary" href="parcial/index.html?demo=1&amp;reset=1">Abrir prueba de Clase 3 <span data-icon="arrowRight" data-size="16"></span></a></p>
+              </div>
+            </div>
+          </li>
+          <li class="exam-step">
+            <div>
+              <h4 class="exam-step__title">Probá el guardado y la entrega</h4>
+              <div class="exam-step__copy"><p>Respondé las diez preguntas, recorré los números laterales y esperá que el estado diga <strong>Guardado</strong>. Después elegí <strong>Entregar parcial</strong>, confirmá y comprobá que aparezca la pantalla de entrega.</p></div>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="exam-phase">
+        <h3 class="exam-phase__title">El día del simulacro o del parcial</h3>
+        <p class="exam-phase__copy">Estos pasos estarán disponibles cuando el equipo docente publique el acceso seguro.</p>
+        <ol class="exam-steps exam-steps--continuation">
+          <li class="exam-step">
+            <div>
+              <h4 class="exam-step__title">Entrá al Campus y abrí el archivo .seb</h4>
+              <div class="exam-step__copy"><p>No abras Safe Exam Browser desde el menú del equipo. Ingresá primero a esta sección del Campus y abrí el archivo de acceso que publicaremos.</p></div>
+            </div>
+          </li>
+          <li class="exam-step">
+            <div>
+              <h4 class="exam-step__title">Esperá que se abra el navegador seguro</h4>
+              <div class="exam-step__copy"><p>El archivo cargará la dirección y las restricciones del parcial. No cierres la ventana ni reinicies el equipo mientras se prepara el acceso.</p></div>
+            </div>
+          </li>
+          <li class="exam-step">
+            <div>
+              <h4 class="exam-step__title">Verificá tu identidad antes de empezar</h4>
+              <div class="exam-step__copy"><p>Comprobá el nombre, apellido y DNI mostrados. Si no son los tuyos o el sistema informa que no figurás en el padrón, no inicies el intento y avisá al equipo docente.</p></div>
+            </div>
+          </li>
+          <li class="exam-step">
+            <div>
+              <h4 class="exam-step__title">Respondé, navegá y controlá el guardado</h4>
+              <div class="exam-step__copy"><p>Leé las instrucciones y mirá el tiempo restante antes de responder. Podés volver a cualquier pregunta. Después de cada cambio, esperá que la cabecera vuelva a mostrar <strong>Guardado</strong>; si se corta internet, no cierres la pantalla.</p></div>
+            </div>
+          </li>
+          <li class="exam-step">
+            <div>
+              <h4 class="exam-step__title">Revisá, entregá y esperá la confirmación</h4>
+              <div class="exam-step__copy"><p>Usá los números de preguntas para localizar pendientes. Cuando termines, elegí <strong>Entregar parcial</strong> y confirmá la entrega definitiva. No cierres Safe Exam Browser hasta ver el comprobante y recibir la indicación del equipo docente.</p></div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section settle readiness-grid" aria-labelledby="ready-title">
+      <div>
+        <div class="section-head">
+          <h2 class="section-head__title" id="ready-title">Antes del simulacro</h2>
+          <p class="section-head__subtitle">Prepará el mismo equipo y la misma conexión que vas a usar el día del parcial.</p>
+        </div>
+        <ul class="check-list">
+          <li><span data-icon="check" data-size="19"></span><span>Instalá la última versión compatible de Safe Exam Browser.</span></li>
+          <li><span data-icon="check" data-size="19"></span><span>Actualizá el sistema operativo y reiniciá el equipo antes de probar.</span></li>
+          <li><span data-icon="check" data-size="19"></span><span>Comprobá que podés ingresar al Campus con tu DNI y contraseña.</span></li>
+          <li><span data-icon="check" data-size="19"></span><span>Usá una conexión estable y mantené el equipo conectado a la corriente.</span></li>
+          <li><span data-icon="check" data-size="19"></span><span>Realizá el simulacro completo, incluida la entrega, cuando quede habilitado.</span></li>
+        </ul>
+      </div>
+
+      <aside class="pending-board" aria-labelledby="pending-title">
+        <h3 id="pending-title">Todavía estamos definiendo</h3>
+        <dl>
+          <div><dt>Archivo de acceso .seb</dt><dd>Se publicará después de validar Windows, macOS e iPad.</dd></div>
+          <div><dt>Supervisión por Meet</dt><dd>La modalidad se informará después de comprobar que no interfiera con el navegador seguro.</dd></div>
+          <div><dt>Canal de contingencia</dt><dd>Antes del simulacro se indicará cómo avisar una falla sin perder el intento.</dd></div>
+        </dl>
+      </aside>
+    </section>
+
+    <section class="section practice settle" aria-labelledby="practice-title">
+      <div>
+        <h2 id="practice-title">Probá el multiple choice de Clase 3</h2>
+        <p>
+          Esta prueba tiene diez preguntas sobre Jaspers, el método psicopatológico y la
+          discusión con Freud. Funciona sin Safe Exam Browser y guarda datos sólo en tu
+          dispositivo; no anticipa el formato definitivo ni registra una nota.
+        </p>
+      </div>
+      <a class="btn btn--primary btn--lg" href="parcial/index.html?demo=1&amp;reset=1">
+        Abrir prueba de Clase 3 <span data-icon="arrowRight" data-size="18"></span>
+      </a>
+    </section>
+
+    <footer class="site-footer">
+      <span><strong class="text-strong">Psicopatología I</strong> · UFLO · <span id="year"></span></span>
+      <span>Comisión 3 · Turno mañana</span>
+    </footer>
+  </main>
+
+  <script src="assets/icons.js?v=4"></script>
+  <script src="assets/data.js?v=7"></script>
+  <script src="assets/ui.js?v=6"></script>
+  <script>
+    (function () {
+      'use strict';
+      const firstExam = CAMPUS_DATA.PROGRAMA.find((entry) => entry.id === 'p01');
+      if (!firstExam) return;
+      document.getElementById('first-exam-date').textContent =
+        `${CampusUI.Dates.short(firstExam.fecha)} · 8:30 a 10:30`;
+      document.getElementById('first-exam-scope').textContent = firstExam.alcance;
+
+      const evaluationGrid = document.getElementById('evaluacion-grid');
+      const evaluations = CAMPUS_DATA.PROGRAMA.filter((entry) =>
+        entry.tipo === 'parcial' || entry.tipo === 'recuperatorio'
+      );
+      for (const entry of evaluations) {
+        const card = document.createElement('article');
+        card.className = 'card exam';
+
+        const when = document.createElement('span');
+        when.className = 'exam__when';
+        when.textContent = CampusUI.Dates.range(entry.fecha, entry.fechaFin);
+        card.append(when);
+
+        if (entry.alcance) {
+          const scope = document.createElement('span');
+          scope.className = 'exam__scope';
+          scope.textContent = entry.alcance;
+          card.append(scope);
+        }
+
+        const title = document.createElement('h3');
+        title.className = 'evaluation-card__title';
+        title.textContent = entry.titulo;
+        card.append(title);
+
+        const copy = document.createElement('p');
+        copy.className = 'exam__desc';
+        copy.textContent = entry.desc;
+        card.append(copy);
+        evaluationGrid.append(card);
+      }
+    })();
+  </script>
+</body>
+</html>

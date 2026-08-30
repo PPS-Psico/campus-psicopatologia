@@ -21,7 +21,7 @@ Primera versión de la portada del aula. Por ahora comunica sólo lo necesario p
 
 1. Inicio y acceso a clase.
 2. Clases y materiales.
-3. Actividades y evaluaciones.
+3. Actividades; las fechas y la preparación de evaluaciones se concentran en `parcial.html`.
 4. Consultas y avisos.
 
 La estructura queda deliberadamente liviana para una materia cuatrimestral con un encuentro semanal. No se publican todavía programa, bibliografía ni criterios de evaluación.

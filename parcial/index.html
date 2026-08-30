@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Entorno de evaluación online de Psicopatología I, UFLO.">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Primer parcial · Psicopatología I</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/tokens.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=3">
+  <script src="../assets/ui.js?v=6" defer></script>
+</head>
+<body data-unit="1">
+  <a class="skip-link" href="#question-panel">Saltar a la consigna actual</a>
+
+  <div class="boot" id="boot" role="status" aria-live="polite">
+    <div class="boot__mark" aria-hidden="true"></div>
+    <p class="boot__title">Preparando tu parcial</p>
+    <p class="boot__copy" id="boot-copy">Verificando tu ingreso desde el Campus…</p>
+  </div>
+
+  <div class="fatal" id="fatal" hidden>
+    <div class="fatal__content">
+      <h1 id="fatal-title">La verificación de ingreso falló</h1>
+      <p id="fatal-copy">Volvé al Campus e ingresá nuevamente desde el enlace del parcial.</p>
+      <button class="button button--primary" id="retry-button" type="button">Reintentar</button>
+    </div>
+  </div>
+
+  <div class="exam" id="exam" hidden>
+    <header class="exam-bar">
+      <div class="exam-bar__brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <div>
+          <span>Psicopatología I</span>
+          <strong id="exam-title">Primer parcial</strong>
+        </div>
+      </div>
+
+      <div class="exam-bar__status">
+        <div class="save-state" id="save-state" role="status" aria-live="polite" data-state="saved">
+          <span class="save-state__dot" aria-hidden="true"></span>
+          <span id="save-copy">Guardado</span>
+        </div>
+        <div class="timer" id="timer" role="timer" aria-label="Tiempo restante">
+          <span class="timer__label">Tiempo restante</span>
+          <strong id="timer-value">--:--</strong>
+        </div>
+      </div>
+    </header>
+
+    <div class="connection" id="connection" hidden role="alert">
+      Sin conexión. Podés seguir respondiendo; guardaremos los cambios cuando se restablezca.
+    </div>
+
+    <main class="exam-layout">
+      <aside class="rail" aria-label="Progreso del parcial">
+        <div class="rail__student">
+          <span>Estudiante</span>
+          <strong id="student-name">—</strong>
+        </div>
+        <div class="progress-copy">
+          <span>Respondidas</span>
+          <strong id="progress-value">0 de 0</strong>
+        </div>
+        <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+        <nav class="question-nav" id="question-nav" aria-label="Preguntas"></nav>
+        <p class="rail__hint">Podés volver a cualquier consigna antes de entregar.</p>
+      </aside>
+
+      <section class="question-panel" id="question-panel" tabindex="-1" aria-live="polite"></section>
+
+      <aside class="exam-notes" aria-label="Información del parcial">
+        <div class="exam-notes__section">
+          <h2>Antes de entregar</h2>
+          <p id="exam-instructions">Respondé todas las consignas y revisá el estado de guardado.</p>
+        </div>
+        <div class="exam-notes__section">
+          <h2>Guardado automático</h2>
+          <p>Tus cambios se guardan mientras avanzás. Si se corta internet, no cierres esta pantalla.</p>
+        </div>
+        <button class="button button--primary button--wide" id="submit-button" type="button">Entregar parcial</button>
+      </aside>
+    </main>
+  </div>
+
+  <div class="completion" id="completion" hidden>
+    <div class="completion__sheet">
+      <span class="completion__mark" aria-hidden="true">✓</span>
+      <h1 id="completion-title">Parcial entregado</h1>
+      <p id="completion-copy">La entrega quedó registrada correctamente.</p>
+      <dl class="receipt">
+        <div><dt>Estudiante</dt><dd id="receipt-student">—</dd></div>
+        <div><dt>Estado</dt><dd id="receipt-status">Entregado</dd></div>
+        <div><dt>Hora del servidor</dt><dd id="receipt-time">—</dd></div>
+        <div><dt>Comprobante</dt><dd id="receipt-id">—</dd></div>
+      </dl>
+      <p class="completion__note">Podés cerrar el navegador seguro cuando el equipo docente lo indique.</p>
+    </div>
+  </div>
+
+  <dialog class="submit-dialog" id="submit-dialog" aria-labelledby="submit-dialog-title">
+    <form method="dialog">
+      <h2 id="submit-dialog-title">¿Entregar el parcial ahora?</h2>
+      <p id="submit-dialog-copy">Después de confirmar ya no podrás modificar las respuestas.</p>
+      <div class="submit-dialog__actions">
+        <button class="button button--secondary" type="submit" value="cancel">Seguir revisando</button>
+        <button class="button button--primary" id="confirm-submit" type="submit" value="default">Confirmar entrega</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="config.js"></script>
+  <script type="module" src="app.js?v=6"></script>
+</body>
+</html>

@@ -150,7 +150,7 @@
         { key: 'inicio', label: 'Inicio', href: `${depth}index.html` },
         { key: 'clases', label: 'Clases', href: `${depth}index.html#unidades` },
         { key: 'cronograma', label: 'Cronograma', href: `${depth}index.html#cronograma` },
-        { key: 'evaluacion', label: 'Evaluación', href: `${depth}index.html#evaluacion` }
+        { key: 'parcial', label: 'Parcial', href: `${depth}parcial.html` }
       ];
 
       const renderLinks = (mobile) => links.map((l) => `

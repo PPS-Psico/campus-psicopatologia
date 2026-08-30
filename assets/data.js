@@ -24,6 +24,7 @@ window.CAMPUS_DATA = (function () {
     horario: 'Inicio 8:30',
     zona: 'America/Argentina/Buenos_Aires',
     meetUrl: 'https://meet.google.com/ppm-khgg-ohk',
+    moodleCourseId: '12209',
   };
 
   /* ========================================================================
