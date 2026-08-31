@@ -1,5 +1,18 @@
 const DEMO_KEY = "psicopato-exam-demo-v1";
 
+const ANSWER_KEY = Object.freeze({
+  "a1111111-1111-4111-8111-111111111111": "b1111111-1111-4111-8111-111111111111",
+  "a2222222-2222-4222-8222-222222222222": "c2222222-2222-4222-8222-222222222222",
+  "a3333333-3333-4333-8333-333333333333": "d3333333-3333-4333-8333-333333333333",
+  "a4444444-4444-4444-8444-444444444444": "e4444444-4444-4444-8444-444444444444",
+  "a5555555-5555-4555-8555-555555555555": "f2222222-2222-4222-8222-222222222222",
+  "a6666666-6666-4666-8666-666666666666": "63333333-3333-4333-8333-333333333333",
+  "a7777777-7777-4777-8777-777777777777": "71111111-1111-4111-8111-111111111111",
+  "a8888888-8888-4888-8888-888888888888": "84444444-4444-4444-8444-444444444444",
+  "a9999999-9999-4999-8999-999999999999": "92222222-2222-4222-8222-222222222222",
+  "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa": "a0333333-3333-4333-8333-333333333333",
+});
+
 const ITEMS = [
   {
     id: "a1111111-1111-4111-8111-111111111111",
@@ -150,10 +163,38 @@ function load() {
 
 function store(value) { localStorage.setItem(DEMO_KEY, JSON.stringify(value)); }
 function delay(ms = 180) { return new Promise((resolve) => setTimeout(resolve, ms)); }
+
+export function buildDemoReview(items, answerKey = ANSWER_KEY) {
+  const reviewedItems = items.map((item) => {
+    const correctOptionId = answerKey[item.id];
+    const selectedOptionId = item.response?.selectedOptionId || null;
+    return {
+      itemId: item.id,
+      selectedOptionId,
+      correctOptionId,
+      isCorrect: Boolean(correctOptionId && selectedOptionId === correctOptionId),
+      points: Number(item.points || 0),
+    };
+  });
+  return {
+    score: reviewedItems.reduce((total, item) => total + (item.isCorrect ? item.points : 0), 0),
+    maxScore: reviewedItems.reduce((total, item) => total + item.points, 0),
+    correctCount: reviewedItems.filter((item) => item.isCorrect).length,
+    total: reviewedItems.length,
+    items: reviewedItems,
+  };
+}
+
+function attachReview(value) {
+  value.review = buildDemoReview(value.items);
+  return value;
+}
+
 function applyServerDeadline(value) {
   if (value?.attempt?.status === "in_progress" && Date.now() >= Date.parse(value.attempt.deadlineAt)) {
     value.attempt.status = "timed_out";
     value.attempt.submittedAt = value.attempt.deadlineAt;
+    attachReview(value);
     store(value);
   }
   return value;
@@ -226,6 +267,7 @@ export class MockExamApi {
     state.attempt.status = "submitted";
     state.attempt.submittedAt = new Date().toISOString();
     state.serverNow = new Date().toISOString();
+    attachReview(state);
     store(state);
     return structuredClone(state);
   }

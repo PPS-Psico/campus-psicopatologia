@@ -21,6 +21,8 @@ Primera versión de la portada del aula. Por ahora comunica sólo lo necesario p
 
 La puesta en marcha del navegador seguro está documentada en [`parcial/SEGURIDAD-SEB.md`](parcial/SEGURIDAD-SEB.md). Para el estudiante el flujo consiste únicamente en abrir desde el Campus el archivo `.seb`; las claves y verificaciones se administran en el servidor.
 
+La construcción del reconocimiento estudiantil, el panel compartido de corrección y la devolución individual está ordenada por fases en [`parcial/PLAN-SISTEMA-COMPLETO.md`](parcial/PLAN-SISTEMA-COMPLETO.md).
+
 El backend está desplegado en el proyecto gratuito y separado `Psicopatología I - Parciales` de Supabase, región São Paulo (`zprvefdhcxnivdgsbpkw`). Permanece cerrado hasta cargar las claves del archivo `.seb` definitivo.
 
 ## Estructura prevista

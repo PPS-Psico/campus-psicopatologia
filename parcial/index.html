@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/tokens.css?v=6">
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=5">
   <script src="../assets/ui.js?v=6" defer></script>
 </head>
 <body data-unit="1">
@@ -96,10 +96,22 @@
       <dl class="receipt">
         <div><dt>Estudiante</dt><dd id="receipt-student">—</dd></div>
         <div><dt>Estado</dt><dd id="receipt-status">Entregado</dd></div>
+        <div id="receipt-score-row" hidden><dt>Resultado</dt><dd id="receipt-score">—</dd></div>
         <div><dt>Hora del servidor</dt><dd id="receipt-time">—</dd></div>
         <div><dt>Comprobante</dt><dd id="receipt-id">—</dd></div>
       </dl>
+      <section class="answer-review" id="answer-review" hidden aria-labelledby="answer-review-title">
+        <div class="answer-review__head">
+          <p class="answer-review__eyebrow">Corrección automática</p>
+          <h2 id="answer-review-title">Revisión de respuestas</h2>
+          <p id="answer-review-summary"></p>
+        </div>
+        <ol class="answer-review__list" id="answer-review-list"></ol>
+      </section>
       <div class="completion__actions">
+        <a class="button button--secondary" id="demo-retry" href="index.html?demo=1&amp;reset=1" hidden>
+          Rehacer el simulacro
+        </a>
         <a class="button button--primary" href="https://pps-psico.github.io/campus-psicopatologia/parcial/salir.html" target="_top">
           Cerrar Safe Exam Browser
         </a>
@@ -120,6 +132,6 @@
   </dialog>
 
   <script src="config.js"></script>
-  <script type="module" src="app.js?v=9"></script>
+  <script type="module" src="app.js?v=10"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 import { ExamApi, requestMoodleContext } from "./api.js?v=2";
-import { MockExamApi } from "./mock-api.js?v=4";
+import { MockExamApi } from "./mock-api.js?v=5";
 import { assertSafeExamBrowser, getSafeExamBrowserProof } from "./seb-guard.js?v=3";
 import {
   buildResponse,
@@ -17,7 +17,9 @@ const elements = Object.fromEntries([
   "timer-value", "connection", "progress-value", "progress-bar", "question-nav",
   "question-panel", "exam-instructions", "submit-button", "submit-dialog",
   "submit-dialog-copy", "confirm-submit", "completion", "completion-title",
-  "completion-copy", "receipt-student", "receipt-status", "receipt-time", "receipt-id",
+  "completion-copy", "receipt-student", "receipt-status", "receipt-score-row", "receipt-score",
+  "receipt-time", "receipt-id", "answer-review", "answer-review-summary", "answer-review-list",
+  "demo-retry",
 ].map((id) => [id, document.getElementById(id)]));
 
 const api = config.demo ? new MockExamApi() : new ExamApi(config);
@@ -346,16 +348,72 @@ function renderCompletion(data) {
   clearInterval(state.timerInterval);
   clearInterval(state.heartbeatInterval);
   const timedOut = data.attempt.status === "timed_out";
-  elements["completion-title"].textContent = timedOut ? "El tiempo finalizó" : "Parcial entregado";
-  elements["completion-copy"].textContent = timedOut
-    ? "El servidor cerró el intento al cumplirse el horario. Las respuestas guardadas hasta ese momento quedaron registradas."
-    : "La entrega quedó registrada correctamente y ya no admite modificaciones.";
+  const hasDemoReview = config.demo && data.review;
+  elements["completion-title"].textContent = hasDemoReview
+    ? "Simulacro corregido"
+    : timedOut ? "El tiempo finalizó" : "Parcial entregado";
+  elements["completion-copy"].textContent = hasDemoReview
+    ? `Obtuviste ${data.review.score} de ${data.review.maxScore} puntos. Abajo podés comparar cada respuesta con la opción correcta.`
+    : timedOut
+      ? "El servidor cerró el intento al cumplirse el horario. Las respuestas guardadas hasta ese momento quedaron registradas."
+      : "La entrega quedó registrada correctamente y ya no admite modificaciones.";
   elements["receipt-student"].textContent = data.attempt.studentName;
-  elements["receipt-status"].textContent = timedOut ? "Cerrado por tiempo" : "Entregado";
+  elements["receipt-status"].textContent = hasDemoReview ? "Finalizado" : timedOut ? "Cerrado por tiempo" : "Entregado";
+  elements["receipt-score-row"].hidden = !hasDemoReview;
+  elements["receipt-score"].textContent = hasDemoReview
+    ? `${data.review.correctCount} correctas de ${data.review.total}`
+    : "—";
   elements["receipt-time"].textContent = new Intl.DateTimeFormat("es-AR", { dateStyle: "long", timeStyle: "medium" })
     .format(new Date(data.attempt.submittedAt || data.serverNow));
   elements["receipt-id"].textContent = data.attempt.id;
+  renderAnswerReview(data);
   showOnly("completion");
+}
+
+function renderAnswerReview(data) {
+  const review = config.demo ? data.review : null;
+  elements["answer-review"].hidden = !review;
+  elements["demo-retry"].hidden = !review;
+  elements["answer-review-list"].replaceChildren();
+  if (!review) return;
+
+  elements["answer-review-summary"].textContent =
+    `${review.correctCount} de ${review.total} respuestas correctas.`;
+  review.items.forEach((result, index) => {
+    const item = data.items.find((candidate) => candidate.id === result.itemId);
+    if (!item) return;
+    const selected = item.options.find((option) => option.id === result.selectedOptionId);
+    const correct = item.options.find((option) => option.id === result.correctOptionId);
+
+    const row = document.createElement("li");
+    row.className = "answer-review__item";
+    row.dataset.correct = String(result.isCorrect);
+
+    const heading = document.createElement("div");
+    heading.className = "answer-review__item-head";
+    const number = document.createElement("span");
+    number.textContent = `Pregunta ${index + 1}`;
+    const status = document.createElement("strong");
+    status.textContent = result.isCorrect ? "Correcta" : "Incorrecta";
+    heading.append(number, status);
+
+    const prompt = document.createElement("h3");
+    prompt.textContent = item.prompt;
+    const chosen = document.createElement("p");
+    const chosenLabel = document.createElement("span");
+    chosenLabel.textContent = "Tu respuesta: ";
+    const chosenValue = document.createElement("strong");
+    chosenValue.textContent = selected?.label || "Sin responder";
+    chosen.append(chosenLabel, chosenValue);
+    const expected = document.createElement("p");
+    const expectedLabel = document.createElement("span");
+    expectedLabel.textContent = "Respuesta correcta: ";
+    const expectedValue = document.createElement("strong");
+    expectedValue.textContent = correct?.label || "No disponible";
+    expected.append(expectedLabel, expectedValue);
+    row.append(heading, prompt, chosen, expected);
+    elements["answer-review-list"].append(row);
+  });
 }
 
 async function submitExam() {
