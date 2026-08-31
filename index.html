@@ -94,23 +94,14 @@
       <div class="consultation-callout">
         <div class="consultation-callout__mark" aria-hidden="true">?</div>
         <div class="consultation-callout__body">
-          <p class="consultation-callout__eyebrow">Foro de la cursada</p>
-          <h2 class="consultation-callout__title" id="consultas-title">Una pregunta empieza en un texto</h2>
+          <h2 class="consultation-callout__title" id="consultas-title">¿Una lectura te dejó una pregunta?</h2>
           <p class="consultation-callout__copy">
-            El foro es el espacio para trabajar dudas de lectura con el curso y el equipo docente.
-            Para que todos podamos ubicar la duda y seguir juntos la lectura, tratá de indicar
-            el <strong>texto</strong> y, cuando sea posible, la <strong>página, el párrafo o un fragmento</strong>.
-            No hace falta llegar con una respuesta: alcanza con compartir desde dónde aparece la pregunta.
+            Compartila en el foro de la cursada. Allí vas a encontrar las pautas para formularla y podrás leer las consultas del grupo.
           </p>
-          <a class="btn btn--primary btn--lg" href="consultas.html">
-            Ver cómo hacer una consulta <span data-icon="arrowRight" data-size="18"></span>
+          <a class="btn btn--primary btn--lg" href="https://campus.uflo.edu.ar/mod/forum/view.php?id=1225954" target="_top">
+            Entrar al foro de consultas <span data-icon="arrowRight" data-size="18"></span>
           </a>
         </div>
-        <ol class="consultation-callout__steps" aria-label="Datos que debe incluir una consulta">
-          <li><b>01</b><span>Contanos qué texto estás leyendo.</span></li>
-          <li><b>02</b><span>Si podés, ubicá la página o compartí el fragmento.</span></li>
-          <li><b>03</b><span>Contá qué te hizo pensar o qué te resultó difícil.</span></li>
-        </ol>
       </div>
     </section>
 
@@ -202,7 +193,7 @@
       position: relative;
       overflow: hidden;
       display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+      grid-template-columns: minmax(0, 1fr);
       gap: clamp(var(--space-8), 5vw, var(--space-16));
       align-items: center;
       padding: clamp(var(--space-8), 5vw, var(--space-16));
@@ -222,16 +213,7 @@
       opacity: 0.045;
       pointer-events: none;
     }
-    .consultation-callout__body,
-    .consultation-callout__steps { position: relative; z-index: 1; }
-    .consultation-callout__eyebrow {
-      margin-bottom: var(--space-3);
-      color: var(--accent-text);
-      font-size: var(--text-xs);
-      font-weight: 800;
-      letter-spacing: var(--tracking-wider);
-      text-transform: uppercase;
-    }
+    .consultation-callout__body { position: relative; z-index: 1; }
     .consultation-callout__title { margin-bottom: var(--space-4); max-width: 18ch; }
     .consultation-callout__copy {
       max-width: var(--measure);
@@ -240,29 +222,6 @@
       font-size: var(--text-lg);
       text-wrap: pretty;
     }
-    .consultation-callout__steps {
-      display: grid;
-      gap: 0;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      border-top: 1px solid var(--border-strong);
-    }
-    .consultation-callout__steps li {
-      display: grid;
-      grid-template-columns: 2rem minmax(0, 1fr);
-      gap: var(--space-3);
-      padding: var(--space-5) 0;
-      border-bottom: 1px solid var(--border);
-      color: var(--text);
-    }
-    .consultation-callout__steps b {
-      color: var(--accent-text);
-      font-family: var(--font-display);
-      font-size: var(--text-sm);
-      font-variant-numeric: tabular-nums;
-    }
-
     @media (max-width: 860px) {
       .upnext { position: static; }
       .hero__intro { display: contents; }
@@ -279,8 +238,8 @@
   </style>
 
   <script src="assets/icons.js?v=4"></script>
-  <script src="assets/data.js?v=7"></script>
-  <script src="assets/ui.js?v=7"></script>
+  <script src="assets/data.js?v=8"></script>
+  <script src="assets/ui.js?v=8"></script>
   <script>
     (function () {
       'use strict';

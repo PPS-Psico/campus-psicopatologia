@@ -150,13 +150,13 @@
         { key: 'inicio', label: 'Inicio', href: `${depth}index.html` },
         { key: 'clases', label: 'Clases', href: `${depth}index.html#unidades` },
         { key: 'cronograma', label: 'Cronograma', href: `${depth}index.html#cronograma` },
-        { key: 'consultas', label: 'Consultas', href: `${depth}consultas.html` },
+        { key: 'consultas', label: 'Consultas', href: DATA.CONFIG?.forumUrl, target: '_top' },
         { key: 'parcial', label: 'Parcial', href: `${depth}parcial.html` }
       ];
 
       const renderLinks = (mobile) => links.map((l) => `
         <a class="${mobile ? 'nav__mobile-link' : 'nav__link'}${active === l.key ? ' is-active' : ''}"
-           href="${l.href}"${active === l.key ? ' aria-current="page"' : ''}>${l.label}</a>
+           href="${l.href}"${l.target ? ` target="${l.target}"` : ''}${active === l.key ? ' aria-current="page"' : ''}>${l.label}</a>
       `).join('');
 
       mount.innerHTML = `
