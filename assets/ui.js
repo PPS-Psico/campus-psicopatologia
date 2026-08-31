@@ -150,6 +150,7 @@
         { key: 'inicio', label: 'Inicio', href: `${depth}index.html` },
         { key: 'clases', label: 'Clases', href: `${depth}index.html#unidades` },
         { key: 'cronograma', label: 'Cronograma', href: `${depth}index.html#cronograma` },
+        { key: 'consultas', label: 'Consultas', href: `${depth}consultas.html` },
         { key: 'parcial', label: 'Parcial', href: `${depth}parcial.html` }
       ];
 

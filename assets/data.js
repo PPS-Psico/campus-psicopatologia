@@ -25,6 +25,8 @@ window.CAMPUS_DATA = (function () {
     zona: 'America/Argentina/Buenos_Aires',
     meetUrl: 'https://meet.google.com/ppm-khgg-ohk',
     moodleCourseId: '12209',
+    /* Reemplazar por la URL directa del recurso cuando Moodle asigne el id del foro. */
+    forumUrl: 'https://campus.uflo.edu.ar/course/view.php?id=12209',
   };
 
   /* ========================================================================

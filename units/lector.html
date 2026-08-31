@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/tokens.css?v=5">
-  <link rel="stylesheet" href="../assets/ui.css?v=6">
+  <link rel="stylesheet" href="../assets/ui.css?v=7">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf_viewer.min.css">
   <style>
     html, body { height: 100%; overflow: hidden; }
@@ -53,6 +53,17 @@
     .tool-btn:hover { color: var(--text-strong); background: var(--surface); border-color: var(--border-strong); }
     .tool-btn.is-active { color: var(--accent-text); border-color: var(--accent-text); background: var(--accent-soft); }
     .tool-btn--standalone { background: var(--surface); border-color: var(--border); }
+    .tool-btn--download {
+      min-width: 124px;
+      color: var(--accent-text);
+      background: var(--accent-softer);
+      border-color: var(--accent);
+    }
+    .tool-btn--download:hover {
+      color: var(--on-accent-fill);
+      background: var(--accent-fill);
+      border-color: var(--accent-fill);
+    }
     .tool-btn--annotation {
       min-width: 138px; padding-inline: var(--space-4); color: var(--on-accent-fill);
       background: var(--accent-fill); border-color: var(--accent-fill);
@@ -454,8 +465,9 @@
           <span data-icon="plus" data-size="18"></span>
         </button>
       </div>
-      <button class="tool-btn tool-btn--standalone desktop-tool" onclick="Reader.downloadPDF()" title="Descargar PDF original" aria-label="Descargar PDF original">
+      <button class="tool-btn tool-btn--standalone tool-btn--download desktop-tool" onclick="Reader.downloadPDF()" title="Descargar PDF original" aria-label="Descargar PDF original">
         <span data-icon="download" data-size="18"></span>
+        <span>Descargar PDF</span>
       </button>
       <button class="tool-btn tool-btn--standalone desktop-tool" id="theme-btn" onclick="Reader.toggleTheme()" title="Cambiar tema" aria-label="Cambiar tema"></button>
       <div class="reader-more-wrap">

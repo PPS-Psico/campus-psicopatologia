@@ -18,6 +18,8 @@ Primera versión de la portada del aula. Por ahora comunica sólo lo necesario p
 - `snippet-iframe-moodle.html`: bloque para pegar en el editor HTML de Moodle una vez que `inicio.html` tenga una URL pública.
 - `parcial/`: aplicación de evaluación, simulacro y verificación automática de Safe Exam Browser.
 - `supabase/`: migraciones, función `exam-api` y pruebas del backend del parcial. Los archivos `.env` locales quedan excluidos de Git.
+- `consultas.html`: pautas de consulta visibles desde la portada y la navegación del campus.
+- `foro-consultas.html`: encabezado autónomo para usar en la descripción o bloque HTML del recurso Foro de Moodle.
 
 La puesta en marcha del navegador seguro está documentada en [`parcial/SEGURIDAD-SEB.md`](parcial/SEGURIDAD-SEB.md). Para el estudiante el flujo consiste únicamente en abrir desde el Campus el archivo `.seb`; las claves y verificaciones se administran en el servidor.
 
@@ -31,6 +33,10 @@ El backend está desplegado en el proyecto gratuito y separado `Psicopatología 
 2. Clases y materiales.
 3. Actividades; las fechas y la preparación de evaluaciones se concentran en `parcial.html`.
 4. Consultas y avisos.
+
+El foro de consultas exige que cada pregunta identifique el texto y el pasaje del que surge.
+Cuando Moodle asigne el identificador definitivo del recurso, reemplazar `CONFIG.forumUrl` en
+`assets/data.js` por su URL directa; mientras tanto, el botón lleva a la página general de la materia.
 
 La estructura queda deliberadamente liviana para una materia cuatrimestral con un encuentro semanal. No se publican todavía programa, bibliografía ni criterios de evaluación.
 

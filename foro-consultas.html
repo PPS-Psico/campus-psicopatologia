@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Presentación y pautas del foro de consultas de Psicopatología I.">
+  <title>Foro de consultas · Psicopatología I</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #0f172a;
+      --text: #475569;
+      --muted: #64748b;
+      --line: rgba(15, 23, 42, 0.11);
+      --teal: #0f766e;
+      --teal-bright: #0d9488;
+      --teal-soft: rgba(13, 148, 136, 0.07);
+      --paper: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: transparent; }
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--text); line-height: 1.65; }
+    .forum-intro {
+      position: relative;
+      overflow: hidden;
+      max-width: 980px;
+      margin: 1.5rem auto;
+      padding: clamp(1.5rem, 5vw, 3.5rem);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: var(--paper);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.07);
+    }
+    .forum-intro::after {
+      content: '?';
+      position: absolute;
+      right: -0.05em;
+      bottom: -0.38em;
+      color: var(--teal-bright);
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(15rem, 38vw, 24rem);
+      font-weight: 800;
+      line-height: 1;
+      opacity: 0.035;
+      pointer-events: none;
+    }
+    .forum-content { position: relative; z-index: 1; }
+    .eyebrow {
+      margin: 0 0 0.65rem;
+      color: var(--teal);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 { margin-top: 0; color: var(--ink); font-family: 'Outfit', sans-serif; line-height: 1.15; }
+    h1 { max-width: 16ch; margin-bottom: 1rem; font-size: clamp(2rem, 6vw, 3.35rem); letter-spacing: -0.035em; }
+    .lead { max-width: 66ch; margin: 0 0 2rem; color: var(--muted); font-size: clamp(1rem, 2vw, 1.16rem); }
+    .rule {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      padding: 1.35rem 1.5rem;
+      border-left: 4px solid var(--teal-bright);
+      border-radius: 0 16px 16px 0;
+      background: var(--teal-soft);
+    }
+    .rule__mark {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--teal);
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+    }
+    .rule h2 { margin-bottom: 0.35rem; font-size: 1.16rem; }
+    .rule p { margin: 0; }
+    .steps { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+    .steps li {
+      display: grid;
+      grid-template-columns: 2.25rem minmax(0, 1fr);
+      gap: 1rem;
+      padding: 1.15rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .steps b { color: var(--teal); font-family: 'Outfit', sans-serif; font-size: 0.9rem; }
+    .steps strong { display: block; margin-bottom: 0.2rem; color: var(--ink); }
+    .example { margin-top: 2.5rem; padding: 1.5rem; border-radius: 18px; background: #f8fafc; }
+    .example h2 { margin-bottom: 0.8rem; font-size: 1.15rem; }
+    .example blockquote { margin: 0; color: var(--text); font-style: italic; }
+    .closing { margin: 2rem 0 0; color: var(--teal); font-weight: 700; }
+    @media (max-width: 520px) {
+      .forum-intro { margin: 0; border-radius: 18px; }
+      .rule { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="forum-intro">
+    <div class="forum-content">
+      <p class="eyebrow">Psicopatología I · Consultas académicas</p>
+      <h1>Leemos las preguntas entre todos</h1>
+      <p class="lead">
+        Este foro es el espacio compartido para conversar sobre dificultades de lectura.
+        Podés consultar, responder a un compañero o sumar otra interpretación, siempre con
+        la bibliografía de la cursada como punto de partida.
+      </p>
+
+      <section class="rule" aria-labelledby="rule-title">
+        <span class="rule__mark" aria-hidden="true">?</span>
+        <div>
+          <h2 id="rule-title">Una referencia que nos ayuda a acompañarte</h2>
+          <p>
+            En lo posible, contanos <strong>qué texto estás leyendo</strong> e indicá
+            <strong>la página, el párrafo o un fragmento</strong> donde apareció la duda.
+            Así todos podemos encontrar el pasaje y seguir la lectura con vos. Si tu pregunta es
+            más general, también podés contar qué texto o tema de la cursada te llevó a pensarla.
+          </p>
+        </div>
+      </section>
+
+      <h2>Algunas ideas para compartir la pregunta</h2>
+      <ol class="steps">
+        <li><b>01</b><span><strong>Mirá si el tema ya apareció.</strong> Si encontrás un hilo sobre el mismo texto o pasaje, podés sumar allí tu lectura.</span></li>
+        <li><b>02</b><span><strong>Ayudanos a ubicar la fuente.</strong> Si está a tu alcance, escribí autor, título y página o copiá un fragmento breve.</span></li>
+        <li><b>03</b><span><strong>Compartí cómo lo venís pensando.</strong> Podés contarnos qué entendiste hasta ahí y dónde empezó la dificultad.</span></li>
+        <li><b>04</b><span><strong>Escribí la pregunta como te salga.</strong> Entre todos podemos volver al texto y ayudar a precisarla.</span></li>
+      </ol>
+
+      <aside class="example">
+        <h2>Un buen inicio de hilo</h2>
+        <blockquote>
+          “Leyendo a Freud, <em>La represión</em>, en el pasaje donde separa representación
+          y monto de afecto, entiendo que ambos siguen destinos distintos. ¿Cómo se ve esa
+          diferencia en el ejemplo de la histeria de conversión?”
+        </blockquote>
+      </aside>
+
+      <p class="closing">Leemos las consultas durante la semana y retomamos en clase los temas que resulte útil seguir pensando juntos.</p>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      function sendHeight() {
+        if (window.parent === window) return;
+        window.parent.postMessage({
+          type: 'campusHeight',
+          source: 'campus-psicopatologia-i',
+          height: document.documentElement.scrollHeight,
+          reason: 'forum'
+        }, '*');
+        window.parent.postMessage({ height: document.documentElement.scrollHeight }, '*');
+      }
+      window.addEventListener('load', sendHeight);
+      window.addEventListener('resize', sendHeight);
+      if ('ResizeObserver' in window) new ResizeObserver(sendHeight).observe(document.body);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pautas para realizar consultas de lectura en el foro de Psicopatología I.">
+  <title>Consultas · Psicopatología I</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/tokens.css?v=5">
+  <link rel="stylesheet" href="assets/ui.css?v=7">
+</head>
+<body data-unit="1">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <div data-ui="nav" data-active="consultas"></div>
+
+  <main class="container container--narrow" id="contenido">
+    <header class="consult-head settle">
+      <a class="back-link" href="index.html">
+        <span data-icon="arrowLeft" data-size="16"></span> Volver al inicio
+      </a>
+      <p class="consult-head__eyebrow">Foro de consultas académicas</p>
+      <h1 class="consult-head__title">Preguntar también es una forma de leer</h1>
+      <p class="consult-head__lead">
+        Usamos el foro para trabajar dificultades que aparecen al leer la bibliografía.
+        Para que todos podamos acompañar el recorrido, te proponemos relacionar la consulta
+        con <strong>algún texto o tema de la cursada</strong> y contarnos desde dónde surge.
+      </p>
+    </header>
+
+    <section class="section" aria-labelledby="regla-title">
+      <div class="golden-rule">
+        <span class="golden-rule__icon" data-icon="book" data-size="24"></span>
+        <div>
+          <p class="golden-rule__label">Una referencia que nos ayuda</p>
+          <h2 class="golden-rule__title" id="regla-title">Ayudanos a encontrar el lugar de tu pregunta</h2>
+          <p>
+            En lo posible, mencioná autor y título e indicá la página, el párrafo o un fragmento breve.
+            Así, tus compañeros y el equipo docente podemos volver al mismo lugar, seguir la lectura
+            con vos y comprender mejor la inquietud.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="como-title">
+      <div class="section-head">
+        <h2 class="section-head__title" id="como-title">Cómo formular la consulta</h2>
+        <p class="section-head__subtitle">Tres datos alcanzan para abrir una conversación útil.</p>
+      </div>
+      <ol class="consult-steps">
+        <li>
+          <b>01</b>
+          <div><h3>Contanos qué estás leyendo</h3><p>Nombrá el texto y, si podés, indicá página, párrafo o subtítulo. También podés copiar una oración breve que ayude a ubicar la duda.</p></div>
+        </li>
+        <li>
+          <b>02</b>
+          <div><h3>Compartí cómo lo venís pensando</h3><p>Podés contarnos qué entendiste hasta ahí o en qué punto el argumento empezó a resultarte difícil.</p></div>
+        </li>
+        <li>
+          <b>03</b>
+          <div><h3>Escribí tu pregunta</h3><p>No tiene que estar perfectamente formulada. Con la referencia al texto podemos ayudar a precisarla entre todos.</p></div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="section" aria-labelledby="ejemplo-title">
+      <div class="example">
+        <p class="example__label">Ejemplo de una consulta bien situada</p>
+        <h2 class="example__title" id="ejemplo-title">La duda aparece dentro de una lectura</h2>
+        <blockquote>
+          “En <em>La represión</em>, en el apartado donde Freud distingue la representación
+          del monto de afecto, entiendo que ambos pueden tener destinos diferentes. No me queda
+          claro cómo se reconoce esa diferencia en la histeria de conversión. ¿El afecto se
+          transforma directamente en la inervación corporal o falta un paso en mi lectura?”
+        </blockquote>
+        <p class="example__why">
+          La referencia nos permite encontrar el pasaje y seguir el razonamiento. La interpretación
+          es provisoria: justamente, el foro está para revisarla y pensarla entre todos.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="antes-title">
+      <div class="before-posting">
+        <div>
+          <p class="before-posting__label">Para seguir la conversación</p>
+          <h2 id="antes-title">También podés sumarte a un hilo abierto</h2>
+          <p>Si encontrás un hilo sobre el mismo pasaje, podés sumar allí tu lectura. Eso nos ayuda a reunir interpretaciones y sostener una conversación común.</p>
+        </div>
+        <a class="btn btn--primary btn--lg" id="forum-link" href="https://campus.uflo.edu.ar/course/view.php?id=12209" target="_top">
+          Abrir el foro en Moodle <span data-icon="arrowUpRight" data-size="18"></span>
+        </a>
+      </div>
+      <p class="forum-note">El botón abre la materia en Moodle. Allí elegí el recurso <strong>Foro de consultas</strong>.</p>
+    </section>
+
+    <footer class="site-footer">
+      <span><strong class="text-strong">Psicopatología I</strong> · UFLO · <span id="year"></span></span>
+      <span>Consultas de lectura</span>
+    </footer>
+  </main>
+
+  <style>
+    .container--narrow { max-width: 1040px; }
+    .consult-head { padding-top: clamp(var(--space-10), 7vw, var(--space-20)); }
+    .consult-head__eyebrow,
+    .golden-rule__label,
+    .example__label,
+    .before-posting__label {
+      margin-bottom: var(--space-3);
+      color: var(--accent-text);
+      font-size: var(--text-xs);
+      font-weight: 800;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+    }
+    .consult-head__title { max-width: 18ch; margin-bottom: var(--space-5); }
+    .consult-head__lead { max-width: 65ch; color: var(--text-muted); font-size: var(--text-xl); text-wrap: pretty; }
+    .golden-rule {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: var(--space-5);
+      padding: clamp(var(--space-6), 4vw, var(--space-10));
+      border-left: 4px solid var(--accent);
+      border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+      background: var(--accent-softer);
+    }
+    .golden-rule__icon {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: var(--accent-fill);
+      color: var(--on-accent-fill);
+    }
+    .golden-rule__title { margin-bottom: var(--space-3); font-size: var(--text-xl); }
+    .golden-rule p:last-child { max-width: var(--measure); color: var(--text-muted); }
+    .consult-steps { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--border-strong); }
+    .consult-steps li {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr);
+      gap: var(--space-5);
+      padding: var(--space-6) 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .consult-steps b { color: var(--accent-text); font-family: var(--font-display); font-variant-numeric: tabular-nums; }
+    .consult-steps h3 { margin-bottom: var(--space-2); font-size: var(--text-lg); }
+    .consult-steps p { max-width: var(--measure); color: var(--text-muted); }
+    .example {
+      padding: clamp(var(--space-6), 4vw, var(--space-10));
+      border: 1px solid var(--border);
+      border-radius: var(--radius-2xl);
+      background: var(--surface);
+      box-shadow: var(--shadow-md);
+    }
+    .example__title { margin-bottom: var(--space-6); }
+    .example blockquote {
+      margin: 0;
+      padding: 0 0 0 var(--space-6);
+      border-left: 2px solid var(--accent);
+      color: var(--text-strong);
+      font-size: var(--text-lg);
+      line-height: var(--leading-relaxed);
+      max-width: 68ch;
+    }
+    .example__why { margin-top: var(--space-6); max-width: var(--measure); color: var(--text-muted); font-size: var(--text-sm); }
+    .before-posting {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: var(--space-8);
+      align-items: center;
+      padding-top: var(--space-8);
+      border-top: 1px solid var(--border-strong);
+    }
+    .before-posting h2 { margin-bottom: var(--space-3); }
+    .before-posting p:last-child { max-width: var(--measure); color: var(--text-muted); }
+    .forum-note { margin-top: var(--space-3); color: var(--text-muted); font-size: var(--text-xs); text-align: right; }
+    @media (max-width: 720px) {
+      .before-posting { grid-template-columns: 1fr; }
+      .before-posting .btn { width: 100%; }
+      .forum-note { text-align: left; }
+    }
+    @media (max-width: 520px) {
+      .golden-rule { grid-template-columns: 1fr; }
+      .consult-steps li { grid-template-columns: 36px minmax(0, 1fr); gap: var(--space-3); }
+    }
+  </style>
+
+  <script src="assets/icons.js?v=4"></script>
+  <script src="assets/data.js?v=8"></script>
+  <script src="assets/ui.js?v=7"></script>
+  <script>
+    (function () {
+      'use strict';
+      const link = document.getElementById('forum-link');
+      if (link && window.CAMPUS_DATA?.CONFIG?.forumUrl) {
+        link.href = window.CAMPUS_DATA.CONFIG.forumUrl;
+      }
+    })();
+  </script>
+</body>
+</html>
