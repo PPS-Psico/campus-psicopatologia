@@ -146,13 +146,18 @@
       const active = mount.dataset.active || '';
       const depth = mount.dataset.depth || '';
 
+      /* Consultas no tiene página propia: el acceso sale del iframe y abre el
+         foro de Moodle. Sin forumUrl configurada el acceso no se dibuja, para
+         no ofrecer un vínculo roto. */
+      const forumUrl = DATA.CONFIG && DATA.CONFIG.forumUrl;
+
       const links = [
         { key: 'inicio', label: 'Inicio', href: `${depth}index.html` },
         { key: 'clases', label: 'Clases', href: `${depth}index.html#unidades` },
         { key: 'cronograma', label: 'Cronograma', href: `${depth}index.html#cronograma` },
-        { key: 'consultas', label: 'Consultas', href: DATA.CONFIG?.forumUrl, target: '_top' },
+        forumUrl ? { key: 'consultas', label: 'Consultas', href: forumUrl, target: '_top' } : null,
         { key: 'parcial', label: 'Parcial', href: `${depth}parcial.html` }
-      ];
+      ].filter(Boolean);
 
       const renderLinks = (mobile) => links.map((l) => `
         <a class="${mobile ? 'nav__mobile-link' : 'nav__link'}${active === l.key ? ' is-active' : ''}"

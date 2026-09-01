@@ -33,7 +33,7 @@ El backend está desplegado en el proyecto gratuito y separado `Psicopatología 
 3. Actividades; las fechas y la preparación de evaluaciones se concentran en `parcial.html`.
 4. Consultas y avisos.
 
-El foro invita a identificar el texto y, cuando sea posible, la página o el fragmento del que surge cada pregunta. La portada y la navegación enlazan directamente al recurso.
+El foro invita a identificar el texto y, cuando sea posible, la página o el fragmento del que surge cada pregunta. El único acceso es “Consultas” en la navegación, que sale del iframe y abre el recurso de Moodle: la portada ya no repite el bloque. En Moodle el foro queda en modo «Disponible, pero sin mostrar en la página del curso» (ajustes del foro → Disponibilidad), para que no aparezca listado en la página de inicio de la comisión y se entre sólo desde el campus.
 
 La estructura queda deliberadamente liviana para una materia cuatrimestral con un encuentro semanal. No se publican todavía programa, bibliografía ni criterios de evaluación.
 

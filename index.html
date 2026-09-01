@@ -87,24 +87,6 @@
       <div class="roadmap" id="cronograma-lista"></div>
     </section>
 
-    <!-- ============================================================
-         ESPACIO DE CONSULTAS
-         ============================================================ -->
-    <section class="section" id="consultas" aria-labelledby="consultas-title">
-      <div class="consultation-callout">
-        <div class="consultation-callout__mark" aria-hidden="true">?</div>
-        <div class="consultation-callout__body">
-          <h2 class="consultation-callout__title" id="consultas-title">¿Una lectura te dejó una pregunta?</h2>
-          <p class="consultation-callout__copy">
-            Compartila en el foro de la cursada. Allí vas a encontrar las pautas para formularla y podrás leer las consultas del grupo.
-          </p>
-          <a class="btn btn--primary btn--lg" href="https://campus.uflo.edu.ar/mod/forum/view.php?id=1225954" target="_top">
-            Entrar al foro de consultas <span data-icon="arrowRight" data-size="18"></span>
-          </a>
-        </div>
-      </div>
-    </section>
-
     <footer class="site-footer">
       <span><strong class="text-strong">Psicopatología I</strong> · UFLO · <span id="year"></span></span>
       <span>Comisión 3 · Turno mañana</span>
@@ -189,39 +171,6 @@
     a.unit .unit__n { color: var(--accent-text); }
     .unit--pendiente { background: var(--bg-subtle); border-style: dashed; }
 
-    .consultation-callout {
-      position: relative;
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: clamp(var(--space-8), 5vw, var(--space-16));
-      align-items: center;
-      padding: clamp(var(--space-8), 5vw, var(--space-16));
-      border: 1px solid var(--accent-soft);
-      border-radius: var(--radius-2xl);
-      background: var(--accent-softer);
-    }
-    .consultation-callout__mark {
-      position: absolute;
-      right: -0.08em;
-      bottom: -0.34em;
-      font-family: var(--font-display);
-      font-size: clamp(15rem, 30vw, 28rem);
-      font-weight: 800;
-      line-height: 1;
-      color: var(--accent);
-      opacity: 0.045;
-      pointer-events: none;
-    }
-    .consultation-callout__body { position: relative; z-index: 1; }
-    .consultation-callout__title { margin-bottom: var(--space-4); max-width: 18ch; }
-    .consultation-callout__copy {
-      max-width: var(--measure);
-      margin-bottom: var(--space-6);
-      color: var(--text-muted);
-      font-size: var(--text-lg);
-      text-wrap: pretty;
-    }
     @media (max-width: 860px) {
       .upnext { position: static; }
       .hero__intro { display: contents; }
@@ -229,7 +178,6 @@
       .hero__intro .hero__lead { order: 2; }
       .upnext { order: 3; }
       .hero__intro .facts { order: 4; }
-      .consultation-callout { grid-template-columns: 1fr; }
     }
 
     @media (min-width: 1200px) {
