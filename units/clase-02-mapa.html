@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mapa visual de la Clase 2 de Psicopatología I: comparación de los paradigmas psiquiátricos por tiempo, objeto, clasificación y causalidad.">
+  <title>Mapa visual · Clase 2 · Psicopatología I</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/tokens.css?v=5">
+  <link rel="stylesheet" href="../assets/ui.css?v=7">
+  <link rel="stylesheet" href="../assets/clase.css?v=9">
+</head>
+<body data-unit="1">
+  <a class="skip-link" href="#mapa">Saltar al mapa</a>
+  <div data-ui="nav" data-active="clases" data-depth="../"></div>
+
+  <main class="container container--reading map-page" id="mapa">
+    <article class="map-document">
+      <header class="class-head settle">
+        <a class="back-link" href="clase-02.html#mapa-visual">
+          <span data-icon="arrowLeft" data-size="18"></span> Volver a la Clase 2
+        </a>
+        <div class="class-head__meta">
+          <span class="badge badge--accent">Clase 2</span>
+          <span class="badge"><span data-icon="book" data-size="14"></span> Tablero comparativo</span>
+        </div>
+        <h1 class="class-head__title">Qué cambia cuando cambia un paradigma</h1>
+        <p class="class-head__lead">
+          La cronología sola no explica una ruptura. Este tablero compara qué mira cada paradigma,
+          durante cuánto tiempo, con qué criterio agrupa los casos y cómo trata la causa. Así se ven
+          las herencias, los desplazamientos y los problemas que cada solución deja abiertos.
+        </p>
+        <div class="map-actions">
+          <button class="btn btn--secondary" id="print-map" type="button">
+            <span data-icon="download" data-size="16"></span> Imprimir o guardar como PDF
+          </button>
+        </div>
+      </header>
+
+      <section class="paradigm-board" aria-labelledby="board-title">
+        <div class="section-head">
+          <h2 class="section-head__title" id="board-title">Cuatro coordenadas para comparar</h2>
+          <p class="section-head__subtitle">Leé por filas para reconstruir un paradigma y por columnas para localizar la transformación histórica.</p>
+        </div>
+
+        <div class="paradigm-board__table" role="table" aria-label="Comparación entre los tres paradigmas de la psiquiatría">
+          <div class="paradigm-board__row paradigm-board__row--head" role="row">
+            <span role="columnheader">Paradigma</span>
+            <span role="columnheader">Tiempo de observación</span>
+            <span role="columnheader">Objeto que organiza</span>
+            <span role="columnheader">Criterio de clasificación</span>
+            <span role="columnheader">Tratamiento de la causa</span>
+          </div>
+          <article class="paradigm-board__row" role="row">
+            <h3 role="rowheader">Alienación mental</h3>
+            <p role="cell"><strong>Instantánea.</strong> El cuadro se capta en su presentación actual.</p>
+            <p role="cell"><strong>Una enfermedad única</strong> con manifestaciones diversas.</p>
+            <p role="cell">Forma visible y síntoma más llamativo.</p>
+            <p role="cell">El signo y su causa tienden a leerse en el mismo corte sincrónico.</p>
+          </article>
+          <article class="paradigm-board__row paradigm-board__row--hinge" role="row">
+            <h3 role="rowheader">Enfermedades mentales</h3>
+            <p role="cell"><strong>Película.</strong> Importan comienzo, curso y desenlace.</p>
+            <p role="cell"><strong>Especies clínicas</strong> relativamente estables.</p>
+            <p role="cell">Conjunto de síntomas, evolución y terminación.</p>
+            <p role="cell">Cuando falta etiología demostrable, se infiere afinidad causal desde cursos semejantes.</p>
+          </article>
+          <article class="paradigm-board__row" role="row">
+            <h3 role="rowheader">Grandes estructuras</h3>
+            <p role="cell"><strong>Trayectoria y mecanismo.</strong> La historia sigue importando, pero ya no alcanza el desenlace.</p>
+            <p role="cell"><strong>Organización psicopatológica</strong> y conexiones entre fenómenos.</p>
+            <p role="cell">Síntomas fundamentales y accesorios; procesos primarios y secundarios.</p>
+            <p role="cell">La etiología orgánica presumida convive con mecanismos psicógenos que vuelven legible el cuadro.</p>
+          </article>
+        </div>
+      </section>
+
+      <figure class="inheritance-map" aria-labelledby="inheritance-title" aria-describedby="inheritance-description">
+        <figcaption>
+          <h2 id="inheritance-title">La historia no reemplaza: conserva y desplaza</h2>
+          <p id="inheritance-description">Cada autor recibe un problema anterior, mantiene una herramienta y cambia la unidad de análisis.</p>
+        </figcaption>
+        <div class="inheritance-map__chain">
+          <article>
+            <h3>Pinel y Esquirol</h3>
+            <strong>Instalan</strong>
+            <p>La observación clínica y la alienación como objeto médico.</p>
+            <small>Límite: la unidad es demasiado amplia para discriminar cursos.</small>
+          </article>
+          <span aria-hidden="true"></span>
+          <article>
+            <h3>Falret</h3>
+            <strong>Cambia la pregunta</strong>
+            <p>De las ideas delirantes a los enfermos delirantes; del contenido aislado a la historia del paciente.</p>
+            <small>Bisagra: abre la búsqueda de especies clínicas.</small>
+          </article>
+          <span aria-hidden="true"></span>
+          <article>
+            <h3>Kraepelin</h3>
+            <strong>Estabiliza</strong>
+            <p>Combina descripción, evolución y etiología; usa curso y desenlace cuando la causa no está disponible.</p>
+            <small>Ganancia: predicción. Tensión: la causa sigue siendo una premisa.</small>
+          </article>
+          <span aria-hidden="true"></span>
+          <article>
+            <h3>Bleuler</h3>
+            <strong>Reordena</strong>
+            <p>Conserva distinciones kraepelinianas, introduce primario/secundario e incorpora mecanismos freudianos.</p>
+            <small>Puente: la explicación ya no se agota en el curso ni en lo orgánico.</small>
+          </article>
+        </div>
+      </figure>
+
+      <section class="map-section question-shift" aria-labelledby="shift-title">
+        <div class="section-head">
+          <h2 class="section-head__title" id="shift-title">El mismo fenómeno produce preguntas distintas</h2>
+          <p class="section-head__subtitle">Usá esta secuencia para reconocer desde qué paradigma está construido un argumento.</p>
+        </div>
+        <ol>
+          <li><strong>Alienación:</strong><span>¿Qué forma presenta ahora y cuál es el síntoma dominante?</span></li>
+          <li><strong>Falret:</strong><span>¿Qué historia tiene la persona que presenta esas ideas?</span></li>
+          <li><strong>Kraepelin:</strong><span>¿Cómo comenzó, cómo evoluciona y hacia qué desenlace tiende el conjunto?</span></li>
+          <li><strong>Bleuler:</strong><span>¿Qué síntomas organizan el cuadro y cuáles pueden comprenderse como efectos secundarios?</span></li>
+        </ol>
+      </section>
+
+      <section class="map-section source-roles" aria-labelledby="roles-title">
+        <div class="section-head">
+          <h2 class="section-head__title" id="roles-title">Qué aporta cada lectura al tablero</h2>
+        </div>
+        <dl>
+          <div><dt>De Battista</dt><dd>Da la periodización y permite comparar síntoma, nosografía y causalidad entre paradigmas.</dd></div>
+          <div><dt>Falret</dt><dd>Hace visible la bisagra: critica las clasificaciones artificiales y exige reconstruir la historia del enfermo.</dd></div>
+          <div><dt>Carbone y Piazze</dt><dd>Reconstruyen el criterio kraepeliniano y distinguen descripción, evolución y etiología.</dd></div>
+          <div><dt>Bleuler</dt><dd>Muestra desde el texto mismo qué conserva de Kraepelin y qué transforma al introducir el mecanismo.</dd></div>
+          <div><dt>Godoy</dt><dd>Ayuda a leer los paradigmas como reorganizaciones con residuos y retornos, no como épocas cerradas.</dd></div>
+        </dl>
+      </section>
+
+      <aside class="map-reminder">
+        <strong>Regla de uso</strong>
+        <p>Una fecha ubica un texto; un paradigma se reconoce por la combinación de objeto, tiempo, clasificación y causa.</p>
+      </aside>
+    </article>
+
+    <footer class="site-footer">
+      <span><strong class="text-strong">Psicopatología I</strong> · UFLO · <span id="year"></span></span>
+      <span>Clase 2 · Historia y paradigmas de la psiquiatría</span>
+    </footer>
+  </main>
+
+  <script src="../assets/icons.js?v=4"></script>
+  <script src="../assets/data.js?v=8"></script>
+  <script src="../assets/ui.js?v=8"></script>
+  <script>
+    document.getElementById('print-map').addEventListener('click', function () {
+      window.print();
+    });
+  </script>
+</body>
+</html>
