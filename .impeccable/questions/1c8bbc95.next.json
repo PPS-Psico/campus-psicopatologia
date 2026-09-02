@@ -1,0 +1,40 @@
+{
+  "title": "Estructura del panel docente",
+  "question": "Elegí cómo querés organizar la corrección compartida de Blas y Guadalupe.",
+  "options": [
+    {
+      "id": "publication-ledger",
+      "label": "Libro de publicación",
+      "kicker": "THE ROLL",
+      "thesis": "Cada estudiante avanza en una línea continua desde la entrega hasta la devolución publicada.",
+      "palette": ["#132224", "#128176", "#eef4f1", "#ffffff", "#111827"],
+      "materials": ["líneas finas", "tipografía editorial", "estados en tinta teal"],
+      "viewport": "Un registro cronológico ocupa el centro; al abrir una fila, la respuesta y su rúbrica aparecen sin perder el lugar en el lote.",
+      "risk": "Hace muy visible el avance general, pero la lectura detallada comparte protagonismo con el historial.",
+      "comp": ".impeccable/mocks/decision/publication-ledger.png"
+    },
+    {
+      "id": "student-dossiers",
+      "label": "Expedientes en paralelo",
+      "thesis": "La lista de estudiantes, el desarrollo y la rúbrica permanecen visibles al mismo tiempo.",
+      "palette": ["#132224", "#128176", "#eef4f1", "#ffffff", "#111827"],
+      "materials": ["paneles de trabajo", "divisores de 1 px", "márgenes amplios"],
+      "viewport": "Una columna angosta selecciona estudiante, el centro muestra su texto y la derecha concentra puntajes, comentarios y cierre.",
+      "risk": "Es la opción más directa para corregir, aunque exige una adaptación cuidadosa en pantallas chicas.",
+      "comp": ".impeccable/mocks/decision/student-dossiers.png"
+    },
+    {
+      "id": "queue-command-center",
+      "label": "Centro de cola",
+      "thesis": "Primero ordena y reparte el trabajo; cada entrega se abre como una tarea enfocada.",
+      "palette": ["#132224", "#128176", "#eef4f1", "#ffffff", "#111827"],
+      "materials": ["tabla operativa", "filtros sobrios", "detalle lateral"],
+      "viewport": "Los estados y responsables encabezan una cola sortable; un panel lateral permite tomar el caso y entrar a corregir.",
+      "risk": "Escala muy bien a más de 60 entregas, pero suma un paso entre la cola y el texto.",
+      "comp": ".impeccable/mocks/decision/queue-command-center.png"
+    }
+  ],
+  "reroll": { "registers": ["safer", "bolder"] },
+  "buildPath": { "value": "comp", "toggle": true },
+  "steer": true
+}

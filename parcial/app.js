@@ -1,5 +1,5 @@
 import { ExamApi, requestMoodleContext } from "./api.js?v=2";
-import { MockExamApi } from "./mock-api.js?v=5";
+import { MockExamApi } from "./mock-api.js?v=7";
 import { assertSafeExamBrowser, getSafeExamBrowserProof } from "./seb-guard.js?v=3";
 import {
   buildResponse,
@@ -10,7 +10,7 @@ import {
 } from "./exam-core.js";
 
 const config = window.EXAM_CONFIG;
-const tokenStorageKey = `psicopato-exam-token:${config.examId}`;
+const tokenStorageKey = `psicopato-exam-token:${config.examId}:${config.practiceClass || "internal"}`;
 const elements = Object.fromEntries([
   "boot", "boot-copy", "fatal", "fatal-title", "fatal-copy", "retry-button",
   "exam", "exam-title", "student-name", "save-state", "save-copy", "timer",
@@ -19,10 +19,22 @@ const elements = Object.fromEntries([
   "submit-dialog-copy", "confirm-submit", "completion", "completion-title",
   "completion-copy", "receipt-student", "receipt-status", "receipt-score-row", "receipt-score",
   "receipt-time", "receipt-id", "answer-review", "answer-review-summary", "answer-review-list",
-  "demo-retry",
+  "demo-retry", "completion-exit", "completion-note",
 ].map((id) => [id, document.getElementById(id)]));
 
-const api = config.demo ? new MockExamApi() : new ExamApi(config);
+const api = config.demo ? new MockExamApi(config.practiceClass) : new ExamApi(config);
+
+if (config.demo) elements["demo-retry"].href = api.retryUrl();
+if (config.practiceClass) {
+  const returnAnchor = config.practiceClass === "4" ? "mapa-visual" : "practica";
+  elements["completion-exit"].href = `../units/clase-0${config.practiceClass}.html#${returnAnchor}`;
+  elements["completion-exit"].target = "_self";
+  elements["completion-exit"].textContent = `Volver a la Clase ${config.practiceClass}`;
+  elements["completion-note"].textContent = "Podés rehacer la práctica o volver al material de la clase.";
+  elements["demo-retry"].textContent = "Rehacer la práctica";
+  elements["submit-button"].textContent = "Entregar práctica";
+  elements["submit-dialog"].querySelector("h2").textContent = "¿Entregar la práctica ahora?";
+}
 const state = {
   data: null,
   token: sessionStorage.getItem(tokenStorageKey) || "",
@@ -122,7 +134,8 @@ function renderNavigator() {
     button.type = "button";
     button.textContent = String(index + 1);
     button.dataset.answered = String(answered);
-    button.setAttribute("aria-label", `Pregunta ${index + 1}${answered ? ", respondida" : ", sin responder"}`);
+    const sectionCopy = item.section ? `${item.section}, ` : "";
+    button.setAttribute("aria-label", `${sectionCopy}pregunta ${index + 1}${answered ? ", respondida" : ", sin responder"}`);
     if (index === state.currentIndex) button.setAttribute("aria-current", "step");
     button.addEventListener("click", () => showQuestion(index));
     nav.append(button);
@@ -138,7 +151,9 @@ function renderQuestion() {
   const meta = document.createElement("div");
   meta.className = "question-meta";
   const number = document.createElement("strong");
-  number.textContent = `Pregunta ${state.currentIndex + 1} de ${state.data.items.length}`;
+  number.textContent = item.section
+    ? `${item.section} · Pregunta ${state.currentIndex + 1} de ${state.data.items.length}`
+    : `Pregunta ${state.currentIndex + 1} de ${state.data.items.length}`;
   const points = document.createElement("span");
   points.textContent = `${Number(item.points)} ${Number(item.points) === 1 ? "punto" : "puntos"}`;
   meta.append(number, points);
@@ -226,7 +241,9 @@ function updateNextAction() {
     return;
   }
   const progress = progressFor(state.data.items, state.answers);
-  action.textContent = progress.answered === progress.total ? "Entregar parcial" : "Revisar pendientes";
+  action.textContent = progress.answered === progress.total
+    ? config.practiceClass ? "Entregar práctica" : "Entregar parcial"
+    : "Revisar pendientes";
 }
 
 function makeButton(copy, className, handler) {
@@ -350,7 +367,7 @@ function renderCompletion(data) {
   const timedOut = data.attempt.status === "timed_out";
   const hasDemoReview = config.demo && data.review;
   elements["completion-title"].textContent = hasDemoReview
-    ? "Simulacro corregido"
+    ? config.practiceClass ? "Práctica corregida" : "Simulacro corregido"
     : timedOut ? "El tiempo finalizó" : "Parcial entregado";
   elements["completion-copy"].textContent = hasDemoReview
     ? `Obtuviste ${data.review.score} de ${data.review.maxScore} puntos. Abajo podés comparar cada respuesta con la opción correcta.`
@@ -451,15 +468,15 @@ function openSubmitDialog() {
 
 async function bootstrap() {
   try {
-    setBoot("Verificando el navegador seguro…");
+    setBoot(config.practiceClass ? "Preparando la práctica…" : "Verificando el navegador seguro…");
     assertSafeExamBrowser(config);
     if (!config.demo) api.setSafeExamBrowserProof(await getSafeExamBrowserProof());
-    setBoot("Verificando tu ingreso desde el Campus…");
+    setBoot(config.practiceClass ? "Cargando las preguntas…" : "Verificando tu ingreso desde el Campus…");
     if (config.demo && new URLSearchParams(location.search).get("reset") === "1") {
-      localStorage.removeItem("psicopato-exam-demo-v1");
+      api.reset();
       sessionStorage.removeItem(tokenStorageKey);
       state.token = "";
-      history.replaceState(null, "", `${location.pathname}?demo=1`);
+      history.replaceState(null, "", api.cleanUrl());
     }
 
     let data;
@@ -474,7 +491,7 @@ async function bootstrap() {
 
     if (!data) {
       const context = config.demo ? null : await requestMoodleContext(config);
-      setBoot("Verificando tus datos en el padrón…");
+      setBoot(config.practiceClass ? "Preparando tu intento…" : "Verificando tus datos en el padrón…");
       data = await api.launch(config.examId, context);
       state.token = data.attemptToken;
       sessionStorage.setItem(tokenStorageKey, state.token);

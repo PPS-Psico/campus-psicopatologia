@@ -8,3 +8,6 @@
 supabase/.env*
 supabase/.temp/
 supabase/.branches/
+
+# Perfiles de Chrome y artefactos de QA: pesados y con sesiones del navegador
+tmp/

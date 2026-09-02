@@ -62,7 +62,7 @@ window.CAMPUS_DATA = (function () {
       resumen: 'El método de lectura aprendido con Dora, aplicado dos veces más: al Hombre ' +
                'de las Ratas y a Juanito, con las reformulaciones que Freud hace en los ' +
                'años veinte en el medio.',
-      href: null,
+      href: 'units/unidad-03.html',
       clases: ['c06', 'c07', 'c08'],
       estado: 'pendiente'
     },
@@ -71,7 +71,7 @@ window.CAMPUS_DATA = (function () {
       titulo: 'Las psicosis y el cierre del recorrido',
       resumen: 'De la paranoia de la psiquiatría clásica al Schreber de Freud, y el intento ' +
                'final de formular juntas las dos series: neurosis y psicosis.',
-      href: null,
+      href: 'units/unidad-04.html',
       clases: ['c09', 'c10', 'c11'],
       estado: 'pendiente'
     }
@@ -171,12 +171,13 @@ window.CAMPUS_DATA = (function () {
       fecha: { año: 2026, mes: 9, dia: 28 },
       titulo: 'Neurosis obsesiva y Hombre de las Ratas',
       desc: 'La duda, el aislamiento y el pensamiento como escenario del conflicto.',
-      href: null,
+      href: 'units/clase-06.html',
       nota: 'Devolución general del primer parcial al comienzo del encuentro.',
       biblio: [
         { tier: 'C', cita: 'Freud, S. (1909). A propósito de un caso de neurosis obsesiva (Hombre de las Ratas). <em>Obras completas</em>, tomo X. Amorrortu.' },
         { tier: 'F', cita: 'Legrand du Saulle, J. (1875/1985). La locura de la duda con delirio del tacto. En J. Saurí (comp.), <em>Las obsesiones</em>. Nueva Visión.' },
-        { tier: 'F', cita: 'Lacan, J. (1957-1958/1999). <em>El Seminario, libro 5</em>. Capítulo XXIII: El obsesivo y su deseo. Paidós.' }
+        { tier: 'F', cita: 'Lacan, J. (1957-1958/1999). <em>El Seminario, libro 5</em>. Capítulo XXIII: El obsesivo y su deseo. Paidós.' },
+        { tier: 'F', cita: 'Freud, S. (1896). Nuevas puntualizaciones sobre las neuropsicosis de defensa. Apartado sobre la neurosis obsesiva. <em>Obras completas</em>, tomo III. Amorrortu.' }
       ]
     },
     {
@@ -184,7 +185,7 @@ window.CAMPUS_DATA = (function () {
       fecha: { año: 2026, mes: 10, dia: 5 },
       titulo: 'Neurosis obsesiva: las reformulaciones de los años veinte',
       desc: 'Angustia señal, superyó y culpa. Freud reescribe lo que había dicho.',
-      href: null,
+      href: 'units/clase-07.html',
       biblio: [
         { tier: 'C', cita: 'Freud, S. (1926). <em>Inhibición, síntoma y angustia</em>. Capítulos V y VI. <em>Obras completas</em>, tomo XX. Amorrortu.' },
         { tier: 'F', cita: 'Freud, S. (1923). El yo y el ello. Capítulo V: Los vasallajes del yo. <em>Obras completas</em>, tomo XIX. Amorrortu.' },
@@ -203,11 +204,12 @@ window.CAMPUS_DATA = (function () {
       fecha: { año: 2026, mes: 10, dia: 19 },
       titulo: 'Fobia, angustia y caso Juanito',
       desc: 'La fobia como intento de tratamiento de la angustia.',
-      href: null,
+      href: 'units/clase-08.html',
       biblio: [
         { tier: 'C', cita: 'Freud, S. (1909). Análisis de la fobia de un niño de cinco años (Juanito). <em>Obras completas</em>, tomo X. Amorrortu.' },
         { tier: 'F', cita: 'Freud, S. (1926). <em>Inhibición, síntoma y angustia</em>. Capítulos IV, VII y VIII. <em>Obras completas</em>, tomo XX. Amorrortu.' },
-        { tier: 'F', cita: 'Lacan, J. (1956-1957/1994). <em>El Seminario, libro 4</em>. Capítulo XIV: El significante en lo real. Paidós.' }
+        { tier: 'F', cita: 'Lacan, J. (1956-1957/1994). <em>El Seminario, libro 4</em>. Capítulo XIV: El significante en lo real. Paidós.' },
+        { tier: 'F', cita: 'Freud, S. (1895). Obsesiones y fobias. Texto completo. <em>Obras completas</em>, tomo III. Amorrortu.' }
       ]
     },
     {
@@ -215,7 +217,7 @@ window.CAMPUS_DATA = (function () {
       fecha: { año: 2026, mes: 10, dia: 26 },
       titulo: 'Construcción histórica y freudiana de la psicosis',
       desc: 'De la paranoia de Kraepelin a la defensa en las neuropsicosis.',
-      href: null,
+      href: 'units/clase-09.html',
       biblio: [
         { tier: 'C', cita: 'Freud, S. (1896). Nuevas puntualizaciones sobre las neuropsicosis de defensa. Capítulo III. <em>Obras completas</em>, tomo III. Amorrortu.' },
         { tier: 'F', cita: 'Kraepelin, E. Lección XV: Paranoia. En <em>Introducción a la clínica psiquiátrica</em>.' },
@@ -227,7 +229,7 @@ window.CAMPUS_DATA = (function () {
       fecha: { año: 2026, mes: 11, dia: 2 },
       titulo: 'Schreber, narcisismo y reconstrucción delirante',
       desc: 'El delirio como intento de curación, no como el núcleo de la enfermedad.',
-      href: null,
+      href: 'units/clase-10.html',
       biblio: [
         { tier: 'C', cita: 'Freud, S. (1911). Puntualizaciones psicoanalíticas sobre un caso de paranoia (Schreber). <em>Obras completas</em>, tomo XII. Amorrortu.' },
         { tier: 'F', cita: 'Freud, S. (1914). Introducción del narcisismo. <em>Obras completas</em>, tomo XIV. Amorrortu.' },
@@ -248,12 +250,13 @@ window.CAMPUS_DATA = (function () {
       fecha: { año: 2026, mes: 11, dia: 16 },
       titulo: 'Neurosis, psicosis y formulación integradora',
       desc: 'Cierre integrador. Qué separa y qué reúne a las dos series.',
-      href: null,
+      href: 'units/clase-11.html',
       nota: 'Clase de integración. Se dicta después del segundo parcial y no se evalúa.',
       biblio: [
         { tier: 'C', cita: 'Freud, S. (1924). Neurosis y psicosis. Texto completo. <em>Obras completas</em>, tomo XIX. Amorrortu.' },
         { tier: 'F', cita: 'Freud, S. (1924). La pérdida de realidad en la neurosis y la psicosis. <em>Obras completas</em>, tomo XIX. Amorrortu.' },
-        { tier: 'F', cita: 'Freud, S. (1917 [1915]). Duelo y melancolía. <em>Obras completas</em>, tomo XIV. Amorrortu.' }
+        { tier: 'F', cita: 'Freud, S. (1917 [1915]). Duelo y melancolía. <em>Obras completas</em>, tomo XIV. Amorrortu.' },
+        { tier: 'A', cita: 'De Battista, J. (coord.) (2019). <em>Aportes interdisciplinarios en psicopatología</em>, tomo I. Parte IV: Paranoias. Introducción y capítulo 15. EDULP.' }
       ]
     },
     {

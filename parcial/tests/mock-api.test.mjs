@@ -1,6 +1,35 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { buildDemoReview } from "../mock-api.js";
+import { buildDemoDefinition, buildDemoReview, DEMO_ANSWER_KEY, DEMO_ITEMS } from "../mock-api.js";
+
+test("el simulacro combina diez preguntas de Clase 3 y diez de Clase 4", () => {
+  assert.equal(DEMO_ITEMS.length, 20);
+  assert.equal(DEMO_ITEMS.filter((item) => item.section === "Clase 3").length, 10);
+  assert.equal(DEMO_ITEMS.filter((item) => item.section === "Clase 4").length, 10);
+  assert.equal(new Set(DEMO_ITEMS.map((item) => item.id)).size, DEMO_ITEMS.length);
+
+  for (const item of DEMO_ITEMS) {
+    assert.equal(item.kind, "single_choice");
+    assert.equal(item.options.length, 4);
+    assert.ok(item.options.some((option) => option.id === DEMO_ANSWER_KEY[item.id]));
+  }
+});
+
+test("las prácticas de Clase 3 y Clase 4 son recorridos separados", () => {
+  const class3 = buildDemoDefinition("3");
+  const class4 = buildDemoDefinition("4");
+  const internal = buildDemoDefinition();
+
+  assert.equal(class3.items.length, 10);
+  assert.ok(class3.items.every((item) => item.section === "Clase 3"));
+  assert.equal(class3.durationMinutes, 20);
+  assert.equal(class4.items.length, 10);
+  assert.ok(class4.items.every((item) => item.section === "Clase 4"));
+  assert.equal(class4.durationMinutes, 20);
+  assert.equal(internal.items.length, 20);
+  assert.equal(internal.durationMinutes, 30);
+  assert.notEqual(class3.storageKey, class4.storageKey);
+});
 
 test("corrige automáticamente opciones múltiples y conserva el detalle", () => {
   const items = [

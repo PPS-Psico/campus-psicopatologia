@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/tokens.css?v=6">
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css?v=6">
   <script src="../assets/ui.js?v=8" defer></script>
 </head>
 <body data-unit="1">
@@ -19,7 +19,7 @@
 
   <div class="boot" id="boot" role="status" aria-live="polite">
     <div class="boot__mark" aria-hidden="true"></div>
-    <p class="boot__title">Preparando tu parcial</p>
+    <p class="boot__title">Preparando la actividad</p>
     <p class="boot__copy" id="boot-copy">Verificando tu ingreso desde el Campus…</p>
   </div>
 
@@ -58,7 +58,7 @@
     </div>
 
     <main class="exam-layout">
-      <aside class="rail" aria-label="Progreso del parcial">
+      <aside class="rail" aria-label="Progreso de la actividad">
         <div class="rail__student">
           <span>Estudiante</span>
           <strong id="student-name">—</strong>
@@ -74,7 +74,7 @@
 
       <section class="question-panel" id="question-panel" tabindex="-1" aria-live="polite"></section>
 
-      <aside class="exam-notes" aria-label="Información del parcial">
+      <aside class="exam-notes" aria-label="Información de la actividad">
         <div class="exam-notes__section">
           <h2>Antes de entregar</h2>
           <p id="exam-instructions">Respondé todas las consignas y revisá el estado de guardado.</p>
@@ -112,11 +112,11 @@
         <a class="button button--secondary" id="demo-retry" href="index.html?demo=1&amp;reset=1" hidden>
           Rehacer el simulacro
         </a>
-        <a class="button button--primary" href="https://pps-psico.github.io/campus-psicopatologia/parcial/salir.html" target="_top">
+        <a class="button button--primary" id="completion-exit" href="https://pps-psico.github.io/campus-psicopatologia/parcial/salir.html" target="_top">
           Cerrar Safe Exam Browser
         </a>
       </div>
-      <p class="completion__note">Usá el botón sólo después de comprobar que la entrega figure como registrada.</p>
+      <p class="completion__note" id="completion-note">Usá el botón sólo después de comprobar que la entrega figure como registrada.</p>
     </div>
   </div>
 
@@ -131,7 +131,7 @@
     </form>
   </dialog>
 
-  <script src="config.js"></script>
-  <script type="module" src="app.js?v=10"></script>
+  <script src="config.js?v=3"></script>
+  <script type="module" src="app.js?v=13"></script>
 </body>
 </html>

@@ -4,6 +4,8 @@ do $$
 declare
   v_exam_id bigint;
   v_question_id bigint;
+  v_second_essay_id bigint;
+  v_rubric_id bigint;
 begin
   insert into exam_private.exams (
     public_id, slug, course_id, title, instructions, opens_at, closes_at,
@@ -96,5 +98,53 @@ begin
       3
     );
   end if;
+
+  if not exists (
+    select 1 from exam_private.questions
+    where exam_id = v_exam_id and position = 4
+  ) then
+    insert into exam_private.questions (exam_id, kind, prompt, points, position)
+    values (
+      v_exam_id,
+      'essay',
+      'Segunda consigna demostrativa: relacioná un concepto de la clase con una situación clínica breve.',
+      3,
+      4
+    );
+  end if;
+
+  insert into exam_private.rubrics (
+    exam_id, title, version, is_active
+  ) values (
+    v_exam_id, 'Rúbrica demostrativa', 1, true
+  )
+  on conflict (exam_id, version) do update
+  set title = excluded.title,
+      is_active = true
+  returning id into v_rubric_id;
+
+  select id into v_question_id
+  from exam_private.questions
+  where exam_id = v_exam_id and position = 3 and kind = 'essay';
+
+  select id into v_second_essay_id
+  from exam_private.questions
+  where exam_id = v_exam_id and position = 4 and kind = 'essay';
+
+  insert into exam_private.rubric_criteria (
+    rubric_id, question_id, title, description, max_points, position
+  ) values
+    (
+      v_rubric_id, v_question_id, 'Claridad conceptual',
+      'Define y relaciona los conceptos centrales de la respuesta.', 3, 1
+    ),
+    (
+      v_rubric_id, v_second_essay_id, 'Aplicación al caso',
+      'Usa el concepto de manera pertinente y justifica la relación.', 3, 1
+    )
+  on conflict (rubric_id, question_id, position) do update
+  set title = excluded.title,
+      description = excluded.description,
+      max_points = excluded.max_points;
 end;
 $$;

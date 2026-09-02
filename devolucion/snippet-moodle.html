@@ -1,0 +1,76 @@
+<!--
+  Recurso Etiqueta del aula virtual para “Mi devolución”.
+  No requiere plugin ni permisos de administrador: FilterCodes reemplaza los
+  valores entre llaves y este bloque sólo se comunica con el iframe indicado.
+-->
+<div
+  id="psicofeedback-launcher"
+  data-course-id="{courseid}"
+  data-moodle-user-id="{userid}"
+  data-moodle-username="{username}"
+  data-firstname="{firstname}"
+  data-lastname="{lastname}"
+  data-app-url="https://pps-psico.github.io/campus-psicopatologia/devolucion/index.html"
+>
+  <iframe
+    id="psicofeedback-frame"
+    title="Mi devolución de Psicopatología I"
+    src="https://pps-psico.github.io/campus-psicopatologia/devolucion/index.html"
+    style="display:block;width:100%;height:max(760px,100vh);border:0;background:#f8fafc"
+    sandbox="allow-scripts allow-same-origin"
+    referrerpolicy="strict-origin-when-cross-origin"
+  ></iframe>
+</div>
+<script>
+(function () {
+  'use strict';
+  var root = document.getElementById('psicofeedback-launcher');
+  var frame = document.getElementById('psicofeedback-frame');
+  if (!root || !frame) return;
+
+  var appUrl = new URL(root.dataset.appUrl);
+  var appOrigin = appUrl.origin;
+  var pending = new Set();
+  var context = {
+    courseId: root.dataset.courseId || '',
+    moodleUserId: root.dataset.moodleUserId || '',
+    moodleUsername: root.dataset.moodleUsername || '',
+    firstname: root.dataset.firstname || '',
+    lastname: root.dataset.lastname || ''
+  };
+
+  function unresolved(value) {
+    return !value || value.indexOf('{') !== -1 || value.indexOf('}') !== -1;
+  }
+
+  function contextIsValid() {
+    return /^\d+$/.test(context.courseId)
+      && /^\d+$/.test(context.moodleUserId)
+      && !unresolved(context.moodleUsername)
+      && !unresolved(context.firstname)
+      && !unresolved(context.lastname);
+  }
+
+  frame.src = appUrl.href;
+
+  window.addEventListener('message', function (event) {
+    if (event.origin !== appOrigin || event.source !== frame.contentWindow) return;
+    var data = event.data;
+    if (!data || data.type !== 'PSICOFEEDBACK_CONTEXT_REQUEST' || data.version !== 1) return;
+    if (typeof data.requestId !== 'string' || pending.has(data.requestId)) return;
+    pending.add(data.requestId);
+
+    var response = {
+      type: 'PSICOFEEDBACK_CONTEXT_RESULT',
+      version: 1,
+      requestId: data.requestId,
+      ok: contextIsValid()
+    };
+    if (response.ok) response.context = context;
+    else response.error = 'moodle_context_failed';
+
+    pending.delete(data.requestId);
+    frame.contentWindow.postMessage(response, appOrigin);
+  });
+})();
+</script>

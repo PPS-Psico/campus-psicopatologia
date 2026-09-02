@@ -217,18 +217,24 @@
 }
 .pending-board dd { margin-top: var(--space-1); color: var(--text-muted); font-size: var(--text-sm); }
 
-.practice {
+.practice-bank { max-width: 980px; }
+.practice-links { display: grid; border-top: 1px solid var(--border-strong); }
+.practice-link {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: var(--space-6);
+  gap: var(--space-8);
   align-items: center;
-  padding: clamp(var(--space-6), 4vw, var(--space-10));
-  border-radius: var(--radius-2xl);
-  background: var(--accent-softer);
-  border: 1px solid var(--accent-soft);
+  padding: var(--space-6) 0;
+  border-bottom: 1px solid var(--border);
 }
-.practice h2 { margin-bottom: var(--space-3); font-size: var(--text-2xl); }
-.practice p { max-width: var(--measure); color: var(--text-muted); }
+.practice-link h3 {
+  margin: 0 0 var(--space-2);
+  color: var(--text-strong);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
+}
+.practice-link p { max-width: var(--measure); color: var(--text-muted); font-size: var(--text-sm); }
 
 .source-note {
   max-width: var(--measure);
@@ -247,8 +253,8 @@
 }
 
 @media (max-width: 720px) {
-  .practice { grid-template-columns: 1fr; }
-  .practice .btn { width: 100%; }
+  .practice-link { grid-template-columns: 1fr; gap: var(--space-4); }
+  .practice-link .btn { width: 100%; }
 }
 
 @media (max-width: 480px) {

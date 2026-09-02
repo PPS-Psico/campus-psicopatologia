@@ -20,6 +20,13 @@ Primera versión de la portada del aula. Por ahora comunica sólo lo necesario p
 - `supabase/`: migraciones, función `exam-api` y pruebas del backend del parcial. Los archivos `.env` locales quedan excluidos de Git.
 - El acceso “Consultas” abre directamente el foro de Moodle; las pautas completas viven dentro de ese recurso.
 
+## Páginas de clases
+
+- `units/clase-01.html` a `units/clase-11.html`: apertura, objetivos, orden de lectura, guía por texto y cierre de cada encuentro.
+- `units/unidad-01.html` a `units/unidad-04.html`: recorridos y bibliografía completa de cada unidad.
+- `scripts/build_remaining_classes.mjs`: regenera las clases 6 a 11 y las unidades 3 y 4 a partir de la bibliografía de `assets/data.js` y de sus guías pedagógicas. Ejecutar desde la raíz con `node scripts/build_remaining_classes.mjs`.
+- Los textos todavía no incorporados se muestran como pendientes y no reciben enlaces ficticios.
+
 La puesta en marcha del navegador seguro está documentada en [`parcial/SEGURIDAD-SEB.md`](parcial/SEGURIDAD-SEB.md). Para el estudiante el flujo consiste únicamente en abrir desde el Campus el archivo `.seb`; las claves y verificaciones se administran en el servidor.
 
 La construcción del reconocimiento estudiantil, el panel compartido de corrección y la devolución individual está ordenada por fases en [`parcial/PLAN-SISTEMA-COMPLETO.md`](parcial/PLAN-SISTEMA-COMPLETO.md).

@@ -4,7 +4,7 @@ Para el estudiante el flujo sigue teniendo un solo paso: abre desde el Campus el
 
 ## Simulacro publicado
 
-`simulacro-psicopatologia.seb` es un archivo independiente para probar el circuito técnico. Abre directamente el multiple choice de Clase 3, mantiene la ventana en pantalla completa, impide cambiar de aplicación, bloquea descargas y permite salir sin código únicamente desde el botón posterior a la entrega. La clave de salida manual de emergencia queda guardada sólo en `.codex/simulacro-seb-docente.json`, que Git ignora.
+`simulacro-psicopatologia.seb` es un archivo independiente para probar el circuito técnico. Abre directamente el simulacro interno combinado de Clases 3 y 4, mantiene la ventana en pantalla completa, impide cambiar de aplicación, bloquea descargas y permite salir sin código únicamente desde el botón posterior a la entrega. Este recorrido no es ninguna de las prácticas públicas por clase. La clave de salida manual de emergencia queda guardada sólo en `.codex/simulacro-seb-docente.json`, que Git ignora.
 
 El simulacro usa datos locales y no registra una nota. Sus Config Key y Browser Exam Key no deben reutilizarse para el parcial real. El archivo definitivo se generará recién cuando exista la URL exacta de la actividad del Campus que contendrá el examen.
 
