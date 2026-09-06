@@ -8,9 +8,12 @@ name: Mantener despierto el proyecto Supabase del parcial
 # Por que estos dos endpoints y no la raiz /rest/v1/: esa raiz devuelve
 # "401 Secret API key required" y el rechazo ocurre en el gateway, sin llegar
 # al proyecto. Serviria para un chequeo verde y enganoso. En cambio:
-#   1. /rest/v1/<tabla-inexistente> atraviesa el gateway y lo responde
-#      PostgREST con un error propio (PGRST205). Es trafico real del proyecto
-#      y es el chequeo que decide si el job pasa o falla.
+#   1. /rest/v1/rpc/keepalive ejecuta public.keepalive() dentro de Postgres y
+#      devuelve la hora del servidor. Es una consulta real en la base, no una
+#      peticion que resuelve el gateway, y es el chequeo que decide si el job
+#      pasa o falla. La funcion la crea
+#      supabase/migrations/20260906151630_add_keepalive_probe.sql y es inerte:
+#      no lee ni escribe datos del parcial.
 #   2. /functions/v1/exam-api ejecuta la Edge Function, que responde con su
 #      propio JSON. Suma actividad de computo. Es best-effort: no hace fallar
 #      el job, porque su respuesta depende de configuracion todavia pendiente
@@ -43,27 +46,31 @@ jobs:
       PUBLISHABLE_KEY: sb_publishable_RH2Gj2j_K83BPWH_LX5I_w_9BsUT8ax
       APP_ORIGIN: https://pps-psico.github.io
     steps:
-      - name: Consultar PostgREST
+      - name: Consultar la base con public.keepalive()
         run: |
           set -euo pipefail
-          url="https://${PROJECT_REF}.supabase.co/rest/v1/keepalive_probe?select=x"
-          echo "GET $url"
-          code=$(curl -sS -o /tmp/postgrest.txt -w '%{http_code}' \
+          url="https://${PROJECT_REF}.supabase.co/rest/v1/rpc/keepalive"
+          echo "POST $url"
+          code=$(curl -sS -o /tmp/keepalive.txt -w '%{http_code}' \
             --max-time 30 --retry 3 --retry-delay 15 --retry-connrefused \
+            -X POST \
             -H "apikey: ${PUBLISHABLE_KEY}" \
+            -H "Authorization: Bearer ${PUBLISHABLE_KEY}" \
+            -H "Content-Type: application/json" \
+            -d '{}' \
             "$url")
           echo "HTTP $code"
-          head -c 300 /tmp/postgrest.txt || true
+          cat /tmp/keepalive.txt || true
           echo
-          # Un 404 PGRST205 es la respuesta esperada: PostgREST contesta que no
-          # conoce la tabla, lo que prueba que el proyecto atendio la peticion.
-          # Un proyecto pausado no resuelve el DNS; uno a medio levantar
-          # devuelve 5xx (521 de Cloudflare o 502).
-          if [ "$code" = "000" ] || [ "$code" -ge 500 ]; then
-            echo "::error::El proyecto no atendio la peticion (HTTP $code). Puede estar pausado o caido: revisalo en el panel de Supabase antes del parcial."
+          # Solo un 200 con la hora del servidor prueba que Postgres ejecuto la
+          # consulta. Un proyecto pausado no resuelve el DNS; uno a medio
+          # levantar devuelve 5xx (521 de Cloudflare o 502); un 404 significaria
+          # que falta aplicar la migracion de la sonda.
+          if [ "$code" != "200" ]; then
+            echo "::error::La base no ejecuto public.keepalive() (HTTP $code). El proyecto puede estar pausado o caido, o falta aplicar 20260906151630_add_keepalive_probe.sql. Revisalo antes del parcial."
             exit 1
           fi
-          echo "El proyecto atendio la peticion."
+          echo "Postgres respondio: la base esta despierta."
 
       - name: Invocar la Edge Function
         continue-on-error: true
