@@ -53,10 +53,10 @@ const classContent = {
       },
       {
         id: 'legrand-duda',
-        title: 'La locura de la duda con delirio del tacto',
-        cite: 'Legrand du Saulle, J. (1875/1985). En J. Saurí (comp.), <em>Las obsesiones</em>. Nueva Visión.',
-        pages: 'PDF pendiente',
-        pending: true,
+        title: 'La folie du doute (avec délire du toucher)',
+        cite: 'Legrand du Saulle, H. (1875). V. Adrien Delahaye. Texto original en francés.',
+        pages: 'Obra original completa · 80 páginas',
+        file: 'Legrand_du_Saulle_1875_La_folie_du_doute_avec_delire_du_toucher.pdf',
         look: ['La descripción de la duda, las verificaciones y las restricciones progresivas.', 'Los criterios con los que la clínica clásica delimita una forma sin recurrir al mecanismo freudiano.', 'Las continuidades y diferencias entre descripción longitudinal y explicación dinámica.'],
         questions: ['¿Qué puede observar la descripción clásica con mucha precisión?', '¿Qué pregunta nueva introduce Freud frente a esa descripción?']
       },
@@ -64,8 +64,8 @@ const classContent = {
         id: 'lacan-s5-obsesivo',
         title: 'El obsesivo y su deseo',
         cite: 'Lacan, J. (1957-1958/1999). <em>El Seminario, libro 5</em>, capítulo XXIII. Paidós.',
-        pages: 'PDF pendiente',
-        pending: true,
+        pages: 'Capítulo XXIII completo',
+        file: 'Lacan_1957-1958_Seminario_5_Cap_XXIII_El_obsesivo_y_su_deseo.pdf',
         look: ['La relación entre deseo, demanda y postergación.', 'La posición del obsesivo frente al deseo del Otro.', 'El modo en que la hazaña y el pensamiento pueden reemplazar una decisión subjetiva.'],
         questions: ['¿Qué conserva el obsesivo cuando posterga?', '¿Cómo modifica esta lectura la idea de que el problema sería simplemente “pensar demasiado”?']
       }
@@ -179,8 +179,9 @@ const classContent = {
         id: 'lacan-s4-significante-real',
         title: 'El significante en lo real',
         cite: 'Lacan, J. (1956-1957/1994). <em>El Seminario, libro 4</em>, capítulo XIV. Paidós.',
-        pages: 'PDF pendiente',
-        pending: true,
+        pages: 'Capítulo XIV completo · pp. 233–248',
+        file: 'Lacan_1956-1957_Seminario_4_La_relacion_de_objeto.pdf',
+        page: 115,
         look: ['La fobia como respuesta a una dificultad de simbolización.', 'La función que adquiere el caballo dentro de una red de sustituciones.', 'La diferencia entre reducir el objeto a una persona y seguir su función significante.'],
         questions: ['¿Por qué el caballo no posee un único significado estable?', '¿Qué permite ordenar la fobia que antes aparecía como angustia sin localización?']
       }
@@ -222,17 +223,17 @@ const classContent = {
         id: 'kraepelin-paranoia',
         title: 'Lección XV: Paranoia',
         cite: 'Kraepelin, E. <em>Introducción a la clínica psiquiátrica</em>.',
-        pages: 'PDF pendiente',
-        pending: true,
+        pages: 'Lección XV completa · pp. 157–166',
+        file: 'Kraepelin_1900_Leccion_XV_Paranoia.pdf',
         look: ['Los rasgos con que se delimita la paranoia frente a otros cuadros.', 'El valor diagnóstico del desarrollo, el curso y la conservación de capacidades.', 'La relación entre ideas delirantes, sistematización y personalidad.'],
         questions: ['¿Qué vuelve reconocible una entidad para Kraepelin?', '¿Qué aspectos del caso quedarían fuera si sólo se considerara el contenido del delirio?']
       },
       {
         id: 'bercherie-psicosis',
-        title: 'La construcción del concepto freudiano de psicosis',
+        title: 'La constitución del concepto freudiano de psicosis',
         cite: 'Bercherie, P. (1987). Siglo XXI.',
-        pages: 'PDF pendiente',
-        pending: true,
+        pages: 'Texto completo · 16 páginas',
+        file: 'Bercherie_1987_La_constitucion_del_concepto_freudiano_de_psicosis.pdf',
         look: ['Las dificultades históricas para formar una categoría unificada de psicosis.', 'Los préstamos y desplazamientos entre psiquiatría y psicoanálisis.', 'Los límites de leer retrospectivamente los primeros textos con categorías posteriores.'],
         questions: ['¿Qué problema clínico reúne retrospectivamente el término psicosis?', '¿Qué se pierde cuando se presenta la historia como sucesión de definiciones ya cerradas?']
       }
@@ -246,20 +247,19 @@ const classContent = {
     lead: [
       'La clase anterior reconstruimos la entrada freudiana a la paranoia. Ahora el argumento se concentra en Schreber: un caso que Freud no trató personalmente y que construye a partir de unas memorias publicadas.',
       'Esta condición obliga a separar tres voces: lo que Schreber escribe, la selección que Freud realiza y la teoría con que intenta explicar la transformación del mundo. El caso no autoriza a confundir testimonio, interpretación y diagnóstico.',
-      'Narcisismo y restitución libidinal permiten comprender por qué Freud ubica el proceso patológico antes del delirio manifiesto. El delirio aparece entonces como un intento de reconstrucción. La selección de Mazzuca funciona como puente entre fenómeno y estructura, sin desplazar el centro freudiano de esta clase.'
+      'Narcisismo y restitución libidinal permiten comprender por qué Freud ubica el proceso patológico antes del delirio manifiesto. El delirio aparece entonces como un intento de reconstrucción. La distinción entre fenómeno y estructura quedará para la clase siguiente, con el capítulo VI completo del Seminario 3.'
     ],
     objectives: [
       '¿Qué problemas metodológicos plantea construir un caso a partir de una autobiografía?',
       '¿Cómo articula Freud retiro libidinal, proyección y restitución?',
       '¿Por qué el delirio puede pensarse como intento de curación?',
-      '¿Qué diferencia hay entre el proceso postulado, sus manifestaciones y la elaboración delirante?',
-      '¿Qué puede inferirse —y qué no— de un fenómeno aislado cuando se formula una hipótesis de estructura?'
+      '¿Qué diferencia hay entre el proceso postulado, sus manifestaciones y la elaboración delirante?'
     ],
     order: [
       '<strong>Entrá por Schreber.</strong> Conservá la textura del testimonio antes de convertirlo en ejemplo teórico.',
       '<strong>Seguí la construcción de Freud.</strong> Separá proceso, manifestación y tentativa de restitución.',
       '<strong>Usá narcisismo como articulador.</strong> Precisá qué ocurre con la investidura del mundo y de los otros.',
-      '<strong>Cerrá con Mazzuca.</strong> Usá la distinción entre fenómeno y estructura para revisar qué permite afirmar cada material del caso.'
+      '<strong>Cerrá comparando las tres voces.</strong> Separá lo que Schreber testimonia, lo que Freud recorta y el mecanismo que propone para explicarlo.'
     ],
     readings: [
       {
@@ -291,15 +291,6 @@ const classContent = {
         page: 13,
         look: ['El vocabulario propio con el que Schreber describe nervios, rayos, voces y transformaciones.', 'Los cambios en la relación con Dios y con el mundo.', 'La distancia entre la experiencia escrita y las categorías con que luego será leída.'],
         questions: ['Elegí una expresión de Schreber y explicá qué se pierde si se la reemplaza enseguida por una categoría.', '¿Qué indicios permiten reconocer un trabajo de reorganización?']
-      },
-      {
-        id: 'mazzuca-psicosis',
-        title: 'Las psicosis: fenómeno y estructura',
-        cite: 'Mazzuca, R. (comp.), Schejtman, F. y Godoy, C. (2006). <em>Las psicosis: fenómeno y estructura</em>. Selección introductoria. Berggasse 19.',
-        pages: 'PDF pendiente',
-        pending: true,
-        look: ['La diferencia entre describir un fenómeno e inferir una estructura.', 'El valor de los fenómenos elementales sin convertirlos en signos diagnósticos automáticos.', 'La relación entre manifestación clínica, lógica del caso y elaboración posterior.'],
-        questions: ['¿Qué datos adicionales exige una hipótesis de estructura además de un fenómeno llamativo?', '¿Cómo evita esta distinción confundir descripción, explicación y diagnóstico?']
       }
     ],
     closeTitle: 'La reconstrucción delirante modifica la idea de pérdida',
@@ -332,7 +323,7 @@ const classContent = {
         title: 'El fenómeno psicótico y su mecanismo',
         cite: 'Lacan, J. (1955-1956/1984). <em>El Seminario, libro 3: Las psicosis</em>. Capítulo VI. Paidós.',
         pages: 'Capítulo completo · pp. 107–128',
-        pending: true,
+        file: 'Lacan_1955-1956_Seminario_3_Cap_VI_El_fenomeno_psicotico_y_su_mecanismo.pdf',
         look: ['El carácter no dialectizable del fenómeno y la certeza de que algo concierne al sujeto.', 'La Verwerfung y el retorno en lo real como articulación del mecanismo.', 'La diferencia entre el fenómeno elemental y la elaboración delirante que procura reconstruir un orden.'],
         questions: ['¿Qué distingue una certeza de alusión de una interpretación que todavía puede ponerse en duda?', '¿Qué conviene indagar en una entrevista antes de completar el sentido de un fenómeno enigmático?']
       },

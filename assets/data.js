@@ -176,7 +176,7 @@ window.CAMPUS_DATA = (function () {
       biblio: [
         { id: 'freud-1909-ratas', tier: 'C', cita: 'Freud, S. (1909). A propósito de un caso de neurosis obsesiva (Hombre de las Ratas). Secciones F y G, pp. 154-172. <em>Obras completas</em>, tomo X. Amorrortu.' },
         { id: 'freud-1896-obsesion', tier: 'F', cita: 'Freud, S. (1896). Nuevas puntualizaciones sobre las neuropsicosis de defensa. Apartado sobre la neurosis obsesiva. <em>Obras completas</em>, tomo III. Amorrortu.' },
-        { id: 'legrand-duda', tier: 'F', cita: 'Legrand du Saulle, J. (1875/1985). La locura de la duda con delirio del tacto. En J. Saurí (comp.), <em>Las obsesiones</em>. Nueva Visión.' },
+        { id: 'legrand-duda', tier: 'F', cita: 'Legrand du Saulle, H. (1875). <em>La folie du doute (avec délire du toucher)</em>. V. Adrien Delahaye. Texto original en francés.' },
         { id: 'lacan-s5-obsesivo', tier: 'F', cita: 'Lacan, J. (1957-1958/1999). <em>El Seminario, libro 5</em>. Capítulo XXIII: El obsesivo y su deseo. Paidós.' }
       ]
     },
@@ -221,7 +221,7 @@ window.CAMPUS_DATA = (function () {
       biblio: [
         { id: 'freud-1896-psicosis', tier: 'C', cita: 'Freud, S. (1896). Nuevas puntualizaciones sobre las neuropsicosis de defensa. Capítulo III. <em>Obras completas</em>, tomo III. Amorrortu.' },
         { id: 'kraepelin-paranoia', tier: 'F', cita: 'Kraepelin, E. Lección XV: Paranoia. En <em>Introducción a la clínica psiquiátrica</em>.' },
-        { id: 'bercherie-psicosis', tier: 'F', cita: 'Bercherie, P. (1987). La construcción del concepto freudiano de psicosis. Siglo XXI.' }
+        { id: 'bercherie-psicosis', tier: 'F', cita: 'Bercherie, P. (1987). La constitución del concepto freudiano de psicosis. Siglo XXI.' }
       ]
     },
     {
@@ -233,8 +233,7 @@ window.CAMPUS_DATA = (function () {
       biblio: [
         { id: 'freud-1911-schreber', tier: 'C', cita: 'Freud, S. (1911). Puntualizaciones psicoanalíticas sobre un caso de paranoia (Schreber). Sección III: Acerca del mecanismo paranoico, pp. 55-73. <em>Obras completas</em>, tomo XII. Amorrortu.' },
         { id: 'freud-1914-narcisismo', tier: 'F', cita: 'Freud, S. (1914). Introducción del narcisismo. Apartados I y II, pp. 71-88. <em>Obras completas</em>, tomo XIV. Amorrortu.' },
-        { id: 'schreber-memorias-i', tier: 'F', cita: 'Schreber, D. P. (1903/1979). <em>Memorias de un enfermo nervioso</em>. Capítulo I, pp. 63-72. Lohlé.' },
-        { id: 'mazzuca-psicosis', tier: 'A', cita: 'Mazzuca, R. (comp.), Schejtman, F. y Godoy, C. (2006). <em>Las psicosis: fenómeno y estructura</em>. Selección introductoria. Berggasse 19.' }
+        { id: 'schreber-memorias-i', tier: 'F', cita: 'Schreber, D. P. (1903/1979). <em>Memorias de un enfermo nervioso</em>. Capítulo I, pp. 63-72. Lohlé.' }
       ]
     },
     {
