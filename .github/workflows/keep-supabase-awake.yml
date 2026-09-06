@@ -5,6 +5,17 @@ name: Mantener despierto el proyecto Supabase del parcial
 # en el cliente), asi que sin este ping nada mantiene despierto el backend del
 # parcial entre una clase y la evaluacion.
 #
+# Por que estos dos endpoints y no la raiz /rest/v1/: esa raiz devuelve
+# "401 Secret API key required" y el rechazo ocurre en el gateway, sin llegar
+# al proyecto. Serviria para un chequeo verde y enganoso. En cambio:
+#   1. /rest/v1/<tabla-inexistente> atraviesa el gateway y lo responde
+#      PostgREST con un error propio (PGRST205). Es trafico real del proyecto
+#      y es el chequeo que decide si el job pasa o falla.
+#   2. /functions/v1/exam-api ejecuta la Edge Function, que responde con su
+#      propio JSON. Suma actividad de computo. Es best-effort: no hace fallar
+#      el job, porque su respuesta depende de configuracion todavia pendiente
+#      (las claves de Safe Exam Browser).
+#
 # La clave usada es la publishable, que ya es publica: esta en
 # parcial/config.js y esta pensada para viajar al navegador. No hay secretos
 # aca. Nunca pongas una clave secret o service_role en este archivo.
@@ -30,24 +41,46 @@ jobs:
     env:
       PROJECT_REF: zprvefdhcxnivdgsbpkw
       PUBLISHABLE_KEY: sb_publishable_RH2Gj2j_K83BPWH_LX5I_w_9BsUT8ax
+      APP_ORIGIN: https://pps-psico.github.io
     steps:
-      - name: Consultar la API REST del proyecto
+      - name: Consultar PostgREST
         run: |
           set -euo pipefail
-          url="https://${PROJECT_REF}.supabase.co/rest/v1/"
+          url="https://${PROJECT_REF}.supabase.co/rest/v1/keepalive_probe?select=x"
           echo "GET $url"
-          code=$(curl -sS -o /tmp/respuesta.txt -w '%{http_code}' \
-            --max-time 30 --retry 3 --retry-delay 10 --retry-connrefused \
+          code=$(curl -sS -o /tmp/postgrest.txt -w '%{http_code}' \
+            --max-time 30 --retry 3 --retry-delay 15 --retry-connrefused \
             -H "apikey: ${PUBLISHABLE_KEY}" \
-            -H "Authorization: Bearer ${PUBLISHABLE_KEY}" \
             "$url")
           echo "HTTP $code"
-          head -c 300 /tmp/respuesta.txt || true
+          head -c 300 /tmp/postgrest.txt || true
           echo
-          # 2xx y 4xx significan que el proyecto respondio: sigue despierto.
-          # Un proyecto pausado no resuelve o devuelve 5xx.
-          if [ "$code" -ge 500 ] || [ "$code" -eq 0 ]; then
-            echo "::error::El proyecto no respondio (HTTP $code). Puede estar pausado: revisalo en el panel de Supabase."
+          # Un 404 PGRST205 es la respuesta esperada: PostgREST contesta que no
+          # conoce la tabla, lo que prueba que el proyecto atendio la peticion.
+          # Un proyecto pausado no resuelve el DNS; uno a medio levantar
+          # devuelve 5xx (521 de Cloudflare o 502).
+          if [ "$code" = "000" ] || [ "$code" -ge 500 ]; then
+            echo "::error::El proyecto no atendio la peticion (HTTP $code). Puede estar pausado o caido: revisalo en el panel de Supabase antes del parcial."
             exit 1
           fi
-          echo "El proyecto respondio correctamente."
+          echo "El proyecto atendio la peticion."
+
+      - name: Invocar la Edge Function
+        continue-on-error: true
+        run: |
+          set -uo pipefail
+          url="https://${PROJECT_REF}.supabase.co/functions/v1/exam-api"
+          echo "POST $url"
+          code=$(curl -sS -o /tmp/function.txt -w '%{http_code}' \
+            --max-time 30 --retry 2 --retry-delay 10 \
+            -X POST \
+            -H "apikey: ${PUBLISHABLE_KEY}" \
+            -H "Authorization: Bearer ${PUBLISHABLE_KEY}" \
+            -H "Origin: ${APP_ORIGIN}" \
+            -H "Content-Type: application/json" \
+            -d '{"action":"keepalive"}' \
+            "$url") || code=000
+          echo "HTTP $code"
+          head -c 300 /tmp/function.txt || true
+          echo
+          echo "Informativo: la funcion respondio con su propio JSON, sin crear ningun intento."
