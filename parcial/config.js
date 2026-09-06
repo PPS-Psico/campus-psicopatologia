@@ -12,7 +12,7 @@ window.EXAM_CONFIG = Object.freeze({
   requestTimeoutMs: 15000,
   contextTimeoutMs: 12000,
   requireSafeExamBrowser: true,
-  allowUnsafeBrowser: Boolean(practiceClass) || (isLocalExam && examParams.get("dev") === "1"),
+  allowUnsafeBrowser: isLocalExam && examParams.get("dev") === "1",
   practiceClass,
   demo: Boolean(practiceClass) || examParams.get("demo") === "1"
     || (isLocalExam && !location.search.includes("production=1")),

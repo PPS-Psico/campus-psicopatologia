@@ -18,7 +18,7 @@ const elements = Object.fromEntries([
   "question-panel", "exam-instructions", "submit-button", "submit-dialog",
   "submit-dialog-copy", "confirm-submit", "completion", "completion-title",
   "completion-copy", "receipt-student", "receipt-status", "receipt-score-row", "receipt-score",
-  "receipt-time", "receipt-id", "answer-review", "answer-review-summary", "answer-review-list",
+  "receipt-time", "receipt-id", "receipt-id-row", "answer-review", "answer-review-summary", "answer-review-list",
   "demo-retry", "completion-exit", "completion-note",
 ].map((id) => [id, document.getElementById(id)]));
 
@@ -26,11 +26,10 @@ const api = config.demo ? new MockExamApi(config.practiceClass) : new ExamApi(co
 
 if (config.demo) elements["demo-retry"].href = api.retryUrl();
 if (config.practiceClass) {
-  const returnAnchor = config.practiceClass === "4" ? "mapa-visual" : "practica";
-  elements["completion-exit"].href = `../units/clase-0${config.practiceClass}.html#${returnAnchor}`;
-  elements["completion-exit"].target = "_self";
-  elements["completion-exit"].textContent = `Volver a la Clase ${config.practiceClass}`;
-  elements["completion-note"].textContent = "Podés rehacer la práctica o volver al material de la clase.";
+  // La práctica corre dentro de Safe Exam Browser: el filtro de URLs sólo admite
+  // esta aplicación y salir.html, así que la salida cierra el navegador seguro.
+  elements["completion-exit"].textContent = "Salir del navegador seguro";
+  elements["completion-note"].textContent = "Podés rehacer la práctica ahora o cerrar el navegador seguro y volver al Campus.";
   elements["demo-retry"].textContent = "Rehacer la práctica";
   elements["submit-button"].textContent = "Entregar práctica";
   elements["submit-dialog"].querySelector("h2").textContent = "¿Entregar la práctica ahora?";
@@ -65,7 +64,7 @@ const errorCopy = {
   exam_closed: ["El horario del parcial finalizó", "Consultá al equipo docente si necesitás verificar el estado de tu entrega."],
   exam_not_available: ["El parcial no está publicado", "El equipo docente debe revisar la configuración de esta actividad."],
   exam_has_no_questions: ["El parcial todavía no tiene consignas", "El equipo docente debe revisar el banco de preguntas antes de habilitar esta actividad."],
-  safe_exam_browser_required: ["Abrí esta actividad con Safe Exam Browser", "Cerrá esta pestaña, volvé a la sección Parcial del Campus y abrí el archivo de acceso .seb. Las preguntas no están disponibles en un navegador común."],
+  safe_exam_browser_required: ["Abrí esta actividad con Safe Exam Browser", "Cerrá esta pestaña, volvé a la sección Parcial del Campus y abrí el archivo de acceso .seb de esta actividad. Las preguntas, también las de práctica, no están disponibles en un navegador común."],
   safe_browser_invalid: ["La configuración del navegador no es válida", "Volvé al Campus y abrí nuevamente el archivo .seb publicado para este parcial."],
   safe_browser_not_configured: ["El acceso seguro todavía no está habilitado", "El equipo docente debe terminar la configuración técnica antes de publicar esta actividad."],
 };
@@ -154,9 +153,13 @@ function renderQuestion() {
   number.textContent = item.section
     ? `${item.section} · Pregunta ${state.currentIndex + 1} de ${state.data.items.length}`
     : `Pregunta ${state.currentIndex + 1} de ${state.data.items.length}`;
-  const points = document.createElement("span");
-  points.textContent = `${Number(item.points)} ${Number(item.points) === 1 ? "punto" : "puntos"}`;
-  meta.append(number, points);
+  meta.append(number);
+  if (!config.practiceClass) {
+    // Las prácticas no puntúan: sólo el parcial muestra el valor de cada consigna.
+    const points = document.createElement("span");
+    points.textContent = `${Number(item.points)} ${Number(item.points) === 1 ? "punto" : "puntos"}`;
+    meta.append(points);
+  }
 
   const title = document.createElement("h1");
   title.className = "question-title";
@@ -370,12 +373,16 @@ function renderCompletion(data) {
     ? config.practiceClass ? "Práctica corregida" : "Simulacro corregido"
     : timedOut ? "El tiempo finalizó" : "Parcial entregado";
   elements["completion-copy"].textContent = hasDemoReview
-    ? `Obtuviste ${data.review.score} de ${data.review.maxScore} puntos. Abajo podés comparar cada respuesta con la opción correcta.`
+    ? config.practiceClass
+      ? `Respondiste bien ${data.review.correctCount} de ${data.review.total}. Abajo podés comparar cada respuesta con la opción correcta. Esta práctica no registra ninguna nota: repetila las veces que quieras.`
+      : `Obtuviste ${data.review.score} de ${data.review.maxScore} puntos. Abajo podés comparar cada respuesta con la opción correcta.`
     : timedOut
       ? "El servidor cerró el intento al cumplirse el horario. Las respuestas guardadas hasta ese momento quedaron registradas."
       : "La entrega quedó registrada correctamente y ya no admite modificaciones.";
   elements["receipt-student"].textContent = data.attempt.studentName;
-  elements["receipt-status"].textContent = hasDemoReview ? "Finalizado" : timedOut ? "Cerrado por tiempo" : "Entregado";
+  elements["receipt-status"].textContent = config.practiceClass
+    ? "Práctica finalizada · sin nota"
+    : hasDemoReview ? "Finalizado" : timedOut ? "Cerrado por tiempo" : "Entregado";
   elements["receipt-score-row"].hidden = !hasDemoReview;
   elements["receipt-score"].textContent = hasDemoReview
     ? `${data.review.correctCount} correctas de ${data.review.total}`
@@ -383,6 +390,8 @@ function renderCompletion(data) {
   elements["receipt-time"].textContent = new Intl.DateTimeFormat("es-AR", { dateStyle: "long", timeStyle: "medium" })
     .format(new Date(data.attempt.submittedAt || data.serverNow));
   elements["receipt-id"].textContent = data.attempt.id;
+  // Una práctica no deja constancia de entrega: el comprobante sólo tiene sentido en el parcial.
+  if (elements["receipt-id-row"]) elements["receipt-id-row"].hidden = Boolean(config.practiceClass);
   renderAnswerReview(data);
   showOnly("completion");
 }

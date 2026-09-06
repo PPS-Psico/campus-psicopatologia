@@ -54,7 +54,7 @@ La evaluación aprovecha la identidad que Moodle ya inserta mediante FilterCodes
 - Aplicación de examen en `parcial/`.
 - Diagnóstico confirmado de FilterCodes con nombre, apellido, DNI, Moodle user ID y Course ID.
 - Migraciones y pruebas existentes en `supabase/`.
-- Dos prácticas públicas independientes de diez preguntas —una de Clase 3 y otra de Clase 4—, más un simulacro técnico interno combinado de veinte preguntas y su configuración SEB.
+- Dos prácticas por clase de diez preguntas —una de Clase 3 y otra de Clase 4—, más un simulacro técnico interno combinado de veinte preguntas. Las tres se abren con Safe Exam Browser y cada una tiene su propio archivo `.seb`.
 - No hay todavía una rúbrica definitiva ni datos reales de estudiantes dentro del repositorio.
 
 ## Product Principles

@@ -253,6 +253,7 @@ button { color: inherit; }
 .completion__sheet > p:not(.completion__note) { max-width: 58ch; margin: 0 0 var(--space-8); color: var(--text-muted); }
 .receipt { margin: 0; border-top: 1px solid var(--border); }
 .receipt div { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: var(--space-4); padding: var(--space-4) 0; border-bottom: 1px solid var(--border-subtle); }
+.receipt div[hidden] { display: none; }
 .receipt dt { color: var(--text-muted); font-size: var(--text-sm); }
 .receipt dd { margin: 0; color: var(--text-strong); font-size: var(--text-sm); font-weight: 600; overflow-wrap: anywhere; }
 .completion__note { margin: var(--space-8) 0 0; color: var(--text-muted); font-size: var(--text-sm); }
