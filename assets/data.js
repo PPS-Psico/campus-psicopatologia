@@ -156,7 +156,7 @@ window.CAMPUS_DATA = (function () {
       biblio: [
         { tier: 'C', cita: 'Freud, S. (1905 [1901]). Fragmento de análisis de un caso de histeria (Dora). Selección clínica y Epílogo. <em>Obras completas</em>, tomo VII. Amorrortu.' },
         { tier: 'F', cita: 'Lacan, J. (1951). Intervención sobre la transferencia. En <em>Escritos 1</em>, pp. 204-209. Siglo XXI.' },
-        { tier: 'F', cita: 'Charcot, J.-M. (1887). Las neurosis y el problema de la simulación. Lección inaugural de la cátedra de clínica de las enfermedades del sistema nervioso, apartados VI y VII. En <em>Leçons sur les maladies du système nerveux faites à la Salpêtrière</em>, tomo III. París: Progrès Médical. (Traducción de cátedra desde el original francés).' }
+        { tier: 'F', cita: 'Freud, S. (1908). Las fantasías histéricas y su relación con la bisexualidad. <em>Obras completas</em>, tomo IX, pp. 137-142. Buenos Aires: Amorrortu.' }
       ]
     },
     {

@@ -3,71 +3,69 @@
 Numeración ajustada al cronograma vigente:
 
 - `clase-04/` — **Síntoma, defensa y etiología**. Lectura definida: los tres PDFs de Freud completos y Mazzuca, pp. 301-304 y 310-312.
-- `clase-05/` — **Histeria y Dora: síntoma, fantasía y transferencia**. Dora (historial completo y Epílogo), Lacan y Charcot.
+- `clase-05/` — **Histeria y Dora: síntoma, fantasía y transferencia**. Dora (historial completo y Epílogo), Lacan y Freud 1908.
 
 La página de la Clase 4 ya tiene su plan de lectura definitivo. En la Clase 5 están las cuatro
 lecturas, pero **falta cerrar los rangos obligatorios del historial de Dora**: la selección se
 publica después de revisar la carga total.
 
-## Sobre el Charcot de la Clase 5
+## La Clase 5 quedó sin Charcot
 
-El programa cita a Charcot por la compilación de J. Saurí, *Las histerias* (Buenos Aires, Nueva
-Visión, 1984), que **no está disponible en ningún repositorio abierto** y no se consiguió en papel:
-es un libro agotado, localizable en las bibliotecas de Psicología de la UBA y de la UNLP.
+El programa citaba a Charcot por la compilación de J. Saurí, *Las histerias* (Nueva Visión, 1984),
+que está agotada y no circula en repositorios abiertos.
 
-En su lugar se publica una traducción de cátedra hecha desde el original francés, que es de dominio
-público. **No es el texto que cita el programa**; si se sostiene esta decisión, hay que corregir la
-cita del programa en lugar de forzar la correspondencia.
+Se probaron cuatro textos suyos (ver abajo) y ninguno terminó de encajar, por una razón de fondo:
+**el caso clínico de la clase es Dora**, y lo que Charcot aporta es otro caso o bien semiología
+decimonónica. En su lugar entra un texto psicoanalítico que trabaja sobre el mismo caso:
 
 ### Lo que se publica [F]
 
-`Charcot_1887_Las_neurosis_y_el_problema_de_la_simulacion_CATEDRA.pdf`
+`Freud_1908_Las_fantasias_histericas_pp137-142.pdf`
 
-Charcot, J.-M. (1887), Lección inaugural de la cátedra de clínica de las enfermedades del sistema
-nervioso, apartados VI y VII. Tres páginas.
+Freud, S. (1908), «Las fantasías histéricas y su relación con la bisexualidad», OC IX, pp. 137-142.
+Seis páginas.
 
-**Criterio de la elección:** el caso clínico de la clase es Dora. El aporte de Charcot tiene que ser
-otro, y es el de método. Estos dos apartados no traen ningún enfermo: traen el problema del que vive
-la materia — qué hacer con un padecimiento que no deja lesión — y la respuesta de Charcot en dos
-movimientos: que aunque no haya lesión hay leyes, y que la sospecha de simulación es «un
-espantapájaros ante el cual solo se detendrán los tímidos o los novicios».
+**Criterio de la elección:** es la regla que el historial de 1901 dejó implícita. Del sueño diurno a
+la fantasía inconciente, y de ahí a la serie de fórmulas sobre el nexo entre fantasía y síntoma —con
+la séptima, el síntoma como compromiso entre dos mociones opuestas, y la novena, la tesis de la
+bisexualidad del síntoma.
 
-Es el gesto que Freud hereda y desplaza: Charcot dice que no hay lesión pero hay leyes; Freud dirá
-que no hay lesión pero hay sentido. Y enlaza hacia atrás con la Unidad 1 y con el binomio de Jaspers
-de la Clase 3.
+Y esa novena tesis es exactamente lo que Freud no leyó en Dora: la corriente ginecófila que reconoce
+recién en la nota de 1923, y que es el eje de la crítica de Lacan. Con este texto las cuatro
+lecturas se cierran entre sí: el historial muestra el trabajo, el Epílogo muestra lo que falló,
+Lacan explica por qué, y 1908 formula lo que hacía falta saber.
 
-Establecido sobre el ejemplar digitalizado de Internet Archive `oeuvrescompltesd03char`. Se omiten
-los apartados I a V, dedicados a la creación de la cátedra, los medios de estudio del servicio y las
-localizaciones cerebrales.
+**Cambio en el programa:** el texto estaba como bibliografía complementaria de la Unidad 2 y pasó a
+obligatoria, en el lugar que ocupaba Charcot. La cita del programa ya fue corregida (hay backup del
+.docx). Conviene avisarlo en la validación institucional.
 
-### Material de cátedra, fuera del campus
+## Los cuatro Charcot, en el repositorio
 
-Tres traducciones anteriores quedaron en el repositorio canónico (`Textos_Propuesta_Final_FINAL/Clase_05/`)
-y **no se publican**. Se descartaron por la misma razón: las tres son casuística, y el caso de la
-clase es Dora.
+Quedan en `Textos_Propuesta_Final_FINAL/Clase_05/` como material de cátedra, disponibles pero no
+publicados. **Los cuatro son auténticos**; se descartaron por criterio pedagógico, no bibliográfico.
 
-- `Charcot_1887_Histeria_traumatica_y_paralisis_por_sugestion_CATEDRA.pdf` — los casos Porcz…,
-  Greuz… y el mutismo. Tiene el mejor argumento de los tres (una idea produce y deshace una
-  parálisis), por si alguna vez se quiere trabajar el síntoma sin lesión con material clínico.
-- `Charcot_Richer_1887_Las_cuatro_fases_del_gran_ataque_histerico_CATEDRA.pdf` — los cuatro
-  períodos del ataque, de *Les Démoniaques dans l'art*.
+- `Charcot_J_M_1888_Acerca_de_la_histero-epilepsia_TEXTO_INTEGRO.pdf` — el caso Blanche D…, el
+  criterio térmico, el espasmo gloso-labial y la nota de Freud de 1892. **Este texto fue acusado por
+  error de no ser verificable; la acusación quedó retirada.** Ver `NOTA_Charcot_1888.md` en esa
+  carpeta, que detalla la verificación contra la traducción alemana de Freud (Internet Archive,
+  `b21499792`) y el origen del error. Si alguna vez se quiere un Charcot en la clase, es este.
+- `Charcot_1887_Las_neurosis_y_el_problema_de_la_simulacion_CATEDRA.pdf` — Lección inaugural,
+  apartados VI y VII: el problema del padecimiento sin lesión y la simulación como «espantapájaros».
+  Es el único de los cuatro que no trae casos; sirve para una clase de método.
+- `Charcot_1887_Histeria_traumatica_y_paralisis_por_sugestion_CATEDRA.pdf` — Porcz…, Greuz… y el
+  mutismo histérico. El mejor argumento de los cuatro: una idea produce y deshace una parálisis.
 - `Charcot_1872_De_la_histero-epilepsia_Leccion_XIII_TRADUCCION_CATEDRA.pdf` — el debate nosográfico
-  y el criterio térmico. Tiene pendientes de revisión anotados: la nota de edición se contradice con
-  los apéndices y la correspondencia con Saurí está afirmada con más seguridad de la que hay.
+  y el criterio térmico en la enferma Co…. Tiene pendientes de revisión anotados: la nota de edición
+  se contradice con los apéndices y la correspondencia con Saurí está afirmada con más seguridad de
+  la que hay.
 
-### Advertencias generales
-
-- Ninguna de las traducciones se cotejó contra la de Saurí, porque no se dispone de ella. La
-  paginación no coincide: quien cite «pp. 131-145» está citando la edición de Nueva Visión.
-- El PDF que circuló el 12/09/2026 presentándose como «texto íntegro» de las *Leçons du mardi* quedó
-  descartado por no ser verificable. Está apartado en
-  `Textos_Propuesta_Final_FINAL/Bibliografia_fuera_del_cronograma/Descartado_Charcot_texto_no_verificable/`,
-  con un LEEME que detalla el motivo.
+Los tres últimos son traducciones de cátedra hechas desde los originales franceses, que son de
+dominio público. Ninguna se cotejó contra la traducción de Saurí, de la que no se dispone.
 
 ## Resto de la unidad
 
-El texto de Freud sobre las fantasías histéricas quedó preservado como bibliografía complementaria
-en `bibliografia-complementaria/clase-05/`, pero no integra la bibliografía del cronograma vigente.
+`bibliografia-complementaria/clase-05/` conserva una copia del texto de 1908, ahora también en
+`clase-05/` como lectura obligatoria.
 
 La antigua Clase 4 sobre personalidad y carácter fue retirada. Su PDF se conserva en el repositorio
 bibliográfico canónico, fuera de las carpetas numeradas.
