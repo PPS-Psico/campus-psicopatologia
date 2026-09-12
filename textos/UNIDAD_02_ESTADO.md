@@ -21,39 +21,39 @@ cita del programa en lugar de forzar la correspondencia.
 
 ### Lo que se publica [F]
 
-`Charcot_1887_Histeria_traumatica_y_paralisis_por_sugestion_CATEDRA.pdf`
+`Charcot_1887_Las_neurosis_y_el_problema_de_la_simulacion_CATEDRA.pdf`
 
-Charcot, J.-M. (1887), lecciones XX, XXII y XXVI de *Leçons sur les maladies du système nerveux*,
-tomo III. Cinco páginas, montadas en tres piezas de lecciones distintas y presentadas en el orden
-del argumento, no en el del libro:
+Charcot, J.-M. (1887), Lección inaugural de la cátedra de clínica de las enfermedades del sistema
+nervioso, apartados VI y VII. Tres páginas.
 
-1. **El caso Porcz…** — la anestesia se delimita por líneas circulares que no corresponden al
-   territorio de ningún nervio. El síntoma sigue la representación del cuerpo, no su anatomía.
-2. **La parálisis producida y deshecha** — Charcot sugiere a una hipnotizada la parálisis del
-   hombro, después el codo, después la muñeca, y comprueba que el dibujo obtenido y el de la lesión
-   real de Porcz… son *superponibles*. Después lo deshace con una sugestión de sentido contrario.
-3. **El mutismo histérico** — afonía de comienzo súbito tras una emoción, con la inteligencia
-   intacta. Es el síntoma de Dora, descripto por alguien que nunca le preguntó qué quería decir.
+**Criterio de la elección:** el caso clínico de la clase es Dora. El aporte de Charcot tiene que ser
+otro, y es el de método. Estos dos apartados no traen ningún enfermo: traen el problema del que vive
+la materia — qué hacer con un padecimiento que no deja lesión — y la respuesta de Charcot en dos
+movimientos: que aunque no haya lesión hay leyes, y que la sospecha de simulación es «un
+espantapájaros ante el cual solo se detendrán los tímidos o los novicios».
 
-Establecido sobre el ejemplar digitalizado de Internet Archive `oeuvrescompltesd03char`.
+Es el gesto que Freud hereda y desplaza: Charcot dice que no hay lesión pero hay leyes; Freud dirá
+que no hay lesión pero hay sentido. Y enlaza hacia atrás con la Unidad 1 y con el binomio de Jaspers
+de la Clase 3.
 
-La guía de lectura incluye una advertencia necesaria: que un síntoma pueda producirse por sugestión
-no prueba que la enferma simule. Es la objeción que la escuela de Nancy le hizo a Charcot y conviene
-desactivarla antes de que la saquen sola.
+Establecido sobre el ejemplar digitalizado de Internet Archive `oeuvrescompltesd03char`. Se omiten
+los apartados I a V, dedicados a la creación de la cátedra, los medios de estudio del servicio y las
+localizaciones cerebrales.
 
 ### Material de cátedra, fuera del campus
 
-Dos traducciones anteriores quedaron en el repositorio canónico (`Textos_Propuesta_Final_FINAL/Clase_05/`)
-y **no se publican** en el campus, para no acumular tres textos de Charcot en una misma clase:
+Tres traducciones anteriores quedaron en el repositorio canónico (`Textos_Propuesta_Final_FINAL/Clase_05/`)
+y **no se publican**. Se descartaron por la misma razón: las tres son casuística, y el caso de la
+clase es Dora.
 
-- `Charcot_Richer_1887_Las_cuatro_fases_del_gran_ataque_histerico_CATEDRA.pdf` — los cuatro períodos
-  del ataque, de *Les Démoniaques dans l'art*. Útil si alguna vez se quiere trabajar el ataque como
-  escena; su valor está concentrado en la distinción entre actitudes ilógicas y pasionales.
+- `Charcot_1887_Histeria_traumatica_y_paralisis_por_sugestion_CATEDRA.pdf` — los casos Porcz…,
+  Greuz… y el mutismo. Tiene el mejor argumento de los tres (una idea produce y deshace una
+  parálisis), por si alguna vez se quiere trabajar el síntoma sin lesión con material clínico.
+- `Charcot_Richer_1887_Las_cuatro_fases_del_gran_ataque_histerico_CATEDRA.pdf` — los cuatro
+  períodos del ataque, de *Les Démoniaques dans l'art*.
 - `Charcot_1872_De_la_histero-epilepsia_Leccion_XIII_TRADUCCION_CATEDRA.pdf` — el debate nosográfico
-  y el criterio térmico. Tiene pendientes de revisión: la nota de edición se contradice con los
-  apéndices, los títulos de los apartados son de la cátedra y no están marcados como tales, y la
-  correspondencia con Saurí está afirmada con más seguridad de la que hay (el *Anuario* de la UBA
-  fecha los textos de ese compilado en 1887-88, y la lección es de 1872-73).
+  y el criterio térmico. Tiene pendientes de revisión anotados: la nota de edición se contradice con
+  los apéndices y la correspondencia con Saurí está afirmada con más seguridad de la que hay.
 
 ### Advertencias generales
 
