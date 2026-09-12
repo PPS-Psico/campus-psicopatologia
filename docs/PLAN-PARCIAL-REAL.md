@@ -12,6 +12,46 @@ Guadalupe. La devolución publicada queda fuera del camino crítico del 28/09
 
 ---
 
+## 0. Simulacro de la clase 5 · estado al 12/09
+
+El ensayo general se adelantó y se montó como el multiple choice de la clase 5:
+mismo circuito que el parcial real, con detección del estudiante, guardado en el
+servidor y una consigna escrita para probar la corrección manual.
+
+**Probado de punta a punta contra producción**, con la identidad real de Blas:
+FilterCodes entregó `courseid` 12209 y `userid` 32734 → el cruce contra el padrón
+lo reconoció → la verificación de Safe Exam Browser aceptó la prueba del `.seb`
+nuevo y rechazó su ausencia → se guardaron las once respuestas → la entrega
+calculó 4,00/10,00 sin exponer las claves → el intento quedó en la cola docente
+con la escrita pendiente. El intento de prueba se dejó reseteado en blanco.
+
+| Pieza | Estado |
+|---|---|
+| Padrón, 61 filas vinculadas | ✅ |
+| Examen `simulacro-clase-5`: 10 MC + 1 escrita de 4 puntos | ✅ en la base |
+| Pestaña «Parcial» en Moodle (sección 28), **oculta** | ✅ creada |
+| Etiqueta con el puente de FilterCodes | ✅ los cinco campos resuelven |
+| `SEB_CONFIG_KEY`, `SEB_BROWSER_EXAM_KEYS`, `SEB_EXAM_URL` | ✅ cargados |
+| `simulacro-parcial-clase-5.seb` | ✅ generado y publicado |
+| `config.js` apuntando al examen nuevo | ✅ publicado en Pages |
+
+**Lo que falta para abrirlo a los estudiantes:**
+
+1. **Abrir el `.seb` en Safe Exam Browser y recorrer el circuito completo.** Es lo
+   único que no se puede verificar sin ejecutar SEB. Hay que comprobar dos cosas:
+   que el filtro de URLs deje entrar a la pestaña Parcial y al login del Campus, y
+   que las pestañas de las otras unidades queden efectivamente bloqueadas.
+2. **Revisar las diez preguntas y la consigna escrita**, que son un borrador
+   redactado desde la guía de lectura de la clase 5.
+3. **Sumar el botón del simulacro a `parcial.html`**, junto a los de las prácticas.
+4. **Mostrar la pestaña «Parcial»** en Moodle.
+
+**Decisión pendiente:** el sorteo de preguntas mezcla todo, así que la consigna
+escrita cae en cualquier posición —en la prueba salió novena de once—. Si se
+quiere al final, hay que tocar `exam_launch_by_identity`.
+
+---
+
 ## 1. Estado real verificado el 12/09
 
 La documentación anterior (`PLAN-SISTEMA-PARCIAL.md`) dice "desarrollo
