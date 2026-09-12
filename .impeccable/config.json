@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-09-12T14:52:01.569Z",
+        "reason": "Tipografia heredada del sistema visual del Campus Psicoanalisis, fijada en PRODUCT.md (Brand Commitments: Outfit para display, Inter para texto). Precede a este trabajo y rige las 20 paginas del campus."
+      }
+    ]
+  }
+}
