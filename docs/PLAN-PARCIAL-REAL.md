@@ -12,6 +12,59 @@ Guadalupe. La devolución publicada queda fuera del camino crítico del 28/09
 
 ---
 
+## 0 bis. Cómo entra el estudiante · pase de un solo uso
+
+Safe Exam Browser abre **un navegador con perfil limpio**. La sesión del Campus
+que el estudiante tiene en Chrome no viaja con él, así que si el `.seb` abre la
+página de Moodle, se encuentra con un login que en su navegador habitual ya
+estaba resuelto. En un equipo prestado, además, es un paso imposible.
+
+La identidad se resuelve **antes** de abrir el navegador seguro:
+
+```
+Campus (Chrome, con sesión)                Safe Exam Browser (perfil limpio)
+  etiqueta de Moodle, sección 28             index.html?pase=XYZ
+  └─ iframe: parcial/acceso.html             ├─ canjea el pase
+     ├─ FilterCodes → contexto Moodle        ├─ abre el intento
+     ├─ exam-api «pass» → pase               └─ responde y entrega
+     └─ enlace sebs://…seb?pase=XYZ ─────────┘
+```
+
+La pieza que lo hace posible es la opción **`startURLAppendQueryParameter`**
+(«Allow Query Parameter»): si está activada, SEB traslada a la URL de inicio los
+parámetros que vengan en el enlace `sebs://`. Según el equipo de SEB, **esos
+parámetros no alteran la Browser Exam Key**, así que el `.seb` sigue siendo el
+mismo archivo para los 60 estudiantes y la verificación de claves se mantiene
+como estaba. Disponible en Windows desde SEB 3.0, macOS 2.2 e iOS.
+
+El pase vive en `exam_private.launch_passes`: un solo uso, quince minutos de
+vigencia, atado a la fila del padrón y al examen. Emitirlo uno nuevo invalida el
+anterior sin usar. La acción `pass` de `exam-api` es la única que **no** exige
+Safe Exam Browser, porque corre en el navegador habitual; lo que la autoriza es
+el contexto de Moodle, igual que antes.
+
+Efecto lateral bueno: el `.seb` vuelve a abrir la aplicación en GitHub Pages, así
+que su filtro de URLs se reduce otra vez a dos direcciones propias y desaparece
+la necesidad de habilitar `campus.uflo.edu.ar`, que era la parte más frágil.
+
+**Probado contra producción el 12/09:** pase emitido sin SEB (200), canjeado
+dentro de SEB con el parámetro en la URL (intento abierto, 11 preguntas), reuso
+rechazado (`pass_already_used`), canje sin prueba de SEB rechazado
+(`safe_browser_invalid`), DNI fuera del padrón rechazado
+(`identity_not_registered`).
+
+**Queda por verificar lanzando SEB de verdad:** que `?pase=` sobre el enlace
+`sebs://` llegue efectivamente a la URL de inicio. El manual menciona que se
+pueden usar `?` o `??` pero no explica la diferencia; está implementado con `?`.
+Si no funcionara, la alternativa es `??`.
+
+**Contraseñas de SEB:** la de salida de emergencia pasó a ser corta y tipeable,
+porque la anterior tenía 32 caracteres al azar y el portapapeles está aislado:
+no había forma de escribirla. Viven en `.codex/simulacro-seb-docente.json`, que
+está fuera del repositorio.
+
+---
+
 ## 0. Simulacro de la clase 5 · estado al 12/09
 
 El ensayo general se adelantó y se montó como el multiple choice de la clase 5:
