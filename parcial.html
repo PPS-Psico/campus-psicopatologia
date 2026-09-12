@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/tokens.css?v=5">
   <link rel="stylesheet" href="assets/ui.css?v=7">
-  <link rel="stylesheet" href="assets/parcial-info.css?v=7">
+  <link rel="stylesheet" href="assets/parcial-info.css?v=8">
 </head>
 <body data-unit="1">
 <!--
@@ -37,14 +37,17 @@
       <div>
         <h1 id="page-title">Parcial</h1>
         <p class="exam-info-hero__lead">
-          El parcial se abrirá desde el Campus y se responderá en una ventana cerrada de
-          Safe Exam Browser. En esta sección vamos a publicar el acceso, la modalidad
-          definitiva y cualquier ajuste técnico antes de la fecha de evaluación.
+          El parcial se abre desde el Campus y se responde en una ventana cerrada de
+          Safe Exam Browser. Antes de la fecha real vas a rendir un simulacro que recorre
+          el circuito completo, para que el 28 de septiembre no haya nada nuevo.
         </p>
         <div class="exam-info-hero__actions">
-          <a class="btn btn--primary btn--lg" href="sebs://pps-psico.github.io/campus-psicopatologia/parcial/simulacro-psicopatologia.seb">
-            Iniciar simulacro seguro
+          <a class="btn btn--primary btn--lg" href="#simulacro">
+            Ver el simulacro del parcial
             <span data-icon="arrowRight" data-size="18"></span>
+          </a>
+          <a class="btn btn--secondary btn--lg" href="#instalacion">
+            Instalar Safe Exam Browser
           </a>
         </div>
       </div>
@@ -75,13 +78,85 @@
       <p class="source-note">Las fechas quedan sujetas a la validación institucional del equipo docente y del Jefe de Área.</p>
     </section>
 
+    <section class="section settle" id="simulacro" aria-labelledby="rehearsal-title">
+      <div class="section-head">
+        <h2 class="section-head__title" id="rehearsal-title">Simulacro del parcial · Clase 5</h2>
+        <p class="section-head__subtitle">
+          Histeria y Dora. No es una práctica más: es el parcial del 28 de septiembre con
+          todo su mecanismo, sobre los contenidos de una sola clase.
+        </p>
+      </div>
+
+      <div class="rehearsal">
+        <div>
+          <p class="rehearsal__lead">
+            Se abre desde el Campus, con tu cuenta de siempre. No tenés que crear un usuario
+            ni escribir tu DNI en ningún lado: el sistema te reconoce solo y guarda tus
+            respuestas en el servidor a medida que las escribís.
+          </p>
+
+          <dl class="rehearsal__conditions">
+            <div>
+              <dt>Un solo intento</dt>
+              <dd>
+                A diferencia de las prácticas, este no se repite. Si se corta la conexión o
+                cerrás sin querer, volvés a entrar y encontrás tu intento donde lo dejaste.
+              </dd>
+            </div>
+            <div>
+              <dt>Diez preguntas de opción múltiple y una para desarrollar</dt>
+              <dd>
+                La misma combinación que va a tener el parcial. Las de opción múltiple se
+                corrigen solas; la respuesta escrita la leemos y la devolvemos nosotros.
+              </dd>
+            </div>
+            <div>
+              <dt>Cuarenta y cinco minutos, contados por el servidor</dt>
+              <dd>
+                El tiempo no depende del reloj de tu equipo. Al terminar recibís un
+                comprobante con la hora de entrega.
+              </dd>
+            </div>
+            <div>
+              <dt>No muestra las respuestas correctas</dt>
+              <dd>
+                Acá también se comporta como el parcial: el resultado llega con la
+                devolución, no al apretar «Entregar».
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+        <aside class="rehearsal__launch">
+          <div class="rehearsal__launch-status">
+            <span class="badge badge--accent">Se habilita el lunes 14</span>
+          </div>
+          <p class="rehearsal__launch-title">Abrir el simulacro</p>
+          <p class="rehearsal__launch-copy">
+            Queda disponible después de la clase del lunes 14 de septiembre y se cierra el
+            domingo 27. Necesitás Safe Exam Browser instalado: si todavía no lo tenés,
+            seguí primero <a href="#instalacion">los pasos de instalación</a>.
+          </p>
+          <a class="btn btn--primary btn--lg" href="sebs://pps-psico.github.io/campus-psicopatologia/parcial/simulacro-parcial-clase-5.seb">
+            Iniciar el simulacro
+            <span data-icon="arrowRight" data-size="18"></span>
+          </a>
+          <p class="exam-step__fallback">
+            Si el botón no abre la aplicación,
+            <a href="parcial/simulacro-parcial-clase-5.seb" download="simulacro-parcial-clase-5.seb">descargá el archivo .seb</a>
+            y abrilo con doble clic.
+          </p>
+        </aside>
+      </div>
+    </section>
+
     <section class="section settle" id="instalacion" aria-labelledby="install-title">
       <div class="section-head">
         <h2 class="section-head__title" id="install-title">Instalá Safe Exam Browser</h2>
         <p class="section-head__subtitle">
-          Instalalo antes del simulacro. Abrir el programa por sí solo no inicia el
-          parcial: para probarlo vas a usar el botón <strong>Iniciar simulacro seguro</strong>,
-          que abre automáticamente el archivo de acceso correcto.
+          Instalalo antes del simulacro. Abrir el programa por sí solo no inicia nada:
+          siempre vas a entrar desde un botón de esta página, que abre automáticamente
+          el archivo de acceso correcto.
         </p>
       </div>
 
@@ -148,9 +223,9 @@
       <div class="section-head">
         <h2 class="section-head__title" id="steps-title">Paso a paso completo</h2>
         <p class="section-head__subtitle">
-          El simulacro seguro ya permite probar el recorrido completo. Esta prueba técnica
-          no define el formato final de las consignas ni registra una nota. Al entregar,
-          muestra el resultado y la respuesta correcta de cada pregunta para que puedas practicar.
+          Primero preparás el equipo con una práctica, que podés repetir sin consecuencias.
+          Después rendís el simulacro del parcial, que tiene un solo intento. Los dos
+          recorridos son idénticos: cambia lo que está en juego.
         </p>
       </div>
 
@@ -178,18 +253,18 @@
           </li>
           <li class="exam-step">
             <div>
-              <h4 class="exam-step__title">Iniciá el simulacro seguro</h4>
+              <h4 class="exam-step__title">Probá el navegador seguro con una práctica</h4>
               <div class="exam-step__copy">
-                <p>La prueba tiene veinte preguntas —diez de Clase 3 y diez de Clase 4— y treinta minutos. Elegí el botón y aceptá el aviso del sistema para abrir Safe Exam Browser; no tenés que descargar ni configurar otro archivo.</p>
-                <p><a class="btn btn--secondary" href="sebs://pps-psico.github.io/campus-psicopatologia/parcial/simulacro-psicopatologia.seb">Iniciar simulacro seguro <span data-icon="arrowRight" data-size="16"></span></a></p>
-                <p class="exam-step__fallback">Si el botón no abre la aplicación, <a href="parcial/simulacro-psicopatologia.seb" download="simulacro-psicopatologia.seb">descargá el archivo .seb</a> y abrilo con doble clic.</p>
+                <p>Usá la práctica de Clase 3 para comprobar que todo funciona en tu equipo: son diez preguntas, se puede repetir y no queda registrada. Elegí el botón y aceptá el aviso del sistema; no tenés que descargar ni configurar otro archivo.</p>
+                <p><a class="btn btn--secondary" href="sebs://pps-psico.github.io/campus-psicopatologia/parcial/practica-clase-3.seb">Practicar Clase 3 <span data-icon="arrowRight" data-size="16"></span></a></p>
+                <p class="exam-step__fallback">Si el botón no abre la aplicación, <a href="parcial/practica-clase-3.seb" download="practica-clase-3.seb">descargá el archivo .seb</a> y abrilo con doble clic.</p>
               </div>
             </div>
           </li>
           <li class="exam-step">
             <div>
-              <h4 class="exam-step__title">Probá el guardado y la entrega</h4>
-              <div class="exam-step__copy"><p>Respondé las veinte preguntas, recorré los números laterales y esperá que el estado diga <strong>Guardado</strong>. Después elegí <strong>Entregar parcial</strong> y confirmá la entrega. El simulacro mostrará cuántas respuestas acertaste, qué opción elegiste y cuál era la correcta. Podés elegir <strong>Rehacer el simulacro</strong> o cerrar Safe Exam Browser.</p></div>
+              <h4 class="exam-step__title">Recorré la entrega hasta el final</h4>
+              <div class="exam-step__copy"><p>Respondé las diez preguntas, movete con los números laterales y esperá que el estado diga <strong>Guardado</strong>. Después elegí <strong>Entregar práctica</strong> y confirmá. La práctica te muestra cuántas acertaste, qué elegiste y cuál era la correcta; podés rehacerla o cerrar el navegador seguro. Recién cuando este recorrido te salga natural, hacé el <a href="#simulacro">simulacro del parcial</a>, que tiene un solo intento.</p></div>
             </div>
           </li>
         </ol>
@@ -236,7 +311,7 @@
     <section class="section settle readiness-grid" aria-labelledby="ready-title">
       <div>
         <div class="section-head">
-          <h2 class="section-head__title" id="ready-title">Antes del simulacro</h2>
+          <h2 class="section-head__title" id="ready-title">Antes de rendir</h2>
           <p class="section-head__subtitle">Prepará el mismo equipo y la misma conexión que vas a usar el día del parcial.</p>
         </div>
         <ul class="check-list">
@@ -244,14 +319,14 @@
           <li><span data-icon="check" data-size="19"></span><span>Actualizá el sistema operativo y reiniciá el equipo antes de probar.</span></li>
           <li><span data-icon="check" data-size="19"></span><span>Comprobá que podés ingresar al Campus con tu DNI y contraseña.</span></li>
           <li><span data-icon="check" data-size="19"></span><span>Usá una conexión estable y mantené el equipo conectado a la corriente.</span></li>
-          <li><span data-icon="check" data-size="19"></span><span>Realizá el simulacro completo, incluida la entrega y la salida del navegador seguro.</span></li>
+          <li><span data-icon="check" data-size="19"></span><span>Hacé una práctica entera, incluida la entrega y la salida del navegador seguro.</span></li>
         </ul>
       </div>
 
       <aside class="pending-board" aria-labelledby="pending-title">
         <h3 id="pending-title">Todavía estamos definiendo</h3>
         <dl>
-          <div><dt>Acceso del parcial real</dt><dd>El simulacro ya está disponible; el archivo definitivo se publicará después de validar Windows, macOS e iPad.</dd></div>
+          <div><dt>Acceso del parcial real</dt><dd>El archivo definitivo se publica después de validar el simulacro en Windows, macOS e iPad.</dd></div>
           <div><dt>Supervisión por Meet</dt><dd>La modalidad se informará después de comprobar que no interfiera con el navegador seguro.</dd></div>
           <div><dt>Canal de contingencia</dt><dd>Antes del simulacro se indicará cómo avisar una falla sin perder el intento.</dd></div>
         </dl>
@@ -260,12 +335,15 @@
 
     <section class="section practice-bank settle" id="practicas" aria-labelledby="practice-title">
       <div class="section-head">
-        <h2 class="section-head__title" id="practice-title">Prácticas por clase</h2>
+        <h2 class="section-head__title" id="practice-title">Prácticas de repaso</h2>
         <p class="section-head__subtitle">
-          Cada práctica se abre <strong class="text-strong">con Safe Exam Browser</strong>, igual que
-          el parcial: elegí el botón y aceptá el aviso del sistema. Podés repetirlas y al finalizar
-          muestran las respuestas correctas. Además de repasar los contenidos, sirven para que el
-          día del parcial el navegador seguro ya te resulte conocido.
+          Estas son para estudiar, no para evaluarte:
+          <strong class="text-strong">podés repetirlas todas las veces que quieras</strong>, al
+          terminar muestran las respuestas correctas y no queda registro de lo que hiciste. Se
+          abren con Safe Exam Browser, igual que el parcial, así que también sirven para que el
+          navegador seguro te resulte conocido. El
+          <a href="#simulacro">simulacro del parcial</a> funciona al revés: un solo intento,
+          queda guardado y no muestra las respuestas.
         </p>
       </div>
       <div class="notice" style="margin-bottom: var(--space-8)">

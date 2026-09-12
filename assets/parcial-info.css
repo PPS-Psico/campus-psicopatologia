@@ -217,6 +217,76 @@
 }
 .pending-board dd { margin-top: var(--space-1); color: var(--text-muted); font-size: var(--text-sm); }
 
+/* El simulacro del parcial repite la estructura del encabezado —texto a la
+   izquierda, panel de acción a la derecha— para que se lea con la misma
+   jerarquía que la fecha del parcial y no como una práctica más del banco. */
+.rehearsal {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
+  gap: var(--layout-gap);
+  align-items: start;
+}
+
+.rehearsal__lead {
+  max-width: var(--measure);
+  margin-bottom: var(--space-8);
+  color: var(--text-muted);
+  font-size: var(--text-lg);
+}
+
+.rehearsal__conditions {
+  display: grid;
+  gap: var(--space-6);
+  max-width: var(--measure);
+  margin: 0;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border);
+}
+
+.rehearsal__conditions dt {
+  color: var(--text-strong);
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
+  line-height: var(--leading-snug);
+}
+
+.rehearsal__conditions dd {
+  margin: var(--space-2) 0 0;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+
+.rehearsal__launch {
+  padding: clamp(var(--space-6), 3vw, var(--space-8));
+  border: 1px solid var(--accent-soft);
+  border-radius: var(--radius-2xl);
+  background: var(--accent-softer);
+}
+
+.rehearsal__launch-status { margin-bottom: var(--space-5); }
+
+.rehearsal__launch-title {
+  margin-bottom: var(--space-2);
+  color: var(--text-strong);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  line-height: var(--leading-tight);
+}
+
+.rehearsal__launch-copy {
+  margin-bottom: var(--space-6);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+
+.rehearsal__launch-copy a { text-decoration: underline; text-underline-offset: 3px; }
+.rehearsal__launch .btn { width: 100%; }
+.rehearsal__launch .exam-step__fallback { margin-top: var(--space-4); }
+
 .practice-bank { max-width: 980px; }
 .practice-links { display: grid; border-top: 1px solid var(--border-strong); }
 .practice-link {
@@ -246,7 +316,9 @@
 
 @media (max-width: 900px) {
   .exam-info-hero,
+  .rehearsal,
   .readiness-grid { grid-template-columns: 1fr; }
+  .rehearsal__launch { max-width: 620px; }
   .exam-overview { max-width: 620px; }
   .platform-grid { grid-template-columns: 1fr; }
   .platform { max-width: 680px; }
