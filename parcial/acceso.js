@@ -9,7 +9,7 @@ const sebPath = new URL(SEB_FILE, location.href);
 const el = Object.fromEntries([
   "loading", "loading-copy", "ready", "ready-name", "ready-exam", "launch",
   "download", "expiry", "done", "done-copy", "failure", "failure-title",
-  "failure-copy", "retry",
+  "failure-copy", "failure-code", "retry",
 ].map((id) => [id, document.getElementById(id)]));
 
 const errorCopy = {
@@ -45,10 +45,14 @@ function formatTime(value) {
 
 function fail(error) {
   const code = error instanceof Error ? error.message : String(error);
-  const [title, copy] = errorCopy[code]
+  const known = errorCopy[code];
+  const [title, copy] = known
     ?? ["No pudimos abrir tu acceso", "Volvé a cargar la página del Campus. Si sigue igual, avisale al equipo docente."];
   el["failure-title"].textContent = title;
   el["failure-copy"].textContent = copy;
+  // Un fallo que no sabemos nombrar deja su código a la vista: es lo único que
+  // permite diagnosticarlo sin estar sentado al lado del estudiante.
+  el["failure-code"].textContent = known ? "" : `Código: ${code}`;
   show("failure");
 }
 
