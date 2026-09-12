@@ -147,7 +147,7 @@ window.CAMPUS_DATA = (function () {
       ]
     },
     {
-      id: 'c05', tipo: 'clase', unidad: 2, numero: 5, estado: 'pendiente',
+      id: 'c05', tipo: 'clase', unidad: 2, numero: 5, estado: 'publicada',
       fecha: { año: 2026, mes: 9, dia: 14 },
       titulo: 'Histeria y Dora: síntoma, fantasía y transferencia',
       desc: 'El primer historial. Por qué el caso fracasa y qué inaugura ese fracaso.',
@@ -155,7 +155,7 @@ window.CAMPUS_DATA = (function () {
       nota: 'Última clase antes del primer parcial. Cierra las unidades 1 y 2.',
       biblio: [
         { tier: 'C', cita: 'Freud, S. (1905 [1901]). Fragmento de análisis de un caso de histeria (Dora). Selección clínica y Epílogo. <em>Obras completas</em>, tomo VII. Amorrortu.' },
-        { tier: 'F', cita: 'Charcot, J.-M. (1984). Acerca de la histeroepilepsia. En J. Saurí (comp.), <em>Las histerias</em>. Nueva Visión.' },
+        { tier: 'F', cita: 'Charcot, J.-M. (1872-73). De la hístero-epilepsia. Lección XIII de <em>Leçons sur les maladies du système nerveux faites à la Salpêtrière</em>, tomo I. París: A. Delahaye. (Traducción de cátedra desde el original francés; es el texto que J. Saurí recoge en <em>Las histerias</em>, Nueva Visión, 1984).' },
         { tier: 'F', cita: 'Lacan, J. (1951). Intervención sobre la transferencia. En <em>Escritos 1</em>, pp. 204-209. Siglo XXI.' }
       ]
     },
