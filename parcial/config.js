@@ -5,7 +5,7 @@ const practiceClass = ["3", "4"].includes(examParams.get("clase"))
   : null;
 
 window.EXAM_CONFIG = Object.freeze({
-  examId: "11111111-1111-4111-8111-111111111111",
+  examId: "22222222-2222-4222-8222-222222222222",
   apiUrl: "https://zprvefdhcxnivdgsbpkw.supabase.co/functions/v1/exam-api",
   publishableKey: "sb_publishable_RH2Gj2j_K83BPWH_LX5I_w_9BsUT8ax",
   moodleOrigin: "https://campus.uflo.edu.ar",

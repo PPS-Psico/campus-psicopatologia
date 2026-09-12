@@ -12,25 +12,25 @@ const { PROGRAMA, UNIDADES, TIERS } = sandbox.window.CAMPUS_DATA;
 
 const classContent = {
   6: {
-    meta: 'Duda, aislamiento, defensa y deseo en el historial del Hombre de las Ratas.',
-    thesis: 'La duda obsesiva no es falta de pensamiento: es una solución que posterga el acto y conserva abierto el conflicto.',
+    meta: 'Duda, aislamiento y culpa en el Hombre de las Ratas, con la reescritura de los años veinte.',
+    thesis: 'La duda obsesiva no es falta de pensamiento: es una solución que posterga el acto y conserva abierto el conflicto, y los años veinte explican por qué esa solución se vuelve tan cara.',
     lead: [
       'Después del primer parcial retomamos el método de lectura de casos. El Hombre de las Ratas no se estudia como un inventario de rasgos obsesivos, sino como una organización en la que pensamiento, duda, culpa y defensa se sostienen entre sí.',
       'El relato del suplicio de las ratas condensa una amenaza, una deuda y una exigencia imposible. Freud sigue asociaciones, desplazamientos y contradicciones para mostrar que el pensamiento obsesivo no está separado de la vida afectiva: la sustituye, la aísla y al mismo tiempo la mantiene activa.',
-      'Los textos históricos y la relectura lacaniana permiten comparar tres escalas: la descripción de la locura de la duda, el mecanismo freudiano y la función que el deseo del Otro adquiere en la posición obsesiva.'
+      'La segunda mitad del encuentro cambia el nivel del problema. En 1926 Freud reorganiza su mapa: la angustia puede funcionar como señal que anticipa un peligro, y el aislamiento y la anulación aparecen como técnicas defensivas propias de la neurosis obsesiva. El superyó y la culpa los trabajamos en clase sobre el propio historial, donde la necesidad de castigo está a la vista.'
     ],
     objectives: [
       '¿Cómo transforma Freud una duda aparentemente absurda en una formación con historia y función?',
       '¿Qué relación establece el caso entre ambivalencia, culpa, deuda y pensamiento compulsivo?',
       '¿Cómo operan el aislamiento y el desplazamiento en la construcción del síntoma obsesivo?',
-      '¿Qué diferencia hay entre describir la “locura de la duda” y explicar su mecanismo?',
-      '¿Por qué la postergación puede funcionar como una manera de sostener el deseo sin decidir?'
+      '¿Qué diferencia establece Freud entre inhibición, síntoma y angustia, y cómo funciona la angustia señal?',
+      '¿Qué agrega la reformulación de 1926 a la explicación del síntoma obsesivo de 1909?'
     ],
     order: [
       '<strong>Entrá por el caso.</strong> Seguí la secuencia del relato de las ratas, la deuda y las órdenes contradictorias.',
-      '<strong>Volvé al mecanismo.</strong> Usá el texto de 1896 para precisar defensa, reproche y retorno de las representaciones.',
-      '<strong>Compará con la descripción clásica.</strong> Registrá qué observa Legrand du Saulle antes de que Freud proponga una explicación dinámica.',
-      '<strong>Cerrá con Lacan.</strong> Preguntá qué obtiene el obsesivo al aplazar el acto y mantener insatisfecho el deseo.'
+      '<strong>Volvé al mecanismo de 1896.</strong> Precisá defensa, reproche y retorno de las representaciones.',
+      '<strong>Cambiá de nivel con 1926.</strong> Distinguí señal, peligro y defensa en los capítulos sobre la neurosis obsesiva.',
+      '<strong>Cerrá con Lacan, si llegás.</strong> Preguntá qué obtiene el obsesivo al aplazar el acto y mantener insatisfecho el deseo.'
     ],
     readings: [
       {
@@ -52,84 +52,32 @@ const classContent = {
         questions: ['¿Qué retorna si la representación fue apartada de la conciencia?', '¿Por qué las defensas secundarias pueden convertirse en nuevos síntomas?']
       },
       {
-        id: 'legrand-duda',
-        title: 'La folie du doute (avec délire du toucher)',
-        cite: 'Legrand du Saulle, H. (1875). V. Adrien Delahaye. Texto original en francés.',
-        pages: 'Obra original completa · 80 páginas',
-        file: 'Legrand_du_Saulle_1875_La_folie_du_doute_avec_delire_du_toucher.pdf',
-        look: ['La descripción de la duda, las verificaciones y las restricciones progresivas.', 'Los criterios con los que la clínica clásica delimita una forma sin recurrir al mecanismo freudiano.', 'Las continuidades y diferencias entre descripción longitudinal y explicación dinámica.'],
-        questions: ['¿Qué puede observar la descripción clásica con mucha precisión?', '¿Qué pregunta nueva introduce Freud frente a esa descripción?']
-      },
-      {
-        id: 'lacan-s5-obsesivo',
-        title: 'El obsesivo y su deseo',
-        cite: 'Lacan, J. (1957-1958/1999). <em>El Seminario, libro 5</em>, capítulo XXIII. Paidós.',
-        pages: 'Capítulo XXIII completo',
-        file: 'Lacan_1957-1958_Seminario_5_Cap_XXIII_El_obsesivo_y_su_deseo.pdf',
-        look: ['La relación entre deseo, demanda y postergación.', 'La posición del obsesivo frente al deseo del Otro.', 'El modo en que la hazaña y el pensamiento pueden reemplazar una decisión subjetiva.'],
-        questions: ['¿Qué conserva el obsesivo cuando posterga?', '¿Cómo modifica esta lectura la idea de que el problema sería simplemente “pensar demasiado”?']
-      }
-    ],
-    closeTitle: 'Del caso de 1909 a la reformulación de los años veinte',
-    close: 'El historial permite reconocer la lógica del síntoma obsesivo en una trama singular. La próxima clase cambia el nivel del problema: Freud revisará el lugar de la angustia, el superyó y la culpa, y con ello modificará su explicación del síntoma.'
-  },
-  7: {
-    meta: 'Angustia señal, superyó, culpa y necesidad de castigo.',
-    thesis: 'Freud no abandona el conflicto obsesivo: lo reescribe cuando la angustia deja de ser sólo efecto de la represión y pasa a funcionar como señal.',
-    lead: [
-      'El Hombre de las Ratas mostró cómo una formación obsesiva enlaza deseo, hostilidad, culpa y prohibición. En los años veinte Freud reorganiza ese mapa: distingue con más precisión inhibición, síntoma y angustia, y da al yo y al superyó un lugar nuevo.',
-      'La angustia ya no aparece solamente como libido transformada. Puede funcionar como una señal que anticipa un peligro y pone en marcha la defensa. A la vez, el superyó permite comprender por qué la exigencia moral puede volverse cruel y por qué el sufrimiento mismo puede adquirir valor de satisfacción.',
-      'Los tres textos se leen como una secuencia de reformulación. No ofrecen tres definiciones independientes: cada uno modifica la pregunta por la defensa, la culpa y la persistencia del síntoma.'
-    ],
-    objectives: [
-      '¿Qué diferencia establece Freud entre inhibición, síntoma y angustia?',
-      '¿Cómo funciona la angustia señal en el desencadenamiento de la defensa?',
-      '¿Qué agrega la segunda tópica a la comprensión del conflicto obsesivo?',
-      '¿Por qué el superyó puede volverse más severo cuanto más renuncia el yo?',
-      '¿Cómo se relacionan sentimiento de culpa, necesidad de castigo y masoquismo moral?'
-    ],
-    order: [
-      '<strong>Empezá por la nueva teoría de la angustia.</strong> Distinguí señal, peligro y defensa.',
-      '<strong>Ubicá el conflicto entre instancias.</strong> Leé “Los vasallajes del yo” como mapa de dependencias, no como lista anatómica.',
-      '<strong>Cerrá con el problema económico.</strong> Preguntá por qué sufrir puede convertirse en una condición para apaciguar la culpa.'
-    ],
-    readings: [
-      {
         id: 'freud-1926-isa-v-vi',
         title: 'Inhibición, síntoma y angustia · Capítulos V y VI',
         cite: 'Freud, S. (1926). <em>Obras completas</em>, tomo XX. Amorrortu.',
         pages: 'Capítulos completos',
         file: 'Freud_1926_Inhibicion_sintoma_y_angustia_Cap_V_VI.pdf',
-        look: ['La diferencia entre peligro pulsional, angustia señal y puesta en marcha de la defensa.', 'La revisión de la explicación económica anterior de la angustia.', 'Los ejemplos con los que Freud articula formación de síntoma y evitación del peligro.'],
+        look: ['La diferencia entre peligro pulsional, angustia señal y puesta en marcha de la defensa.', 'La revisión de la explicación económica anterior de la angustia.', 'Los ejemplos con los que Freud articula formación de síntoma y evitación del peligro en la neurosis obsesiva.'],
         questions: ['¿La represión produce angustia o la angustia pone en marcha la represión?', '¿Qué gana y qué pierde el yo mediante el síntoma?']
       },
       {
-        id: 'freud-1923-vasallajes',
-        title: 'El yo y el ello · Capítulo V: Los vasallajes del yo',
-        cite: 'Freud, S. (1923). <em>Obras completas</em>, tomo XIX. Amorrortu.',
-        pages: 'Capítulo completo',
-        file: 'Freud_1923_El_yo_y_el_ello_Cap_V.pdf',
-        look: ['Las dependencias del yo respecto del ello, el superyó y la realidad.', 'La severidad del superyó y su relación con la agresividad.', 'El lugar del sentimiento inconsciente de culpa en la reacción terapéutica negativa.'],
-        questions: ['¿Por qué el yo no puede presentarse como dueño soberano del conflicto?', '¿Cómo puede haber culpa sin una representación consciente de haber hecho algo malo?']
-      },
-      {
-        id: 'freud-1924-masoquismo',
-        title: 'El problema económico del masoquismo',
-        cite: 'Freud, S. (1924). <em>Obras completas</em>, tomo XIX. Amorrortu.',
-        pages: 'Texto completo',
-        file: 'Freud_1924_El_problema_economico_del_masoquismo.pdf',
-        look: ['La dificultad que el masoquismo plantea al principio de placer.', 'La distinción entre masoquismo erógeno, femenino y moral.', 'La necesidad de castigo como forma en que la culpa puede encontrar satisfacción.'],
-        questions: ['¿Por qué el masoquismo obliga a revisar una regulación orientada sólo a evitar displacer?', '¿Qué relación puede establecerse entre masoquismo moral y persistencia del síntoma?']
+        id: 'lacan-s5-obsesivo',
+        title: 'El obsesivo y su deseo',
+        cite: 'Lacan, J. (1957-1958/1999). <em>El Seminario, libro 5</em>, capítulo XXIII. Paidós.',
+        pages: 'Capítulo XXIII completo · apoyo',
+        file: 'Lacan_1957-1958_Seminario_5_Cap_XXIII_El_obsesivo_y_su_deseo.pdf',
+        look: ['La relación entre deseo, demanda y postergación.', 'La posición del obsesivo frente al deseo del Otro.', 'El modo en que la hazaña y el pensamiento pueden reemplazar una decisión subjetiva.'],
+        questions: ['¿Qué conserva el obsesivo cuando posterga?', '¿Cómo modifica esta lectura la idea de que el problema sería simplemente “pensar demasiado”?']
       }
     ],
     closeTitle: 'La angustia queda preparada para cambiar de caso',
     close: 'En la obsesión, la señal de peligro pone en marcha defensas que capturan el pensamiento y el acto. En Juanito veremos otra solución: la angustia se liga a un objeto exterior y organiza un campo de evitaciones. La fobia no será sólo miedo; será también un intento de localizarlo.'
   },
-  8: {
+  7: {
     meta: 'Juanito y la fobia como intento de localizar la angustia.',
     thesis: 'La fobia no es una lista de objetos temidos: construye un objeto que vuelve evitable una angustia que antes no tenía localización.',
     lead: [
-      'La clase anterior distinguimos angustia señal, peligro y defensa. Juanito permite ver esa secuencia dentro de un caso: el miedo a los caballos organiza recorridos, prohibiciones y preguntas que antes estaban dispersos.',
+      'La clase anterior distinguimos angustia señal, peligro y defensa dentro de la neurosis obsesiva. Juanito permite ver esa misma secuencia resuelta de otro modo: el miedo a los caballos organiza recorridos, prohibiciones y preguntas que antes estaban dispersos.',
       'El historial tiene una condición particular. Freud no observa directamente al niño: trabaja con los registros y las intervenciones del padre. Por eso también leeremos cómo se produce el material del caso y qué lugar ocupa cada adulto en su construcción.',
       'La comparación entre 1895, 1909 y 1926 muestra una transformación conceptual. Freud pasa de clasificar obsesiones y fobias a explicar la función de la angustia; Lacan agrega la pregunta por el significante que permite ordenar lo que irrumpe.'
     ],
@@ -138,13 +86,13 @@ const classContent = {
       '¿Cómo se articula el miedo a los caballos con las preguntas de Juanito sobre nacimiento, diferencia sexual y castración?',
       '¿Qué consecuencias tiene que el caso llegue a Freud a través del padre?',
       '¿Cómo cambia la teoría de la fobia entre 1895 y 1926?',
-      '¿En qué sentido la fobia puede funcionar como una solución y no sólo como un déficit?'
+      '¿Qué separa la solución fóbica de la solución obsesiva frente a un mismo peligro?'
     ],
     order: [
       '<strong>Leé primero el caso.</strong> Seguí las transformaciones del miedo y evitá buscar una equivalencia fija entre caballo y persona.',
-      '<strong>Releé con la teoría de 1926.</strong> Separá angustia, peligro y formación sustitutiva.',
-      '<strong>Usá 1895 como contraste.</strong> Registrá cuánto cambia el problema entre una clasificación inicial y la explicación posterior.',
-      '<strong>Cerrá con Lacan.</strong> Ubicá qué función ordenadora puede cumplir un significante cuando la angustia desborda las explicaciones disponibles.'
+      '<strong>Releé con la teoría de 1926.</strong> Separá angustia, peligro y formación sustitutiva, y comparala con lo leído la clase anterior.',
+      '<strong>Cerrá con Lacan.</strong> Ubicá qué función ordenadora puede cumplir un significante cuando la angustia desborda las explicaciones disponibles.',
+      '<strong>Usá 1895 como contraste.</strong> Registrá cuánto cambia el problema entre una clasificación inicial y la explicación posterior.'
     ],
     readings: [
       {
@@ -167,15 +115,6 @@ const classContent = {
         questions: ['¿Qué modifica Freud respecto de su explicación de 1909?', '¿Por qué localizar el peligro reduce una indeterminación pero amplía las restricciones?']
       },
       {
-        id: 'freud-1895-obsesiones-fobias',
-        title: 'Obsesiones y fobias',
-        cite: 'Freud, S. (1895). <em>Obras completas</em>, tomo III. Amorrortu.',
-        pages: 'Texto completo',
-        file: 'Freud_1895_Obsesiones_y_fobias.pdf',
-        look: ['Los criterios iniciales con los que Freud separa obsesiones y fobias.', 'La relación propuesta entre afecto y representación.', 'Las diferencias entre esta clasificación y la teoría de la angustia de 1926.'],
-        questions: ['¿Qué puede distinguir Freud en 1895 y qué todavía no explica?', '¿Qué ganamos al leer este texto después de 1926 y no como definición definitiva?']
-      },
-      {
         id: 'lacan-s4-significante-real',
         title: 'El significante en lo real',
         cite: 'Lacan, J. (1956-1957/1994). <em>El Seminario, libro 4</em>, capítulo XIV. Paidós.',
@@ -184,30 +123,40 @@ const classContent = {
         page: 115,
         look: ['La fobia como respuesta a una dificultad de simbolización.', 'La función que adquiere el caballo dentro de una red de sustituciones.', 'La diferencia entre reducir el objeto a una persona y seguir su función significante.'],
         questions: ['¿Por qué el caballo no posee un único significado estable?', '¿Qué permite ordenar la fobia que antes aparecía como angustia sin localización?']
+      },
+      {
+        id: 'freud-1895-obsesiones-fobias',
+        title: 'Obsesiones y fobias',
+        cite: 'Freud, S. (1895). <em>Obras completas</em>, tomo III. Amorrortu.',
+        pages: 'Texto completo · apoyo',
+        file: 'Freud_1895_Obsesiones_y_fobias.pdf',
+        look: ['Los criterios iniciales con los que Freud separa obsesiones y fobias.', 'La relación propuesta entre afecto y representación.', 'Las diferencias entre esta clasificación y la teoría de la angustia de 1926.'],
+        questions: ['¿Qué puede distinguir Freud en 1895 y qué todavía no explica?', '¿Qué ganamos al leer este texto después de 1926 y no como definición definitiva?']
       }
     ],
     closeTitle: 'De las neurosis al problema de la psicosis',
     close: 'En obsesión y fobia seguimos soluciones construidas mediante represión, sustitución y retorno de lo reprimido. La Unidad 4 preguntará qué ocurre cuando Freud encuentra fenómenos que no puede organizar con el mismo mecanismo.'
   },
-  9: {
-    meta: 'Paranoia clásica, defensa y nacimiento del problema freudiano.',
+  8: {
+    meta: 'Paranoia clásica, defensa, narcisismo y nacimiento del problema freudiano.',
     thesis: 'La psicosis no entra al curso como una etiqueta ya resuelta: se construye en la tensión entre descripción psiquiátrica, evolución y mecanismo.',
     lead: [
       'La unidad comienza retrocediendo. Antes de Schreber necesitamos reconstruir qué llamaban paranoia los clínicos y qué problema recibe Freud cuando intenta incluirla entre las neuropsicosis de defensa.',
       'Kraepelin organiza entidades por su curso y desenlace; Freud busca un mecanismo. Esa diferencia de pregunta modifica qué cuenta como dato, cómo se interpreta un síntoma y qué relación se establece entre delirio, defensa y realidad.',
-      'Bercherie permite seguir la transformación sin convertirla en una oposición simple entre una psiquiatría que sólo describe y un psicoanálisis que explicaría todo. Cada modelo hace visibles aspectos distintos y deja problemas abiertos.'
+      'El narcisismo cierra el encuentro como bisagra. Sin la distinción entre libido yoica y libido de objeto no se entiende por qué Freud puede pensar un retiro del mundo previo al delirio, que es exactamente lo que la clase siguiente leerá en Schreber.'
     ],
     objectives: [
       '¿Cómo delimita la psiquiatría clásica la paranoia?',
       '¿Qué cambia cuando Freud pregunta por el mecanismo de formación de los síntomas?',
       '¿Cómo diferencia Freud la proyección paranoica de otras defensas?',
       '¿Por qué no puede equipararse automáticamente psicosis con pérdida global de realidad?',
-      '¿Qué relaciones y límites conviene conservar entre descripción, curso y explicación dinámica?'
+      '¿Qué problema clínico lleva a Freud a introducir el narcisismo?'
     ],
     order: [
       '<strong>Comenzá por Freud.</strong> Identificá el problema que intenta resolver con el concepto de defensa.',
       '<strong>Contrastá con Kraepelin.</strong> Preguntá qué función cumplen curso y pronóstico en la construcción de una entidad clínica.',
-      '<strong>Cerrá con Bercherie.</strong> Usalo para ordenar los desplazamientos conceptuales y evitar una historia lineal de “progreso”.'
+      '<strong>Cerrá con el narcisismo.</strong> Precisá qué ocurre con la investidura del mundo y de los otros antes de que aparezca el delirio.',
+      '<strong>Usá Bercherie como mapa.</strong> Ordená los desplazamientos conceptuales y evitá una historia lineal de “progreso”.'
     ],
     readings: [
       {
@@ -229,37 +178,48 @@ const classContent = {
         questions: ['¿Qué vuelve reconocible una entidad para Kraepelin?', '¿Qué aspectos del caso quedarían fuera si sólo se considerara el contenido del delirio?']
       },
       {
+        id: 'freud-1914-narcisismo',
+        title: 'Introducción del narcisismo',
+        cite: 'Freud, S. (1914). <em>Obras completas</em>, tomo XIV. Amorrortu.',
+        pages: 'Apartados I y II · pp. 71–88',
+        file: 'Freud_1914_Introduccion_del_narcisismo.pdf',
+        page: 8,
+        look: ['La diferencia y los pasajes entre libido yoica y libido de objeto.', 'La referencia a parafrenias y el retiro de la libido respecto de los objetos.', 'Los límites de imaginar la economía libidinal como una cantidad que simplemente cambia de lugar.'],
+        questions: ['¿Qué problema clínico lleva a Freud a introducir el narcisismo?', '¿Cómo prepara este concepto la lectura de Schreber?']
+      },
+      {
         id: 'bercherie-psicosis',
         title: 'La constitución del concepto freudiano de psicosis',
         cite: 'Bercherie, P. (1987). Siglo XXI.',
-        pages: 'Texto completo · 16 páginas',
+        pages: 'Texto completo · 16 páginas · apoyo',
         file: 'Bercherie_1987_La_constitucion_del_concepto_freudiano_de_psicosis.pdf',
         look: ['Las dificultades históricas para formar una categoría unificada de psicosis.', 'Los préstamos y desplazamientos entre psiquiatría y psicoanálisis.', 'Los límites de leer retrospectivamente los primeros textos con categorías posteriores.'],
         questions: ['¿Qué problema clínico reúne retrospectivamente el término psicosis?', '¿Qué se pierde cuando se presenta la historia como sucesión de definiciones ya cerradas?']
       }
     ],
     closeTitle: 'El mecanismo necesita ahora un caso',
-    close: 'La formulación de 1896 abre la pregunta, pero todavía no alcanza. Schreber ofrecerá a Freud un material excepcional para articular narcisismo, retiro libidinal, proyección y reconstrucción delirante.'
+    close: 'La formulación de 1896 abre la pregunta y el narcisismo le da un instrumento, pero todavía falta el material. Esta es la última clase que entra en el segundo parcial: Schreber llega después, en el encuentro de cierre, para articular retiro libidinal, proyección y reconstrucción delirante sin una evaluación encima.'
   },
-  10: {
-    meta: 'Schreber, retiro libidinal y delirio como trabajo de reconstrucción.',
-    thesis: 'El delirio no se lee sólo como producto patológico: Freud lo piensa también como el trabajo con el que un mundo vuelve a volverse habitable.',
+  9: {
+    meta: 'Schreber, delirio como reconstrucción y formulación integradora de neurosis y psicosis.',
+    thesis: 'El delirio no se lee sólo como producto patológico: Freud lo piensa también como el trabajo con el que un mundo vuelve a volverse habitable, y esa tesis obliga a reformular la oposición entre neurosis y psicosis.',
     lead: [
-      'La clase anterior reconstruimos la entrada freudiana a la paranoia. Ahora el argumento se concentra en Schreber: un caso que Freud no trató personalmente y que construye a partir de unas memorias publicadas.',
-      'Esta condición obliga a separar tres voces: lo que Schreber escribe, la selección que Freud realiza y la teoría con que intenta explicar la transformación del mundo. El caso no autoriza a confundir testimonio, interpretación y diagnóstico.',
-      'Narcisismo y restitución libidinal permiten comprender por qué Freud ubica el proceso patológico antes del delirio manifiesto. El delirio aparece entonces como un intento de reconstrucción. La distinción entre fenómeno y estructura quedará para la clase siguiente, con el capítulo VI completo del Seminario 3.'
+      'Esta clase se dicta después del segundo parcial y no agrega contenidos evaluables. Cumple dos funciones a la vez. Primero concentra el argumento en Schreber: un caso que Freud no trató personalmente y que construye a partir de unas memorias publicadas.',
+      'Esa condición obliga a separar tres voces: lo que Schreber escribe, la selección que Freud realiza y la teoría con que intenta explicar la transformación del mundo. El caso no autoriza a confundir testimonio, interpretación y diagnóstico.',
+      'La segunda mitad cierra el recorrido completo. Si el delirio puede recomponer relaciones y significaciones, la oposición simple entre neurosis “con realidad” y psicosis “sin realidad” ya no alcanza: los dos textos de Freud de 1924 corrigen esa lectura y permiten formular una hipótesis que articule fenómeno, mecanismo, curso, contexto y recursos. Leerlos sin la presión de una evaluación encima es justamente el punto.'
     ],
     objectives: [
       '¿Qué problemas metodológicos plantea construir un caso a partir de una autobiografía?',
       '¿Cómo articula Freud retiro libidinal, proyección y restitución?',
       '¿Por qué el delirio puede pensarse como intento de curación?',
-      '¿Qué diferencia hay entre el proceso postulado, sus manifestaciones y la elaboración delirante?'
+      '¿En qué sentido también la neurosis evita un fragmento de realidad?',
+      '¿Cómo formular una hipótesis clínica sin convertirla en una etiqueta identitaria?'
     ],
     order: [
       '<strong>Entrá por Schreber.</strong> Conservá la textura del testimonio antes de convertirlo en ejemplo teórico.',
       '<strong>Seguí la construcción de Freud.</strong> Separá proceso, manifestación y tentativa de restitución.',
-      '<strong>Usá narcisismo como articulador.</strong> Precisá qué ocurre con la investidura del mundo y de los otros.',
-      '<strong>Cerrá comparando las tres voces.</strong> Separá lo que Schreber testimonia, lo que Freud recorta y el mecanismo que propone para explicarlo.'
+      '<strong>Leé juntos los textos de 1924.</strong> El segundo corrige cualquier oposición demasiado rígida producida por el primero.',
+      '<strong>Volvé al comienzo del curso.</strong> Revisá qué cambió en tu modo de describir, explicar y formular una hipótesis.'
     ],
     readings: [
       {
@@ -273,16 +233,6 @@ const classContent = {
         questions: ['¿Dónde ubica Freud el proceso patológico propiamente dicho?', '¿Qué reconstruye el delirio y con qué materiales?']
       },
       {
-        id: 'freud-1914-narcisismo',
-        title: 'Introducción del narcisismo',
-        cite: 'Freud, S. (1914). <em>Obras completas</em>, tomo XIV. Amorrortu.',
-        pages: 'Apartados I y II · pp. 71–88',
-        file: 'Freud_1914_Introduccion_del_narcisismo.pdf',
-        page: 8,
-        look: ['La diferencia y los pasajes entre libido yoica y libido de objeto.', 'La referencia a parafrenias y el retiro de la libido respecto de los objetos.', 'Los límites de imaginar la economía libidinal como una cantidad que simplemente cambia de lugar.'],
-        questions: ['¿Qué problema clínico lleva a Freud a introducir el narcisismo?', '¿Cómo ayuda este concepto a releer la secuencia de Schreber?']
-      },
-      {
         id: 'schreber-memorias-i',
         title: 'Memorias de un enfermo nervioso',
         cite: 'Schreber, D. P. (1903/1979). Lohlé.',
@@ -291,69 +241,24 @@ const classContent = {
         page: 13,
         look: ['El vocabulario propio con el que Schreber describe nervios, rayos, voces y transformaciones.', 'Los cambios en la relación con Dios y con el mundo.', 'La distancia entre la experiencia escrita y las categorías con que luego será leída.'],
         questions: ['Elegí una expresión de Schreber y explicá qué se pierde si se la reemplaza enseguida por una categoría.', '¿Qué indicios permiten reconocer un trabajo de reorganización?']
-      }
-    ],
-    closeTitle: 'La reconstrucción delirante modifica la idea de pérdida',
-    close: 'Si el delirio puede recomponer relaciones y significaciones, la oposición simple entre neurosis “con realidad” y psicosis “sin realidad” ya no alcanza. Después del segundo parcial, la última clase retomará esa diferencia para formularla de manera más precisa.'
-  },
-  11: {
-    meta: 'Fenómeno psicótico, realidad y formulación clínica.',
-    thesis: 'La certeza y el modo de concernimiento permiten leer la forma del fenómeno psicótico antes de explicar su contenido; esa lectura debe articularse con mecanismo, curso y recursos de estabilización.',
-    lead: [
-      'Esta clase se dicta después del segundo parcial y no agrega contenidos evaluables. Su función es volver sobre todo el recorrido con una pregunta más precisa: qué separa y qué reúne a neurosis y psicosis.',
-      'El capítulo VI completo del Seminario 3 permite trabajar sin recortes mínimos la certeza, el concernimiento, la Verwerfung y el retorno en lo real. El fenómeno elemental se distingue así de la explicación delirante que puede organizarse después.',
-      'Los dos textos de Freud de 1924 vuelven a situar conflicto y realidad; la selección de De Battista aporta un contraste clínico e histórico. El cierre articula fenómeno, mecanismo, curso, contexto y recursos sin convertirlos en una etiqueta.'
-    ],
-    objectives: [
-      '¿Qué vuelve no dialectizable un fenómeno y cómo se reconoce la certeza de alusión?',
-      '¿Qué significa que algo concierna al sujeto aun cuando no pueda atribuirle una intención?',
-      '¿Cómo articula Lacan Verwerfung y retorno en lo real?',
-      '¿Qué agrega la comparación con los dos textos freudianos de 1924?',
-      '¿Cómo orientar una entrevista sin discutir la certeza ni precipitar una atribución diagnóstica?'
-    ],
-    order: [
-      '<strong>Empezá por el capítulo VI completo de Lacan.</strong> Seguí el argumento que enlaza forma, certeza y mecanismo sin aislar dos páginas de cada apartado.',
-      '<strong>Leé juntos los textos de Freud de 1924.</strong> El segundo corrige cualquier oposición demasiado rígida producida por el primero.',
-      '<strong>Usá De Battista como apoyo clínico.</strong> Contrastá la lógica estructural con historia, variedades y curso.',
-      '<strong>Volvé al comienzo del curso.</strong> Revisá qué cambió en tu modo de describir, explicar y formular una hipótesis.'
-    ],
-    readings: [
+      },
+      {
+        id: 'freud-1924-realidad',
+        title: 'Neurosis y psicosis · La pérdida de realidad en la neurosis y la psicosis',
+        cite: 'Freud, S. (1924). <em>Obras completas</em>, tomo XIX. Amorrortu.',
+        pages: 'Dos textos breves y consecutivos, en un solo archivo',
+        file: 'Freud_1924_Neurosis_y_psicosis_y_La_perdida_de_realidad.pdf',
+        look: ['La fórmula inicial que diferencia conflicto neurótico y conflicto psicótico, y el carácter programático de esa distinción.', 'La corrección que introduce el segundo texto: también la neurosis evita un fragmento de realidad.', 'Los dos tiempos de cada proceso y los trabajos de sustitución, desmentida y reconstrucción.'],
+        questions: ['¿Entre qué términos sitúa Freud el conflicto en cada caso?', '¿Qué se pierde si uno se queda con la fórmula del primer texto sin leer el segundo?']
+      },
       {
         id: 'lacan-s3-fenomeno',
         title: 'El fenómeno psicótico y su mecanismo',
         cite: 'Lacan, J. (1955-1956/1984). <em>El Seminario, libro 3: Las psicosis</em>. Capítulo VI. Paidós.',
-        pages: 'Capítulo completo · pp. 107–128',
+        pages: 'Capítulo completo · pp. 107–128 · apoyo',
         file: 'Lacan_1955-1956_Seminario_3_Cap_VI_El_fenomeno_psicotico_y_su_mecanismo.pdf',
         look: ['El carácter no dialectizable del fenómeno y la certeza de que algo concierne al sujeto.', 'La Verwerfung y el retorno en lo real como articulación del mecanismo.', 'La diferencia entre el fenómeno elemental y la elaboración delirante que procura reconstruir un orden.'],
         questions: ['¿Qué distingue una certeza de alusión de una interpretación que todavía puede ponerse en duda?', '¿Qué conviene indagar en una entrevista antes de completar el sentido de un fenómeno enigmático?']
-      },
-      {
-        id: 'freud-1924-neurosis-psicosis',
-        title: 'Neurosis y psicosis',
-        cite: 'Freud, S. (1924). <em>Obras completas</em>, tomo XIX. Amorrortu.',
-        pages: 'Texto completo',
-        file: 'Freud_1924_Neurosis_y_psicosis.pdf',
-        look: ['La fórmula inicial que diferencia conflicto neurótico y conflicto psicótico.', 'El papel del yo frente a las exigencias del ello, el superyó y la realidad.', 'El carácter esquemático y programático de la distinción.'],
-        questions: ['¿Entre qué términos sitúa Freud el conflicto en cada caso?', '¿Qué preguntas deja abiertas esta primera formulación?']
-      },
-      {
-        id: 'freud-1924-perdida-realidad',
-        title: 'La pérdida de realidad en la neurosis y la psicosis',
-        cite: 'Freud, S. (1924). <em>Obras completas</em>, tomo XIX. Amorrortu.',
-        pages: 'Texto completo',
-        file: 'Freud_1924_La_perdida_de_realidad_en_la_neurosis_y_la_psicosis.pdf',
-        look: ['La corrección de la idea de que sólo la psicosis pierde realidad.', 'Los dos tiempos que Freud distingue en neurosis y psicosis.', 'Los diferentes trabajos de sustitución, desmentida y reconstrucción.'],
-        questions: ['¿En qué sentido también la neurosis evita un fragmento de realidad?', '¿Qué diferencia aparece en el segundo tiempo de cada proceso?']
-      },
-      {
-        id: 'debattista-paranoias',
-        title: 'Paranoias: vigencia clínica, variedades y críticas',
-        cite: 'De Battista, J. (coord.) (2019). <em>Aportes interdisciplinarios en psicopatología</em>, tomo I. Parte IV, introducción y capítulo 15. EDULP.',
-        pages: 'Selección de apoyo',
-        file: 'De_Battista_2019_Paranoia_esquizofrenia_y_cuadros_del_humor_EDULP.pdf',
-        tier: 'A',
-        look: ['La construcción histórica de la paranoia y su dilución en las clasificaciones actuales.', 'El valor del curso, la sistematización delirante y la conservación de capacidades.', 'La distancia entre una categoría descriptiva y una formulación clínica integral.'],
-        questions: ['¿Qué dimensiones hacen falta además del síntoma aislado para formular un caso?', '¿Cómo evitar que una hipótesis diagnóstica se convierta en una etiqueta identitaria?']
       }
     ],
     closeTitle: 'El recorrido termina con una forma de preguntar',
@@ -363,34 +268,32 @@ const classContent = {
 
 const unitContent = {
   3: {
-    dates: 'Del 28 de septiembre al 19 de octubre',
+    dates: 'Del 5 al 19 de octubre',
     question: '¿Cómo puede una formación limitar la angustia y, al mismo tiempo, restringir la vida?',
     intro: [
       'La Unidad 2 mostró cómo se forma un síntoma y cómo ese mecanismo se vuelve legible en Dora. Ahora aplicamos el método a dos organizaciones neuróticas diferentes: obsesión y fobia.',
       'El recorrido no busca asociar cada diagnóstico con una lista de conductas. Sigue operaciones: aislamiento, desplazamiento, postergación, angustia señal, elección de un objeto fóbico y construcción de evitaciones.',
-      'Entre el Hombre de las Ratas y Juanito, Freud reformula su teoría. Por eso la clase intermedia no es un apéndice: explica qué cambia cuando el yo, el superyó y la angustia adquieren un lugar nuevo.'
+      'Las reformulaciones que Freud hace en los años veinte ya no ocupan una clase propia. Se leen dentro de cada caso: los capítulos de <em>Inhibición, síntoma y angustia</em> sobre la obsesión acompañan al Hombre de las Ratas, y los que tratan la fobia acompañan a Juanito.'
     ],
     moves: [
-      ['¿Qué hace la duda?', 'El Hombre de las Ratas permite seguir cómo pensamiento, culpa y ambivalencia aplazan una decisión y conservan abierto el conflicto.'],
-      ['¿Qué cambia en los años veinte?', 'Angustia señal, superyó y necesidad de castigo reorganizan la explicación de la defensa y de la persistencia del síntoma.'],
+      ['¿Qué hace la duda?', 'El Hombre de las Ratas permite seguir cómo pensamiento, culpa y ambivalencia aplazan una decisión y conservan abierto el conflicto. Los capítulos de 1926 explican por qué esa solución se vuelve tan cara.'],
       ['¿Qué resuelve una fobia?', 'Juanito muestra cómo un objeto exterior puede localizar una angustia y transformar un peligro indeterminado en recorridos evitables.']
     ],
-    total: 'Once textos en tres clases. Cada encuentro tiene una lectura que organiza el problema y fuentes que permiten contrastar caso, mecanismo e historia.'
+    total: 'Ocho textos en dos clases. Cada encuentro tiene una lectura que organiza el problema, articulaciones obligatorias y materiales de apoyo para ir más lejos.'
   },
   4: {
-    dates: 'Del 26 de octubre al 16 de noviembre',
+    dates: 'Del 26 de octubre al 9 de noviembre',
     question: '¿Qué ocurre cuando el delirio deja de pensarse sólo como pérdida y empieza a leerse también como reconstrucción?',
     intro: [
       'La última unidad cambia el mecanismo y conserva el método. Partimos de la paranoia de la psiquiatría clásica, seguimos la primera explicación freudiana de las neuropsicosis de defensa y llegamos al caso Schreber.',
       'El punto decisivo es separar el proceso patológico de los esfuerzos posteriores por recomponer un mundo. Así, el delirio puede estudiarse por su forma, su certeza y su función, no sólo por la rareza de su contenido.',
-      'La clase final, posterior al segundo parcial, incorpora el capítulo VI completo del Seminario 3 y vuelve sobre los textos freudianos de 1924. El objetivo es articular fenómeno, mecanismo y formulación clínica sin fragmentar el argumento lacaniano.'
+      'La clase final se dicta después del segundo parcial y antes del recuperatorio. Vuelve sobre Schreber y sobre los textos freudianos de 1924 para articular fenómeno, mecanismo y formulación clínica sin convertirlos en una etiqueta, y sin agregar contenidos evaluables.'
     ],
     moves: [
-      ['¿Cómo se construye la categoría?', 'Kraepelin, Freud y Bercherie permiten distinguir descripción, curso histórico y mecanismo sin hacerlos equivalentes.'],
-      ['¿Qué trabajo realiza el delirio?', 'Schreber y Freud articulan retiro libidinal, proyección y restitución; Mazzuca introduce la diferencia entre fenómeno y estructura.'],
-      ['¿Cómo formular sin etiquetar?', 'Lacan, los textos de Freud de 1924 y De Battista reúnen certeza, mecanismo, evolución, recursos y contexto en una hipótesis revisable.']
+      ['¿Cómo se construye la categoría?', 'Kraepelin, Freud y Bercherie permiten distinguir descripción, curso histórico y mecanismo sin hacerlos equivalentes; el narcisismo prepara el paso siguiente.'],
+      ['¿Qué trabajo realiza el delirio y cómo formularlo?', 'Schreber y Freud articulan retiro libidinal, proyección y restitución; los textos de 1924 reúnen certeza, mecanismo, evolución, recursos y contexto en una hipótesis revisable.']
     ],
-    total: 'Once textos en tres clases. La Clase 11 integra el recorrido después del segundo parcial y no incorpora contenidos evaluables.'
+    total: 'Ocho textos en dos clases. La Clase 8 es la última que entra en el segundo parcial; la Clase 9 cierra el recorrido y no se evalúa.'
   }
 };
 
@@ -430,8 +333,8 @@ function classPage(number) {
     : `<a class="btn btn--primary" href="../index.html#cronograma">Volver al cronograma <span data-icon="arrowRight" data-size="18"></span></a>`;
   const special = number === 6
     ? `<div class="notice" style="margin-bottom: var(--space-8)"><span class="notice__icon" data-icon="info" data-size="22"></span><div><h3 class="notice__title">Comenzamos después del primer parcial</h3><p>La devolución general ocupa el inicio del encuentro. El plan distingue la lectura central de los textos que funcionan como contraste y reformulación.</p></div></div>`
-    : number === 11
-      ? `<div class="notice" style="margin-bottom: var(--space-8)"><span class="notice__icon" data-icon="info" data-size="22"></span><div><h3 class="notice__title">Clase de integración · No evaluable</h3><p>Se dicta después del segundo parcial. Los textos permiten ordenar el recorrido y no agregan contenidos a esa evaluación.</p></div></div>`
+    : number === 9
+      ? `<div class="notice" style="margin-bottom: var(--space-8)"><span class="notice__icon" data-icon="info" data-size="22"></span><div><h3 class="notice__title">Clase de cierre · No evaluable</h3><p>Se dicta después del segundo parcial y antes del recuperatorio. Los textos permiten ordenar el recorrido completo y no agregan contenidos a esa evaluación.</p></div></div>`
       : '';
   return `<!DOCTYPE html>
 <html lang="es">
@@ -502,21 +405,21 @@ function unitPage(number) {
   -->
   <a class="skip-link" href="#contenido">Saltar al contenido</a><div data-ui="nav" data-active="clases" data-depth="../"></div>
   <main class="container" id="contenido">
-    <section class="hero settle"><a class="back-link" href="../index.html"><span data-icon="arrowLeft" data-size="18"></span> Volver al inicio</a><div class="hero__grid"><div><h1 class="hero__title">${unit.titulo}</h1><div class="prose"><p class="hero__lead" style="margin-bottom: var(--space-6)">Unidad ${number} · Clases ${classes[0].numero} a ${classes.at(-1).numero} · ${content.dates}</p>${content.intro.map((p) => `<p>${p}</p>`).join('')}</div><div class="hero__actions mt-8"><a class="btn btn--primary btn--lg" href="clase-${String(first.numero).padStart(2, '0')}.html">Empezar por la Clase ${first.numero} <span data-icon="arrowRight" data-size="18"></span></a><a class="btn btn--secondary btn--lg" href="#ruta">Ver las tres clases</a></div></div><aside class="pull"><p class="pull__quote">${content.question}</p><p class="pull__source">Pregunta organizadora de la unidad</p></aside></div></section>
-    <section class="section"><div class="section-head"><h2 class="section-head__title">Tres movimientos, una misma pregunta clínica</h2></div><ol class="moves moves--three">${content.moves.map((move, index) => `<li class="move"><h3 class="move__q">${move[0]}</h3><p class="move__a">${move[1]}</p><p class="move__where">Clase ${classes[index].numero} · ${classes[index].fecha.dia} de ${monthNames[classes[index].fecha.mes - 1]}</p></li>`).join('')}</ol></section>
+    <section class="hero settle"><a class="back-link" href="../index.html"><span data-icon="arrowLeft" data-size="18"></span> Volver al inicio</a><div class="hero__grid"><div><h1 class="hero__title">${unit.titulo}</h1><div class="prose"><p class="hero__lead" style="margin-bottom: var(--space-6)">Unidad ${number} · Clases ${classes[0].numero} a ${classes.at(-1).numero} · ${content.dates}</p>${content.intro.map((p) => `<p>${p}</p>`).join('')}</div><div class="hero__actions mt-8"><a class="btn btn--primary btn--lg" href="clase-${String(first.numero).padStart(2, '0')}.html">Empezar por la Clase ${first.numero} <span data-icon="arrowRight" data-size="18"></span></a><a class="btn btn--secondary btn--lg" href="#ruta">Ver las ${classes.length === 3 ? 'tres' : 'dos'} clases</a></div></div><aside class="pull"><p class="pull__quote">${content.question}</p><p class="pull__source">Pregunta organizadora de la unidad</p></aside></div></section>
+    <section class="section"><div class="section-head"><h2 class="section-head__title">${content.moves.length === 3 ? 'Tres' : 'Dos'} movimientos, una misma pregunta clínica</h2></div><ol class="moves moves--${content.moves.length === 3 ? 'three' : 'two'}">${content.moves.map((move, index) => `<li class="move"><h3 class="move__q">${move[0]}</h3><p class="move__a">${move[1]}</p><p class="move__where">Clase ${classes[index].numero} · ${classes[index].fecha.dia} de ${monthNames[classes[index].fecha.mes - 1]}</p></li>`).join('')}</ol></section>
     <section class="section" id="ruta"><div class="section-head"><h2 class="section-head__title">Las clases de esta unidad</h2><p class="section-head__subtitle">Cada página conserva la misma estructura: apertura del problema, objetivos, orden de lectura, guía por texto y cierre.</p></div><div class="roadmap">${classes.map((item) => `<a class="stop" href="clase-${String(item.numero).padStart(2, '0')}.html"><div class="stop__date"><div class="stop__day">${item.fecha.dia}</div><div class="stop__month">${monthNames[item.fecha.mes - 1].slice(0, 3)}</div></div><div><h3 class="stop__title">Clase ${item.numero} · ${item.titulo}</h3><p class="stop__desc">${item.desc}</p></div><span class="stop__meta"><span data-icon="arrowRight" data-size="18"></span></span></a>`).join('')}</div></section>
     <section class="section"><div class="section-head"><h2 class="section-head__title">Toda la bibliografía de la unidad</h2><p class="section-head__subtitle">${content.total}</p></div><div class="biblio-unit">${bibliography}</div></section>
     <nav class="pager" aria-label="Navegación entre páginas"><a class="btn btn--ghost" href="unidad-${String(previousUnit.numero).padStart(2, '0')}.html"><span data-icon="arrowLeft" data-size="18"></span> Unidad ${previousUnit.numero}</a>${nextUnit ? `<a class="btn btn--primary" href="unidad-${String(nextUnit.numero).padStart(2, '0')}.html">Unidad ${nextUnit.numero} · ${nextUnit.titulo} <span data-icon="arrowRight" data-size="18"></span></a>` : `<a class="btn btn--primary" href="clase-${String(first.numero).padStart(2, '0')}.html">Empezar la Unidad ${number} <span data-icon="arrowRight" data-size="18"></span></a>`}</nav>
     <footer class="site-footer"><span><strong class="text-strong">Psicopatología I</strong> · UFLO · <span id="year"></span></span><span>Unidad ${number} · Clases ${classes[0].numero} a ${classes.at(-1).numero}</span></footer>
   </main>
   <style>
-    .moves{list-style:none;padding:0;margin:0;counter-reset:mv;display:grid;gap:var(--space-10)}.move{position:relative;padding-left:clamp(var(--space-8),7vw,var(--space-16));padding-top:var(--space-6);border-top:1px solid var(--border)}.move::before{counter-increment:mv;content:counter(mv,decimal-leading-zero);position:absolute;left:0;top:var(--space-6);font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;color:var(--accent-text)}.move__q{font-size:var(--text-2xl);margin-bottom:var(--space-4);max-width:26ch}.move__a{color:var(--text-muted);max-width:var(--measure)}.move__where{margin-top:var(--space-4);font-size:var(--text-xs);font-weight:700;letter-spacing:var(--tracking-wide);text-transform:uppercase;color:var(--text-subtle)}.biblio-unit{display:grid;gap:var(--space-10)}.biblio-group__title{font-size:var(--text-sm);font-weight:700;color:var(--text-strong);padding-bottom:var(--space-3);margin-bottom:var(--space-4);border-bottom:1px solid var(--border)}.biblio-list{display:grid;gap:var(--space-3);list-style:none;padding:0}.biblio-list li{display:grid;grid-template-columns:26px minmax(0,1fr);gap:var(--space-4);align-items:start;font-size:var(--text-sm);color:var(--text)}.biblio-list b{display:grid;place-items:center;width:26px;height:26px;border-radius:var(--radius-sm);font-size:var(--text-xs);font-weight:800;background:var(--surface-hover);color:var(--text-muted)}.biblio-list li[data-tier="C"] b{background:var(--accent-fill);color:var(--on-accent-fill)}@media(min-width:900px){.moves--three{grid-template-columns:repeat(3,minmax(0,1fr))}.moves--three .move{padding-top:var(--space-16);padding-left:0}.moves--three .move::before{top:var(--space-6)}.biblio-unit{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    .moves{list-style:none;padding:0;margin:0;counter-reset:mv;display:grid;gap:var(--space-10)}.move{position:relative;padding-left:clamp(var(--space-8),7vw,var(--space-16));padding-top:var(--space-6);border-top:1px solid var(--border)}.move::before{counter-increment:mv;content:counter(mv,decimal-leading-zero);position:absolute;left:0;top:var(--space-6);font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;color:var(--accent-text)}.move__q{font-size:var(--text-2xl);margin-bottom:var(--space-4);max-width:26ch}.move__a{color:var(--text-muted);max-width:var(--measure)}.move__where{margin-top:var(--space-4);font-size:var(--text-xs);font-weight:700;letter-spacing:var(--tracking-wide);text-transform:uppercase;color:var(--text-subtle)}.biblio-unit{display:grid;gap:var(--space-10)}.biblio-group__title{font-size:var(--text-sm);font-weight:700;color:var(--text-strong);padding-bottom:var(--space-3);margin-bottom:var(--space-4);border-bottom:1px solid var(--border)}.biblio-list{display:grid;gap:var(--space-3);list-style:none;padding:0}.biblio-list li{display:grid;grid-template-columns:26px minmax(0,1fr);gap:var(--space-4);align-items:start;font-size:var(--text-sm);color:var(--text)}.biblio-list b{display:grid;place-items:center;width:26px;height:26px;border-radius:var(--radius-sm);font-size:var(--text-xs);font-weight:800;background:var(--surface-hover);color:var(--text-muted)}.biblio-list li[data-tier="C"] b{background:var(--accent-fill);color:var(--on-accent-fill)}@media(min-width:900px){.moves--three,.moves--two{grid-template-columns:repeat(auto-fit,minmax(0,1fr))}.moves--three .move,.moves--two .move{padding-top:var(--space-16);padding-left:0}.moves--three .move::before,.moves--two .move::before{top:var(--space-6)}.biblio-unit{grid-template-columns:repeat(3,minmax(0,1fr))}}
   </style>
   <script src="../assets/icons.js?v=4"></script><script src="../assets/data.js?v=9"></script><script src="../assets/ui.js?v=8"></script>
 </body></html>`;
 }
 
-for (const number of [6, 7, 8, 9, 10, 11]) {
+for (const number of [6, 7, 8, 9]) {
   const content = classContent[number];
   const scheduled = classByNumber(number);
   const guideIds = content?.readings.map((reading) => reading.id) || [];
@@ -533,4 +436,4 @@ for (const number of [3, 4]) {
   fs.writeFileSync(path.join(unitsDir, `unidad-${String(number).padStart(2, '0')}.html`), unitPage(number), 'utf8');
 }
 
-console.log('Generadas: clases 6–11 y unidades 3–4.');
+console.log('Generadas: clases 6–9 y unidades 3–4.');

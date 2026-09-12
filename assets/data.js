@@ -60,19 +60,19 @@ window.CAMPUS_DATA = (function () {
       numero: 3,
       titulo: 'Obsesión y fobia',
       resumen: 'El método de lectura aprendido con Dora, aplicado dos veces más: al Hombre ' +
-               'de las Ratas y a Juanito, con las reformulaciones que Freud hace en los ' +
-               'años veinte en el medio.',
+               'de las Ratas y a Juanito. Las reformulaciones de los años veinte ya no ' +
+               'ocupan una clase propia: se leen dentro de cada caso.',
       href: 'units/unidad-03.html',
-      clases: ['c06', 'c07', 'c08'],
+      clases: ['c06', 'c07'],
       estado: 'pendiente'
     },
     {
       numero: 4,
       titulo: 'Las psicosis y el cierre del recorrido',
-      resumen: 'De la paranoia de la psiquiatría clásica al Schreber de Freud, y el intento ' +
-               'final de formular juntas las dos series: neurosis y psicosis.',
+      resumen: 'De la paranoia de la psiquiatría clásica al Schreber de Freud. La clase final ' +
+               'formula juntas las dos series, neurosis y psicosis, y entra en el parcial.',
       href: 'units/unidad-04.html',
-      clases: ['c09', 'c10', 'c11'],
+      clases: ['c08', 'c09'],
       estado: 'pendiente'
     }
   ];
@@ -132,7 +132,7 @@ window.CAMPUS_DATA = (function () {
       ]
     },
     {
-      id: 'c04', tipo: 'clase', unidad: 2, numero: 4, estado: 'pendiente',
+      id: 'c04', tipo: 'clase', unidad: 2, numero: 4, estado: 'listo',
       fecha: { año: 2026, mes: 9, dia: 7 },
       titulo: 'Síntoma, defensa y etiología',
       desc: 'Los caminos de la formación de síntoma. Represión y etiología sexual.',
@@ -152,6 +152,7 @@ window.CAMPUS_DATA = (function () {
       titulo: 'Histeria y Dora: síntoma, fantasía y transferencia',
       desc: 'El primer historial. Por qué el caso fracasa y qué inaugura ese fracaso.',
       href: 'units/clase-05.html',
+      nota: 'Última clase antes del primer parcial. Cierra las unidades 1 y 2.',
       biblio: [
         { tier: 'C', cita: 'Freud, S. (1905 [1901]). Fragmento de análisis de un caso de histeria (Dora). Selección clínica y Epílogo. <em>Obras completas</em>, tomo VII. Amorrortu.' },
         { tier: 'F', cita: 'Charcot, J.-M. (1984). Acerca de la histeroepilepsia. En J. Saurí (comp.), <em>Las histerias</em>. Nueva Visión.' },
@@ -159,8 +160,15 @@ window.CAMPUS_DATA = (function () {
       ]
     },
     {
-      id: 'p01', tipo: 'parcial',
+      id: 'h04', tipo: 'feriado',
       fecha: { año: 2026, mes: 9, dia: 21 },
+      titulo: 'Día del Estudiante · Sin clase',
+      desc: 'Sin actividad académica. La semana queda como repaso autónomo para el ' +
+            'primer parcial, que se toma el lunes siguiente.'
+    },
+    {
+      id: 'p01', tipo: 'parcial',
+      fecha: { año: 2026, mes: 9, dia: 28 },
       titulo: 'Primer parcial',
       desc: 'Contenidos de las clases 1 a 5, es decir las unidades 1 y 2. En el horario ' +
             'de la cursada, de 8:30 a 10:30.',
@@ -168,28 +176,17 @@ window.CAMPUS_DATA = (function () {
     },
     {
       id: 'c06', tipo: 'clase', unidad: 3, numero: 6, estado: 'pendiente',
-      fecha: { año: 2026, mes: 9, dia: 28 },
-      titulo: 'Neurosis obsesiva y Hombre de las Ratas',
-      desc: 'La duda, el aislamiento y el pensamiento como escenario del conflicto.',
+      fecha: { año: 2026, mes: 10, dia: 5 },
+      titulo: 'Neurosis obsesiva: Hombre de las Ratas y los años veinte',
+      desc: 'La duda, el aislamiento y el pensamiento como escenario del conflicto, y la ' +
+            'reescritura freudiana del superyó y la culpa.',
       href: 'units/clase-06.html',
       nota: 'Devolución general del primer parcial al comienzo del encuentro.',
       biblio: [
         { id: 'freud-1909-ratas', tier: 'C', cita: 'Freud, S. (1909). A propósito de un caso de neurosis obsesiva (Hombre de las Ratas). Secciones F y G, pp. 154-172. <em>Obras completas</em>, tomo X. Amorrortu.' },
         { id: 'freud-1896-obsesion', tier: 'F', cita: 'Freud, S. (1896). Nuevas puntualizaciones sobre las neuropsicosis de defensa. Apartado sobre la neurosis obsesiva. <em>Obras completas</em>, tomo III. Amorrortu.' },
-        { id: 'legrand-duda', tier: 'F', cita: 'Legrand du Saulle, H. (1875). <em>La folie du doute (avec délire du toucher)</em>. V. Adrien Delahaye. Texto original en francés.' },
-        { id: 'lacan-s5-obsesivo', tier: 'F', cita: 'Lacan, J. (1957-1958/1999). <em>El Seminario, libro 5</em>. Capítulo XXIII: El obsesivo y su deseo. Paidós.' }
-      ]
-    },
-    {
-      id: 'c07', tipo: 'clase', unidad: 3, numero: 7, estado: 'pendiente',
-      fecha: { año: 2026, mes: 10, dia: 5 },
-      titulo: 'Neurosis obsesiva: las reformulaciones de los años veinte',
-      desc: 'Angustia señal, superyó y culpa. Freud reescribe lo que había dicho.',
-      href: 'units/clase-07.html',
-      biblio: [
-        { id: 'freud-1926-isa-v-vi', tier: 'C', cita: 'Freud, S. (1926). <em>Inhibición, síntoma y angustia</em>. Capítulos V y VI. <em>Obras completas</em>, tomo XX. Amorrortu.' },
-        { id: 'freud-1923-vasallajes', tier: 'F', cita: 'Freud, S. (1923). El yo y el ello. Capítulo V: Los vasallajes del yo. <em>Obras completas</em>, tomo XIX. Amorrortu.' },
-        { id: 'freud-1924-masoquismo', tier: 'F', cita: 'Freud, S. (1924). El problema económico del masoquismo. <em>Obras completas</em>, tomo XIX. Amorrortu.' }
+        { id: 'freud-1926-isa-v-vi', tier: 'F', cita: 'Freud, S. (1926). <em>Inhibición, síntoma y angustia</em>. Capítulos V y VI. <em>Obras completas</em>, tomo XX. Amorrortu.' },
+        { id: 'lacan-s5-obsesivo', tier: 'A', cita: 'Lacan, J. (1957-1958/1999). <em>El Seminario, libro 5</em>. Capítulo XXIII: El obsesivo y su deseo. Paidós.' }
       ]
     },
     {
@@ -200,77 +197,73 @@ window.CAMPUS_DATA = (function () {
             'IV Jornadas de Salud Mental; no se programa evaluación.'
     },
     {
-      id: 'c08', tipo: 'clase', unidad: 3, numero: 8, estado: 'pendiente',
+      id: 'c07', tipo: 'clase', unidad: 3, numero: 7, estado: 'pendiente',
       fecha: { año: 2026, mes: 10, dia: 19 },
       titulo: 'Fobia, angustia y caso Juanito',
-      desc: 'La fobia como intento de tratamiento de la angustia.',
-      href: 'units/clase-08.html',
+      desc: 'La fobia como intento de tratamiento de la angustia, y la angustia señal ' +
+            'leída en contrapunto con la obsesión.',
+      href: 'units/clase-07.html',
       biblio: [
         { id: 'freud-1909-juanito', tier: 'C', cita: 'Freud, S. (1909). Análisis de la fobia de un niño de cinco años (Juanito). Sección III: Epicrisis, pp. 84-118. <em>Obras completas</em>, tomo X. Amorrortu.' },
         { id: 'freud-1926-isa-iv-vii-viii', tier: 'F', cita: 'Freud, S. (1926). <em>Inhibición, síntoma y angustia</em>. Capítulos IV, VII y VIII. <em>Obras completas</em>, tomo XX. Amorrortu.' },
-        { id: 'freud-1895-obsesiones-fobias', tier: 'F', cita: 'Freud, S. (1895). Obsesiones y fobias. Texto completo. <em>Obras completas</em>, tomo III. Amorrortu.' },
-        { id: 'lacan-s4-significante-real', tier: 'F', cita: 'Lacan, J. (1956-1957/1994). <em>El Seminario, libro 4</em>. Capítulo XIV: El significante en lo real. Paidós.' }
+        { id: 'lacan-s4-significante-real', tier: 'F', cita: 'Lacan, J. (1956-1957/1994). <em>El Seminario, libro 4</em>. Capítulo XIV: El significante en lo real. Paidós.' },
+        { id: 'freud-1895-obsesiones-fobias', tier: 'A', cita: 'Freud, S. (1895). Obsesiones y fobias. Texto completo. <em>Obras completas</em>, tomo III. Amorrortu.' }
       ]
     },
     {
-      id: 'c09', tipo: 'clase', unidad: 4, numero: 9, estado: 'pendiente',
+      id: 'c08', tipo: 'clase', unidad: 4, numero: 8, estado: 'pendiente',
       fecha: { año: 2026, mes: 10, dia: 26 },
       titulo: 'Construcción histórica y freudiana de la psicosis',
-      desc: 'De la paranoia de Kraepelin a la defensa en las neuropsicosis.',
-      href: 'units/clase-09.html',
+      desc: 'De la paranoia de Kraepelin a la defensa en las neuropsicosis, con el ' +
+            'narcisismo como bisagra hacia Schreber.',
+      href: 'units/clase-08.html',
       biblio: [
         { id: 'freud-1896-psicosis', tier: 'C', cita: 'Freud, S. (1896). Nuevas puntualizaciones sobre las neuropsicosis de defensa. Capítulo III. <em>Obras completas</em>, tomo III. Amorrortu.' },
         { id: 'kraepelin-paranoia', tier: 'F', cita: 'Kraepelin, E. Lección XV: Paranoia. En <em>Introducción a la clínica psiquiátrica</em>.' },
-        { id: 'bercherie-psicosis', tier: 'F', cita: 'Bercherie, P. (1987). La constitución del concepto freudiano de psicosis. Siglo XXI.' }
-      ]
-    },
-    {
-      id: 'c10', tipo: 'clase', unidad: 4, numero: 10, estado: 'pendiente',
-      fecha: { año: 2026, mes: 11, dia: 2 },
-      titulo: 'Schreber, narcisismo y reconstrucción delirante',
-      desc: 'El delirio como intento de curación, no como el núcleo de la enfermedad.',
-      href: 'units/clase-10.html',
-      biblio: [
-        { id: 'freud-1911-schreber', tier: 'C', cita: 'Freud, S. (1911). Puntualizaciones psicoanalíticas sobre un caso de paranoia (Schreber). Sección III: Acerca del mecanismo paranoico, pp. 55-73. <em>Obras completas</em>, tomo XII. Amorrortu.' },
         { id: 'freud-1914-narcisismo', tier: 'F', cita: 'Freud, S. (1914). Introducción del narcisismo. Apartados I y II, pp. 71-88. <em>Obras completas</em>, tomo XIV. Amorrortu.' },
-        { id: 'schreber-memorias-i', tier: 'F', cita: 'Schreber, D. P. (1903/1979). <em>Memorias de un enfermo nervioso</em>. Capítulo I, pp. 63-72. Lohlé.' }
+        { id: 'bercherie-psicosis', tier: 'A', cita: 'Bercherie, P. (1987). La constitución del concepto freudiano de psicosis. Siglo XXI.' }
       ]
     },
     {
       id: 'p02', tipo: 'parcial',
-      fecha: { año: 2026, mes: 11, dia: 9 },
+      fecha: { año: 2026, mes: 11, dia: 2 },
       titulo: 'Segundo parcial',
-      desc: 'Contenidos de las clases 6 a 10, es decir la unidad 3 y la unidad 4 hasta ' +
-            'Schreber. En el horario de la cursada. La Clase 11 queda fuera: es de integración.',
-      alcance: 'Unidades 3 y 4 · Clases 6 a 10'
+      desc: 'Contenidos de las clases 6 a 8: la unidad 3 completa y la construcción ' +
+            'histórica y freudiana de la psicosis. En el horario de la cursada.',
+      alcance: 'Unidades 3 y 4 · Clases 6 a 8'
     },
     {
-      id: 'c11', tipo: 'clase', unidad: 4, numero: 11, estado: 'pendiente',
-      fecha: { año: 2026, mes: 11, dia: 16 },
-      titulo: 'Neurosis, psicosis y formulación integradora',
-      desc: 'Cierre integrador. Qué separa y qué reúne a las dos series.',
-      href: 'units/clase-11.html',
-      nota: 'Clase de integración. Se dicta después del segundo parcial y no se evalúa.',
+      id: 'c09', tipo: 'clase', unidad: 4, numero: 9, estado: 'pendiente',
+      fecha: { año: 2026, mes: 11, dia: 9 },
+      titulo: 'Schreber, delirio y formulación integradora',
+      desc: 'El delirio como intento de curación, y el cierre que formula juntas las dos ' +
+            'series: neurosis y psicosis.',
+      href: 'units/clase-09.html',
+      nota: 'Clase de cierre. Se dicta después del segundo parcial y no se evalúa.',
       biblio: [
-        { id: 'lacan-s3-fenomeno', tier: 'C', cita: 'Lacan, J. (1955-1956/1984). <em>El Seminario, libro 3: Las psicosis</em>. Capítulo VI: El fenómeno psicótico y su mecanismo, pp. 107-128. Paidós.' },
-        { id: 'freud-1924-neurosis-psicosis', tier: 'F', cita: 'Freud, S. (1924). Neurosis y psicosis. Texto completo. <em>Obras completas</em>, tomo XIX. Amorrortu.' },
-        { id: 'freud-1924-perdida-realidad', tier: 'F', cita: 'Freud, S. (1924). La pérdida de realidad en la neurosis y la psicosis. Texto completo. <em>Obras completas</em>, tomo XIX. Amorrortu.' },
-        { id: 'debattista-paranoias', tier: 'A', cita: 'De Battista, J. (coord.) (2019). <em>Aportes interdisciplinarios en psicopatología</em>, tomo I. Parte IV: Paranoias. Introducción y capítulo 15. EDULP.' }
+        { id: 'freud-1911-schreber', tier: 'C', cita: 'Freud, S. (1911). Puntualizaciones psicoanalíticas sobre un caso de paranoia (Schreber). Sección III: Acerca del mecanismo paranoico, pp. 55-73. <em>Obras completas</em>, tomo XII. Amorrortu.' },
+        { id: 'schreber-memorias-i', tier: 'F', cita: 'Schreber, D. P. (1903/1979). <em>Memorias de un enfermo nervioso</em>. Capítulo I, pp. 63-72. Lohlé.' },
+        // Textos gemelos de 1924: se publican consecutivos en el tomo XIX, se reparten
+        // en un solo PDF y cuentan como una sola lectura.
+        { id: 'freud-1924-realidad', tier: 'F', cita: 'Freud, S. (1924). Neurosis y psicosis <em>y</em> La pérdida de realidad en la neurosis y la psicosis. Textos completos. <em>Obras completas</em>, tomo XIX. Amorrortu.' },
+        { id: 'lacan-s3-fenomeno', tier: 'A', cita: 'Lacan, J. (1955-1956/1984). <em>El Seminario, libro 3: Las psicosis</em>. Capítulo VI: El fenómeno psicótico y su mecanismo, pp. 107-128. Paidós.' }
       ]
+    },
+    {
+      id: 'r01', tipo: 'recuperatorio',
+      fecha: { año: 2026, mes: 11, dia: 16 },
+      titulo: 'Recuperatorio único',
+      desc: 'En el horario de la cursada. Permite recuperar cualquiera de los dos parciales ' +
+            'mediante una versión equivalente. No incorpora bibliografía nueva. Es el ' +
+            'último encuentro de la cursada.'
     },
     {
       id: 'h03', tipo: 'feriado',
       fecha: { año: 2026, mes: 11, dia: 23 },
-      titulo: 'Feriado nacional · Sin clase',
+      titulo: 'Feriado nacional · Cierre de la cursada',
       desc: 'Día de la Soberanía Nacional, trasladado del viernes 20 al lunes 23 según la ' +
-            'Ley 27.399.'
-    },
-    {
-      id: 'r01', tipo: 'recuperatorio',
-      fecha: { año: 2026, mes: 11, dia: 30 },
-      titulo: 'Recuperatorio único',
-      desc: 'En el horario de la cursada. Permite recuperar cualquiera de los dos parciales ' +
-            'mediante una versión equivalente. No incorpora bibliografía nueva.'
+            'Ley 27.399. Cae en la última semana del calendario lectivo, del 23 al 27 de ' +
+            'noviembre.'
     },
   ];
 
