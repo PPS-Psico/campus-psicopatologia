@@ -183,6 +183,9 @@ function publicError(error: unknown): { status: number; code: string } {
     identity_mismatch: { status: 403, code: "identity_mismatch" },
     moodle_account_conflict: { status: 409, code: "moodle_account_conflict" },
     invalid_attempt_session: { status: 401, code: "invalid_attempt_session" },
+    pass_already_used: { status: 409, code: "pass_already_used" },
+    pass_expired: { status: 410, code: "pass_expired" },
+    invalid_pass: { status: 400, code: "invalid_pass" },
     exam_not_available: { status: 404, code: "exam_not_available" },
     exam_not_open: { status: 403, code: "exam_not_open" },
     exam_closed: { status: 403, code: "exam_closed" },
@@ -207,14 +210,51 @@ const securedHandler = withSupabase(
       const admin = ctx.supabaseAdmin as unknown as RpcAdmin;
       if (req.method !== "POST") return json({ error: "method_not_allowed" }, 405);
       const body = await readJsonObject(req);
-      await verifySafeExamBrowser(req, body);
       const action = typeof body.action === "string" ? body.action : "";
+
+      // El pase se emite desde el Campus, en el navegador habitual del
+      // estudiante. Exigir Safe Exam Browser acá haría imposible entregarlo:
+      // lo que autoriza esta acción es el contexto de Moodle, igual que antes.
+      if (action === "pass") {
+        if (!isUuid(body.examId)) throw new Error("exam_not_available");
+        const context = parseMoodleContext(body.context);
+        const passToken = randomToken();
+        const { data, error } = await admin.rpc("exam_issue_pass", {
+          p_exam_public_id: body.examId,
+          p_course_id: context.courseId,
+          p_moodle_user_id: context.moodleUserId,
+          p_dni: context.dni,
+          p_first_name: context.firstname,
+          p_last_name: context.lastname,
+          p_token_hash: await sha256(passToken),
+          p_ttl_seconds: 900,
+        });
+        if (error) throw error;
+        return json({ ...(data as Record<string, unknown>), pass: passToken });
+      }
+
+      await verifySafeExamBrowser(req, body);
       const rawAttemptToken = req.headers.get("x-exam-token") ?? "";
 
       if (action === "launch") {
+        const attemptToken = randomToken();
+
+        // Entrada normal: el pase que el Campus emitió viaja en la URL de
+        // inicio que Safe Exam Browser arma con el parámetro del enlace.
+        if (typeof body.pass === "string" && body.pass.length > 0) {
+          if (body.pass.length > 256) throw new Error("invalid_pass");
+          const { data, error } = await admin.rpc("exam_launch_by_pass", {
+            p_token_hash: await sha256(body.pass),
+            p_attempt_token_hash: await sha256(attemptToken),
+          });
+          if (error) throw error;
+          return json({ ...(data as Record<string, unknown>), attemptToken });
+        }
+
+        // Entrada alternativa, para cuando la aplicación corre embebida en el
+        // Campus y puede leer el contexto de Moodle por sí misma.
         if (!isUuid(body.examId)) throw new Error("exam_not_available");
         const context = parseMoodleContext(body.context);
-        const attemptToken = randomToken();
         const { data, error } = await admin.rpc("exam_launch_by_identity", {
           p_exam_public_id: body.examId,
           p_course_id: context.courseId,

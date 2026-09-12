@@ -28,6 +28,21 @@ export async function hashSafeBrowserKey(url, key) {
   ).join("");
 }
 
+// Safe Exam Browser agrega al final de la URL de inicio los parámetros que
+// vengan en el enlace sebs://, y calcula sus hashes sobre esa URL ya completa.
+// Por eso la comparación es por origen y ruta, y el hash se hace sobre la URL
+// real: exigir igualdad exacta rechazaría a todo estudiante que llegue con su
+// pase.
+export function isSameDocument(candidate, expected) {
+  try {
+    const a = new URL(candidate);
+    const b = new URL(expected);
+    return a.origin === b.origin && a.pathname === b.pathname;
+  } catch {
+    return false;
+  }
+}
+
 async function matchesBrowserExamKey(url, receivedHash, browserExamKeys) {
   const expectedHashes = await Promise.all(
     browserExamKeys.map((key) => hashSafeBrowserKey(url, key)),
@@ -74,10 +89,14 @@ export async function verifySafeBrowserRequest({
   const proofPageUrl = typeof proof.pageUrl === "string" ? proof.pageUrl.split("#")[0] : "";
   const javascriptConfigHash = cleanHash(proof.configKey);
   const javascriptBrowserExamHash = cleanHash(proof.browserExamKey);
-  if (proofPageUrl === examUrl && javascriptConfigHash && javascriptBrowserExamHash) {
-    const expectedConfigHash = await hashSafeBrowserKey(examUrl, normalizedConfigKey);
+  if (
+    isSameDocument(proofPageUrl, examUrl)
+    && javascriptConfigHash
+    && javascriptBrowserExamHash
+  ) {
+    const expectedConfigHash = await hashSafeBrowserKey(proofPageUrl, normalizedConfigKey);
     const browserExamMatches = await matchesBrowserExamKey(
-      examUrl,
+      proofPageUrl,
       javascriptBrowserExamHash,
       normalizedExamKeys,
     );

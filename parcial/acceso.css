@@ -1,0 +1,87 @@
+/* ==========================================================================
+   Acceso al parcial · vive dentro de la etiqueta de Moodle
+   Una sola decisión por pantalla, centrada y sin navegación: el estudiante
+   llega acá ya identificado y sólo tiene que abrir el navegador seguro.
+   ========================================================================== */
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+.access {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: var(--space-10) var(--page-gutter);
+}
+
+.access__state {
+  width: 100%;
+  max-width: 46rem;
+  text-align: center;
+}
+
+.access__title {
+  margin: 0 0 var(--space-4);
+  color: var(--text-strong);
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+  text-wrap: balance;
+}
+
+.access__copy {
+  margin: 0 auto var(--space-8);
+  max-width: 52ch;
+  color: var(--text-muted);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+}
+
+.access__exam {
+  margin: 0 auto var(--space-8);
+  padding-top: var(--space-6);
+  max-width: 52ch;
+  border-top: 1px solid var(--border);
+  color: var(--text-strong);
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
+}
+
+.access__exam:empty { display: none; }
+
+.access__cta { min-width: min(24rem, 100%); }
+
+.access__fallback,
+.access__note {
+  margin: var(--space-6) auto 0;
+  max-width: 52ch;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+
+.access__note {
+  margin-top: var(--space-3);
+  color: var(--text-subtle);
+  font-size: var(--text-xs);
+}
+
+.access__fallback a {
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 560px) {
+  .access { padding: var(--space-8) var(--space-4); }
+  .access__title { font-size: var(--text-2xl); }
+  .access__copy { font-size: var(--text-base); }
+  .access__cta { width: 100%; }
+}

@@ -31,6 +31,8 @@ export class ExamApi {
   }
 
   launch(examId, context) { return this.request("launch", { examId, context }); }
+  launchWithPass(pass) { return this.request("launch", { pass }); }
+  issuePass(examId, context) { return this.request("pass", { examId, context }); }
   state(token) { return this.request("state", {}, token); }
   save(token, responses) { return this.request("save", { responses }, token); }
   submit(token) { return this.request("submit", {}, token); }

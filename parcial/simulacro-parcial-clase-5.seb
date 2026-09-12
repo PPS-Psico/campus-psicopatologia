@@ -5,7 +5,7 @@
     <key>originatorVersion</key>
     <string>SEB_Win_2.1.1</string>
     <key>startURL</key>
-    <string>https://campus.uflo.edu.ar/course/view.php?id=12209&amp;section=28</string>
+    <string>https://pps-psico.github.io/campus-psicopatologia/parcial/index.html</string>
     <key>startResource</key>
     <string />
     <key>sebServerURL</key>
@@ -17,7 +17,7 @@
     <key>ignoreExitKeys</key>
     <true />
     <key>hashedQuitPassword</key>
-    <string>5a39935f42a4e1ab905565b2227c4106cea81af8768d7d4b0e13ea6150b3c741</string>
+    <string>045c42e8a7f1075d37e2457ad893a8e9047034b2d05559501f8e447e8fb4d4fd</string>
     <key>exitKey1</key>
     <integer>2</integer>
     <key>exitKey2</key>
@@ -201,7 +201,7 @@
     <key>allowUploads</key>
     <false />
     <key>examKeySalt</key>
-    <data>HttCu2X8sV/AG6/QBGccCaXIcoqJAiikNYCY0dkE6u4=</data>
+    <data>+7zXbomfZtyJPC9ugRgMVlwTJ+i4fhFk8hlWK8gCD3I=</data>
     <key>examSessionClearCookiesOnEnd</key>
     <true />
     <key>examSessionClearCookiesOnStart</key>
@@ -231,7 +231,7 @@
     <key>quitURLRestart</key>
     <false />
     <key>startURLAppendQueryParameter</key>
-    <false />
+    <true />
     <key>additionalResources</key>
     <array />
     <key>monitorProcesses</key>
@@ -1659,26 +1659,6 @@
     <false />
     <key>URLFilterRules</key>
     <array>
-      <dict>
-        <key>active</key>
-        <true />
-        <key>regex</key>
-        <false />
-        <key>action</key>
-        <integer>1</integer>
-        <key>expression</key>
-        <string>https://campus.uflo.edu.ar/course/view.php?id=12209&amp;section=28*</string>
-      </dict>
-      <dict>
-        <key>active</key>
-        <true />
-        <key>regex</key>
-        <false />
-        <key>action</key>
-        <integer>1</integer>
-        <key>expression</key>
-        <string>https://campus.uflo.edu.ar/login/*</string>
-      </dict>
       <dict>
         <key>active</key>
         <true />

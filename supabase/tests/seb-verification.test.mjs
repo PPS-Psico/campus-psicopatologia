@@ -70,3 +70,28 @@ test("permite desactivar el requisito únicamente en el entorno local", async ()
     browserExamKeys: [],
   })), "valid");
 });
+
+test("acepta el pase que Safe Exam Browser agrega a la URL de inicio", async () => {
+  // SEB agrega a la URL de inicio los parámetros del enlace sebs:// y calcula
+  // sus claves sobre esa URL ya completa. El servidor tiene que aceptarla
+  // aunque no sea idéntica a la configurada, o ningún estudiante entraría.
+  const pageUrl = `${examUrl}?pase=Xf3-token`;
+  assert.equal(await verifySafeBrowserRequest(base({
+    javascriptProof: {
+      pageUrl,
+      configKey: await hashSafeBrowserKey(pageUrl, configKey),
+      browserExamKey: await hashSafeBrowserKey(pageUrl, browserExamKey),
+    },
+  })), "valid");
+});
+
+test("rechaza un pase presentado desde otra página del mismo sitio", async () => {
+  const otherUrl = "https://example.edu/parcial/otra.html?pase=Xf3-token";
+  assert.equal(await verifySafeBrowserRequest(base({
+    javascriptProof: {
+      pageUrl: otherUrl,
+      configKey: await hashSafeBrowserKey(otherUrl, configKey),
+      browserExamKey: await hashSafeBrowserKey(otherUrl, browserExamKey),
+    },
+  })), "invalid");
+});

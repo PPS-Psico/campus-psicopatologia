@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Acceso al parcial · Psicopatología I</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/tokens.css?v=5">
+  <link rel="stylesheet" href="../assets/ui.css?v=7">
+  <link rel="stylesheet" href="acceso.css?v=1">
+</head>
+<!--
+  Esta página vive dentro de la etiqueta de Moodle. Ahí FilterCodes ya resolvió
+  la identidad del estudiante, así que acá se emite el pase y se arma el enlace
+  sebs:// que lo lleva. Safe Exam Browser abre con la identidad ya resuelta y el
+  estudiante no escribe nada en ningún momento.
+-->
+<body>
+  <main class="access">
+    <section class="access__state" id="loading">
+      <h1 class="access__title">Reconociéndote…</h1>
+      <p class="access__copy" id="loading-copy">Estamos leyendo tus datos del Campus.</p>
+    </section>
+
+    <section class="access__state" id="ready" hidden>
+      <h1 class="access__title">Hola, <span id="ready-name">—</span></h1>
+      <p class="access__copy" id="ready-copy">
+        Ya te reconocimos. Al abrir el navegador seguro entrás directo a tu parcial:
+        no tenés que iniciar sesión otra vez ni escribir ningún dato.
+      </p>
+
+      <p class="access__exam" id="ready-exam"></p>
+
+      <a class="btn btn--primary btn--lg access__cta" id="launch" href="#">
+        Abrir el parcial en el navegador seguro
+      </a>
+
+      <p class="access__fallback">
+        Si el botón no abre la aplicación,
+        <a id="download" href="#" download>descargá el archivo de acceso</a>
+        y abrilo con doble clic. Necesitás Safe Exam Browser instalado.
+      </p>
+
+      <p class="access__note" id="expiry"></p>
+    </section>
+
+    <section class="access__state" id="done" hidden>
+      <h1 class="access__title">Ya entregaste tu parcial</h1>
+      <p class="access__copy" id="done-copy">
+        Tu entrega quedó registrada. La devolución se publica más adelante.
+      </p>
+    </section>
+
+    <section class="access__state" id="failure" hidden>
+      <h1 class="access__title" id="failure-title">No pudimos abrir tu acceso</h1>
+      <p class="access__copy" id="failure-copy">Volvé a cargar la página del Campus.</p>
+      <button class="btn btn--secondary" id="retry" type="button">Reintentar</button>
+    </section>
+  </main>
+
+  <script src="config.js?v=5"></script>
+  <script type="module" src="acceso.js?v=1"></script>
+</body>
+</html>

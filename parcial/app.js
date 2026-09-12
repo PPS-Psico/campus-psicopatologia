@@ -1,4 +1,4 @@
-import { ExamApi, requestMoodleContext } from "./api.js?v=2";
+import { ExamApi, requestMoodleContext } from "./api.js?v=3";
 import { MockExamApi } from "./mock-api.js?v=7";
 import { assertSafeExamBrowser, getSafeExamBrowserProof } from "./seb-guard.js?v=3";
 import {
@@ -489,7 +489,10 @@ async function bootstrap() {
     }
 
     let data;
-    if (config.demo && state.token) {
+    // Recuperar el intento en curso va primero, siempre. El pase se canjea una
+    // sola vez, así que una recarga tiene que volver por la sesión guardada y
+    // no por la puerta de entrada.
+    if (state.token) {
       setBoot("Recuperando tus respuestas guardadas…");
       try { data = await api.state(state.token); }
       catch {
@@ -499,9 +502,17 @@ async function bootstrap() {
     }
 
     if (!data) {
-      const context = config.demo ? null : await requestMoodleContext(config);
-      setBoot(config.practiceClass ? "Preparando tu intento…" : "Verificando tus datos en el padrón…");
-      data = await api.launch(config.examId, context);
+      // Safe Exam Browser agrega el pase del Campus a la URL de inicio. Cuando
+      // viene por ahí, la identidad ya quedó resuelta antes de abrir el
+      // navegador seguro y no hay ningún contexto de Moodle que pedir.
+      if (!config.demo && config.launchPass) {
+        setBoot("Confirmando tu identidad…");
+        data = await api.launchWithPass(config.launchPass);
+      } else {
+        const context = config.demo ? null : await requestMoodleContext(config);
+        setBoot(config.practiceClass ? "Preparando tu intento…" : "Verificando tus datos en el padrón…");
+        data = await api.launch(config.examId, context);
+      }
       state.token = data.attemptToken;
       sessionStorage.setItem(tokenStorageKey, state.token);
     }
