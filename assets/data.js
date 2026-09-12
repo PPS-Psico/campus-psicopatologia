@@ -155,9 +155,8 @@ window.CAMPUS_DATA = (function () {
       nota: 'Última clase antes del primer parcial. Cierra las unidades 1 y 2.',
       biblio: [
         { tier: 'C', cita: 'Freud, S. (1905 [1901]). Fragmento de análisis de un caso de histeria (Dora). Selección clínica y Epílogo. <em>Obras completas</em>, tomo VII. Amorrortu.' },
-        { tier: 'F', cita: 'Charcot, J.-M. y Richer, P. (1887). Las cuatro fases del gran ataque histérico. En <em>Les Démoniaques dans l\'art</em>, pp. 91-101. París: Delahaye et Lecrosnier. (Traducción de cátedra desde el original francés).' },
         { tier: 'F', cita: 'Lacan, J. (1951). Intervención sobre la transferencia. En <em>Escritos 1</em>, pp. 204-209. Siglo XXI.' },
-        { tier: 'A', cita: 'Charcot, J.-M. (1872-73). De la hístero-epilepsia. Lección XIII de <em>Leçons sur les maladies du système nerveux faites à la Salpêtrière</em>, tomo I. París: A. Delahaye. (Traducción de cátedra. Lectura de apoyo sobre el debate nosográfico: por qué la histeria no se confunde con la epilepsia).' }
+        { tier: 'F', cita: 'Charcot, J.-M. (1887). Histeria traumática y parálisis por sugestión. Lecciones XX, XXII y XXVI de <em>Leçons sur les maladies du système nerveux faites à la Salpêtrière</em>, tomo III. París: Progrès Médical. (Traducción de cátedra desde el original francés).' }
       ]
     },
     {
