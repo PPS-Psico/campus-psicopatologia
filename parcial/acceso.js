@@ -7,7 +7,7 @@ const SEB_FILE = "simulacro-parcial-clase-5.seb";
 const sebPath = new URL(SEB_FILE, location.href);
 
 const el = Object.fromEntries([
-  "loading", "loading-copy", "ready", "ready-name", "ready-exam", "launch",
+  "loading", "loading-copy", "ready", "ready-name", "ready-copy", "ready-exam", "launch",
   "download", "expiry", "done", "done-copy", "failure", "failure-title",
   "failure-copy", "failure-code", "retry",
 ].map((id) => [id, document.getElementById(id)]));
