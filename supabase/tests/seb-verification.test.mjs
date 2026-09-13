@@ -25,9 +25,21 @@ function base(overrides = {}) {
   };
 }
 
-test("falla cerrado si faltan las claves del servidor", async () => {
+test("falla cerrado si falta la Config Key del servidor", async () => {
   assert.equal(await verifySafeBrowserRequest(base({ configKey: "" })), "not_configured");
-  assert.equal(await verifySafeBrowserRequest(base({ browserExamKeys: [] })), "not_configured");
+});
+
+test("sin Browser Exam Key configurada sigue valiendo la Config Key", async () => {
+  // La Config Key acredita la configuración cargada, que es lo que importa.
+  // La Browser Exam Key identifica además el binario y quedó como refuerzo.
+  const javascriptProof = {
+    pageUrl: examUrl,
+    configKey: await hashSafeBrowserKey(examUrl, configKey),
+    browserExamKey: await hashSafeBrowserKey(examUrl, "f".repeat(64)),
+  };
+  assert.equal(await verifySafeBrowserRequest(base({
+    browserExamKeys: [], javascriptProof,
+  })), "valid");
 });
 
 test("acepta los dos encabezados generados por una configuración autorizada", async () => {
@@ -38,12 +50,23 @@ test("acepta los dos encabezados generados por una configuración autorizada", a
   assert.equal(result, "valid");
 });
 
-test("no acepta sólo la Config Key ni una Browser Exam Key incorrecta", async () => {
+test("por encabezados siguen haciendo falta las dos claves", async () => {
   const directConfigHash = await hashSafeBrowserKey(requestUrl, configKey);
   assert.equal(await verifySafeBrowserRequest(base({ directConfigHash })), "invalid");
   assert.equal(await verifySafeBrowserRequest(base({
     directConfigHash,
     directBrowserExamHash: await hashSafeBrowserKey(requestUrl, "c".repeat(64)),
+  })), "invalid");
+});
+
+test("rechaza una Config Key que no corresponde a esta configuración", async () => {
+  const ajena = "d".repeat(64);
+  assert.equal(await verifySafeBrowserRequest(base({
+    javascriptProof: {
+      pageUrl: examUrl,
+      configKey: await hashSafeBrowserKey(examUrl, ajena),
+      browserExamKey: await hashSafeBrowserKey(examUrl, browserExamKey),
+    },
   })), "invalid");
 });
 

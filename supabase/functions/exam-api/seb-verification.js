@@ -117,7 +117,7 @@ export async function verifySafeBrowserRequest({
   const normalizedExamKeys = Array.isArray(browserExamKeys)
     ? browserExamKeys.map(cleanHash).filter(Boolean)
     : [];
-  if (!normalizedConfigKey || normalizedExamKeys.length === 0) return "not_configured";
+  if (!normalizedConfigKey) return "not_configured";
 
   const normalizedRequestUrl = typeof requestUrl === "string" ? requestUrl.split("#")[0] : "";
   const normalizedDirectConfigHash = cleanHash(directConfigHash);
@@ -149,15 +149,14 @@ export async function verifySafeBrowserRequest({
     // si calcula sus claves sobre la URL ya completa o sobre la configurada. Se
     // prueban las dos: la identidad no depende de este dato, y exigir sólo una
     // dejaría afuera a todo el curso si SEB elige la otra.
+    // Decide la Config Key, que es la que acredita que el cliente cargó esta
+    // configuración exacta. La Browser Exam Key queda como refuerzo: identifica
+    // además la versión del binario, pero el valor crudo que publica la
+    // herramienta de configuración no es el que SEB para Windows termina usando,
+    // y exigirla dejaba afuera a todo el curso con la configuración correcta.
     for (const candidate of urlCandidates(proofPageUrl)) {
       const expectedConfigHash = await hashSafeBrowserKey(candidate, normalizedConfigKey);
-      if (!constantTimeEqual(javascriptConfigHash, expectedConfigHash)) continue;
-      const browserExamMatches = await matchesBrowserExamKey(
-        candidate,
-        javascriptBrowserExamHash,
-        normalizedExamKeys,
-      );
-      if (browserExamMatches) return "valid";
+      if (constantTimeEqual(javascriptConfigHash, expectedConfigHash)) return "valid";
     }
   }
 
