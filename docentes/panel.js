@@ -1,10 +1,28 @@
 import { GraderApi } from "./api.js?v=4";
 import { requestMoodleContext } from "../parcial/api.js?v=4";
 
+const el = (id) => document.getElementById(id);
+
+// Adentro de un iframe de otro dominio no hay consola a la que asomarse. Cada
+// paso del ingreso deja su huella en la pantalla: si algo se corta, se ve dónde.
+function paso(texto) {
+  const destino = el("gate-copy");
+  if (destino) destino.textContent = texto;
+}
+
+function morir(detalle) {
+  const codigo = el("gate-code");
+  if (codigo) codigo.textContent = String(detalle).slice(0, 300);
+}
+
+globalThis.addEventListener("error", (e) => morir(`error: ${e.message}`));
+globalThis.addEventListener("unhandledrejection", (e) => morir(`promesa: ${e.reason?.message ?? e.reason}`));
+
+paso("Preparando el panel…");
+
 const config = window.EXAM_CONFIG ?? {};
 const api = new GraderApi(config);
-
-const el = (id) => document.getElementById(id);
+paso("Pidiéndole tus datos al Campus…");
 
 const ESTADOS = [
   { key: null, label: "Todas", count: null },
@@ -79,8 +97,10 @@ function puntaje(valor, maximo) {
 async function abrir() {
   try {
     const context = await requestMoodleContext(config);
+    paso("Verificando que figures como correctora…");
     const sesion = await api.login(context);
     estado.perfil = sesion;
+    paso("Cargando las evaluaciones…");
     const datos = await api.bootstrap();
     estado.examenes = Array.isArray(datos.exams) ? datos.exams : [];
     el("who").textContent = `${sesion.displayName} · ${sesion.role === "coordinator" ? "coordinación" : "corrección"}`;
