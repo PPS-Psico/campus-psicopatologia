@@ -43,6 +43,23 @@ export function isSameDocument(candidate, expected) {
   }
 }
 
+// La URL tal como llegó y la misma sin su consulta. El orden importa poco: se
+// prueban ambas y sólo se acepta si la Config Key y la Browser Exam Key
+// coinciden sobre la misma.
+export function urlCandidates(pageUrl) {
+  const candidates = [pageUrl];
+  try {
+    const parsed = new URL(pageUrl);
+    if (parsed.search) {
+      parsed.search = "";
+      candidates.push(parsed.toString());
+    }
+  } catch {
+    // Una URL que no parsea ya no va a coincidir con ningún hash.
+  }
+  return candidates;
+}
+
 async function matchesBrowserExamKey(url, receivedHash, browserExamKeys) {
   const expectedHashes = await Promise.all(
     browserExamKeys.map((key) => hashSafeBrowserKey(url, key)),
@@ -94,14 +111,19 @@ export async function verifySafeBrowserRequest({
     && javascriptConfigHash
     && javascriptBrowserExamHash
   ) {
-    const expectedConfigHash = await hashSafeBrowserKey(proofPageUrl, normalizedConfigKey);
-    const browserExamMatches = await matchesBrowserExamKey(
-      proofPageUrl,
-      javascriptBrowserExamHash,
-      normalizedExamKeys,
-    );
-    if (constantTimeEqual(javascriptConfigHash, expectedConfigHash) && browserExamMatches) {
-      return "valid";
+    // Safe Exam Browser agrega el pase a la URL de inicio, pero no está definido
+    // si calcula sus claves sobre la URL ya completa o sobre la configurada. Se
+    // prueban las dos: la identidad no depende de este dato, y exigir sólo una
+    // dejaría afuera a todo el curso si SEB elige la otra.
+    for (const candidate of urlCandidates(proofPageUrl)) {
+      const expectedConfigHash = await hashSafeBrowserKey(candidate, normalizedConfigKey);
+      if (!constantTimeEqual(javascriptConfigHash, expectedConfigHash)) continue;
+      const browserExamMatches = await matchesBrowserExamKey(
+        candidate,
+        javascriptBrowserExamHash,
+        normalizedExamKeys,
+      );
+      if (browserExamMatches) return "valid";
     }
   }
 

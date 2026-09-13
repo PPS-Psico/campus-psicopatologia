@@ -47,15 +47,24 @@ test("no acepta sólo la Config Key ni una Browser Exam Key incorrecta", async (
   })), "invalid");
 });
 
-test("acepta la prueba de la API JavaScript vinculada a la URL exacta", async () => {
+test("acepta la prueba de la API JavaScript vinculada al documento del examen", async () => {
   const javascriptProof = {
     pageUrl: examUrl,
     configKey: await hashSafeBrowserKey(examUrl, configKey),
     browserExamKey: await hashSafeBrowserKey(examUrl, browserExamKey),
   };
   assert.equal(await verifySafeBrowserRequest(base({ javascriptProof })), "valid");
+
+  // Safe Exam Browser puede calcular sus claves sobre la URL configurada aunque
+  // la página corra con el pase agregado. Esa prueba sigue valiendo: lo que
+  // acredita es el navegador, no qué parámetros trae la dirección.
   assert.equal(await verifySafeBrowserRequest(base({
-    javascriptProof: { ...javascriptProof, pageUrl: `${examUrl}?copiada=1` },
+    javascriptProof: { ...javascriptProof, pageUrl: `${examUrl}?pase=abc` },
+  })), "valid");
+
+  // Lo que no vale es una prueba de otro documento.
+  assert.equal(await verifySafeBrowserRequest(base({
+    javascriptProof: { ...javascriptProof, pageUrl: "https://example.edu/otra.html" },
   })), "invalid");
 });
 
