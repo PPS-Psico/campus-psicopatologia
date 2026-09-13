@@ -1,11 +1,29 @@
 const sessionKey = "psicopato.feedback.session.v1";
 
+// Dentro de un iframe de otro dominio, el navegador puede bloquear el
+// almacenamiento y hasta *nombrar* sessionStorage lanza una excepción. Se
+// resuelve acá, protegido, y si no hay, la sesión vive lo que viva la página.
+function almacenamientoSeguro() {
+  try {
+    const s = globalThis.sessionStorage;
+    s.getItem("psicopato.probe");
+    return s;
+  } catch {
+    let memoria = new Map();
+    return {
+      getItem: (k) => memoria.get(k) ?? null,
+      setItem: (k, v) => memoria.set(k, v),
+      removeItem: (k) => memoria.delete(k),
+    };
+  }
+}
+
 export class FeedbackApi {
-  constructor(config, storage = sessionStorage, fetchImpl = fetch) {
+  constructor(config, storage = null, fetchImpl = fetch) {
     this.url = config.apiUrl;
     this.key = config.publishableKey;
     this.timeoutMs = config.requestTimeoutMs ?? 15000;
-    this.storage = storage;
+    this.storage = storage ?? almacenamientoSeguro();
     // fetch se enoja si lo llaman como metodo de otro objeto: pierde su
     // contexto y tira «Illegal invocation». Hay que atarlo al global.
     this.fetch = fetchImpl.bind(globalThis);
