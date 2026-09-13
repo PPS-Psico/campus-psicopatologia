@@ -47,6 +47,7 @@ const state = {
   saving: false,
   submitting: false,
   timeoutHandled: false,
+  sebProof: undefined,
 };
 
 const errorCopy = {
@@ -94,7 +95,16 @@ function showFatal(error) {
   // el pase del Campus llegó hasta acá.
   if (elements["fatal-detail"]) {
     const query = location.search || "(sin parámetros)";
-    elements["fatal-detail"].textContent = `${code} · ${query}`;
+    const api = globalThis.SafeExamBrowser;
+    const proof = state.sebProof;
+    const describe = (value) => (value ? String(value).slice(0, 8) : "falta");
+    const seb = [
+      `api:${api ? (api.version || "sí") : "no"}`,
+      `prueba:${proof === undefined ? "no pedida" : proof === null ? "vacía" : "sí"}`,
+      `ck:${describe(proof?.configKey ?? api?.security?.configKey)}`,
+      `bek:${describe(proof?.browserExamKey ?? api?.security?.browserExamKey)}`,
+    ].join(" ");
+    elements["fatal-detail"].textContent = `${code} · ${query} · ${seb}`;
   }
   showOnly("fatal");
 }
@@ -486,7 +496,10 @@ async function bootstrap() {
   try {
     setBoot(config.practiceClass ? "Preparando la práctica…" : "Verificando el navegador seguro…");
     assertSafeExamBrowser(config);
-    if (!config.demo) api.setSafeExamBrowserProof(await getSafeExamBrowserProof());
+    if (!config.demo) {
+      state.sebProof = await getSafeExamBrowserProof();
+      api.setSafeExamBrowserProof(state.sebProof);
+    }
     setBoot(config.practiceClass ? "Cargando las preguntas…" : "Verificando tu ingreso desde el Campus…");
     if (config.demo && new URLSearchParams(location.search).get("reset") === "1") {
       api.reset();
