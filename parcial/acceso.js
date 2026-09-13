@@ -8,7 +8,7 @@ const sebPath = new URL(SEB_FILE, location.href);
 
 const el = Object.fromEntries([
   "loading", "loading-copy", "ready", "ready-name", "ready-copy", "ready-exam", "launch",
-  "download", "expiry", "done", "done-copy", "failure", "failure-title",
+  "expiry", "done", "done-copy", "failure", "failure-title",
   "failure-copy", "failure-code", "retry",
 ].map((id) => [id, document.getElementById(id)]));
 
@@ -81,10 +81,11 @@ async function start() {
       ? `${data.exam.title} · ${data.exam.durationMinutes} minutos`
       : "";
 
-    const launchUrl = `${sebPath.href}?pase=${encodeURIComponent(data.pass)}`;
-    el.launch.href = `sebs://${launchUrl.replace(/^https?:\/\//, "")}`;
-    el.download.href = launchUrl;
-    el.download.setAttribute("download", SEB_FILE);
+    // Safe Exam Browser exige DOS signos de pregunta para trasladar la consulta
+    // a la URL de inicio. Con uno solo la ignora en silencio y el estudiante
+    // llega sin identidad, como si hubiera abierto el archivo a mano.
+    const query = `pase=${encodeURIComponent(data.pass)}`;
+    el.launch.href = `sebs://${sebPath.href.replace(/^https?:\/\//, "")}??${query}`;
 
     const expires = formatTime(data.expiresAt);
     el.expiry.textContent = expires
