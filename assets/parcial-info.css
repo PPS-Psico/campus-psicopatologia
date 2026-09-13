@@ -335,3 +335,7 @@
   .exam-step::before { width: 34px; height: 34px; }
   .exam-info-hero__actions .btn { width: 100%; }
 }
+
+/* El atributo hidden lo pisa cualquier regla que declare display, y .btn declara
+   display. Sin esto, el botón de acceso sigue a la vista para quien ya entregó. */
+.rehearsal__launch [hidden] { display: none !important; }
