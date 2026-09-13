@@ -1,6 +1,13 @@
 const encoder = new TextEncoder();
 
+// El valor por defecto es exigir Safe Exam Browser. Apagarlo en producción
+// requiere decirlo con todas las letras: "false" sólo vale en local, y para un
+// servidor público hace falta el valor explícito de abajo, que queda a la vista
+// en los secretos del proyecto y en los registros de cada pedido.
+export const EXPLICIT_DISABLE = "disabled-on-purpose";
+
 export function shouldRequireSafeBrowser(origin, setting) {
+  if (setting === EXPLICIT_DISABLE) return false;
   const isLocalOrigin = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(origin);
   return !(isLocalOrigin && setting === "false");
 }
@@ -65,6 +72,33 @@ async function matchesBrowserExamKey(url, receivedHash, browserExamKeys) {
     browserExamKeys.map((key) => hashSafeBrowserKey(url, key)),
   );
   return expectedHashes.some((expected) => constantTimeEqual(receivedHash, expected));
+}
+
+
+// Describe, sin decidir nada, cómo se compara la prueba de Safe Exam Browser
+// contra lo que el servidor espera. Se usa para diagnosticar la firma cuando el
+// requisito está bajado: sin esto, la única evidencia es una foto de la pantalla.
+export async function describeSafeBrowserProof({
+  examUrl, configKey, browserExamKeys, javascriptProof,
+}) {
+  const proof = javascriptProof && typeof javascriptProof === "object" ? javascriptProof : {};
+  const pageUrl = typeof proof.pageUrl === "string" ? proof.pageUrl.split("#")[0] : "";
+  if (!pageUrl) return { proof: "ausente" };
+  const ck = cleanHash(configKey);
+  const keys = Array.isArray(browserExamKeys) ? browserExamKeys.map(cleanHash).filter(Boolean) : [];
+  const esperado = {};
+  for (const candidate of urlCandidates(pageUrl)) {
+    esperado[candidate] = {
+      configKey: ck ? await hashSafeBrowserKey(candidate, ck) : null,
+      browserExamKeys: await Promise.all(keys.map((k) => hashSafeBrowserKey(candidate, k))),
+    };
+  }
+  return {
+    pageUrl,
+    examUrl,
+    recibido: { configKey: proof.configKey, browserExamKey: proof.browserExamKey, version: proof.version },
+    esperado,
+  };
 }
 
 export async function verifySafeBrowserRequest({

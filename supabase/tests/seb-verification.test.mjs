@@ -72,6 +72,8 @@ test("permite desactivar el requisito únicamente en el entorno local", async ()
   assert.equal(shouldRequireSafeBrowser("http://127.0.0.1:5500", "false"), false);
   assert.equal(shouldRequireSafeBrowser("http://localhost:5500", "false"), false);
   assert.equal(shouldRequireSafeBrowser("https://pps-psico.github.io", "false"), true);
+  // Apagarlo en un servidor público exige el valor explícito, no un "false" suelto.
+  assert.equal(shouldRequireSafeBrowser("https://pps-psico.github.io", "disabled-on-purpose"), false);
   assert.equal(shouldRequireSafeBrowser("http://127.0.0.1:5500", undefined), true);
   assert.equal(await verifySafeBrowserRequest(base({
     required: false,

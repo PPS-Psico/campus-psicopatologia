@@ -1,6 +1,7 @@
 import "@supabase/functions-js/edge-runtime.d.ts";
 import { withSupabase } from "@supabase/server";
 import {
+  describeSafeBrowserProof,
   shouldRequireSafeBrowser,
   verifySafeBrowserRequest,
 } from "./seb-verification.js";
@@ -80,6 +81,20 @@ async function verifySafeExamBrowser(req: Request, body: Record<string, unknown>
     directBrowserExamHash: req.headers.get("x-safeexambrowser-requesthash"),
     javascriptProof: proof,
   });
+  // Mientras la firma de SEB no cierre, cada intento deja registrado qué mandó
+  // el navegador y qué esperaba el servidor. Es la única forma de resolverlo sin
+  // pedirle al estudiante una foto de la pantalla.
+  if (result !== "valid" || !safeBrowserRequired) {
+    try {
+      console.log("seb-proof", JSON.stringify(await describeSafeBrowserProof({
+        examUrl: safeBrowserExamUrl,
+        configKey: safeBrowserConfigKey,
+        browserExamKeys: safeBrowserExamKeys,
+        javascriptProof: proof,
+      })));
+    } catch (_) { /* el diagnóstico nunca puede impedir rendir */ }
+  }
+  if (!safeBrowserRequired) return;
   if (result === "not_configured") throw new Error("safe_browser_not_configured");
   if (result !== "valid") throw new Error("safe_browser_invalid");
 }
