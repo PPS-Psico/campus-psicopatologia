@@ -12,6 +12,52 @@ type RpcAdmin = {
   ) => Promise<{ data: unknown; error: { message?: string } | null }>;
 };
 
+
+const encoder = new TextEncoder();
+
+async function sha256(value: string): Promise<string> {
+  const digest = await crypto.subtle.digest("SHA-256", encoder.encode(value));
+  return Array.from(new Uint8Array(digest), (b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+function randomToken(): string {
+  const bytes = crypto.getRandomValues(new Uint8Array(32));
+  let binary = "";
+  for (const byte of bytes) binary += String.fromCharCode(byte);
+  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
+}
+
+function cleanName(value: unknown): string {
+  if (typeof value !== "string" || value.includes("{") || value.includes("}")) {
+    throw new Error("invalid_moodle_context");
+  }
+  const cleaned = value.trim().replace(/\s+/g, " ");
+  if (!cleaned || cleaned.length > 120) throw new Error("invalid_moodle_context");
+  return cleaned;
+}
+
+// El panel se abre con la identidad que el Campus ya resolvió: no hay cuenta ni
+// contraseña propias. Lo que habilita el espacio es figurar como correctora.
+function parseGraderContext(value: unknown) {
+  if (!value || typeof value !== "object") throw new Error("invalid_moodle_context");
+  const c = value as Record<string, unknown>;
+  const courseId = typeof c.courseId === "string" ? c.courseId.trim() : "";
+  const moodleUserId = typeof c.moodleUserId === "string" ? c.moodleUserId.trim() : "";
+  const username = typeof c.moodleUsername === "string" ? c.moodleUsername.trim() : "";
+  const dni = username.replace(/\D/g, "");
+  if (
+    !/^\d{1,20}$/.test(courseId) || !/^\d{1,20}$/.test(moodleUserId)
+    || !/^\d{6,9}$/.test(dni) || dni !== username.replace(/[.\s-]/g, "")
+  ) throw new Error("invalid_moodle_context");
+  return {
+    courseId,
+    moodleUserId,
+    dni,
+    firstname: cleanName(c.firstname),
+    lastname: cleanName(c.lastname),
+  };
+}
+
 const decoder = new TextDecoder("utf-8", { fatal: true });
 const maxRequestBytes = 256_000;
 const allowedOrigin = Deno.env.get("GRADER_APP_ORIGIN")
@@ -19,7 +65,7 @@ const allowedOrigin = Deno.env.get("GRADER_APP_ORIGIN")
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": allowedOrigin,
-  "Access-Control-Allow-Headers": "apikey, authorization, content-type",
+  "Access-Control-Allow-Headers": "apikey, authorization, content-type, x-grader-token",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
   "Access-Control-Max-Age": "600",
   "Vary": "Origin",
@@ -100,17 +146,52 @@ async function invoke(
 }
 
 const securedHandler = withSupabase(
-  { auth: "user", cors: false },
+  { auth: ["publishable"], cors: false },
   async (req, ctx) => {
     try {
       if (req.method !== "POST") return json({ error: "method_not_allowed" }, 405);
-      const actorUserId = ctx.userClaims?.id;
-      if (
-        typeof actorUserId !== "string"
-        || !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(actorUserId)
-      ) return json({ error: "invalid_session" }, 401);
-
+      const admin0 = ctx.supabaseAdmin as unknown as RpcAdmin;
       const body = await readJsonObject(req);
+
+      // Abrir sesión es lo único que no exige sesión: lo autoriza el contexto
+      // de Moodle, y sólo si ese DNI figura como correctora.
+      if (body.action === "login") {
+        const context = parseGraderContext(body.context);
+        const token = randomToken();
+        const { data, error } = await admin0.rpc("grading_login_by_identity", {
+          p_course_id: context.courseId,
+          p_moodle_user_id: context.moodleUserId,
+          p_dni: context.dni,
+          p_first_name: context.firstname,
+          p_last_name: context.lastname,
+          p_token_hash: await sha256(token),
+          p_ttl_seconds: 28800,
+        });
+        if (error) throw error;
+        return json({ ...(data as Record<string, unknown>), graderToken: token });
+      }
+
+      const rawToken = req.headers.get("x-grader-token") ?? "";
+      if (!rawToken || rawToken.length > 256) {
+        return json({ error: "invalid_grader_session" }, 401);
+      }
+      const tokenHash = await sha256(rawToken);
+
+      if (body.action === "logout") {
+        const { error } = await admin0.rpc("grading_logout", { p_token_hash: tokenHash });
+        if (error) throw error;
+        return json({ ok: true });
+      }
+
+      const { data: actor, error: actorError } = await admin0.rpc("grading_session_actor", {
+        p_token_hash: tokenHash,
+      });
+      if (actorError) throw actorError;
+      const actorUserId = typeof actor === "string" ? actor : "";
+      if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(actorUserId)) {
+        return json({ error: "invalid_grader_session" }, 401);
+      }
+
       const operation = buildGradingOperation(body);
       const admin = ctx.supabaseAdmin as unknown as RpcAdmin;
 
