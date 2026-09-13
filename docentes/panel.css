@@ -1,0 +1,242 @@
+/* ==========================================================================
+   Estación de corrección
+   Dos columnas: la cola a la izquierda, la ficha a la derecha. La lectura de la
+   respuesta escrita manda, así que la ficha se queda con el ancho.
+   ========================================================================== */
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+.panel { padding: var(--space-8) var(--page-gutter) var(--space-16); }
+
+.panel__gate {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  min-height: 70vh;
+  text-align: center;
+}
+
+.panel__gate-title {
+  margin: 0 0 var(--space-3);
+  color: var(--text-strong);
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 800;
+}
+
+.panel__gate-copy { max-width: 46ch; color: var(--text-muted); }
+.panel__gate-code { margin-top: var(--space-4); color: var(--text-subtle); font-size: var(--text-xs); }
+.panel__gate-code:empty { display: none; }
+
+.panel__head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: var(--space-8);
+}
+
+.panel__title {
+  margin: 0;
+  color: var(--text-strong);
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  letter-spacing: var(--tracking-tight);
+}
+
+.panel__who { margin: var(--space-1) 0 0; color: var(--text-muted); font-size: var(--text-sm); }
+
+.panel__exam { display: grid; gap: var(--space-2); }
+.panel__exam span { color: var(--text-muted); font-size: var(--text-xs); font-weight: 700; }
+.panel__exam select {
+  min-width: 18rem;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text-strong);
+  font: inherit;
+  font-size: var(--text-sm);
+}
+
+.panel__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.filter {
+  display: flex;
+  gap: var(--space-2);
+  align-items: baseline;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.filter strong { color: var(--text-strong); font-variant-numeric: tabular-nums; }
+.filter[data-active="true"] {
+  border-color: transparent;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+.filter[data-active="true"] strong { color: var(--accent-text); }
+
+.panel__split {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+  gap: var(--layout-gap);
+  align-items: start;
+}
+
+/* ---------------------------------------------------------------- cola */
+
+.queue__list { display: grid; border-top: 1px solid var(--border-strong); }
+
+.queue__item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-1) var(--space-3);
+  padding: var(--space-4) var(--space-3);
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.queue__item:hover { background: var(--surface-hover); }
+.queue__item[data-active="true"] { background: var(--accent-softer); }
+
+.queue__name {
+  color: var(--text-strong);
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
+}
+.queue__score {
+  color: var(--text-strong);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.queue__state { color: var(--text-muted); font-size: var(--text-xs); }
+.queue__by::before { content: " · "; }
+.queue__time {
+  color: var(--text-subtle);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.queue__item[data-status="published"] .queue__state { color: var(--accent-text); }
+.queue__empty { color: var(--text-muted); font-size: var(--text-sm); }
+
+/* --------------------------------------------------------------- ficha */
+
+.sheet__idle { color: var(--text-muted); }
+
+.sheet__head { margin-bottom: var(--space-6); }
+.sheet__title {
+  margin: 0 0 var(--space-2);
+  color: var(--text-strong);
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 800;
+}
+.sheet__meta { margin: 0; color: var(--text-muted); font-size: var(--text-sm); }
+
+.sheet__scores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  padding: var(--space-5) 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--space-8);
+}
+.sheet__scores dt { color: var(--text-muted); font-size: var(--text-xs); font-weight: 700; }
+.sheet__scores dd {
+  margin: var(--space-1) 0 0;
+  color: var(--text-strong);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.essay + .essay { margin-top: var(--space-10); padding-top: var(--space-8); border-top: 1px solid var(--border); }
+
+.essay__prompt {
+  max-width: var(--measure);
+  margin: 0 0 var(--space-4);
+  color: var(--text-strong);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  line-height: var(--leading-snug);
+}
+
+.essay__response {
+  max-width: var(--measure);
+  margin: 0 0 var(--space-6);
+  padding: var(--space-5);
+  border-left: 1px solid var(--accent);
+  background: var(--bg-subtle);
+  color: var(--text);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  white-space: pre-wrap;
+}
+
+.essay__grade { display: grid; gap: var(--space-5); max-width: var(--measure); }
+.essay__empty { color: var(--text-muted); }
+
+.field { display: grid; gap: var(--space-2); }
+.field span { color: var(--text-muted); font-size: var(--text-xs); font-weight: 700; }
+.field input,
+.field textarea {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text-strong);
+  font: inherit;
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  resize: vertical;
+}
+.field input:disabled,
+.field textarea:disabled { background: var(--surface-sunken); color: var(--text-muted); }
+.field--score input { max-width: 9rem; font-variant-numeric: tabular-nums; }
+
+.sheet__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border);
+}
+
+.sheet__published { margin: 0; color: var(--accent-text); font-size: var(--text-sm); }
+
+.sheet__status { margin-top: var(--space-4); font-size: var(--text-sm); min-height: 1.2em; }
+.sheet__status[data-tone="ok"] { color: var(--accent-text); }
+.sheet__status[data-tone="error"] { color: var(--warn); }
+
+@media (max-width: 960px) {
+  .panel__split { grid-template-columns: 1fr; }
+}

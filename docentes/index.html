@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Corrección · Psicopatología I</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/tokens.css?v=5">
+  <link rel="stylesheet" href="../assets/ui.css?v=7">
+  <link rel="stylesheet" href="panel.css?v=1">
+</head>
+<!--
+  Estación de corrección. Vive dentro del iframe del aula: la identidad llega del
+  Campus por postMessage y el servidor sólo abre sesión si ese DNI figura como
+  correctora. No hay cuenta ni contraseña propias.
+-->
+<body>
+  <main class="panel" id="panel">
+    <section class="panel__gate" id="gate">
+      <h1 class="panel__gate-title" id="gate-title">Abriendo la corrección…</h1>
+      <p class="panel__gate-copy" id="gate-copy">Estamos leyendo tus datos del Campus.</p>
+      <p class="panel__gate-code" id="gate-code"></p>
+    </section>
+
+    <div class="panel__body" id="body" hidden>
+      <header class="panel__head">
+        <div>
+          <h1 class="panel__title">Corrección</h1>
+          <p class="panel__who" id="who"></p>
+        </div>
+        <label class="panel__exam">
+          <span>Evaluación</span>
+          <select id="exam-select"></select>
+        </label>
+      </header>
+
+      <nav class="panel__filters" id="filters" aria-label="Filtrar por estado"></nav>
+
+      <div class="panel__split">
+        <section class="queue" aria-labelledby="queue-title">
+          <h2 class="sr-only" id="queue-title">Entregas</h2>
+          <div id="queue-list" class="queue__list"></div>
+          <p class="queue__empty" id="queue-empty" hidden>No hay entregas en este estado.</p>
+        </section>
+
+        <section class="sheet" id="sheet" aria-labelledby="sheet-title">
+          <p class="sheet__idle" id="sheet-idle">Elegí una entrega de la lista para corregirla.</p>
+          <div id="sheet-content" hidden>
+            <header class="sheet__head">
+              <h2 class="sheet__title" id="sheet-title">—</h2>
+              <p class="sheet__meta" id="sheet-meta"></p>
+            </header>
+
+            <div class="sheet__scores" id="sheet-scores"></div>
+
+            <div id="essays"></div>
+
+            <div class="sheet__actions" id="actions"></div>
+            <p class="sheet__status" id="sheet-status" role="status"></p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="../parcial/config.js?v=6"></script>
+  <script type="module" src="panel.js?v=1"></script>
+</body>
+</html>
