@@ -228,9 +228,25 @@ function pintarFicha() {
     f.assignedTo ? `tomada por ${f.assignedTo.displayName}` : "sin tomar",
   ].join(" · ");
 
+  // El puntaje de la escrita recién queda firme al marcarla revisada. Hasta
+  // entonces el servidor lo devuelve vacío, y quien corrige no ve lo que acaba
+  // de guardar: el borrador se suma acá para que el número no desaparezca.
+  const borrador = (f.essays ?? []).reduce(
+    (suma, e) => (e.grade?.score === null || e.grade?.score === undefined
+      ? suma
+      : (suma ?? 0) + Number(e.grade.score)),
+    null,
+  );
+  const escrita = f.manualScore === null || f.manualScore === undefined
+    ? (borrador === null ? puntaje(null, f.manualMaxScore) : `${borrador} / ${Number(f.manualMaxScore ?? 0)}`)
+    : puntaje(f.manualScore, f.manualMaxScore);
+  const escritaNota = f.manualScore === null || f.manualScore === undefined
+    ? (borrador === null ? "" : '<small class="sheet__draft">borrador, sin confirmar</small>')
+    : "";
+
   el("sheet-scores").innerHTML = `
     <div><dt>Opción múltiple</dt><dd>${puntaje(f.objectiveScore, f.objectiveMaxScore)}</dd></div>
-    <div><dt>Escrita</dt><dd>${puntaje(f.manualScore, f.manualMaxScore)}</dd></div>
+    <div><dt>Escrita</dt><dd>${escrita}</dd>${escritaNota}</div>
     <div><dt>Total</dt><dd>${f.totalScore === null || f.totalScore === undefined ? "pendiente" : Number(f.totalScore)}</dd></div>`;
 
   pintarConsignas();
