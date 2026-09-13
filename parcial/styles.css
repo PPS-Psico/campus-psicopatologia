@@ -319,3 +319,14 @@ button { color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
+
+/* Detalle técnico del fallo de ingreso: discreto para el estudiante, decisivo
+   para diagnosticar a distancia si el pase del Campus llegó al navegador. */
+.fatal__detail {
+  margin-top: var(--space-6);
+  color: var(--text-subtle);
+  font-size: var(--text-xs);
+  line-height: var(--leading-relaxed);
+  overflow-wrap: anywhere;
+}
+.fatal__detail:empty { display: none; }

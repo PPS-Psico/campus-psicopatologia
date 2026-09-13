@@ -12,7 +12,7 @@ import {
 const config = window.EXAM_CONFIG;
 const tokenStorageKey = `psicopato-exam-token:${config.examId}:${config.practiceClass || "internal"}`;
 const elements = Object.fromEntries([
-  "boot", "boot-copy", "fatal", "fatal-title", "fatal-copy", "retry-button",
+  "boot", "boot-copy", "fatal", "fatal-title", "fatal-copy", "fatal-detail", "retry-button",
   "exam", "exam-title", "student-name", "save-state", "save-copy", "timer",
   "timer-value", "connection", "progress-value", "progress-bar", "question-nav",
   "question-panel", "exam-instructions", "submit-button", "submit-dialog",
@@ -89,6 +89,13 @@ function showFatal(error) {
   ];
   elements["fatal-title"].textContent = title;
   elements["fatal-copy"].textContent = copy;
+  // Un fallo de ingreso sin más datos es indiagnosticable a distancia. El código
+  // y la consulta que recibió el navegador seguro dicen, de una sola mirada, si
+  // el pase del Campus llegó hasta acá.
+  if (elements["fatal-detail"]) {
+    const query = location.search || "(sin parámetros)";
+    elements["fatal-detail"].textContent = `${code} · ${query}`;
+  }
   showOnly("fatal");
 }
 
