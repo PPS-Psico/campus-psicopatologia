@@ -1,4 +1,4 @@
-import { GraderApi } from "./api.js?v=2";
+import { GraderApi } from "./api.js?v=3";
 import { requestMoodleContext } from "../parcial/api.js?v=3";
 
 const config = window.EXAM_CONFIG ?? {};

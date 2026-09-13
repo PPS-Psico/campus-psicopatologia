@@ -6,7 +6,9 @@ export class FeedbackApi {
     this.key = config.publishableKey;
     this.timeoutMs = config.requestTimeoutMs ?? 15000;
     this.storage = storage;
-    this.fetch = fetchImpl;
+    // fetch se enoja si lo llaman como metodo de otro objeto: pierde su
+    // contexto y tira «Illegal invocation». Hay que atarlo al global.
+    this.fetch = fetchImpl.bind(globalThis);
   }
 
   token() { return this.storage.getItem(sessionKey) ?? ""; }
