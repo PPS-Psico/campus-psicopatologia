@@ -4,6 +4,11 @@
    respuesta escrita manda, así que la ficha se queda con el ancho.
    ========================================================================== */
 
+/* El atributo hidden lo pisa cualquier regla que declare display, y acá varias
+   lo hacen. Sin esta linea la pantalla de ingreso queda encima del panel ya
+   cargado, que es indistinguible de que nunca hubiera cargado. */
+[hidden] { display: none !important; }
+
 body {
   margin: 0;
   background: var(--bg);
