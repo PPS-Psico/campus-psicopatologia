@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/tokens.css?v=5">
   <link rel="stylesheet" href="assets/ui.css?v=7">
-  <link rel="stylesheet" href="assets/parcial-info.css?v=9">
+  <link rel="stylesheet" href="assets/parcial-info.css?v=10">
 </head>
 <body data-unit="1">
 <!--
@@ -146,6 +146,20 @@
           </p>
         </aside>
       </div>
+    </section>
+
+    <section class="section settle staff" id="docencia" aria-labelledby="staff-title" hidden>
+      <div class="section-head">
+        <h2 class="section-head__title" id="staff-title">Corrección</h2>
+        <p class="section-head__subtitle" id="staff-copy">
+          Este bloque lo ves porque el Campus te reconoce como parte del equipo docente.
+        </p>
+      </div>
+      <p class="staff__pending" id="staff-pending"></p>
+      <a class="btn btn--primary btn--lg" href="docentes/">
+        Abrir la estación de corrección
+        <span data-icon="arrowRight" data-size="18"></span>
+      </a>
     </section>
 
     <section class="section settle" id="instalacion" aria-labelledby="install-title">
@@ -387,11 +401,6 @@
       </div>
     </section>
 
-    <p class="source-note" style="margin-top: var(--space-12)">
-    Equipo docente: <a href="docentes/">estación de corrección</a>. El acceso lo
-    resuelve el Campus y sólo se abre para quienes figuran como correctoras.
-  </p>
-
   <footer class="site-footer">
       <span><strong class="text-strong">Psicopatología I</strong> · UFLO · <span id="year"></span></span>
       <span>Comisión 3 · Turno mañana</span>
@@ -399,7 +408,7 @@
   </main>
 
   <script src="parcial/config.js?v=6"></script>
-  <script type="module" src="assets/parcial-launch.js?v=1"></script>
+  <script type="module" src="assets/parcial-launch.js?v=2"></script>
 
   <script src="assets/icons.js?v=4"></script>
 <script src="assets/data.js?v=15"></script>

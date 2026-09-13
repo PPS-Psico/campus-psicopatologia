@@ -1,4 +1,5 @@
-import { ExamApi, requestMoodleContext } from "../parcial/api.js?v=3";
+import { ExamApi, requestMoodleContext } from "../parcial/api.js?v=4";
+import { GraderApi } from "../docentes/api.js?v=4";
 
 // El acceso al parcial vive acá, en la misma sección donde el estudiante ya lee
 // las fechas y las condiciones. La identidad llega del Campus por postMessage:
@@ -7,6 +8,7 @@ import { ExamApi, requestMoodleContext } from "../parcial/api.js?v=3";
 
 const config = window.EXAM_CONFIG ?? {};
 const api = new ExamApi(config);
+const graderApi = new GraderApi(config);
 const SEB_FILE = "parcial/simulacro-parcial-clase-5.seb";
 
 const el = Object.fromEntries(
@@ -47,10 +49,39 @@ function formatTime(value) {
   }
 }
 
+// El acceso a la corrección no figura en la página: aparece sólo si el servidor
+// confirma que esta identidad del Campus está cargada como correctora. Para el
+// resto del curso el bloque no existe, y nadie tiene que escribir un DNI.
+async function revelarCorreccion(context) {
+  const panel = document.getElementById("docencia");
+  if (!panel) return;
+  let sesion;
+  try {
+    sesion = await graderApi.login(context);
+  } catch {
+    return; // no es correctora, o el servidor no respondió: el bloque no aparece
+  }
+
+  document.getElementById("staff-copy").textContent =
+    `Entraste como ${sesion.displayName}. El Campus te reconoce como parte del equipo docente, `
+    + "así que la corrección se abre sin usuario ni contraseña.";
+
+  try {
+    const datos = await graderApi.bootstrap();
+    const pendientes = (datos.exams ?? []).reduce((total, examen) => total + (examen.pendingCount ?? 0), 0);
+    document.getElementById("staff-pending").textContent = pendientes
+      ? `Hay ${pendientes} ${pendientes === 1 ? "entrega" : "entregas"} sin publicar.`
+      : "No hay entregas esperando corrección.";
+  } catch { /* el panel las va a contar igual al abrirse */ }
+
+  panel.hidden = false;
+}
+
 async function prepare() {
   if (!el["launch-panel"]) return;
   try {
     const context = await requestMoodleContext(config);
+    revelarCorreccion(context);
     const data = await api.issuePass(config.examId, context);
 
     const status = data.attempt?.status;
