@@ -128,24 +128,21 @@
           </dl>
         </div>
 
-        <aside class="rehearsal__launch">
+        <aside class="rehearsal__launch" id="launch-panel">
           <div class="rehearsal__launch-status">
-            <span class="badge badge--accent">Se habilita el lunes 14</span>
+            <span class="badge badge--quiet" id="launch-badge">Reconociéndote…</span>
           </div>
-          <p class="rehearsal__launch-title">Abrir el simulacro</p>
-          <p class="rehearsal__launch-copy">
-            Queda disponible después de la clase del lunes 14 de septiembre y se cierra el
-            domingo 27. Necesitás Safe Exam Browser instalado: si todavía no lo tenés,
-            seguí primero <a href="#instalacion">los pasos de instalación</a>.
+          <p class="rehearsal__launch-title" id="launch-title">Abrir el simulacro</p>
+          <p class="rehearsal__launch-copy" id="launch-copy">
+            Estamos leyendo tus datos del Campus para prepararte el acceso.
           </p>
-          <a class="btn btn--primary btn--lg" target="_top"
-             href="https://campus.uflo.edu.ar/course/view.php?id=12209&amp;section=28">
-            Ir a la pestaña Parcial
+          <a class="btn btn--primary btn--lg" id="launch-button" href="#" hidden>
+            Abrir el parcial en el navegador seguro
             <span data-icon="arrowRight" data-size="18"></span>
           </a>
-          <p class="exam-step__fallback">
-            El acceso se abre desde ahí, no desde esta página: el Campus necesita reconocerte
-            antes de entregarle tu parcial al navegador seguro.
+          <p class="exam-step__fallback" id="launch-note">
+            Necesitás Safe Exam Browser instalado: si todavía no lo tenés, seguí primero
+            <a href="#instalacion">los pasos de instalación</a>.
           </p>
         </aside>
       </div>
@@ -395,6 +392,9 @@
       <span>Comisión 3 · Turno mañana</span>
     </footer>
   </main>
+
+  <script src="parcial/config.js?v=5"></script>
+  <script type="module" src="assets/parcial-launch.js?v=1"></script>
 
   <script src="assets/icons.js?v=4"></script>
 <script src="assets/data.js?v=15"></script>

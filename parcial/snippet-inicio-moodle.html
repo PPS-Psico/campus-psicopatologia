@@ -1,0 +1,79 @@
+<!--
+  PUENTE DE IDENTIDAD DEL AULA · sección «Inicio» del curso 12209
+
+  Va en el RESUMEN de la sección Inicio, junto al iframe del campus que ya está
+  ahí (course/editsection.php?id=330432). No reemplaza ese iframe: lo envuelve.
+
+  Con esto, cualquier página del campus —la portada, las clases y sobre todo
+  parcial.html— puede pedirle al aula la identidad que FilterCodes ya resolvió, y
+  emitir el pase del parcial sin que el estudiante escriba nada.
+
+  Al pegarlo hay que conservar el iframe existente donde dice AQUÍ VA EL IFRAME.
+-->
+<div
+  id="psi-aula-embed"
+  data-course-id="{courseid}"
+  data-moodle-user-id="{userid}"
+  data-moodle-username="{username}"
+  data-firstname="{firstname}"
+  data-lastname="{lastname}"
+>
+  <!-- AQUÍ VA EL IFRAME QUE YA ESTÁ EN LA SECCIÓN, SIN CAMBIOS SALVO ?v= -->
+  <iframe
+    id="psi-aula-frame"
+    title="Aula virtual de Psicopatología I"
+    src="https://pps-psico.github.io/campus-psicopatologia/inicio.html?v=6"
+    style="display:block;width:100%;height:max(820px,100vh);border:0;background:#f8fafc"
+    referrerpolicy="strict-origin-when-cross-origin"
+  ></iframe>
+</div>
+<script>
+(function () {
+  'use strict';
+  var root = document.getElementById('psi-aula-embed');
+  var frame = document.getElementById('psi-aula-frame');
+  if (!root || !frame) return;
+
+  var appOrigin = new URL(frame.src).origin;
+  var context = {
+    courseId: root.dataset.courseId || '',
+    moodleUserId: root.dataset.moodleUserId || '',
+    moodleUsername: root.dataset.moodleUsername || '',
+    firstname: root.dataset.firstname || '',
+    lastname: root.dataset.lastname || ''
+  };
+
+  function unresolved(value) {
+    return !value || value.indexOf('{') !== -1 || value.indexOf('}') !== -1;
+  }
+
+  // Si FilterCodes no sustituyó algún campo, se responde que no se pudo
+  // identificar. Mandar llaves sin resolver haría que el servidor rechace al
+  // estudiante con un error mucho menos claro.
+  function contextIsValid() {
+    return /^[0-9]+$/.test(context.courseId)
+      && /^[0-9]+$/.test(context.moodleUserId)
+      && !unresolved(context.moodleUsername)
+      && !unresolved(context.firstname)
+      && !unresolved(context.lastname);
+  }
+
+  window.addEventListener('message', function (event) {
+    if (event.origin !== appOrigin || event.source !== frame.contentWindow) return;
+    var data = event.data;
+    if (!data || data.type !== 'PSICOPARCIAL_CONTEXT_REQUEST' || data.version !== 1) return;
+    if (typeof data.requestId !== 'string') return;
+
+    var response = {
+      type: 'PSICOPARCIAL_CONTEXT_RESULT',
+      version: 1,
+      requestId: data.requestId,
+      ok: contextIsValid()
+    };
+    if (response.ok) response.context = context;
+    else response.error = 'moodle_context_failed';
+
+    frame.contentWindow.postMessage(response, appOrigin);
+  });
+})();
+</script>
