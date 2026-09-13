@@ -99,11 +99,14 @@ async function abrir() {
     const context = await requestMoodleContext(config);
     paso("Verificando que figures como correctora…");
     const sesion = await api.login(context);
-    estado.perfil = sesion;
     paso("Cargando las evaluaciones…");
     const datos = await api.bootstrap();
+    // El ingreso devuelve el nombre y el rol, pero no el id del perfil: ese lo
+    // trae bootstrap. Sin el id, «esta entrega es mía» siempre da que no, y los
+    // campos quedan bloqueados aunque la hayas tomado.
+    estado.perfil = { ...sesion, ...(datos.profile ?? {}) };
     estado.examenes = Array.isArray(datos.exams) ? datos.exams : [];
-    el("who").textContent = `${sesion.displayName} · ${sesion.role === "coordinator" ? "coordinación" : "corrección"}`;
+    el("who").textContent = `${estado.perfil.displayName} · ${estado.perfil.role === "coordinator" ? "coordinación" : "corrección"}`;
     el("gate").hidden = true;
     el("body").hidden = false;
     pintarExamenes();
@@ -234,10 +237,29 @@ function pintarFicha() {
   pintarAcciones();
 }
 
+function motivoBloqueo() {
+  const f = estado.ficha;
+  if (f.gradingStatus === "unassigned") {
+    return "Para escribir el puntaje y la devolución tenés que tomar la entrega primero, con el botón de arriba.";
+  }
+  if (f.gradingStatus === "in_review") {
+    return `Esta entrega la está corrigiendo ${f.assignedTo?.displayName ?? "la otra correctora"}. Podés leerla, pero no editarla.`;
+  }
+  return "Esta entrega ya salió de corrección: quedó como "
+    + `${(ETIQUETA_ESTADO[f.gradingStatus] ?? f.gradingStatus).toLowerCase()}.`;
+}
+
 function pintarConsignas() {
   const zona = el("essays");
   zona.replaceChildren();
   const propia = esPropia();
+
+  if (!propia) {
+    const aviso = document.createElement("p");
+    aviso.className = "essay__locked";
+    aviso.textContent = motivoBloqueo();
+    zona.append(aviso);
+  }
 
   for (const ensayo of estado.ficha.essays ?? []) {
     const bloque = document.createElement("article");
