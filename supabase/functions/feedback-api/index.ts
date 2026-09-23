@@ -12,6 +12,26 @@ type RpcAdmin = {
   ) => Promise<{ data: unknown; error: { message?: string } | null }>;
 };
 
+// El reloj del servidor de funciones a veces va apenas adelantado respecto de
+// la base, y la base rechaza la credencial por «emitida en el futuro»
+// (PGRST303). La consulta no llega a ejecutarse, así que repetirla es seguro:
+// se espera un instante y se reintenta. Sin esto, uno de cada doscientos
+// pedidos fallaba con un error 500 sin motivo aparente.
+function conReintento(admin: RpcAdmin): RpcAdmin {
+  return {
+    async rpc(functionName, args) {
+      let result = await admin.rpc(functionName, args);
+      for (const espera of [400, 900, 1600]) {
+        const code = (result.error as { code?: string } | null)?.code;
+        if (code !== "PGRST303") break;
+        await new Promise((listo) => setTimeout(listo, espera));
+        result = await admin.rpc(functionName, args);
+      }
+      return result;
+    },
+  };
+}
+
 const encoder = new TextEncoder();
 const decoder = new TextDecoder("utf-8", { fatal: true });
 const maxRequestBytes = 64_000;
@@ -109,7 +129,7 @@ const securedHandler = withSupabase(
       if (req.method !== "POST") return json({ error: "method_not_allowed" }, 405);
       const body = await readJsonObject(req);
       const operation = parseFeedbackAction(body);
-      const admin = ctx.supabaseAdmin as unknown as RpcAdmin;
+      const admin = conReintento(ctx.supabaseAdmin as unknown as RpcAdmin);
 
       if (operation.action === "launch") {
         const sessionToken = randomToken();
