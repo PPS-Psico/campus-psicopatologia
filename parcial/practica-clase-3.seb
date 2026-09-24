@@ -17,7 +17,7 @@
     <key>ignoreExitKeys</key>
     <true />
     <key>hashedQuitPassword</key>
-    <string>5a39935f42a4e1ab905565b2227c4106cea81af8768d7d4b0e13ea6150b3c741</string>
+    <string />
     <key>exitKey1</key>
     <integer>2</integer>
     <key>exitKey2</key>
@@ -201,7 +201,7 @@
     <key>allowUploads</key>
     <false />
     <key>examKeySalt</key>
-    <data>0OVDeHZObUHET7yT7KtXwWEMZ3wW9fztHwOaqHqyWhY=</data>
+    <data>55LEmoiPwe3gWOXISvAXkmPNd7KpaXYvyB/Ed+1mhSE=</data>
     <key>examSessionClearCookiesOnEnd</key>
     <true />
     <key>examSessionClearCookiesOnStart</key>
@@ -231,7 +231,7 @@
     <key>quitURLRestart</key>
     <false />
     <key>startURLAppendQueryParameter</key>
-    <false />
+    <true />
     <key>additionalResources</key>
     <array />
     <key>monitorProcesses</key>
