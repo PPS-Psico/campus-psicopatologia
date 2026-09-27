@@ -321,7 +321,7 @@ const securedHandler = withSupabase(
         if (responses.some((entry) => {
           if (!entry || typeof entry !== "object") return false;
           const essayText = (entry as Record<string, unknown>).essayText;
-          return typeof essayText === "string" && essayText.length > 8000;
+          return typeof essayText === "string" && essayText.length > 20000;
         })) throw new Error("invalid_response_batch");
         const { data, error } = await admin.rpc("exam_save", {
           p_attempt_token_hash: tokenHash,

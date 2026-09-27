@@ -211,7 +211,7 @@ function renderQuestion() {
     const textarea = document.createElement("textarea");
     textarea.className = "essay-answer";
     textarea.id = `essay-${item.id}`;
-    textarea.maxLength = 8000;
+    textarea.maxLength = 20000;
     textarea.value = answer.essayText;
     textarea.setAttribute("aria-describedby", `essay-count-${item.id}`);
     const count = document.createElement("p");
