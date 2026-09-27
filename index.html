@@ -11,6 +11,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/tokens.css?v=5">
   <link rel="stylesheet" href="assets/ui.css?v=7">
+  <style>
+    /* Aviso del primer parcial. Vive en esta página y se retira solo cuando
+       cierra el parcial; no toca ui.css para no obligar a versionar todo. */
+    [hidden] { display: none !important; }
+    .aviso {
+      margin-top: var(--space-8);
+      padding: var(--space-5) var(--space-6);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius-md);
+      background: var(--accent-softer);
+    }
+    .aviso__title {
+      margin: 0 0 var(--space-2);
+      color: var(--text-strong);
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 800;
+    }
+    .aviso p { max-width: var(--measure); margin: 0 0 var(--space-3); color: var(--text); }
+    .aviso p:last-child { margin-bottom: 0; }
+  </style>
 </head>
 <body data-unit="1">
 <!--
@@ -37,6 +58,26 @@
   <div data-ui="nav" data-active="inicio"></div>
 
   <main class="container" id="contenido">
+
+    <section class="aviso" id="aviso-parcial" data-hasta="2026-09-28T13:30:00Z" aria-labelledby="aviso-parcial-title">
+      <h2 class="aviso__title" id="aviso-parcial-title">Mañana lunes 28, de 8:30 a 10:30: primer parcial</h2>
+      <p>
+        Se abre desde la sección <a href="parcial.html#simulacro">Parcial</a> del Campus,
+        igual que el simulacro. Son 10 preguntas de opción múltiple y 2 consignas para
+        desarrollar. Tenés 90 minutos desde que entrás, pero todo cierra a las 10:30.
+      </p>
+      <p>
+        Antes de entrar, cerrá Teams, Zoom, Discord y Telegram, o reiniciá la computadora.
+        Si todavía no probaste Safe Exam Browser, hacé el simulacro hoy: está abierto
+        hasta las 23:59.
+      </p>
+    </section>
+    <script>
+      (function () {
+        var aviso = document.getElementById('aviso-parcial');
+        if (aviso && Date.now() >= Date.parse(aviso.dataset.hasta)) aviso.hidden = true;
+      })();
+    </script>
 
     <!-- ============================================================
          LO QUE VIENE
