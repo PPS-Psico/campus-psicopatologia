@@ -215,6 +215,14 @@ const securedHandler = withSupabase(
       const operation = buildGradingOperation(body);
       const admin = conReintento(ctx.supabaseAdmin as unknown as RpcAdmin);
 
+      // Un intento que nadie entregó y cuyo estudiante no volvió quedaría «en
+      // curso» para siempre. Antes de mostrar la lista se cierran los vencidos:
+      // pasan a corrección con lo que tenían guardado y se reparten solos.
+      if (operation.kind === "bootstrap" || (operation.kind === "rpc" && operation.name === "grading_queue")) {
+        const { error: expireError } = await admin.rpc("grading_expire_overdue", {});
+        if (expireError) console.error("grader-api expire", expireError);
+      }
+
       if (operation.kind === "bootstrap") {
         const [profile, exams] = await Promise.all([
           invoke(admin, "grading_me", actorUserId),

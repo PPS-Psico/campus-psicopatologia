@@ -24,7 +24,10 @@ const config = window.EXAM_CONFIG ?? {};
 const api = new GraderApi(config);
 paso("Pidiéndole tus datos al Campus…");
 
+// Las entregas se reparten solas entre las correctoras apenas terminan: «Mías»
+// es la lista de trabajo de cada una, y por eso es la que se abre primero.
 const ESTADOS = [
+  { key: "mias", label: "Mías", count: "mias" },
   { key: null, label: "Todas", count: null },
   { key: "unassigned", label: "Sin asignar", count: "unassigned" },
   { key: "in_review", label: "En corrección", count: "inReview" },
@@ -62,7 +65,7 @@ const estado = {
   perfil: null,
   examenes: [],
   examenId: null,
-  filtro: null,
+  filtro: "mias",
   cola: null,
   ficha: null,
   guardando: false,
@@ -147,7 +150,9 @@ function pintarExamenes() {
 async function cargarCola() {
   if (!estado.examenId) return;
   try {
-    estado.cola = await api.queue(estado.examenId, estado.filtro);
+    // Se trae la lista completa y se filtra acá: «Mías» no es un estado del
+    // servidor, y así los contadores de todos los filtros salen de una vez.
+    estado.cola = await api.queue(estado.examenId, null);
     pintarFiltros();
     pintarCola();
   } catch (error) {
@@ -165,7 +170,9 @@ function pintarFiltros() {
     boton.type = "button";
     boton.className = "filter";
     boton.dataset.active = String(estado.filtro === filtro.key);
-    const total = filtro.count ? counts[filtro.count] ?? 0 : Object.values(counts).reduce((a, b) => a + b, 0);
+    const total = filtro.key === "mias"
+      ? entregasDe("mias").length
+      : filtro.count ? counts[filtro.count] ?? 0 : Object.values(counts).reduce((a, b) => a + b, 0);
     boton.innerHTML = `<span>${filtro.label}</span><strong>${total}</strong>`;
     boton.addEventListener("click", async () => {
       estado.filtro = filtro.key;
@@ -175,12 +182,24 @@ function pintarFiltros() {
   }
 }
 
+function entregasDe(filtro) {
+  const todas = estado.cola?.attempts ?? [];
+  if (filtro === "mias") {
+    return todas.filter((e) => e.assignedTo?.userId === estado.perfil?.userId
+      && e.gradingStatus !== "published");
+  }
+  if (!filtro) return todas;
+  return todas.filter((e) => e.gradingStatus === filtro);
+}
+
 function pintarCola() {
   const lista = el("queue-list");
   lista.replaceChildren();
-  const entregas = estado.cola?.attempts ?? [];
+  const entregas = entregasDe(estado.filtro);
   el("queue-empty").hidden = entregas.length > 0;
-  el("queue-empty").textContent = "No hay entregas en este estado.";
+  el("queue-empty").textContent = estado.filtro === "mias"
+    ? "No tenés entregas asignadas en esta evaluación."
+    : "No hay entregas en este estado.";
 
   for (const entrega of entregas) {
     const fila = document.createElement("button");
