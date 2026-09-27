@@ -37,13 +37,13 @@
       <div>
         <h1 id="page-title">Parcial</h1>
         <p class="exam-info-hero__lead">
-          El parcial se abre desde el Campus y se responde en una ventana cerrada de
-          Safe Exam Browser. Antes de la fecha real vas a rendir un simulacro que recorre
-          el circuito completo, para que el 28 de septiembre no haya nada nuevo.
+          El parcial se abre desde esta sección del Campus y se responde en una ventana
+          cerrada de Safe Exam Browser. Es el mismo circuito del simulacro: el sistema te
+          reconoce por tu cuenta del aula y guarda cada respuesta en el servidor.
         </p>
         <div class="exam-info-hero__actions">
           <a class="btn btn--primary btn--lg" href="#simulacro">
-            Ver el simulacro del parcial
+            Ir al acceso del parcial
             <span data-icon="arrowRight" data-size="18"></span>
           </a>
           <a class="btn btn--secondary btn--lg" href="#instalacion">
@@ -54,14 +54,14 @@
 
       <aside class="exam-overview" aria-labelledby="first-exam-title">
         <div class="exam-overview__status">
-          <span class="badge badge--warn">Modalidad a confirmar</span>
+          <span class="badge badge--accent">Confirmado</span>
         </div>
         <h2 class="sr-only" id="first-exam-title">Datos del primer parcial</h2>
         <p class="exam-overview__date" id="first-exam-date">28 de septiembre · 8:30 a 10:30</p>
         <p class="exam-overview__scope" id="first-exam-scope">Unidades 1 y 2 · Clases 1 a 5</p>
         <ul class="exam-overview__facts">
           <li><span data-icon="calendar" data-size="18"></span><span>La fecha, el horario y los contenidos ya están confirmados.</span></li>
-          <li><span data-icon="alert" data-size="18"></span><span>El formato de las consignas todavía está en definición.</span></li>
+          <li><span data-icon="alert" data-size="18"></span><span>Diez preguntas de opción múltiple y dos consignas para desarrollar, en 90 minutos.</span></li>
         </ul>
       </aside>
     </section>
@@ -71,7 +71,6 @@
         <h2 class="section-head__title" id="evaluation-title">Fechas de evaluación</h2>
         <p class="section-head__subtitle">
           Dos parciales y un recuperatorio único, los tres en el horario de la cursada.
-          La modalidad de las consignas se informará cuando quede definida.
         </p>
       </div>
       <div class="grid grid-3" id="evaluacion-grid"></div>
@@ -79,11 +78,18 @@
     </section>
 
     <section class="section settle" id="simulacro" aria-labelledby="rehearsal-title">
-      <div class="section-head">
-        <h2 class="section-head__title" id="rehearsal-title">Simulacro del parcial · Clase 5</h2>
+      <div class="section-head" data-modo="parcial">
+        <h2 class="section-head__title" id="rehearsal-title">Primer parcial · Unidades 1 y 2</h2>
         <p class="section-head__subtitle">
-          Histeria y Dora. No es una práctica más: es el parcial del 28 de septiembre con
-          todo su mecanismo, sobre los contenidos de una sola clase.
+          Lunes 28 de septiembre, de 8:30 a 10:30. Evalúa las clases 1 a 5: campo,
+          paradigmas, método, síntoma, caso y transferencia.
+        </p>
+      </div>
+      <div class="section-head" data-modo="simulacro" hidden>
+        <h2 class="section-head__title">Simulacro del parcial · Clase 5</h2>
+        <p class="section-head__subtitle">
+          Abierto hasta el domingo 27 a las 23:59. Es el mismo circuito del parcial:
+          si lo completás, sabés que tu computadora está lista para el lunes.
         </p>
       </div>
 
@@ -96,7 +102,40 @@
             Tus respuestas se guardan en el servidor a medida que las escribís.
           </p>
 
-          <dl class="rehearsal__conditions">
+          <dl class="rehearsal__conditions" data-modo="parcial">
+            <div>
+              <dt>Un solo intento</dt>
+              <dd>
+                Si se corta la conexión o cerrás sin querer, volvés a entrar desde acá y
+                encontrás tu intento donde lo dejaste, con el tiempo que te quedaba.
+              </dd>
+            </div>
+            <div>
+              <dt>Diez preguntas de opción múltiple y dos para desarrollar</dt>
+              <dd>
+                Primero las diez de opción múltiple, con una sola respuesta correcta y medio
+                punto cada una. Al final, dos consignas para desarrollar de 2,5 puntos cada
+                una. Guardá tiempo para las escritas: valen la mitad de la nota.
+              </dd>
+            </div>
+            <div>
+              <dt>Noventa minutos, contados por el servidor</dt>
+              <dd>
+                Corren desde que entrás, y el parcial cierra a las 10:30 para todos: si
+                entrás tarde, tenés menos tiempo. Al terminar recibís un comprobante con la
+                hora de entrega.
+              </dd>
+            </div>
+            <div>
+              <dt>Antes de abrirlo, cerrá Teams, Zoom, Discord y Telegram</dt>
+              <dd>
+                Si el navegador seguro encuentra abierto un programa de videollamada o para
+                compartir pantalla y no logra cerrarlo, bloquea la pantalla. Si no estás
+                segura o seguro de qué hay abierto, reiniciá la computadora antes de entrar.
+              </dd>
+            </div>
+          </dl>
+          <dl class="rehearsal__conditions" data-modo="simulacro" hidden>
             <div>
               <dt>Un solo intento</dt>
               <dd>
@@ -132,7 +171,7 @@
           <div class="rehearsal__launch-status">
             <span class="badge badge--quiet" id="launch-badge">Reconociéndote…</span>
           </div>
-          <p class="rehearsal__launch-title" id="launch-title">Abrir el simulacro</p>
+          <p class="rehearsal__launch-title" id="launch-title">Abrir el parcial</p>
           <p class="rehearsal__launch-copy" id="launch-copy">
             Estamos leyendo tus datos del Campus para prepararte el acceso.
           </p>
@@ -407,8 +446,8 @@
     </footer>
   </main>
 
-  <script src="parcial/config.js?v=6"></script>
-  <script type="module" src="assets/parcial-launch.js?v=2"></script>
+  <script src="parcial/config.js?v=7"></script>
+  <script type="module" src="assets/parcial-launch.js?v=3"></script>
 
   <script src="assets/icons.js?v=4"></script>
 <script src="assets/data.js?v=15"></script>

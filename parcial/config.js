@@ -5,7 +5,11 @@ const practiceClass = ["3", "4"].includes(examParams.get("clase"))
   : null;
 
 window.EXAM_CONFIG = Object.freeze({
-  examId: "22222222-2222-4222-8222-222222222222",
+  // El primer parcial (28/09). Mientras el servidor todavía no lo habilita, el
+  // Campus ofrece el simulacro de la clase 5, que cierra el domingo 27 a las
+  // 23:59: quien no pudo probar su computadora puede hacerlo hasta último momento.
+  examId: "0b2f7900-acd5-4f9c-bb47-455127829e48",
+  rehearsalExamId: "22222222-2222-4222-8222-222222222222",
   apiUrl: "https://zprvefdhcxnivdgsbpkw.supabase.co/functions/v1/exam-api",
   graderApiUrl: "https://zprvefdhcxnivdgsbpkw.supabase.co/functions/v1/grader-api",
   publishableKey: "sb_publishable_RH2Gj2j_K83BPWH_LX5I_w_9BsUT8ax",

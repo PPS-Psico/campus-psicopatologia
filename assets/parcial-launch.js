@@ -9,7 +9,33 @@ import { GraderApi } from "../docentes/api.js?v=4";
 const config = window.EXAM_CONFIG ?? {};
 const api = new ExamApi(config);
 const graderApi = new GraderApi(config);
-const SEB_FILE = "parcial/simulacro-parcial-clase-5.seb";
+// Los dos .seb son el mismo archivo con otro nombre: misma configuración, misma
+// clave. El que abre el parcial se llama como el parcial para que nadie dude.
+const MODOS = {
+  parcial: {
+    examId: config.examId,
+    seb: "parcial/parcial-1.seb",
+    notOpen: ["Se abre el lunes 28 a las 8:30", "El acceso se habilita a la hora del parcial. Recargá la página en ese momento."],
+    closed: ["El parcial ya cerró", "El acceso terminó a las 10:30. Si tuviste un problema para entrar, avisale al equipo docente."],
+    done: "Ya entregaste el parcial",
+    badgeNotOpen: "Lunes 28 · 8:30",
+  },
+  simulacro: {
+    examId: config.rehearsalExamId,
+    seb: "parcial/simulacro-parcial-clase-5.seb",
+    notOpen: ["Todavía no está habilitado", "Volvé a entrar cuando se habilite."],
+    closed: ["El simulacro terminó", "El parcial se abre el lunes 28 a las 8:30, desde esta misma sección."],
+    done: "Ya rendiste el simulacro",
+    badgeNotOpen: "Todavía no",
+  },
+};
+
+// Cada bloque de texto marcado con data-modo se muestra sólo en su modo.
+function mostrarModo(modo) {
+  for (const bloque of document.querySelectorAll("[data-modo]")) {
+    bloque.hidden = bloque.dataset.modo !== modo;
+  }
+}
 
 const el = Object.fromEntries(
   ["launch-panel", "launch-badge", "launch-title", "launch-copy", "launch-button", "launch-note"]
@@ -25,9 +51,6 @@ const errorCopy = {
   identity_not_verified: ["Tu cuenta todavía no fue verificada", "Avisale al equipo docente antes de la fecha del parcial."],
   identity_mismatch: ["Tus datos no coinciden", "El nombre que informa el Campus no coincide con el padrón. Avisale al equipo docente."],
   moodle_account_conflict: ["La cuenta del Campus no coincide", "Este DNI ya quedó asociado a otra cuenta. Avisale al equipo docente."],
-  exam_not_open: ["Todavía no está habilitado", "El acceso se abre el lunes 14 de septiembre, después de la clase."],
-  exam_closed: ["El plazo terminó", "Consultale al equipo docente si necesitás verificar tu entrega."],
-  exam_not_available: ["El simulacro no está publicado", "Avisale al equipo docente: hay que revisar la configuración de esta actividad."],
   missing_api_config: ["Falta terminar la configuración", "Avisale al equipo docente."],
 };
 
@@ -77,18 +100,45 @@ async function revelarCorreccion(context) {
   panel.hidden = false;
 }
 
+// El servidor es quien sabe qué examen está abierto: el reloj de la computadora
+// del estudiante puede estar mal. Se pide el pase del parcial; si todavía no
+// está habilitado, se intenta con el simulacro. Si el simulacro ya cerró, se
+// vuelve al parcial para mostrar cuándo se abre.
+async function pedirPase(context) {
+  try {
+    return { modo: "parcial", data: await api.issuePass(MODOS.parcial.examId, context) };
+  } catch (error) {
+    const code = error instanceof Error ? error.message : String(error);
+    const todaviaNo = code === "exam_not_open" || code === "exam_not_available";
+    if (!todaviaNo || !MODOS.simulacro.examId) throw Object.assign(error, { modo: "parcial" });
+    try {
+      return { modo: "simulacro", data: await api.issuePass(MODOS.simulacro.examId, context) };
+    } catch (segundo) {
+      const code2 = segundo instanceof Error ? segundo.message : String(segundo);
+      // Simulacro cerrado (o inexistente): lo que importa es cuándo abre el parcial.
+      if (code2 === "exam_closed" || code2 === "exam_not_available") {
+        throw Object.assign(new Error("exam_not_open"), { modo: "parcial" });
+      }
+      throw Object.assign(segundo, { modo: "simulacro" });
+    }
+  }
+}
+
 async function prepare() {
   if (!el["launch-panel"]) return;
+  mostrarModo("parcial");
   try {
     const context = await requestMoodleContext(config);
     revelarCorreccion(context);
-    const data = await api.issuePass(config.examId, context);
+    const { modo, data } = await pedirPase(context);
+    const m = MODOS[modo];
+    mostrarModo(modo);
 
     const status = data.attempt?.status;
     if (status === "submitted" || status === "timed_out") {
       paint({
         badge: "Entregado", badgeKind: "accent",
-        title: "Ya rendiste el simulacro",
+        title: m.done,
         copy: status === "timed_out"
           ? "Tu intento se cerró al terminar el tiempo y quedó registrado. La devolución llega más adelante."
           : "Tu entrega quedó registrada. La devolución llega más adelante.",
@@ -99,7 +149,7 @@ async function prepare() {
 
     // Safe Exam Browser exige DOS signos de pregunta para trasladar la consulta
     // a la URL de inicio. Con uno solo la ignora y el estudiante llega sin pase.
-    const seb = new URL(SEB_FILE, location.href).href.replace(/^https?:\/\//, "");
+    const seb = new URL(m.seb, location.href).href.replace(/^https?:\/\//, "");
     el["launch-button"].href = `sebs://${seb}??pase=${encodeURIComponent(data.pass)}`;
 
     const vence = formatTime(data.expiresAt);
@@ -108,7 +158,7 @@ async function prepare() {
       title: `Hola, ${data.studentName || "estudiante"}`,
       copy: status === "in_progress"
         ? "Tenés un intento empezado. Al abrir el navegador seguro vas a encontrarlo donde lo dejaste."
-        : "Ya te reconocimos. Al abrir el navegador seguro entrás directo a tu parcial, sin iniciar sesión otra vez.",
+        : "Ya te reconocimos. Al abrir el navegador seguro entrás directo, sin iniciar sesión otra vez.",
       button: true,
       note: vence
         ? `Este acceso vence a las ${vence}; si se vence, recargá la página. Necesitás Safe Exam Browser instalado.`
@@ -116,10 +166,13 @@ async function prepare() {
     });
   } catch (error) {
     const code = error instanceof Error ? error.message : String(error);
-    const known = errorCopy[code];
+    const m = MODOS[error?.modo] ?? MODOS.parcial;
+    mostrarModo(error?.modo ?? "parcial");
+    const porModo = { exam_not_open: m.notOpen, exam_closed: m.closed };
+    const known = porModo[code] ?? errorCopy[code];
     const [title, copy] = known ?? ["No pudimos preparar tu acceso", "Recargá la página del aula. Si sigue igual, avisale al equipo docente."];
     paint({
-      badge: code === "exam_not_open" ? "Se habilita el lunes 14" : "No disponible",
+      badge: code === "exam_not_open" ? m.badgeNotOpen : "No disponible",
       badgeKind: code === "exam_not_open" ? "accent" : "warn",
       title, copy,
       note: known ? "" : `Código: ${code}`,
