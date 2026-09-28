@@ -16,7 +16,7 @@ const MODOS = {
     examId: config.examId,
     seb: "parcial/parcial-1.seb",
     notOpen: ["Se abre hoy a las 8:35", "El acceso se habilita a las 8:35. Recargá la página en ese momento."],
-    closed: ["El parcial ya cerró", "El acceso terminó a las 10:35. Si tuviste un problema para entrar, avisale al equipo docente."],
+    closed: ["El parcial ya cerró", "El acceso terminó a las 10:30. Si tuviste un problema para entrar, avisale al equipo docente."],
     done: "Ya entregaste el parcial",
     badgeNotOpen: "Hoy · 8:35",
   },

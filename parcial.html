@@ -57,11 +57,11 @@
           <span class="badge badge--accent">Confirmado</span>
         </div>
         <h2 class="sr-only" id="first-exam-title">Datos del primer parcial</h2>
-        <p class="exam-overview__date" id="first-exam-date">28 de septiembre · 8:35 a 10:35</p>
+        <p class="exam-overview__date" id="first-exam-date">28 de septiembre · 8:35 a 10:30</p>
         <p class="exam-overview__scope" id="first-exam-scope">Unidades 1 y 2 · Clases 1 a 5</p>
         <ul class="exam-overview__facts">
           <li><span data-icon="calendar" data-size="18"></span><span>La fecha, el horario y los contenidos ya están confirmados.</span></li>
-          <li><span data-icon="alert" data-size="18"></span><span>Diez preguntas de opción múltiple y dos consignas para desarrollar, hasta las 10:35.</span></li>
+          <li><span data-icon="alert" data-size="18"></span><span>Diez preguntas de opción múltiple y dos consignas para desarrollar, hasta las 10:30.</span></li>
         </ul>
       </aside>
     </section>
@@ -81,7 +81,7 @@
       <div class="section-head" data-modo="parcial">
         <h2 class="section-head__title" id="rehearsal-title">Primer parcial · Unidades 1 y 2</h2>
         <p class="section-head__subtitle">
-          Lunes 28 de septiembre, de 8:35 a 10:35. Evalúa las clases 1 a 5: campo,
+          Lunes 28 de septiembre, de 8:35 a 10:30. Evalúa las clases 1 a 5: campo,
           paradigmas, método, síntoma, caso y transferencia.
         </p>
       </div>
@@ -119,9 +119,9 @@
               </dd>
             </div>
             <div>
-              <dt>Dos horas, hasta las 10:35, contadas por el servidor</dt>
+              <dt>Dos horas, hasta las 10:30, contadas por el servidor</dt>
               <dd>
-                El parcial cierra a las 10:35 para todos: si entrás tarde, tenés menos
+                El parcial cierra a las 10:30 para todos: si entrás tarde, tenés menos
                 tiempo. El reloj no depende de tu computadora. Al terminar recibís un
                 comprobante con la hora de entrega.
               </dd>
@@ -447,7 +447,7 @@
   </main>
 
   <script src="parcial/config.js?v=7"></script>
-  <script type="module" src="assets/parcial-launch.js?v=4"></script>
+  <script type="module" src="assets/parcial-launch.js?v=5"></script>
 
   <script src="assets/icons.js?v=4"></script>
 <script src="assets/data.js?v=15"></script>
@@ -458,7 +458,7 @@
       const firstExam = CAMPUS_DATA.PROGRAMA.find((entry) => entry.id === 'p01');
       if (!firstExam) return;
       document.getElementById('first-exam-date').textContent =
-        `${CampusUI.Dates.short(firstExam.fecha)} · 8:35 a 10:35`;
+        `${CampusUI.Dates.short(firstExam.fecha)} · 8:35 a 10:30`;
       document.getElementById('first-exam-scope').textContent = firstExam.alcance;
 
       const evaluationGrid = document.getElementById('evaluacion-grid');
