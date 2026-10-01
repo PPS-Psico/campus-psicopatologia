@@ -50,22 +50,31 @@ function validateCriteria(value) {
   });
 }
 
+const annotationKinds = new Set(["comment", "spelling", "accent"]);
+
+// Tres clases de marca sobre el texto: el comentario libre, y la palabra mal
+// escrita o la tilde, que llevan la forma correcta y pueden ir sin comentario.
 function validateAnnotations(value) {
   if (value === undefined) return [];
-  if (!Array.isArray(value) || value.length > 100) invalid("invalid_annotation_batch");
+  if (!Array.isArray(value) || value.length > 400) invalid("invalid_annotation_batch");
   return value.map((raw) => {
     const annotation = requireObject(raw);
+    const kind = annotation.kind ?? "comment";
+    const comment = annotation.comment ?? "";
+    const suggestion = typeof annotation.suggestion === "string" ? annotation.suggestion.trim() : "";
     if (
-      !Number.isSafeInteger(annotation.startOffset)
+      !annotationKinds.has(kind)
+      || !Number.isSafeInteger(annotation.startOffset)
       || !Number.isSafeInteger(annotation.endOffset)
       || annotation.startOffset < 0
       || annotation.endOffset <= annotation.startOffset
       || typeof annotation.selectedText !== "string"
       || annotation.selectedText.length < 1
-      || annotation.selectedText.length > 8000
-      || typeof annotation.comment !== "string"
-      || annotation.comment.trim().length < 1
-      || annotation.comment.length > 4000
+      || annotation.selectedText.length > 2000
+      || typeof comment !== "string"
+      || comment.length > 4000
+      || (kind === "comment" && comment.trim().length < 1)
+      || (kind !== "comment" && (suggestion.length < 1 || suggestion.length > 200))
       || (
         annotation.visibleToStudent !== undefined
         && typeof annotation.visibleToStudent !== "boolean"
@@ -73,10 +82,12 @@ function validateAnnotations(value) {
     ) invalid("invalid_annotation_entry");
 
     return {
+      kind,
       startOffset: annotation.startOffset,
       endOffset: annotation.endOffset,
       selectedText: annotation.selectedText,
-      comment: annotation.comment,
+      suggestion: kind === "comment" ? null : suggestion,
+      comment,
       visibleToStudent: annotation.visibleToStudent ?? true,
     };
   });

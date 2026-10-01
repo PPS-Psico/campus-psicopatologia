@@ -1,5 +1,6 @@
 import { GraderApi } from "./api.js?v=4";
 import { requestMoodleContext } from "../parcial/api.js?v=4";
+import { pintarTexto, posicionEnTexto, TIPOS } from "../assets/marcas-texto.js?v=1";
 
 const el = (id) => document.getElementById(id);
 
@@ -59,6 +60,9 @@ const ERRORES = {
   coordinator_required: "Publicar es una acción de coordinación.",
   attempt_not_reviewed: "Primero hay que marcarla como revisada.",
   attempt_not_ready_to_publish: "Antes de publicar hay que marcarla como lista.",
+  annotation_text_mismatch: "Una marca no coincide con el texto del estudiante. Recargá la entrega y volvé a marcarla.",
+  invalid_annotation_entry: "Hay una marca incompleta: a la de ortografía le falta la forma correcta, o al comentario el texto.",
+  invalid_annotation_batch: "Hay demasiadas marcas en una sola consigna.",
 };
 
 const estado = {
@@ -69,6 +73,10 @@ const estado = {
   cola: null,
   ficha: null,
   guardando: false,
+  // Las marcas sobre el texto se arman acá y viajan al servidor con «Guardar».
+  anotaciones: {},
+  anotacionesDe: null,
+  sinGuardar: false,
 };
 
 function mensajeDe(error) {
@@ -240,6 +248,7 @@ function pintarFicha() {
   if (!estado.ficha) return;
 
   const f = estado.ficha;
+  cargarAnotaciones();
   el("sheet-title").textContent = f.studentName;
   el("sheet-meta").textContent = [
     ETIQUETA_ESTADO[f.gradingStatus] ?? f.gradingStatus,
@@ -270,6 +279,242 @@ function pintarFicha() {
 
   pintarConsignas();
   pintarAcciones();
+}
+
+// Cada vez que llega una versión nueva de la entrega desde el servidor, las
+// marcas se toman de ahí: lo que no se guardó antes de un conflicto se pierde,
+// igual que el puntaje y la devolución.
+function cargarAnotaciones() {
+  const f = estado.ficha;
+  const clave = `${f.attemptId}:${f.gradingVersion}`;
+  if (estado.anotacionesDe === clave) return;
+  estado.anotacionesDe = clave;
+  estado.sinGuardar = false;
+  estado.anotaciones = {};
+  for (const ensayo of f.essays ?? []) {
+    estado.anotaciones[ensayo.itemId] = (ensayo.annotations ?? []).map((a) => ({
+      kind: a.kind ?? "comment",
+      startOffset: a.startOffset,
+      endOffset: a.endOffset,
+      selectedText: a.selectedText,
+      suggestion: a.suggestion ?? null,
+      comment: a.comment ?? "",
+      visibleToStudent: a.visibleToStudent !== false,
+    }));
+  }
+}
+
+const nuevo = (tag, clase, texto) => {
+  const nodo = document.createElement(tag);
+  if (clase) nodo.className = clase;
+  if (texto !== undefined) nodo.textContent = texto;
+  return nodo;
+};
+
+const resumir = (texto, largo = 90) => {
+  const plano = texto.replace(/\s+/g, " ").trim();
+  return plano.length > largo ? `${plano.slice(0, largo - 1)}…` : plano;
+};
+
+// El texto del estudiante con las marcas encima. Quien tiene tomada la entrega
+// selecciona un fragmento y elige: comentarlo, o marcar una palabra mal escrita
+// o una tilde con la forma correcta. Nada de esto cambia lo que escribió.
+function zonaTexto(ensayo, propia) {
+  const caja = nuevo("div", "essay__text");
+  const texto = ensayo.response ?? "";
+  const respuesta = nuevo("div", "essay__response");
+  const barra = nuevo("div", "marcar");
+  barra.hidden = true;
+  barra.setAttribute("role", "group");
+  barra.setAttribute("aria-label", "Marcar el fragmento seleccionado");
+  const lista = nuevo("ol", "comentarios");
+  const resumen = nuevo("p", "marcar__resumen");
+  caja.append(respuesta, barra, lista, resumen);
+
+  if (!texto.trim()) {
+    respuesta.textContent = "(sin respuesta)";
+    lista.hidden = true;
+    resumen.hidden = true;
+    return caja;
+  }
+
+  const marcas = () => estado.anotaciones[ensayo.itemId] ?? [];
+  let seleccion = null;
+
+  const cerrar = () => {
+    barra.hidden = true;
+    barra.replaceChildren();
+    seleccion = null;
+    respuesta.querySelectorAll(".marca[data-activa]").forEach((m) => delete m.dataset.activa);
+  };
+
+  const cambiar = (transformar) => {
+    estado.anotaciones[ensayo.itemId] = transformar(marcas().slice());
+    estado.sinGuardar = true;
+    decir("Hay marcas sin guardar: tocá «Guardar».");
+    cerrar();
+    pintar();
+  };
+
+  function pintar() {
+    const comentarios = pintarTexto(respuesta, texto, marcas());
+    lista.replaceChildren();
+    lista.hidden = comentarios.length === 0;
+    comentarios.forEach((comentario, i) => {
+      const item = nuevo("li");
+      item.append(
+        nuevo("span", "comentarios__n", String(i + 1)),
+        nuevo("span", "comentarios__cita", `«${resumir(comentario.selectedText, 70)}»`),
+        nuevo("span", "comentarios__texto", comentario.comment),
+      );
+      if (propia) {
+        const acciones = nuevo("span", "comentarios__acciones");
+        const editar = nuevo("button", "enlace", "Editar");
+        editar.type = "button";
+        editar.addEventListener("click", () => {
+          seleccion = { desde: comentario.startOffset, hasta: comentario.endOffset, cita: comentario.selectedText };
+          formulario("comment", comentario);
+        });
+        const quitar = nuevo("button", "enlace", "Quitar");
+        quitar.type = "button";
+        quitar.addEventListener("click", () => cambiar((todas) => todas.filter((m) => m !== comentario)));
+        acciones.append(editar, quitar);
+        item.append(acciones);
+      }
+      lista.append(item);
+    });
+    const ortografia = marcas().filter((m) => m.kind !== "comment");
+    const palabras = ortografia.filter((m) => m.kind === "spelling").length;
+    const tildes = ortografia.length - palabras;
+    const partes = [];
+    if (palabras) partes.push(`${palabras} ${palabras === 1 ? "palabra mal escrita" : "palabras mal escritas"}`);
+    if (tildes) partes.push(`${tildes} ${tildes === 1 ? "tilde" : "tildes"}`);
+    resumen.textContent = partes.length
+      ? `Ortografía marcada: ${partes.join(" y ")}.`
+      : propia ? "Seleccioná un fragmento del texto para comentarlo o marcar una falta de ortografía." : "";
+    resumen.hidden = !resumen.textContent;
+  }
+
+  function opciones() {
+    barra.replaceChildren();
+    barra.hidden = false;
+    const fila = nuevo("div", "marcar__fila");
+    fila.append(nuevo("q", "marcar__cita", resumir(seleccion.cita)));
+    const corta = seleccion.hasta - seleccion.desde <= 60 && !seleccion.cita.includes("\n");
+    const accion = (texto, alHacer, habilitado = true) => {
+      const boton = nuevo("button", "btn btn--secondary btn--sm", texto);
+      boton.type = "button";
+      boton.disabled = !habilitado;
+      boton.addEventListener("click", alHacer);
+      fila.append(boton);
+    };
+    accion("Comentar", () => formulario("comment"));
+    accion("Mal escrita", () => formulario("spelling"), corta);
+    accion("Tilde", () => formulario("accent"), corta);
+    accion("Cancelar", cerrar);
+    barra.append(fila);
+  }
+
+  function formulario(kind, existente = null) {
+    barra.replaceChildren();
+    barra.hidden = false;
+    const titulo = nuevo("p", "marcar__titulo");
+    titulo.append(
+      document.createTextNode(kind === "comment" ? "Comentario sobre " : `${TIPOS[kind]} en `),
+      nuevo("q", "marcar__cita", resumir(seleccion.cita)),
+    );
+    const etiqueta = nuevo("label", "field");
+    etiqueta.append(nuevo("span", null, kind === "comment" ? "Lo que va a leer el estudiante" : "Se escribe"));
+    const campo = kind === "comment" ? nuevo("textarea") : nuevo("input");
+    if (kind === "comment") {
+      campo.rows = 3;
+      campo.value = existente?.comment ?? "";
+    } else {
+      campo.type = "text";
+      campo.maxLength = 200;
+      campo.value = existente?.suggestion ?? seleccion.cita;
+    }
+    etiqueta.append(campo);
+    const aviso = nuevo("p", "marcar__aviso");
+    const fila = nuevo("div", "marcar__fila");
+    const listo = nuevo("button", "btn btn--primary btn--sm", existente ? "Cambiar" : "Agregar marca");
+    listo.type = "button";
+    const no = nuevo("button", "btn btn--ghost btn--sm", "Cancelar");
+    no.type = "button";
+    no.addEventListener("click", cerrar);
+    fila.append(listo, no);
+    barra.append(titulo, etiqueta, aviso, fila);
+    campo.focus();
+    if (kind !== "comment") campo.select();
+
+    listo.addEventListener("click", () => {
+      const valor = campo.value.trim();
+      if (!valor) { aviso.textContent = kind === "comment" ? "Escribí el comentario." : "Escribí la forma correcta."; return; }
+      if (kind !== "comment" && valor === seleccion.cita) { aviso.textContent = "La forma correcta es igual a lo que escribió."; return; }
+      const choca = kind !== "comment" && marcas().some((m) => m !== existente && m.kind !== "comment"
+        && m.startOffset < seleccion.hasta && seleccion.desde < m.endOffset);
+      if (choca) { aviso.textContent = "Ese fragmento ya tiene una marca de ortografía. Quitala primero."; return; }
+      const marca = {
+        kind,
+        startOffset: seleccion.desde,
+        endOffset: seleccion.hasta,
+        selectedText: texto.slice(seleccion.desde, seleccion.hasta),
+        suggestion: kind === "comment" ? null : valor,
+        comment: kind === "comment" ? valor : "",
+        visibleToStudent: true,
+      };
+      cambiar((todas) => (existente ? todas.map((m) => (m === existente ? marca : m)) : [...todas, marca]));
+    });
+  }
+
+  if (propia) {
+    const alSeleccionar = () => {
+      const sel = globalThis.getSelection();
+      if (!sel || sel.isCollapsed || !sel.rangeCount) return;
+      const rango = sel.getRangeAt(0);
+      if (!respuesta.contains(rango.startContainer) || !respuesta.contains(rango.endContainer)) return;
+      let desde = posicionEnTexto(respuesta, rango.startContainer, rango.startOffset);
+      let hasta = posicionEnTexto(respuesta, rango.endContainer, rango.endOffset);
+      while (desde < hasta && /\s/.test(texto[desde])) desde++;
+      while (hasta > desde && /\s/.test(texto[hasta - 1])) hasta--;
+      if (hasta <= desde) return;
+      seleccion = { desde, hasta, cita: texto.slice(desde, hasta) };
+      opciones();
+    };
+    respuesta.addEventListener("mouseup", () => setTimeout(alSeleccionar, 0));
+    respuesta.addEventListener("keyup", (evento) => { if (evento.shiftKey) alSeleccionar(); });
+    respuesta.addEventListener("click", (evento) => {
+      const nodo = evento.target.closest(".marca");
+      if (!nodo || !globalThis.getSelection().isCollapsed) return;
+      const marca = marcas().find((m) => m.kind !== "comment" && String(m.startOffset) === nodo.dataset.desde);
+      if (!marca) return;
+      cerrar();
+      nodo.dataset.activa = "true";
+      seleccion = { desde: marca.startOffset, hasta: marca.endOffset, cita: marca.selectedText };
+      barra.hidden = false;
+      const fila = nuevo("div", "marcar__fila");
+      fila.append(
+        nuevo("span", null, `${TIPOS[marca.kind]}:`),
+        nuevo("q", "marcar__cita", marca.selectedText),
+        document.createTextNode("→"),
+        nuevo("q", "marcar__cita", marca.suggestion),
+      );
+      const editar = nuevo("button", "btn btn--secondary btn--sm", "Cambiar");
+      editar.type = "button";
+      editar.addEventListener("click", () => formulario(marca.kind, marca));
+      const quitar = nuevo("button", "btn btn--secondary btn--sm", "Quitar la marca");
+      quitar.type = "button";
+      quitar.addEventListener("click", () => cambiar((todas) => todas.filter((m) => m !== marca)));
+      const cerrarBoton = nuevo("button", "btn btn--ghost btn--sm", "Cerrar");
+      cerrarBoton.type = "button";
+      cerrarBoton.addEventListener("click", cerrar);
+      fila.append(editar, quitar, cerrarBoton);
+      barra.append(fila);
+    });
+  }
+
+  pintar();
+  return caja;
 }
 
 function motivoBloqueo() {
@@ -304,9 +549,7 @@ function pintarConsignas() {
     consigna.className = "essay__prompt";
     consigna.textContent = ensayo.prompt;
 
-    const respuesta = document.createElement("blockquote");
-    respuesta.className = "essay__response";
-    respuesta.textContent = ensayo.response || "(sin respuesta)";
+    const respuesta = zonaTexto(ensayo, propia);
 
     const grilla = document.createElement("div");
     grilla.className = "essay__grade";
@@ -388,9 +631,12 @@ function pintarAcciones() {
   }
   if (esPropia()) {
     boton("Guardar", "primary", guardar);
-    boton("Marcar revisada", "secondary", () => ejecutar(
-      () => api.markReviewed(f.attemptId, f.gradingVersion),
-    ));
+    // Marcarla revisada guarda antes lo que esté en pantalla: así no se pierde
+    // una marca o una devolución que quedó sin guardar.
+    boton("Marcar revisada", "secondary", () => ejecutar(async () => {
+      const guardada = await api.saveDraft(f.attemptId, f.gradingVersion, recolectarEnsayos());
+      await api.markReviewed(f.attemptId, guardada.gradingVersion);
+    }));
     boton("Soltar", "ghost", async () => {
       const motivo = prompt("¿Por qué la soltás? (queda en la auditoría)");
       if (!motivo || motivo.trim().length < 3) return;
@@ -420,7 +666,21 @@ function recolectarEnsayos() {
   for (const campo of el("essays").querySelectorAll("[data-item]")) {
     const item = campo.dataset.item;
     if (!porItem.has(item)) {
-      porItem.set(item, { itemId: item, score: null, generalFeedback: "", internalNote: "" });
+      porItem.set(item, {
+        itemId: item,
+        score: null,
+        generalFeedback: "",
+        internalNote: "",
+        annotations: (estado.anotaciones[item] ?? []).map((m) => ({
+          kind: m.kind,
+          startOffset: m.startOffset,
+          endOffset: m.endOffset,
+          selectedText: m.selectedText,
+          suggestion: m.kind === "comment" ? null : m.suggestion,
+          comment: m.comment ?? "",
+          visibleToStudent: m.visibleToStudent !== false,
+        })),
+      });
     }
     const entrada = porItem.get(item);
     if (campo.dataset.rol === "score") {

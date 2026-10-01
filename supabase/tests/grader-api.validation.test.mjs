@@ -119,6 +119,44 @@ test("saveDraft rechaza anotaciones sin un rango valido", () => {
   );
 });
 
+test("saveDraft acepta marcas de ortografia con la forma correcta", () => {
+  const operation = buildGradingOperation({
+    action: "saveDraft",
+    attemptId,
+    expectedVersion: 2,
+    essays: [{
+      itemId,
+      annotations: [
+        { kind: "spelling", startOffset: 0, endOffset: 7, selectedText: "enfermdad", suggestion: " enfermedad " },
+        { kind: "accent", startOffset: 10, endOffset: 17, selectedText: "sintoma", suggestion: "síntoma" },
+        { startOffset: 20, endOffset: 25, selectedText: "causa", comment: "Falta desarrollar" },
+      ],
+    }],
+  });
+  const [ortografia, tilde, comentario] = operation.args.p_essays[0].annotations;
+  assert.equal(ortografia.kind, "spelling");
+  assert.equal(ortografia.suggestion, "enfermedad");
+  assert.equal(ortografia.comment, "");
+  assert.equal(tilde.kind, "accent");
+  assert.equal(comentario.kind, "comment");
+  assert.equal(comentario.suggestion, null);
+});
+
+test("saveDraft rechaza una marca de ortografia sin forma correcta o de tipo desconocido", () => {
+  for (const annotation of [
+    { kind: "spelling", startOffset: 0, endOffset: 3, selectedText: "ese", suggestion: "  " },
+    { kind: "subrayado", startOffset: 0, endOffset: 3, selectedText: "ese", comment: "x" },
+    { kind: "comment", startOffset: 0, endOffset: 3, selectedText: "ese", comment: "  " },
+  ]) {
+    assert.throws(
+      () => buildGradingOperation({
+        action: "saveDraft", attemptId, expectedVersion: 0, essays: [{ itemId, annotations: [annotation] }],
+      }),
+      /invalid_annotation_entry/,
+    );
+  }
+});
+
 test("las acciones finales exigen una version segura", () => {
   assert.deepEqual(
     buildGradingOperation({ action: "publish", attemptId, expectedVersion: 9 }),
