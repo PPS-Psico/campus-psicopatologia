@@ -157,6 +157,17 @@ test("saveDraft rechaza una marca de ortografia sin forma correcta o de tipo des
   }
 });
 
+test("overview y preview piden sólo el identificador que corresponde", () => {
+  assert.deepEqual(buildGradingOperation({ action: "overview", examId, sobra: 1 }), {
+    kind: "rpc", name: "grading_overview", args: { p_exam_public_id: examId },
+  });
+  assert.deepEqual(buildGradingOperation({ action: "preview", attemptId }), {
+    kind: "rpc", name: "grading_feedback_preview", args: { p_attempt_public_id: attemptId },
+  });
+  assert.throws(() => buildGradingOperation({ action: "preview", attemptId: "x" }), /attempt_not_available/);
+  assert.throws(() => buildGradingOperation({ action: "overview" }), /exam_not_available/);
+});
+
 test("las acciones finales exigen una version segura", () => {
   assert.deepEqual(
     buildGradingOperation({ action: "publish", attemptId, expectedVersion: 9 }),

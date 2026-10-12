@@ -156,6 +156,23 @@ export function buildGradingOperation(rawBody) {
     };
   }
 
+  // Antes de publicar: todas las notas de la evaluación y la devolución tal
+  // como la va a leer cada estudiante.
+  if (action === "overview") {
+    return {
+      kind: "rpc",
+      name: "grading_overview",
+      args: { p_exam_public_id: requireUuid(body.examId, "exam_not_available") },
+    };
+  }
+  if (action === "preview") {
+    return {
+      kind: "rpc",
+      name: "grading_feedback_preview",
+      args: { p_attempt_public_id: requireUuid(body.attemptId, "attempt_not_available") },
+    };
+  }
+
   if (!new Set([
     "get", "claim", "release", "saveDraft",
     "markReviewed", "markReady", "publish",

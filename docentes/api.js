@@ -83,6 +83,8 @@ export class GraderApi {
     return this.request("queue", { examId, status, limit });
   }
   get(attemptId) { return this.request("get", { attemptId }); }
+  overview(examId) { return this.request("overview", { examId }); }
+  preview(attemptId) { return this.request("preview", { attemptId }); }
   claim(attemptId) { return this.request("claim", { attemptId }); }
   release(attemptId, reason) { return this.request("release", { attemptId, reason }); }
   saveDraft(attemptId, expectedVersion, essays) {

@@ -1,6 +1,6 @@
 const examParams = new URLSearchParams(location.search);
 const isLocalExam = location.hostname === "localhost" || location.hostname === "127.0.0.1";
-const practiceClass = ["3", "4"].includes(examParams.get("clase"))
+const practiceClass = ["3", "4", "6"].includes(examParams.get("clase"))
   ? examParams.get("clase")
   : null;
 
@@ -12,6 +12,7 @@ window.EXAM_CONFIG = Object.freeze({
   rehearsalExamId: "22222222-2222-4222-8222-222222222222",
   apiUrl: "https://zprvefdhcxnivdgsbpkw.supabase.co/functions/v1/exam-api",
   graderApiUrl: "https://zprvefdhcxnivdgsbpkw.supabase.co/functions/v1/grader-api",
+  feedbackApiUrl: "https://zprvefdhcxnivdgsbpkw.supabase.co/functions/v1/feedback-api",
   publishableKey: "sb_publishable_RH2Gj2j_K83BPWH_LX5I_w_9BsUT8ax",
   moodleOrigin: "https://campus.uflo.edu.ar",
   requestTimeoutMs: 15000,

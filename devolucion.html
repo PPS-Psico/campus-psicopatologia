@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Devolución del parcial de Psicopatología I: tu nota, tus respuestas corregidas y las notas del curso.">
+  <title>Mi devolución · Psicopatología I</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/tokens.css?v=5">
+  <link rel="stylesheet" href="assets/ui.css?v=7">
+  <link rel="stylesheet" href="assets/marcas-texto.css?v=1">
+  <link rel="stylesheet" href="assets/devolucion.css?v=1">
+</head>
+<body data-unit="1">
+<!--
+  Devolución del parcial. La identidad llega del Campus por postMessage, como en
+  el parcial: el servidor sólo entrega la devolución publicada de quien abre la
+  página. Si quien abre es del equipo docente, la página muestra en cambio todas
+  las notas y la vista previa de cada devolución, publicada o no.
+-->
+
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <div data-ui="nav" data-active="parcial"></div>
+
+  <main class="container" id="contenido">
+    <section class="dev-hero settle" aria-labelledby="page-title">
+      <p class="dev-hero__eyebrow"><a class="back-link" href="parcial.html">Parcial</a></p>
+      <h1 id="page-title">Mi devolución</h1>
+      <p class="dev-hero__lead" id="dev-lead">Estamos buscando tu parcial en el Campus…</p>
+    </section>
+
+    <p class="dev-estado" id="dev-estado" role="status"></p>
+
+    <!-- Vista docente: todas las notas y la vista previa de cada devolución -->
+    <section class="section dev-docencia" id="docencia" aria-labelledby="docencia-title" hidden>
+      <div class="section-head">
+        <h2 class="section-head__title" id="docencia-title">Todas las notas</h2>
+        <p class="section-head__subtitle" id="docencia-copy"></p>
+      </div>
+      <div class="dev-resumen" id="docencia-resumen"></div>
+      <div class="dev-tabla-wrap">
+        <table class="dev-tabla dev-tabla--docente">
+          <thead>
+            <tr><th scope="col">Estudiante</th><th scope="col">Corrigió</th><th scope="col" class="num">Opción múltiple</th><th scope="col" class="num">Escritas</th><th scope="col" class="num">Nota final</th><th scope="col">Resultado</th><th scope="col">Estado</th><th scope="col"><span class="sr-only">Vista previa</span></th></tr>
+          </thead>
+          <tbody id="docencia-filas"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="vista-previa" aria-labelledby="previa-title" hidden>
+      <div class="dev-previa-aviso">
+        <h2 id="previa-title">Vista previa</h2>
+        <p id="previa-copy"></p>
+        <a class="btn btn--secondary" href="#docencia">Volver a todas las notas</a>
+      </div>
+      <div id="previa"></div>
+    </section>
+
+    <!-- Vista del estudiante -->
+    <section class="section" id="mi-devolucion" aria-label="Tu devolución" hidden></section>
+
+    <section class="section" id="notas" aria-labelledby="notas-title" hidden>
+      <div class="section-head">
+        <h2 class="section-head__title" id="notas-title">Notas del curso</h2>
+        <p class="section-head__subtitle" id="notas-copy"></p>
+      </div>
+      <div class="dev-tabla-wrap">
+        <table class="dev-tabla">
+          <thead><tr><th scope="col">Estudiante</th><th scope="col" class="num">Nota</th><th scope="col">Resultado</th></tr></thead>
+          <tbody id="notas-filas"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span><strong class="text-strong">Psicopatología I</strong> · UFLO · <span id="year"></span></span>
+    </div>
+  </footer>
+
+  <script src="parcial/config.js?v=9"></script>
+  <script type="module" src="assets/devolucion.js?v=1"></script>
+  <script src="assets/icons.js?v=4"></script>
+  <script src="assets/data.js?v=15"></script>
+  <script src="assets/ui.js?v=8"></script>
+</body>
+</html>
