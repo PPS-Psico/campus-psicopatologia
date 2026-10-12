@@ -200,3 +200,35 @@
   .dev-om__opcion { grid-template-columns: 1.25rem minmax(0, 1fr); }
   .dev-om__nota { grid-column: 2; }
 }
+
+/* --------------------------------------- en la pestaña Parcial y en Inicio */
+
+.dev-eyebrow {
+  margin: 0 0 var(--space-1);
+  color: var(--accent-text);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.dev-en-parcial { padding-top: var(--space-10); }
+
+.notas-parcial { margin: var(--space-6) 0; }
+.notas-parcial > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  color: var(--text-strong);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+.notas-parcial > summary::-webkit-details-marker { display: none; }
+.notas-parcial > summary::after { content: "Ver"; color: var(--accent-text); font-family: var(--font-body); font-size: var(--text-sm); font-weight: 600; }
+.notas-parcial[open] > summary::after { content: "Ocultar"; }
+.notas-parcial__cuerpo { display: grid; gap: var(--space-4); margin-top: var(--space-4); }
+.notas-parcial__nota { margin: 0; color: var(--text-muted); font-size: var(--text-sm); }
+.notas-parcial__nota:empty { display: none; }

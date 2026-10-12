@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="assets/tokens.css?v=5">
   <link rel="stylesheet" href="assets/ui.css?v=7">
   <link rel="stylesheet" href="assets/parcial-info.css?v=10">
+  <link rel="stylesheet" href="assets/marcas-texto.css?v=1">
+  <link rel="stylesheet" href="assets/devolucion.css?v=3">
 </head>
 <body data-unit="1">
 <!--
@@ -33,6 +35,9 @@
   <div data-ui="nav" data-active="parcial"></div>
 
   <main class="container" id="contenido">
+    <!-- El parcial corregido de quien entra: aparece sólo si ya se publicó. -->
+    <section class="section dev-en-parcial" id="mi-devolucion" aria-label="Tu parcial corregido" hidden></section>
+
     <section class="exam-info-hero settle" aria-labelledby="page-title">
       <div>
         <h1 id="page-title">Parcial</h1>
@@ -451,8 +456,9 @@
     </footer>
   </main>
 
-  <script src="parcial/config.js?v=7"></script>
+  <script src="parcial/config.js?v=9"></script>
   <script type="module" src="assets/parcial-launch.js?v=5"></script>
+  <script type="module" src="assets/parcial-devolucion.js?v=1"></script>
 
   <script src="assets/icons.js?v=4"></script>
 <script src="assets/data.js?v=15"></script>

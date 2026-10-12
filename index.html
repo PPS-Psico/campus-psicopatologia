@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/tokens.css?v=5">
   <link rel="stylesheet" href="assets/ui.css?v=7">
+  <link rel="stylesheet" href="assets/devolucion.css?v=3">
   <style>
     /* Aviso del primer parcial. Vive en esta página y se retira solo cuando
        cierra el parcial; no toca ui.css para no obligar a versionar todo. */
@@ -82,6 +83,22 @@
         if (aviso && Date.now() >= Date.parse(aviso.dataset.hasta)) aviso.hidden = true;
       })();
     </script>
+
+    <details class="notas-parcial card" id="notas-parcial" hidden>
+      <summary>Notas del primer parcial</summary>
+      <div class="notas-parcial__cuerpo">
+        <p class="notas-parcial__nota" id="notas-parcial-nota"></p>
+        <p id="notas-parcial-link" hidden>
+          <a class="btn btn--secondary" href="parcial.html">Ver tu parcial corregido <span data-icon="arrowRight" data-size="16"></span></a>
+        </p>
+        <div class="dev-tabla-wrap">
+          <table class="dev-tabla">
+            <thead><tr><th scope="col">Estudiante</th><th scope="col" class="num">Nota final</th></tr></thead>
+            <tbody id="notas-parcial-filas"></tbody>
+          </table>
+        </div>
+      </div>
+    </details>
 
     <!-- ============================================================
          LO QUE VIENE
@@ -230,6 +247,8 @@
     }
   </style>
 
+  <script src="parcial/config.js?v=9"></script>
+  <script type="module" src="assets/inicio-notas.js?v=1"></script>
   <script src="assets/icons.js?v=4"></script>
 <script src="assets/data.js?v=15"></script>
   <script src="assets/ui.js?v=8"></script>
