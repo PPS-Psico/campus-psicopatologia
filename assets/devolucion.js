@@ -195,14 +195,6 @@ function pintarNotas(filas, propio) {
 
 // ---------------------------------------------------------- vista docente
 
-const ESTADOS = {
-  unassigned: "Sin asignar",
-  in_review: "En corrección",
-  reviewed: "Revisada",
-  ready_to_publish: "Lista para publicar",
-  published: "Publicada",
-};
-
 async function vistaDocente(grader, sesion) {
   $("page-title").textContent = "Devoluciones del parcial";
   $("dev-lead").textContent = `Entraste como ${sesion.displayName}, del equipo docente. `
@@ -213,7 +205,7 @@ async function vistaDocente(grader, sesion) {
   const desaprobados = filas.filter((f) => f.result === "desaprobado").length;
   const sinResultado = filas.filter((f) => !f.result).length;
   $("docencia-copy").textContent = `${datos.examTitle}. ${filas.length} entregas, ${publicadas} publicadas. `
-    + "Los estudiantes ven su devolución y la lista de notas sólo cuando se publica.";
+    + "Tocá un nombre para ver su devolución tal como la va a leer. Los estudiantes la ven sólo cuando se publica.";
   const resumen = $("docencia-resumen");
   resumen.replaceChildren();
   [[filas.length - desaprobados - sinResultado, "aprobados"], [desaprobados, "desaprobados"],
@@ -224,28 +216,24 @@ async function vistaDocente(grader, sesion) {
     resumen.append(div);
   });
 
+  // Cada nombre abre, abajo, la devolución de ese estudiante tal como la va a leer.
   const cuerpo = $("docencia-filas");
   cuerpo.replaceChildren();
   filas.forEach((f) => {
     const tr = crear("tr");
+    const nombre = crear("td");
+    const abrir = crear("button", "dev-nombre", f.studentName);
+    abrir.type = "button";
+    abrir.addEventListener("click", () => {
+      cuerpo.querySelectorAll("tr[data-abierta]").forEach((x) => delete x.dataset.abierta);
+      tr.dataset.abierta = "true";
+      abrirPrevia(grader, f);
+    });
+    nombre.append(abrir);
     const resultado = crear("td");
     if (f.result) resultado.append(etiquetaResultado(f.result));
     else resultado.textContent = "—";
-    const accion = crear("td");
-    const ver = crear("button", "btn btn--ghost dev-ver", "Ver devolución");
-    ver.type = "button";
-    ver.addEventListener("click", () => abrirPrevia(grader, f));
-    accion.append(ver);
-    tr.append(
-      crear("td", null, f.studentName),
-      crear("td", "dev-muted", f.grader ?? "—"),
-      crear("td", "num", numero(f.objectiveScore)),
-      crear("td", "num", numero(f.manualScore)),
-      crear("td", "num dev-fuerte", numero(f.finalScore)),
-      resultado,
-      crear("td", "dev-muted", ESTADOS[f.gradingStatus] ?? f.gradingStatus),
-      accion,
-    );
+    tr.append(nombre, crear("td", "num dev-fuerte", numero(f.finalScore)), resultado);
     cuerpo.append(tr);
   });
   $("docencia").hidden = false;

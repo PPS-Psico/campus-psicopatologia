@@ -161,7 +161,21 @@
 .dev-tabla tr[data-propio="true"] td { background: var(--accent-soft); font-weight: 700; }
 .dev-muted { color: var(--text-muted); }
 .dev-fuerte { color: var(--text-strong); font-weight: 700; }
-.dev-ver { white-space: nowrap; }
+.dev-nombre {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent-text);
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.dev-nombre:hover, .dev-nombre:focus-visible { text-decoration-color: currentColor; }
+.dev-tabla tr[data-abierta="true"] td { background: var(--accent-soft); }
 
 .dev-resumen { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-10); margin-bottom: var(--space-6); }
 .dev-resumen div { display: grid; }
