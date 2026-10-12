@@ -1,6 +1,6 @@
 const examParams = new URLSearchParams(location.search);
 const isLocalExam = location.hostname === "localhost" || location.hostname === "127.0.0.1";
-const practiceClass = ["3", "4", "6"].includes(examParams.get("clase"))
+const practiceClass = ["3", "4"].includes(examParams.get("clase"))
   ? examParams.get("clase")
   : null;
 
