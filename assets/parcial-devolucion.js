@@ -1,7 +1,7 @@
 // La pestaña Parcial arranca con el parcial corregido de quien entra, si ya se
 // publicó. Si no hay nada publicado, o quien entra no rindió (el equipo
 // docente, por ejemplo), la sección no aparece y la página sigue como siempre.
-import { devolucionPropia, pintarDevolucion, crear } from "./devolucion-vista.js?v=1";
+import { devolucionPropia, pintarDevolucion, crear } from "./devolucion-vista.js?v=2";
 
 const config = window.EXAM_CONFIG ?? {};
 const destino = document.getElementById("mi-devolucion");

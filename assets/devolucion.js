@@ -5,7 +5,7 @@
 import { requestMoodleContext } from "../parcial/api.js?v=4";
 import { GraderApi } from "../docentes/api.js?v=5";
 import { FeedbackApi } from "../devolucion/api.js?v=2";
-import { crear, numero, etiquetaResultado, pintarDevolucion, pintarListaNotas } from "./devolucion-vista.js?v=1";
+import { crear, numero, etiquetaResultado, pintarDevolucion, pintarListaNotas } from "./devolucion-vista.js?v=2";
 
 const config = window.EXAM_CONFIG ?? {};
 const $ = (id) => document.getElementById(id);

@@ -26,6 +26,8 @@ export function etiquetaResultado(resultado) {
   return chip;
 }
 
+// Sólo la nota final y el resultado: la nota no es una suma de partes, así que
+// no se muestran puntos por consigna ni por la opción múltiple.
 export function pintarResumen(snap) {
   const caja = crear("div", "dev-nota card");
   const final = snap.finalScore ?? snap.totalScore;
@@ -34,30 +36,19 @@ export function pintarResumen(snap) {
   const valor = crear("strong", "dev-nota__valor", numero(final));
   izquierda.append(valor, etiquetaResultado(snap.result));
 
-  const partes = crear("dl", "dev-nota__partes");
-  const fila = (rotulo, puntos, maximo) => {
-    const div = crear("div");
-    div.append(crear("dt", null, rotulo), crear("dd", null, `${numero(puntos)} / ${numero(maximo)}`));
-    partes.append(div);
-  };
-  fila("Opción múltiple", snap.objectiveScore, snap.objectiveMaxScore);
-  (snap.essays ?? []).forEach((ensayo, i) => fila(`Consigna ${i + 1}`, ensayo.score, ensayo.maxPoints));
-  fila("Suma de puntos", snap.totalScore, snap.maxScore);
+  const texto = crear("div", "dev-nota__criterio");
+  texto.append(crear("p", null,
+    "La nota surge de la evaluación en conjunto del parcial, haciendo hincapié en las preguntas "
+    + "a desarrollar, tal como se explicó en clase."));
 
-  caja.append(izquierda, partes);
-  if (snap.result === "desaprobado" && Number(final) !== Number(snap.totalScore)) {
-    caja.append(crear("p", "dev-nota__aclaracion",
-      `La suma de puntos da ${numero(snap.totalScore)}, pero el parcial está desaprobado: `
-      + "la aprobación se decide por las consignas a desarrollar, y un parcial desaprobado lleva 2 como nota final."));
-  }
+  caja.append(izquierda, texto);
   return caja;
 }
 
 export function pintarConsigna(ensayo, indice) {
   const bloque = crear("article", "dev-consigna card");
   const cabeza = crear("header", "dev-consigna__cabeza");
-  cabeza.append(crear("h3", null, `Consigna ${indice + 1}`),
-    crear("span", "dev-puntos", `${numero(ensayo.score)} / ${numero(ensayo.maxPoints)}`));
+  cabeza.append(crear("h3", null, `Consigna ${indice + 1}`));
   bloque.append(cabeza, crear("p", "dev-consigna__enunciado", ensayo.prompt));
 
   if ((ensayo.generalFeedback ?? "").trim()) {
@@ -105,11 +96,9 @@ export function pintarConsigna(ensayo, indice) {
 
 export function pintarOpcionMultiple(preguntas) {
   const bloque = crear("article", "dev-om card");
-  const bien = preguntas.filter((p) => p.correct).length;
   const cabeza = crear("header", "dev-consigna__cabeza");
-  cabeza.append(crear("h3", null, "Opción múltiple"),
-    crear("span", "dev-puntos", `${bien} de ${preguntas.length} correctas`));
-  bloque.append(cabeza);
+  cabeza.append(crear("h3", null, "Opción múltiple"));
+  bloque.append(cabeza, crear("p", "dev-consigna__enunciado", "Tu respuesta en cada pregunta y la correcta, para repasar."));
   const lista = crear("ol", "dev-om__lista");
   preguntas.forEach((p) => {
     const item = crear("li", "dev-om__pregunta");

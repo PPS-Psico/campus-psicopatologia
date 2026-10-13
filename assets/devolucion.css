@@ -61,7 +61,9 @@
 .dev-nota__partes div { border-left: 1px solid var(--border-strong); padding-left: var(--space-4); }
 .dev-nota__partes dt { color: var(--text-muted); font-size: var(--text-xs); font-weight: 700; }
 .dev-nota__partes dd { margin: var(--space-1) 0 0; color: var(--text-strong); font-family: var(--font-display); font-size: var(--text-xl); font-weight: 700; font-variant-numeric: tabular-nums; }
-.dev-nota__aclaracion { grid-column: 1 / -1; margin: 0; max-width: var(--measure); color: var(--text-muted); font-size: var(--text-sm); }
+.dev-nota__criterio { display: grid; gap: var(--space-2); max-width: var(--measure); min-width: 0; }
+.dev-nota__criterio p { margin: 0; color: var(--text-muted); font-size: var(--text-sm); line-height: var(--leading-relaxed); }
+.dev-nota__criterio p:first-child { color: var(--text-strong); }
 
 .dev-resultado {
   display: inline-block;
