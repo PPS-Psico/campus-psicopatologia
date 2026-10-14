@@ -216,6 +216,19 @@
 .dev-en-parcial { padding-top: var(--space-10); }
 
 .notas-parcial { margin: var(--space-6) 0; }
+.notas-parcial__nota a { color: var(--accent-text); font-weight: 600; }
+
+.guia-enlace {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4) var(--space-8);
+  margin-top: var(--space-10);
+}
+.guia-enlace > div { display: grid; gap: var(--space-1); max-width: var(--measure); min-width: 0; }
+.guia-enlace__titulo { margin: 0; color: var(--text-strong); font-family: var(--font-display); font-size: var(--text-xl); }
+.guia-enlace__texto { margin: 0; color: var(--text-muted); }
 .notas-parcial > summary {
   display: flex;
   align-items: center;
