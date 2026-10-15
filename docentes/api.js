@@ -87,8 +87,12 @@ export class GraderApi {
   preview(attemptId) { return this.request("preview", { attemptId }); }
   claim(attemptId) { return this.request("claim", { attemptId }); }
   release(attemptId, reason) { return this.request("release", { attemptId, reason }); }
-  saveDraft(attemptId, expectedVersion, essays) {
-    return this.request("saveDraft", { attemptId, expectedVersion, essays });
+  saveDraft(attemptId, expectedVersion, essays, outcome = undefined) {
+    return this.request("saveDraft", { attemptId, expectedVersion, essays, outcome });
+  }
+  // El resultado y la nota final de una corrección ya cerrada (coordinación).
+  setOutcome(attemptId, expectedVersion, outcome) {
+    return this.request("setOutcome", { attemptId, expectedVersion, outcome });
   }
   markReviewed(attemptId, expectedVersion) {
     return this.request("markReviewed", { attemptId, expectedVersion });

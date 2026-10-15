@@ -244,6 +244,46 @@ body {
 .field textarea:disabled { background: var(--surface-sunken); color: var(--text-muted); }
 .field--score input { max-width: 9rem; font-variant-numeric: tabular-nums; }
 
+/* El resultado del parcial: lo decide quien corrige, aparte de la suma. */
+.outcome {
+  display: grid;
+  gap: var(--space-4);
+  max-width: var(--measure);
+  margin: 0 0 var(--space-6);
+  padding: var(--space-5);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+.outcome__title { margin: 0; color: var(--text-strong); font-size: var(--text-base); font-weight: 700; }
+.outcome__hint { margin: var(--space-1) 0 0; color: var(--text-muted); font-size: var(--text-sm); line-height: var(--leading-relaxed); }
+.outcome__row { display: flex; flex-wrap: wrap; align-items: end; gap: var(--space-4); }
+.outcome__choice {
+  display: inline-flex;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+.outcome__opt {
+  min-height: 42px;
+  padding: var(--space-2) var(--space-5);
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.outcome__opt + .outcome__opt { border-left: 1px solid var(--border-strong); }
+.outcome__opt:hover:not(:disabled) { background: var(--surface-hover); }
+.outcome__opt:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.outcome__opt[aria-pressed="true"][data-valor="aprobado"] { background: var(--accent-soft); color: var(--accent-text); }
+.outcome__opt[aria-pressed="true"][data-valor="desaprobado"] { background: var(--warn-soft); color: var(--warn); }
+.outcome__opt:disabled { cursor: default; }
+.outcome .field--score input { min-height: 42px; }
+.outcome__aviso { margin: 0; color: var(--text-muted); font-size: var(--text-sm); }
+.outcome__aviso:empty { display: none; }
+
 .sheet__actions {
   display: flex;
   flex-wrap: wrap;

@@ -1,4 +1,4 @@
-import { GraderApi } from "./api.js?v=4";
+import { GraderApi } from "./api.js?v=6";
 import { requestMoodleContext } from "../parcial/api.js?v=4";
 import { pintarTexto, posicionEnTexto, TIPOS } from "../assets/marcas-texto.js?v=1";
 
@@ -63,7 +63,14 @@ const ERRORES = {
   annotation_text_mismatch: "Una marca no coincide con el texto del estudiante. Recargá la entrega y volvé a marcarla.",
   invalid_annotation_entry: "Hay una marca incompleta: a la de ortografía le falta la forma correcta, o al comentario el texto.",
   invalid_annotation_batch: "Hay demasiadas marcas en una sola consigna.",
+  outcome_required: "Falta decidir el resultado y la nota final del parcial.",
+  outcome_inconsistent: "La nota no coincide con el resultado: por debajo de 4 es desaprobado.",
+  invalid_outcome: "La nota final tiene que ser un número entre 0 y 10.",
 };
+
+// Un desaprobado lleva 2 si quien corrige no pone otra nota.
+const NOTA_DESAPROBADO = 2;
+const NOTA_MINIMA_APROBADO = 4;
 
 const estado = {
   perfil: null,
@@ -77,6 +84,11 @@ const estado = {
   anotaciones: {},
   anotacionesDe: null,
   sinGuardar: false,
+  // El resultado y la nota final del parcial: los decide quien corrige, no la
+  // suma. Se editan acá y viajan con «Guardar».
+  resultado: { result: null, finalScore: null },
+  resultadoDe: null,
+  sumaReferencia: null,
 };
 
 function mensajeDe(error) {
@@ -97,6 +109,9 @@ function fecha(valor) {
     }).format(new Date(valor));
   } catch { return "—"; }
 }
+
+const formato = (n) => Number(n).toLocaleString("es-AR", { maximumFractionDigits: 2 });
+const aCuarto = (n) => Math.round(n * 4) / 4;
 
 function puntaje(valor, maximo) {
   if (valor === null || valor === undefined) return `— / ${Number(maximo ?? 0)}`;
@@ -275,8 +290,14 @@ function pintarFicha() {
   el("sheet-scores").innerHTML = `
     <div><dt>Opción múltiple</dt><dd>${puntaje(f.objectiveScore, f.objectiveMaxScore)}</dd></div>
     <div><dt>Escrita</dt><dd>${escrita}</dd>${escritaNota}</div>
-    <div><dt>Total</dt><dd>${f.totalScore === null || f.totalScore === undefined ? "pendiente" : Number(f.totalScore)}</dd></div>`;
+    <div><dt>Suma de puntos</dt><dd>${f.totalScore === null || f.totalScore === undefined ? "pendiente" : Number(f.totalScore)}</dd></div>`;
 
+  const escritaActual = f.manualScore ?? borrador;
+  estado.sumaReferencia = f.objectiveScore === null || f.objectiveScore === undefined
+    ? null
+    : Number(f.objectiveScore) + Number(escritaActual ?? 0);
+  cargarResultado();
+  pintarResultado();
   pintarConsignas();
   pintarAcciones();
 }
@@ -302,6 +323,148 @@ function cargarAnotaciones() {
       visibleToStudent: a.visibleToStudent !== false,
     }));
   }
+}
+
+function cargarResultado() {
+  const f = estado.ficha;
+  const clave = `${f.attemptId}:${f.gradingVersion}`;
+  if (estado.resultadoDe === clave) return;
+  estado.resultadoDe = clave;
+  estado.resultado = {
+    result: f.result ?? null,
+    finalScore: f.finalScore === null || f.finalScore === undefined ? null : Number(f.finalScore),
+  };
+}
+
+// Quién puede tocar el resultado: quien tiene tomada la entrega mientras la
+// corrige, y la coordinación después, aunque ya esté publicada.
+function modoResultado() {
+  const f = estado.ficha;
+  if (esPropia()) return "borrador";
+  if (estado.perfil?.role === "coordinator"
+      && ["reviewed", "ready_to_publish", "published"].includes(f.gradingStatus)) return "coordinacion";
+  return null;
+}
+
+// ------------------------------------------------------------- resultado
+
+function pintarResultado() {
+  const zona = el("outcome");
+  zona.replaceChildren();
+  const f = estado.ficha;
+  const r = estado.resultado;
+  const modo = modoResultado();
+  const suma = estado.sumaReferencia;
+  zona.hidden = false;
+
+  const cabeza = nuevo("div", "outcome__head");
+  cabeza.append(
+    nuevo("h3", "outcome__title", "Resultado del parcial"),
+    nuevo("p", "outcome__hint",
+      "La nota final la decidís vos, leyendo el parcial completo: no tiene que coincidir con la suma de puntos"
+      + `${suma === null ? "" : ` (hoy suma ${formato(suma)})`}. Por debajo de 4 es desaprobado.`),
+  );
+
+  const fila = nuevo("div", "outcome__row");
+  const opciones = nuevo("div", "outcome__choice");
+  opciones.setAttribute("role", "group");
+  opciones.setAttribute("aria-label", "Resultado");
+  const botones = [["aprobado", "Aprobado"], ["desaprobado", "Desaprobado"]].map(([valor, texto]) => {
+    const b = nuevo("button", "outcome__opt", texto);
+    b.type = "button";
+    b.dataset.valor = valor;
+    b.disabled = !modo;
+    b.addEventListener("click", () => elegirResultado(valor));
+    opciones.append(b);
+    return b;
+  });
+
+  const campo = nuevo("label", "field field--score");
+  campo.append(nuevo("span", null, "Nota final"));
+  const input = nuevo("input");
+  input.type = "number";
+  input.min = "0";
+  input.max = "10";
+  input.step = "0.25";
+  input.inputMode = "decimal";
+  input.value = r.finalScore ?? "";
+  input.disabled = !modo;
+  campo.append(input);
+
+  const aviso = nuevo("p", "outcome__aviso");
+  const marcar = () => {
+    for (const b of botones) b.setAttribute("aria-pressed", String(r.result === b.dataset.valor));
+    aviso.textContent = !r.result || r.finalScore === null
+      ? (modo ? "Todavía sin decidir: elegí el resultado o escribí la nota." : "Sin decidir.")
+      : f.gradingStatus === "published" && modo === "coordinacion"
+        ? "Ya está publicada: si la cambiás, el estudiante ve la nota nueva."
+        : "";
+  };
+
+  // Escribir la nota decide el resultado: con menos de 4 queda desaprobado.
+  input.addEventListener("input", () => {
+    const valor = input.value === "" ? null : Number(input.value);
+    r.finalScore = valor !== null && Number.isFinite(valor) ? valor : null;
+    if (r.finalScore !== null) r.result = r.finalScore < NOTA_MINIMA_APROBADO ? "desaprobado" : "aprobado";
+    resultadoCambiado();
+    marcar();
+  });
+
+  fila.append(opciones, campo);
+  if (modo === "coordinacion") {
+    const guardarNota = nuevo("button", "btn btn--primary",
+      f.gradingStatus === "published" ? "Guardar y volver a publicar" : "Guardar nota");
+    guardarNota.type = "button";
+    guardarNota.disabled = estado.guardando;
+    guardarNota.addEventListener("click", guardarResultadoCoordinacion);
+    fila.append(guardarNota);
+  }
+  zona.append(cabeza, fila, aviso);
+  marcar();
+}
+
+function elegirResultado(valor) {
+  const r = estado.resultado;
+  r.result = valor;
+  if (valor === "desaprobado" && (r.finalScore === null || r.finalScore >= NOTA_MINIMA_APROBADO)) {
+    r.finalScore = NOTA_DESAPROBADO;
+  }
+  if (valor === "aprobado" && (r.finalScore === null || r.finalScore < NOTA_MINIMA_APROBADO)) {
+    const suma = estado.sumaReferencia;
+    r.finalScore = suma !== null && suma >= NOTA_MINIMA_APROBADO ? Math.min(10, aCuarto(suma)) : NOTA_MINIMA_APROBADO;
+  }
+  resultadoCambiado();
+  pintarResultado();
+}
+
+function resultadoCambiado() {
+  decir(modoResultado() === "coordinacion"
+    ? "La nota cambió: tocá «Guardar nota»."
+    : "La nota cambió: tocá «Guardar».");
+}
+
+// Lo que se manda al servidor, y si está listo para cerrar la corrección.
+function resultadoParaGuardar() {
+  const { result, finalScore } = estado.resultado;
+  return { result: result ?? null, finalScore: finalScore ?? null };
+}
+
+function problemaDeResultado() {
+  const { result, finalScore } = estado.resultado;
+  if (!result || finalScore === null) return "outcome_required";
+  if (finalScore < 0 || finalScore > 10) return "invalid_outcome";
+  if ((result === "aprobado") !== (finalScore >= NOTA_MINIMA_APROBADO)) return "outcome_inconsistent";
+  return null;
+}
+
+async function guardarResultadoCoordinacion() {
+  const problema = problemaDeResultado();
+  if (problema) { decir(ERRORES[problema], "error"); return; }
+  const f = estado.ficha;
+  await ejecutar(
+    () => api.setOutcome(f.attemptId, f.gradingVersion, resultadoParaGuardar()),
+    f.gradingStatus === "published" ? "Nota guardada y devolución publicada de nuevo." : "Nota guardada.",
+  );
 }
 
 const nuevo = (tag, clase, texto) => {
@@ -633,10 +796,16 @@ function pintarAcciones() {
     boton("Guardar", "primary", guardar);
     // Marcarla revisada guarda antes lo que esté en pantalla: así no se pierde
     // una marca o una devolución que quedó sin guardar.
-    boton("Marcar revisada", "secondary", () => ejecutar(async () => {
-      const guardada = await api.saveDraft(f.attemptId, f.gradingVersion, recolectarEnsayos());
-      await api.markReviewed(f.attemptId, guardada.gradingVersion);
-    }));
+    boton("Marcar revisada", "secondary", () => {
+      const problema = problemaDeResultado();
+      if (problema) { decir(ERRORES[problema], "error"); return undefined; }
+      return ejecutar(async () => {
+        const guardada = await api.saveDraft(
+          f.attemptId, f.gradingVersion, recolectarEnsayos(), resultadoParaGuardar(),
+        );
+        await api.markReviewed(f.attemptId, guardada.gradingVersion);
+      });
+    });
     boton("Soltar", "ghost", async () => {
       const motivo = prompt("¿Por qué la soltás? (queda en la auditoría)");
       if (!motivo || motivo.trim().length < 3) return;
@@ -656,7 +825,9 @@ function pintarAcciones() {
   if (f.gradingStatus === "published") {
     const nota = document.createElement("p");
     nota.className = "sheet__published";
-    nota.textContent = "Publicada. Para cambiarla hay que reabrirla, y eso queda registrado.";
+    nota.textContent = coordina
+      ? "Publicada. El resultado y la nota se pueden cambiar arriba: queda registrado y se vuelve a publicar."
+      : "Publicada. El resultado y la nota los puede cambiar la coordinación.";
     zona.append(nota);
   }
 }
@@ -696,7 +867,7 @@ async function guardar() {
   const ensayos = recolectarEnsayos();
   if (!ensayos.length) return;
   await ejecutar(() => api.saveDraft(
-    estado.ficha.attemptId, estado.ficha.gradingVersion, ensayos,
+    estado.ficha.attemptId, estado.ficha.gradingVersion, ensayos, resultadoParaGuardar(),
   ), "Guardado.");
 }
 
@@ -723,7 +894,10 @@ async function ejecutar(accion, exito = "Listo.") {
     decir(mensajeDe(error), "error");
   } finally {
     estado.guardando = false;
-    if (estado.ficha) pintarAcciones();
+    if (estado.ficha) {
+      pintarResultado();
+      pintarAcciones();
+    }
   }
 }
 

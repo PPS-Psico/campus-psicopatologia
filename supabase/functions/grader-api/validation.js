@@ -124,6 +124,27 @@ function validateEssays(value) {
   });
 }
 
+const outcomeResults = new Set(["aprobado", "desaprobado"]);
+
+// El resultado y la nota final los decide quien corrige: no tienen que
+// coincidir con la suma de puntos. Por debajo de 4 es desaprobado.
+function validateOutcome(value, { complete }) {
+  const outcome = requireObject(value);
+  const result = outcome.result ?? null;
+  const finalScore = outcome.finalScore ?? null;
+  if (result !== null && !outcomeResults.has(result)) invalid("invalid_outcome");
+  if (
+    finalScore !== null
+    && (typeof finalScore !== "number" || !Number.isFinite(finalScore) || finalScore < 0 || finalScore > 10)
+  ) invalid("invalid_outcome");
+  if (complete && (result === null || finalScore === null)) invalid("outcome_required");
+  if (
+    (result === "aprobado" && finalScore !== null && finalScore < 4)
+    || (result === "desaprobado" && finalScore !== null && finalScore >= 4)
+  ) invalid("outcome_inconsistent");
+  return { result, finalScore };
+}
+
 /**
  * @param {unknown} rawBody
  * @returns {{kind: "bootstrap"} | {kind: "rpc", name: string, args: Record<string, unknown>}}
@@ -175,7 +196,7 @@ export function buildGradingOperation(rawBody) {
 
   if (!new Set([
     "get", "claim", "release", "saveDraft",
-    "markReviewed", "markReady", "publish",
+    "markReviewed", "markReady", "publish", "setOutcome",
   ]).has(action)) invalid("unknown_action");
 
   const attemptId = requireUuid(body.attemptId, "attempt_not_available");
@@ -204,6 +225,22 @@ export function buildGradingOperation(rawBody) {
         ...attemptArgs,
         p_expected_version: requireVersion(body.expectedVersion),
         p_essays: validateEssays(body.essays),
+        ...(body.outcome === undefined || body.outcome === null
+          ? {}
+          : { p_outcome: validateOutcome(body.outcome, { complete: false }) }),
+      },
+    };
+  }
+  if (action === "setOutcome") {
+    const outcome = validateOutcome(body.outcome, { complete: true });
+    return {
+      kind: "rpc",
+      name: "grading_set_outcome",
+      args: {
+        ...attemptArgs,
+        p_expected_version: requireVersion(body.expectedVersion),
+        p_result: outcome.result,
+        p_final_score: outcome.finalScore,
       },
     };
   }
@@ -248,7 +285,7 @@ export function publicGradingError(error) {
       "duplicate_essay_item", "invalid_essay_score", "invalid_criteria_batch",
       "invalid_criterion_entry", "invalid_annotation_batch", "invalid_annotation_entry",
       "invalid_essay_item", "invalid_rubric_criterion", "grading_text_too_long",
-      "annotation_text_mismatch", "invalid_moodle_context",
+      "annotation_text_mismatch", "invalid_moodle_context", "invalid_outcome",
     ]],
     [401, ["invalid_grader_session"]],
     [403, ["grader_not_authorized", "grader_inactive", "coordinator_required", "not_a_grader"]],
@@ -258,6 +295,7 @@ export function publicGradingError(error) {
       "attempt_not_editable", "grading_version_conflict", "essay_grades_incomplete",
       "rubric_grades_incomplete", "manual_score_exceeds_maximum",
       "attempt_not_reviewed", "attempt_not_ready_to_publish", "feedback_snapshot_failed",
+      "outcome_required", "outcome_inconsistent",
     ]],
   ];
 

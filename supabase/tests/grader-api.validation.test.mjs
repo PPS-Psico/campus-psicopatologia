@@ -216,3 +216,69 @@ test("los errores internos se traducen sin filtrar detalles", () => {
     code: "internal_error",
   });
 });
+
+test("saveDraft lleva el resultado y la nota final que decide quien corrige", () => {
+  const operation = buildGradingOperation({
+    action: "saveDraft",
+    attemptId,
+    expectedVersion: 2,
+    essays: [{ itemId, score: 1 }],
+    outcome: { result: "desaprobado", finalScore: 2 },
+  });
+  assert.deepEqual(operation.args.p_outcome, { result: "desaprobado", finalScore: 2 });
+
+  // Sin outcome, un cliente viejo no toca el resultado guardado.
+  const vieja = buildGradingOperation({
+    action: "saveDraft", attemptId, expectedVersion: 2, essays: [{ itemId }],
+  });
+  assert.equal("p_outcome" in vieja.args, false);
+
+  // En el borrador todavía se puede no haber decidido.
+  const pendiente = buildGradingOperation({
+    action: "saveDraft", attemptId, expectedVersion: 2, essays: [{ itemId }],
+    outcome: { result: null, finalScore: null },
+  });
+  assert.deepEqual(pendiente.args.p_outcome, { result: null, finalScore: null });
+});
+
+test("el resultado tiene que ser coherente con la nota", () => {
+  const con = (outcome) => () => buildGradingOperation({
+    action: "saveDraft", attemptId, expectedVersion: 2, essays: [{ itemId }], outcome,
+  });
+  assert.throws(con({ result: "aprobado", finalScore: 3.5 }), /outcome_inconsistent/);
+  assert.throws(con({ result: "desaprobado", finalScore: 6 }), /outcome_inconsistent/);
+  assert.throws(con({ result: "regular", finalScore: 6 }), /invalid_outcome/);
+  assert.throws(con({ result: "aprobado", finalScore: 11 }), /invalid_outcome/);
+  assert.throws(con({ result: "aprobado", finalScore: "7" }), /invalid_outcome/);
+});
+
+test("setOutcome exige resultado y nota completos", () => {
+  assert.deepEqual(
+    buildGradingOperation({
+      action: "setOutcome",
+      attemptId,
+      expectedVersion: 9,
+      outcome: { result: "aprobado", finalScore: 6.5 },
+    }),
+    {
+      kind: "rpc",
+      name: "grading_set_outcome",
+      args: {
+        p_attempt_public_id: attemptId,
+        p_expected_version: 9,
+        p_result: "aprobado",
+        p_final_score: 6.5,
+      },
+    },
+  );
+  assert.throws(
+    () => buildGradingOperation({
+      action: "setOutcome", attemptId, expectedVersion: 9, outcome: { result: "aprobado" },
+    }),
+    /outcome_required/,
+  );
+  assert.deepEqual(publicGradingError(new Error("outcome_required")), {
+    status: 409,
+    code: "outcome_required",
+  });
+});
