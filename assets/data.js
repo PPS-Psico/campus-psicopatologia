@@ -233,13 +233,23 @@ window.CAMPUS_DATA = (function () {
       alcance: 'Unidades 3 y 4 · Clases 6 a 8'
     },
     {
-      id: 'c09', tipo: 'clase', unidad: 4, numero: 9, estado: 'pendiente',
+      id: 'h05', tipo: 'feriado',
       fecha: { año: 2026, mes: 11, dia: 9 },
+      titulo: 'Feriado nacional · Sin clase',
+      desc: 'Visita del papa León XIV a la Argentina (Decreto 1103/2026). Era la fecha de ' +
+            'la Clase 9, que se reprograma.'
+    },
+    {
+      // Sin fecha: el 9/11 pasó a feriado y la nueva fecha está a definir. Con
+      // fecha: null queda fuera de "Lo que viene" y el cronograma la muestra
+      // como "a definir".
+      id: 'c09', tipo: 'clase', unidad: 4, numero: 9, estado: 'sin-definir',
+      fecha: null,
       titulo: 'Schreber, delirio y formulación integradora',
       desc: 'El delirio como intento de curación, y el cierre que formula juntas las dos ' +
             'series: neurosis y psicosis.',
       href: 'units/clase-09.html',
-      nota: 'Clase de cierre. Se dicta después del segundo parcial y no se evalúa.',
+      nota: 'Clase de cierre, no evaluable. Fecha a definir: el 9/11 pasó a ser feriado.',
       biblio: [
         { id: 'freud-1911-schreber', tier: 'C', cita: 'Freud, S. (1911). Puntualizaciones psicoanalíticas sobre un caso de paranoia (Schreber). Sección III: Acerca del mecanismo paranoico, pp. 55-73. <em>Obras completas</em>, tomo XII. Amorrortu.' },
         { id: 'schreber-memorias-i', tier: 'F', cita: 'Schreber, D. P. (1903/1979). <em>Memorias de un enfermo nervioso</em>. Capítulo I, pp. 63-72. Lohlé.' },

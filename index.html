@@ -147,8 +147,9 @@
       <div class="section-head">
         <h2 class="section-head__title">Cronograma completo</h2>
         <p class="section-head__subtitle">
-          Nueve clases, cuatro feriados, dos parciales y un recuperatorio, del 10 de agosto
-          al 16 de noviembre. Todo cae lunes, en el horario de la cursada.
+          Nueve clases, cinco feriados, dos parciales y un recuperatorio, del 10 de agosto
+          al 16 de noviembre. Todo cae lunes, en el horario de la cursada. El 9 de noviembre
+          pasó a ser feriado por la visita del papa: la Clase 9 tiene fecha a definir.
         </p>
       </div>
       <div class="roadmap" id="cronograma-lista"></div>
@@ -255,8 +256,8 @@
   <script src="parcial/config.js?v=9"></script>
   <script type="module" src="assets/inicio-notas.js?v=2"></script>
   <script src="assets/icons.js?v=4"></script>
-<script src="assets/data.js?v=15"></script>
-  <script src="assets/ui.js?v=8"></script>
+<script src="assets/data.js?v=16"></script>
+  <script src="assets/ui.js?v=9"></script>
   <script>
     (function () {
       'use strict';
@@ -280,7 +281,7 @@
 
       /* ---- Lo que viene ---- */
       const futuras = PROGRAMA
-        .filter((e) => D.daysUntil(e.fechaFin || e.fecha) >= 0)
+        .filter((e) => e.fecha && D.daysUntil(e.fechaFin || e.fecha) >= 0)
         .sort((a, b) => D.toDate(a.fecha) - D.toDate(b.fecha));
 
       const siguiente = futuras[0];
@@ -344,13 +345,13 @@
 
       document.getElementById('cronograma-lista').innerHTML = PROGRAMA.map((e) => {
         const f = e.fecha;
-        const dia = e.fechaFin ? `${f.dia}–${e.fechaFin.dia}` : f.dia;
-        const pasado = D.daysUntil(e.fechaFin || f) < 0;
+        const dia = !f ? '—' : e.fechaFin ? `${f.dia}–${e.fechaFin.dia}` : f.dia;
+        const pasado = f ? D.daysUntil(e.fechaFin || f) < 0 : false;
 
         const fechaBloque = `
           <div class="stop__date">
             <div class="stop__day">${dia}</div>
-            <div class="stop__month">${D.MONTHS_ABBR[f.mes - 1]}</div>
+            <div class="stop__month">${f ? D.MONTHS_ABBR[f.mes - 1] : 'a def.'}</div>
           </div>`;
 
         if (e.tipo === 'clase') {

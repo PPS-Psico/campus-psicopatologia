@@ -130,7 +130,7 @@
     /** Próxima entrada del cronograma que todavía no pasó. */
     proxima(programa) {
       return (programa || DATA.PROGRAMA || [])
-        .filter((e) => this.daysUntil(e.fechaFin || e.fecha) >= 0)
+        .filter((e) => e.fecha && this.daysUntil(e.fechaFin || e.fecha) >= 0)
         .sort((a, b) => this.toDate(a.fecha) - this.toDate(b.fecha))[0] || null;
     }
   };
