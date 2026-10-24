@@ -138,118 +138,95 @@ const classContent = {
     close: 'En obsesión y fobia seguimos soluciones construidas mediante represión, sustitución y retorno de lo reprimido. La Unidad 4 preguntará qué ocurre cuando Freud encuentra fenómenos que no puede organizar con el mismo mecanismo.'
   },
   8: {
-    meta: 'Paranoia clásica, defensa, narcisismo y nacimiento del problema freudiano.',
-    thesis: 'La psicosis no entra al curso como una etiqueta ya resuelta: se construye en la tensión entre descripción psiquiátrica, evolución y mecanismo.',
+    meta: 'Paranoia, caso Schreber y pérdida de realidad: la clase que reúne las dos de la Unidad 4.',
+    thesis: 'Lo específico de la paranoia no es la proyección sino el modo de la represión, y el delirio que parece la enfermedad es el intento de volver a habitar el mundo.',
     lead: [
-      'La unidad comienza retrocediendo. Antes de Schreber necesitamos reconstruir qué llamaban paranoia los clínicos y qué problema recibe Freud cuando intenta incluirla entre las neuropsicosis de defensa.',
-      'Kraepelin organiza entidades por su curso y desenlace; Freud busca un mecanismo. Esa diferencia de pregunta modifica qué cuenta como dato, cómo se interpreta un síntoma y qué relación se establece entre delirio, defensa y realidad.',
-      'El narcisismo cierra el encuentro como bisagra. Sin la distinción entre libido yoica y libido de objeto no se entiende por qué Freud puede pensar un retiro del mundo previo al delirio, que es exactamente lo que la clase siguiente leerá en Schreber.'
+      'Esta es la última clase de la cursada y reúne las dos que tenía la unidad: el 9 de noviembre pasó a ser feriado. Por eso el plan de lectura es más corto que la suma de los dos anteriores. El caso Schreber organiza el encuentro, y los demás textos entran para leerlo.',
+      'El hilo es una pregunta por el mecanismo. En 1896 Freud ubicó la paranoia entre las neuropsicosis de defensa y le asignó un mecanismo propio, la proyección. En Schreber se corrige: lo específico de la paranoia no es la proyección sino la represión en tres tiempos, y la proyección queda redefinida como el camino del retorno, porque lo cancelado adentro retorna desde afuera. El narcisismo, que Freud introduce en ese mismo texto, explica los dos primeros tiempos.',
+      'El cierre vuelve sobre todo el recorrido. En 1924 Freud compara cómo se pierde y cómo se repara la realidad en la neurosis y en la psicosis. Dora y el Hombre de las Ratas reaparecen acá, del otro lado de la comparación.'
     ],
     objectives: [
-      '¿Cómo delimita la psiquiatría clásica la paranoia?',
-      '¿Qué cambia cuando Freud pregunta por el mecanismo de formación de los síntomas?',
-      '¿Cómo diferencia Freud la proyección paranoica de otras defensas?',
-      '¿Por qué no puede equipararse automáticamente psicosis con pérdida global de realidad?',
-      '¿Qué problema clínico lleva a Freud a introducir el narcisismo?'
+      '¿Qué mecanismo le asigna Freud a la paranoia en 1896, y en qué se diferencia su trayectoria de la de la neurosis obsesiva?',
+      '¿Cuál es el delirio primario de Schreber y qué transformaciones sufre a lo largo del cuadro?',
+      '¿Por qué Freud deja de considerar la proyección como lo específico de la paranoia, y qué ocurre en cada uno de los tres tiempos de la represión?',
+      '¿Por qué el delirio puede pensarse como un intento de restablecimiento?',
+      '¿Cómo se pierde y cómo se repara la realidad en la neurosis y en la psicosis?'
     ],
     order: [
-      '<strong>Comenzá por Freud.</strong> Identificá el problema que intenta resolver con el concepto de defensa.',
-      '<strong>Contrastá con Kraepelin.</strong> Preguntá qué función cumplen curso y pronóstico en la construcción de una entidad clínica.',
-      '<strong>Cerrá con el narcisismo.</strong> Precisá qué ocurre con la investidura del mundo y de los otros antes de que aparezca el delirio.',
-      '<strong>Usá Bercherie como mapa.</strong> Ordená los desplazamientos conceptuales y evitá una historia lineal de “progreso”.'
+      '<strong>Empezá por las dos páginas de 1896.</strong> Ya leíste este texto en la Clase 6; ahora la comparación es entre la paranoia y la neurosis obsesiva. Anotá qué mecanismo le atribuye Freud a la paranoia.',
+      '<strong>Leé la Sección III de Schreber.</strong> Seguí por qué Freud abandona la proyección y cómo describe los tres tiempos de la represión. El historial del caso lo reconstruimos en clase.',
+      '<strong>Sumá las páginas del narcisismo.</strong> Precisá qué pasa con la libido que se retira del mundo y qué es el delirio de grandeza.',
+      '<strong>Cerrá con 1924.</strong> Compará los dos pasos de la neurosis con los dos pasos de la psicosis.'
     ],
     readings: [
+      {
+        id: 'freud-1911-schreber',
+        title: 'Puntualizaciones psicoanalíticas sobre un caso de paranoia (Schreber) · Sección III',
+        cite: 'Freud, S. (1911). <em>Obras completas</em>, tomo XII. Amorrortu.',
+        pages: 'Sección III completa · pp. 55–73',
+        file: 'Freud_1911_Puntualizaciones_psicoanaliticas_sobre_un_caso_de_paranoia_Schreber.pdf',
+        page: 61,
+        look: ['Por qué Freud afirma que nada de lo dicho sobre el complejo paterno da lo específico de la paranoia.', 'Los tres tiempos de la represión —fijación, desasimiento de la libido y retorno— y qué tiene cada uno de propio en la paranoia.', 'La frase con que redefine la proyección: «lo cancelado adentro retorna desde afuera».', 'El delirio como intento de restablecimiento, y la diferencia entre paranoia y parafrenia al final de la sección.'],
+        questions: ['¿Por qué la proyección no alcanza para definir la paranoia?', '¿Dónde ubica Freud el proceso patológico propiamente dicho, y por qué dice que transcurre en silencio?']
+      },
       {
         id: 'freud-1896-psicosis',
         title: 'Nuevas puntualizaciones sobre las neuropsicosis de defensa · Capítulo III',
         cite: 'Freud, S. (1896). <em>Obras completas</em>, tomo III. Amorrortu.',
-        pages: 'Capítulo III',
+        pages: 'Comparación con la neurosis obsesiva · pp. 183–184',
         file: 'Freud_1896_Nuevas_puntualizaciones_sobre_las_neuropsicosis_de_defensa.pdf',
-        look: ['La articulación entre defensa, proyección y formación de síntomas paranoicos.', 'Las semejanzas y diferencias que Freud establece con las neurosis.', 'El estatuto todavía provisional de la explicación.'],
-        questions: ['¿Qué intenta rechazar o mantener fuera el yo?', '¿En qué sentido la proyección no es sólo un error perceptivo?']
-      },
-      {
-        id: 'kraepelin-paranoia',
-        title: 'Lección XV: Paranoia',
-        cite: 'Kraepelin, E. <em>Introducción a la clínica psiquiátrica</em>.',
-        pages: 'Lección XV completa · pp. 157–166',
-        file: 'Kraepelin_1900_Leccion_XV_Paranoia.pdf',
-        look: ['Los rasgos con que se delimita la paranoia frente a otros cuadros.', 'El valor diagnóstico del desarrollo, el curso y la conservación de capacidades.', 'La relación entre ideas delirantes, sistematización y personalidad.'],
-        questions: ['¿Qué vuelve reconocible una entidad para Kraepelin?', '¿Qué aspectos del caso quedarían fuera si sólo se considerara el contenido del delirio?']
+        page: 26,
+        look: ['Qué pasa en la paranoia con el síntoma primario de defensa: se le quita reconocimiento al reproche y aparece la desconfianza hacia los otros.', 'Cómo retornan los reproches: como voces, con una doble desfiguración.', 'Qué ocupa en la paranoia el lugar de la defensa secundaria: el delirio de interpretación, que desemboca en la alteración del yo.'],
+        questions: ['Compará la trayectoria de la paranoia con la de la neurosis obsesiva en sus tres grupos de síntomas.', '¿Qué mecanismo le atribuye Freud a la paranoia en 1896?']
       },
       {
         id: 'freud-1914-narcisismo',
         title: 'Introducción del narcisismo',
         cite: 'Freud, S. (1914). <em>Obras completas</em>, tomo XIV. Amorrortu.',
-        pages: 'Apartados I y II · pp. 71–88',
+        pages: 'Comienzo del apartado I · pp. 71–74',
         file: 'Freud_1914_Introduccion_del_narcisismo.pdf',
         page: 8,
-        look: ['La diferencia y los pasajes entre libido yoica y libido de objeto.', 'La referencia a parafrenias y el retiro de la libido respecto de los objetos.', 'Los límites de imaginar la economía libidinal como una cantidad que simplemente cambia de lugar.'],
-        questions: ['¿Qué problema clínico lleva a Freud a introducir el narcisismo?', '¿Cómo prepara este concepto la lectura de Schreber?']
+        look: ['El «motivo acuciante»: la parafrenia y sus dos rasgos, el delirio de grandeza y el extrañamiento respecto del mundo exterior.', 'La diferencia con la neurosis: allí la libido retirada queda en la fantasía; en la parafrenia vuelve al yo.', 'El narcisismo secundario, que se edifica sobre uno primario.'],
+        questions: ['¿Qué destino tiene la libido sustraída de los objetos en la parafrenia?', '¿A qué tiempo de la represión de Schreber corresponde el delirio de grandeza?']
       },
       {
-        id: 'bercherie-psicosis',
-        title: 'La constitución del concepto freudiano de psicosis',
-        cite: 'Bercherie, P. (1987). Siglo XXI.',
-        pages: 'Texto completo · 16 páginas · apoyo',
-        file: 'Bercherie_1987_La_constitucion_del_concepto_freudiano_de_psicosis.pdf',
-        look: ['Las dificultades históricas para formar una categoría unificada de psicosis.', 'Los préstamos y desplazamientos entre psiquiatría y psicoanálisis.', 'Los límites de leer retrospectivamente los primeros textos con categorías posteriores.'],
-        questions: ['¿Qué problema clínico reúne retrospectivamente el término psicosis?', '¿Qué se pierde cuando se presenta la historia como sucesión de definiciones ya cerradas?']
-      }
-    ],
-    closeTitle: 'El mecanismo necesita ahora un caso',
-    close: 'La formulación de 1896 abre la pregunta y el narcisismo le da un instrumento, pero todavía falta el material. Esta es la última clase que entra en el segundo parcial: Schreber llega después, en el encuentro de cierre, para articular retiro libidinal, proyección y reconstrucción delirante sin una evaluación encima.'
-  },
-  9: {
-    meta: 'Schreber, delirio como reconstrucción y formulación integradora de neurosis y psicosis.',
-    thesis: 'El delirio no se lee sólo como producto patológico: Freud lo piensa también como el trabajo con el que un mundo vuelve a volverse habitable, y esa tesis obliga a reformular la oposición entre neurosis y psicosis.',
-    lead: [
-      'Esta clase se dicta después del segundo parcial y no agrega contenidos evaluables. Cumple dos funciones a la vez. Primero concentra el argumento en Schreber: un caso que Freud no trató personalmente y que construye a partir de unas memorias publicadas.',
-      'Esa condición obliga a separar tres voces: lo que Schreber escribe, la selección que Freud realiza y la teoría con que intenta explicar la transformación del mundo. El caso no autoriza a confundir testimonio, interpretación y diagnóstico.',
-      'La segunda mitad cierra el recorrido completo. Si el delirio puede recomponer relaciones y significaciones, la oposición simple entre neurosis “con realidad” y psicosis “sin realidad” ya no alcanza: los dos textos de Freud de 1924 corrigen esa lectura y permiten formular una hipótesis que articule fenómeno, mecanismo, curso, contexto y recursos. Leerlos sin la presión de una evaluación encima es justamente el punto.'
-    ],
-    objectives: [
-      '¿Qué problemas metodológicos plantea construir un caso a partir de una autobiografía?',
-      '¿Cómo articula Freud retiro libidinal, proyección y restitución?',
-      '¿Por qué el delirio puede pensarse como intento de curación?',
-      '¿En qué sentido también la neurosis evita un fragmento de realidad?',
-      '¿Cómo formular una hipótesis clínica sin convertirla en una etiqueta identitaria?'
-    ],
-    order: [
-      '<strong>Entrá por Schreber.</strong> Conservá la textura del testimonio antes de convertirlo en ejemplo teórico.',
-      '<strong>Seguí la construcción de Freud.</strong> Separá proceso, manifestación y tentativa de restitución.',
-      '<strong>Leé juntos los textos de 1924.</strong> El segundo corrige cualquier oposición demasiado rígida producida por el primero.',
-      '<strong>Volvé al comienzo del curso.</strong> Revisá qué cambió en tu modo de describir, explicar y formular una hipótesis.'
-    ],
-    readings: [
+        id: 'freud-1924-perdida',
+        title: 'La pérdida de realidad en la neurosis y la psicosis',
+        cite: 'Freud, S. (1924). <em>Obras completas</em>, tomo XIX. Amorrortu.',
+        pages: 'Texto completo · pp. 193–197',
+        file: 'Freud_1924_La_perdida_de_realidad_en_la_neurosis_y_la_psicosis.pdf',
+        page: 4,
+        look: ['Los dos pasos de la neurosis y los dos pasos de la psicosis, y en cuál de ellos se pierde la realidad en cada caso.', 'A quién obedece el yo en el primer paso: a la realidad en la neurosis, al ello en la psicosis.', 'Qué ocupa el lugar de la realidad perdida: la fantasía en la neurosis, una realidad nueva en la psicosis.'],
+        questions: ['¿Qué corrige este texto de lo que Freud había escrito meses antes en «Neurosis y psicosis»?', 'Elegí un síntoma de Dora o del Hombre de las Ratas y explicá qué fragmento de realidad evita.']
+      },
       {
-        id: 'freud-1911-schreber',
-        title: 'Puntualizaciones psicoanalíticas sobre un caso de paranoia (Schreber)',
-        cite: 'Freud, S. (1911). <em>Obras completas</em>, tomo XII. Amorrortu.',
-        pages: 'Sección III completa · pp. 55–73',
-        file: 'Freud_1911_Puntualizaciones_psicoanaliticas_sobre_un_caso_de_paranoia_Schreber.pdf',
-        page: 61,
-        look: ['La distinción entre la historia del caso, los intentos de interpretación y el mecanismo paranoico.', 'La secuencia entre retiro libidinal, transformación del mundo y restitución.', 'La tesis del delirio como intento de curación y reconstrucción.'],
-        questions: ['¿Dónde ubica Freud el proceso patológico propiamente dicho?', '¿Qué reconstruye el delirio y con qué materiales?']
+        id: 'kraepelin-paranoia',
+        title: 'Lección XV: Paranoia',
+        cite: 'Kraepelin, E. <em>Introducción a la clínica psiquiátrica</em>.',
+        pages: 'Lección XV completa · pp. 157–166 · apoyo',
+        file: 'Kraepelin_1900_Leccion_XV_Paranoia.pdf',
+        look: ['Los criterios con que Kraepelin delimita la paranoia: delirio sistematizado, conservación de la claridad, curso crónico.', 'Por qué un caso como el de Schreber, con alucinaciones y trastornos del cuerpo, quedaría fuera de esa paranoia.'],
+        questions: ['¿Por qué Freud subtitula el caso «demencia paranoide»?']
+      },
+      {
+        id: 'freud-1924-neurosis-psicosis',
+        title: 'Neurosis y psicosis',
+        cite: 'Freud, S. (1924). <em>Obras completas</em>, tomo XIX. Amorrortu.',
+        pages: 'Texto completo · apoyo',
+        file: 'Freud_1924_Neurosis_y_psicosis.pdf',
+        page: 6,
+        look: ['La fórmula inicial: la neurosis como conflicto entre el yo y el ello, la psicosis como conflicto entre el yo y el mundo exterior.', 'Por qué esa fórmula es la que «La pérdida de realidad» corrige.'],
+        questions: ['¿Qué se pierde si uno se queda con esta fórmula sin leer el texto siguiente?']
       },
       {
         id: 'schreber-memorias-i',
         title: 'Memorias de un enfermo nervioso',
         cite: 'Schreber, D. P. (1903/1979). Lohlé.',
-        pages: 'Capítulo I completo · pp. 63–72',
+        pages: 'Capítulo I completo · pp. 63–72 · apoyo',
         file: 'Schreber_1903_Memorias_de_un_enfermo_nervioso.pdf',
         page: 13,
-        look: ['El vocabulario propio con el que Schreber describe nervios, rayos, voces y transformaciones.', 'Los cambios en la relación con Dios y con el mundo.', 'La distancia entre la experiencia escrita y las categorías con que luego será leída.'],
-        questions: ['Elegí una expresión de Schreber y explicá qué se pierde si se la reemplaza enseguida por una categoría.', '¿Qué indicios permiten reconocer un trabajo de reorganización?']
-      },
-      {
-        id: 'freud-1924-realidad',
-        title: 'Neurosis y psicosis · La pérdida de realidad en la neurosis y la psicosis',
-        cite: 'Freud, S. (1924). <em>Obras completas</em>, tomo XIX. Amorrortu.',
-        pages: 'Dos textos breves y consecutivos, en un solo archivo',
-        file: 'Freud_1924_Neurosis_y_psicosis_y_La_perdida_de_realidad.pdf',
-        look: ['La fórmula inicial que diferencia conflicto neurótico y conflicto psicótico, y el carácter programático de esa distinción.', 'La corrección que introduce el segundo texto: también la neurosis evita un fragmento de realidad.', 'Los dos tiempos de cada proceso y los trabajos de sustitución, desmentida y reconstrucción.'],
-        questions: ['¿Entre qué términos sitúa Freud el conflicto en cada caso?', '¿Qué se pierde si uno se queda con la fórmula del primer texto sin leer el segundo?']
+        look: ['El vocabulario propio con el que Schreber describe nervios, rayos, voces y transformaciones.', 'La distancia entre la experiencia escrita y las categorías con que luego será leída.'],
+        questions: ['Elegí una expresión de Schreber y explicá qué se pierde si se la reemplaza enseguida por una categoría.']
       },
       {
         id: 'lacan-s3-fenomeno',
@@ -257,12 +234,21 @@ const classContent = {
         cite: 'Lacan, J. (1955-1956/1984). <em>El Seminario, libro 3: Las psicosis</em>. Capítulo VI. Paidós.',
         pages: 'Capítulo completo · pp. 107–128 · apoyo',
         file: 'Lacan_1955-1956_Seminario_3_Cap_VI_El_fenomeno_psicotico_y_su_mecanismo.pdf',
-        look: ['El carácter no dialectizable del fenómeno y la certeza de que algo concierne al sujeto.', 'La Verwerfung y el retorno en lo real como articulación del mecanismo.', 'La diferencia entre el fenómeno elemental y la elaboración delirante que procura reconstruir un orden.'],
-        questions: ['¿Qué distingue una certeza de alusión de una interpretación que todavía puede ponerse en duda?', '¿Qué conviene indagar en una entrevista antes de completar el sentido de un fenómeno enigmático?']
+        look: ['El carácter no dialectizable del fenómeno y la certeza de que algo concierne al sujeto.', 'La Verwerfung y el retorno en lo real, leídos desde la frase de Freud sobre lo cancelado adentro.'],
+        questions: ['¿Qué distingue una certeza de alusión de una interpretación que todavía puede ponerse en duda?']
+      },
+      {
+        id: 'bercherie-psicosis',
+        title: 'La constitución del concepto freudiano de psicosis',
+        cite: 'Bercherie, P. (1987). Siglo XXI.',
+        pages: 'Texto completo · 16 páginas · apoyo',
+        file: 'Bercherie_1987_La_constitucion_del_concepto_freudiano_de_psicosis.pdf',
+        look: ['Las dificultades históricas para formar una categoría unificada de psicosis.', 'Los préstamos y desplazamientos entre psiquiatría y psicoanálisis.'],
+        questions: ['¿Qué se pierde cuando se presenta la historia como sucesión de definiciones ya cerradas?']
       }
     ],
     closeTitle: 'El recorrido termina con una forma de preguntar',
-    close: 'El curso no cierra con una tabla definitiva de cuadros, sino con un método: describir antes de concluir, distinguir niveles, reconstruir relaciones, comparar mecanismos y sostener hipótesis revisables. Esa forma de preguntar es lo que une todas las unidades.'
+    close: 'Esta clase entra en el segundo parcial, el lunes 2 de noviembre. Pero el curso no cierra con una tabla de cuadros, sino con un método: describir antes de concluir, distinguir el fenómeno del mecanismo, comparar soluciones y sostener hipótesis revisables. Es lo que hicimos con Dora, con el Hombre de las Ratas, con Juanito y ahora con Schreber.'
   }
 };
 
@@ -282,18 +268,19 @@ const unitContent = {
     total: 'Ocho textos en dos clases. Cada encuentro tiene una lectura que organiza el problema, articulaciones obligatorias y materiales de apoyo para ir más lejos.'
   },
   4: {
-    dates: 'Del 26 de octubre al 9 de noviembre',
+    dates: 'Lunes 26 de octubre',
     question: '¿Qué ocurre cuando el delirio deja de pensarse sólo como pérdida y empieza a leerse también como reconstrucción?',
     intro: [
-      'La última unidad cambia el mecanismo y conserva el método. Partimos de la paranoia de la psiquiatría clásica, seguimos la primera explicación freudiana de las neuropsicosis de defensa y llegamos al caso Schreber.',
+      'La última unidad cambia el mecanismo y conserva el método. Partimos de la paranoia de la psiquiatría clásica y de la primera explicación freudiana, y llegamos al caso Schreber.',
       'El punto decisivo es separar el proceso patológico de los esfuerzos posteriores por recomponer un mundo. Así, el delirio puede estudiarse por su forma, su certeza y su función, no sólo por la rareza de su contenido.',
-      'La clase final se dicta después del segundo parcial y antes del recuperatorio. Vuelve sobre Schreber y sobre los textos freudianos de 1924 para articular fenómeno, mecanismo y formulación clínica sin convertirlos en una etiqueta, y sin agregar contenidos evaluables.'
+      'La unidad tenía dos clases y quedó en una: el 9 de noviembre pasó a ser feriado. El encuentro del 26 de octubre lee Schreber con los textos que lo preparan y cierra con los de 1924, que formulan juntas neurosis y psicosis. Entra en el segundo parcial.'
     ],
     moves: [
-      ['¿Cómo se construye la categoría?', 'Kraepelin, Freud y Bercherie permiten distinguir descripción, curso histórico y mecanismo sin hacerlos equivalentes; el narcisismo prepara el paso siguiente.'],
-      ['¿Qué trabajo realiza el delirio y cómo formularlo?', 'Schreber y Freud articulan retiro libidinal, proyección y restitución; los textos de 1924 reúnen certeza, mecanismo, evolución, recursos y contexto en una hipótesis revisable.']
+      ['¿Qué mecanismo tiene la paranoia?', 'En 1896 Freud responde: la proyección. Schreber lo corrige: la represión en tres tiempos, y la proyección como el camino por el que lo cancelado adentro retorna desde afuera.'],
+      ['¿Qué trabajo realiza el delirio?', 'El narcisismo explica el retiro de la libido sobre el yo; el delirio es el intento de devolverla al mundo y volver a habitarlo.'],
+      ['¿Cómo se pierde la realidad?', 'Los textos de 1924 comparan los dos pasos de la neurosis con los de la psicosis y cierran el recorrido de la materia.']
     ],
-    total: 'Ocho textos en dos clases. La Clase 8 es la última que entra en el segundo parcial; la Clase 9 cierra el recorrido y no se evalúa.'
+    total: 'Nueve textos en una clase: una lectura central, tres obligatorias breves y cinco de apoyo.'
   }
 };
 
@@ -333,8 +320,8 @@ function classPage(number) {
     : `<a class="btn btn--primary" href="../index.html#cronograma">Volver al cronograma <span data-icon="arrowRight" data-size="18"></span></a>`;
   const special = number === 6
     ? `<div class="notice" style="margin-bottom: var(--space-8)"><span class="notice__icon" data-icon="info" data-size="22"></span><div><h3 class="notice__title">Comenzamos después del primer parcial</h3><p>La devolución general ocupa el inicio del encuentro. El plan distingue la lectura central de los textos que funcionan como contraste y reformulación.</p></div></div>`
-    : number === 9
-      ? `<div class="notice" style="margin-bottom: var(--space-8)"><span class="notice__icon" data-icon="info" data-size="22"></span><div><h3 class="notice__title">Clase de cierre · No evaluable</h3><p>Se dicta después del segundo parcial y antes del recuperatorio. Los textos permiten ordenar el recorrido completo y no agregan contenidos a esa evaluación.</p></div></div>`
+    : number === 8
+      ? `<div class="notice" style="margin-bottom: var(--space-8)"><span class="notice__icon" data-icon="info" data-size="22"></span><div><h3 class="notice__title">Una clase en lugar de dos</h3><p>El 9 de noviembre pasó a ser feriado, así que esta clase reúne las dos que tenía la unidad. La bibliografía obligatoria es más corta que la suma de las dos: cuatro lecturas, unas treinta páginas. El resto queda como apoyo.</p></div></div>`
       : '';
   return `<!DOCTYPE html>
 <html lang="es">
@@ -379,7 +366,7 @@ function classPage(number) {
     </div>
     <footer class="site-footer"><span><strong class="text-strong">Psicopatología I</strong> · UFLO · <span id="year"></span></span><span>Clase ${number} · Lunes ${date} de 2026</span></footer>
   </main>
-  <script src="../assets/icons.js?v=4"></script><script src="../assets/data.js?v=9"></script><script src="../assets/ui.js?v=8"></script>
+  <script src="../assets/icons.js?v=4"></script><script src="../assets/data.js?v=17"></script><script src="../assets/ui.js?v=9"></script>
 </body>
 </html>`;
 }
@@ -391,10 +378,12 @@ function unitPage(number) {
   const previousUnit = unitByNumber(number - 1);
   const nextUnit = unitByNumber(number + 1);
   const first = classes[0];
+  const range = classes.length === 1 ? `Clase ${first.numero}` : `Clases ${first.numero} a ${classes.at(-1).numero}`;
+  const seeAll = classes.length === 1 ? 'Ver la clase' : `Ver las ${classes.length === 3 ? 'tres' : 'dos'} clases`;
   const bibliography = classes.map((item) => `<div class="biblio-group"><h3 class="biblio-group__title">Clase ${item.numero} · ${item.titulo}</h3><ul class="biblio-list">${item.biblio.map((entry) => `<li data-tier="${entry.tier}"><b title="${TIERS[entry.tier]?.nombre || entry.tier}">${entry.tier}</b><span>${entry.cita}</span></li>`).join('')}</ul></div>`).join('');
   return `<!DOCTYPE html>
 <html lang="es">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Unidad ${number} de Psicopatología I: ${escAttr(unit.titulo)}. Clases ${classes[0].numero} a ${classes.at(-1).numero}."><title>Unidad ${number} · ${unit.titulo} · Psicopatología I</title><link rel="icon" href="data:,"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="../assets/tokens.css?v=5"><link rel="stylesheet" href="../assets/ui.css?v=7"></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Unidad ${number} de Psicopatología I: ${escAttr(unit.titulo)}. ${range}."><title>Unidad ${number} · ${unit.titulo} · Psicopatología I</title><link rel="icon" href="data:,"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="../assets/tokens.css?v=5"><link rel="stylesheet" href="../assets/ui.css?v=7"></head>
 <body data-unit="${number}">
   <!--
     THESIS: La unidad se organiza como una secuencia de tres preguntas clínicas, no como un catálogo de diagnósticos.
@@ -405,21 +394,21 @@ function unitPage(number) {
   -->
   <a class="skip-link" href="#contenido">Saltar al contenido</a><div data-ui="nav" data-active="clases" data-depth="../"></div>
   <main class="container" id="contenido">
-    <section class="hero settle"><a class="back-link" href="../index.html"><span data-icon="arrowLeft" data-size="18"></span> Volver al inicio</a><div class="hero__grid"><div><h1 class="hero__title">${unit.titulo}</h1><div class="prose"><p class="hero__lead" style="margin-bottom: var(--space-6)">Unidad ${number} · Clases ${classes[0].numero} a ${classes.at(-1).numero} · ${content.dates}</p>${content.intro.map((p) => `<p>${p}</p>`).join('')}</div><div class="hero__actions mt-8"><a class="btn btn--primary btn--lg" href="clase-${String(first.numero).padStart(2, '0')}.html">Empezar por la Clase ${first.numero} <span data-icon="arrowRight" data-size="18"></span></a><a class="btn btn--secondary btn--lg" href="#ruta">Ver las ${classes.length === 3 ? 'tres' : 'dos'} clases</a></div></div><aside class="pull"><p class="pull__quote">${content.question}</p><p class="pull__source">Pregunta organizadora de la unidad</p></aside></div></section>
-    <section class="section"><div class="section-head"><h2 class="section-head__title">${content.moves.length === 3 ? 'Tres' : 'Dos'} movimientos, una misma pregunta clínica</h2></div><ol class="moves moves--${content.moves.length === 3 ? 'three' : 'two'}">${content.moves.map((move, index) => `<li class="move"><h3 class="move__q">${move[0]}</h3><p class="move__a">${move[1]}</p><p class="move__where">Clase ${classes[index].numero} · ${classes[index].fecha.dia} de ${monthNames[classes[index].fecha.mes - 1]}</p></li>`).join('')}</ol></section>
+    <section class="hero settle"><a class="back-link" href="../index.html"><span data-icon="arrowLeft" data-size="18"></span> Volver al inicio</a><div class="hero__grid"><div><h1 class="hero__title">${unit.titulo}</h1><div class="prose"><p class="hero__lead" style="margin-bottom: var(--space-6)">Unidad ${number} · ${range} · ${content.dates}</p>${content.intro.map((p) => `<p>${p}</p>`).join('')}</div><div class="hero__actions mt-8"><a class="btn btn--primary btn--lg" href="clase-${String(first.numero).padStart(2, '0')}.html">Empezar por la Clase ${first.numero} <span data-icon="arrowRight" data-size="18"></span></a><a class="btn btn--secondary btn--lg" href="#ruta">${seeAll}</a></div></div><aside class="pull"><p class="pull__quote">${content.question}</p><p class="pull__source">Pregunta organizadora de la unidad</p></aside></div></section>
+    <section class="section"><div class="section-head"><h2 class="section-head__title">${content.moves.length === 3 ? 'Tres' : 'Dos'} movimientos, una misma pregunta clínica</h2></div><ol class="moves moves--${content.moves.length === 3 ? 'three' : 'two'}">${content.moves.map((move, index) => `<li class="move"><h3 class="move__q">${move[0]}</h3><p class="move__a">${move[1]}</p><p class="move__where">Clase ${classes[Math.min(index, classes.length - 1)].numero} · ${classes[Math.min(index, classes.length - 1)].fecha.dia} de ${monthNames[classes[Math.min(index, classes.length - 1)].fecha.mes - 1]}</p></li>`).join('')}</ol></section>
     <section class="section" id="ruta"><div class="section-head"><h2 class="section-head__title">Las clases de esta unidad</h2><p class="section-head__subtitle">Cada página conserva la misma estructura: apertura del problema, objetivos, orden de lectura, guía por texto y cierre.</p></div><div class="roadmap">${classes.map((item) => `<a class="stop" href="clase-${String(item.numero).padStart(2, '0')}.html"><div class="stop__date"><div class="stop__day">${item.fecha.dia}</div><div class="stop__month">${monthNames[item.fecha.mes - 1].slice(0, 3)}</div></div><div><h3 class="stop__title">Clase ${item.numero} · ${item.titulo}</h3><p class="stop__desc">${item.desc}</p></div><span class="stop__meta"><span data-icon="arrowRight" data-size="18"></span></span></a>`).join('')}</div></section>
     <section class="section"><div class="section-head"><h2 class="section-head__title">Toda la bibliografía de la unidad</h2><p class="section-head__subtitle">${content.total}</p></div><div class="biblio-unit">${bibliography}</div></section>
     <nav class="pager" aria-label="Navegación entre páginas"><a class="btn btn--ghost" href="unidad-${String(previousUnit.numero).padStart(2, '0')}.html"><span data-icon="arrowLeft" data-size="18"></span> Unidad ${previousUnit.numero}</a>${nextUnit ? `<a class="btn btn--primary" href="unidad-${String(nextUnit.numero).padStart(2, '0')}.html">Unidad ${nextUnit.numero} · ${nextUnit.titulo} <span data-icon="arrowRight" data-size="18"></span></a>` : `<a class="btn btn--primary" href="clase-${String(first.numero).padStart(2, '0')}.html">Empezar la Unidad ${number} <span data-icon="arrowRight" data-size="18"></span></a>`}</nav>
-    <footer class="site-footer"><span><strong class="text-strong">Psicopatología I</strong> · UFLO · <span id="year"></span></span><span>Unidad ${number} · Clases ${classes[0].numero} a ${classes.at(-1).numero}</span></footer>
+    <footer class="site-footer"><span><strong class="text-strong">Psicopatología I</strong> · UFLO · <span id="year"></span></span><span>Unidad ${number} · ${range}</span></footer>
   </main>
   <style>
     .moves{list-style:none;padding:0;margin:0;counter-reset:mv;display:grid;gap:var(--space-10)}.move{position:relative;padding-left:clamp(var(--space-8),7vw,var(--space-16));padding-top:var(--space-6);border-top:1px solid var(--border)}.move::before{counter-increment:mv;content:counter(mv,decimal-leading-zero);position:absolute;left:0;top:var(--space-6);font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;color:var(--accent-text)}.move__q{font-size:var(--text-2xl);margin-bottom:var(--space-4);max-width:26ch}.move__a{color:var(--text-muted);max-width:var(--measure)}.move__where{margin-top:var(--space-4);font-size:var(--text-xs);font-weight:700;letter-spacing:var(--tracking-wide);text-transform:uppercase;color:var(--text-subtle)}.biblio-unit{display:grid;gap:var(--space-10)}.biblio-group__title{font-size:var(--text-sm);font-weight:700;color:var(--text-strong);padding-bottom:var(--space-3);margin-bottom:var(--space-4);border-bottom:1px solid var(--border)}.biblio-list{display:grid;gap:var(--space-3);list-style:none;padding:0}.biblio-list li{display:grid;grid-template-columns:26px minmax(0,1fr);gap:var(--space-4);align-items:start;font-size:var(--text-sm);color:var(--text)}.biblio-list b{display:grid;place-items:center;width:26px;height:26px;border-radius:var(--radius-sm);font-size:var(--text-xs);font-weight:800;background:var(--surface-hover);color:var(--text-muted)}.biblio-list li[data-tier="C"] b{background:var(--accent-fill);color:var(--on-accent-fill)}@media(min-width:900px){.moves--three,.moves--two{grid-template-columns:repeat(auto-fit,minmax(0,1fr))}.moves--three .move,.moves--two .move{padding-top:var(--space-16);padding-left:0}.moves--three .move::before,.moves--two .move::before{top:var(--space-6)}.biblio-unit{grid-template-columns:repeat(3,minmax(0,1fr))}}
   </style>
-  <script src="../assets/icons.js?v=4"></script><script src="../assets/data.js?v=9"></script><script src="../assets/ui.js?v=8"></script>
+  <script src="../assets/icons.js?v=4"></script><script src="../assets/data.js?v=17"></script><script src="../assets/ui.js?v=9"></script>
 </body></html>`;
 }
 
-for (const number of [6, 7, 8, 9]) {
+for (const number of [6, 7, 8]) {
   const content = classContent[number];
   const scheduled = classByNumber(number);
   const guideIds = content?.readings.map((reading) => reading.id) || [];
@@ -436,4 +425,4 @@ for (const number of [3, 4]) {
   fs.writeFileSync(path.join(unitsDir, `unidad-${String(number).padStart(2, '0')}.html`), unitPage(number), 'utf8');
 }
 
-console.log('Generadas: clases 6–9 y unidades 3–4.');
+console.log('Generadas: clases 6–8 y unidades 3–4.');

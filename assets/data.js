@@ -69,10 +69,10 @@ window.CAMPUS_DATA = (function () {
     {
       numero: 4,
       titulo: 'Las psicosis y el cierre del recorrido',
-      resumen: 'De la paranoia de la psiquiatría clásica al Schreber de Freud. La clase final ' +
-               'formula juntas las dos series, neurosis y psicosis, y entra en el parcial.',
+      resumen: 'De la paranoia de la psiquiatría clásica al Schreber de Freud, en una sola ' +
+               'clase que formula juntas las dos series, neurosis y psicosis, y entra en el parcial.',
       href: 'units/unidad-04.html',
-      clases: ['c08', 'c09'],
+      clases: ['c08'],
       estado: 'pendiente'
     }
   ];
@@ -213,14 +213,20 @@ window.CAMPUS_DATA = (function () {
     {
       id: 'c08', tipo: 'clase', unidad: 4, numero: 8, estado: 'pendiente',
       fecha: { año: 2026, mes: 10, dia: 26 },
-      titulo: 'Construcción histórica y freudiana de la psicosis',
-      desc: 'De la paranoia de Kraepelin a la defensa en las neuropsicosis, con el ' +
-            'narcisismo como bisagra hacia Schreber.',
+      titulo: 'Paranoia, Schreber y la pérdida de realidad',
+      desc: 'Del mecanismo de 1896 a la represión en tres tiempos de Schreber, con el ' +
+            'narcisismo adentro, y el cierre de 1924: neurosis y psicosis juntas.',
       href: 'units/clase-08.html',
+      // Integra la antigua Clase 9: el 9/11 pasó a feriado y la cursada no tiene otra fecha.
       biblio: [
-        { id: 'freud-1896-psicosis', tier: 'C', cita: 'Freud, S. (1896). Nuevas puntualizaciones sobre las neuropsicosis de defensa. Capítulo III. <em>Obras completas</em>, tomo III. Amorrortu.' },
-        { id: 'kraepelin-paranoia', tier: 'F', cita: 'Kraepelin, E. Lección XV: Paranoia. En <em>Introducción a la clínica psiquiátrica</em>.' },
-        { id: 'freud-1914-narcisismo', tier: 'F', cita: 'Freud, S. (1914). Introducción del narcisismo. Apartados I y II, pp. 71-88. <em>Obras completas</em>, tomo XIV. Amorrortu.' },
+        { id: 'freud-1911-schreber', tier: 'C', cita: 'Freud, S. (1911). Puntualizaciones psicoanalíticas sobre un caso de paranoia (Schreber). Sección III: Acerca del mecanismo paranoico, pp. 55-73. <em>Obras completas</em>, tomo XII. Amorrortu.' },
+        { id: 'freud-1896-psicosis', tier: 'F', cita: 'Freud, S. (1896). Nuevas puntualizaciones sobre las neuropsicosis de defensa. Capítulo III, comparación entre paranoia y neurosis obsesiva, pp. 183-184. <em>Obras completas</em>, tomo III. Amorrortu.' },
+        { id: 'freud-1914-narcisismo', tier: 'F', cita: 'Freud, S. (1914). Introducción del narcisismo. Comienzo del apartado I, pp. 71-74. <em>Obras completas</em>, tomo XIV. Amorrortu.' },
+        { id: 'freud-1924-perdida', tier: 'F', cita: 'Freud, S. (1924). La pérdida de realidad en la neurosis y la psicosis. Texto completo, pp. 193-197. <em>Obras completas</em>, tomo XIX. Amorrortu.' },
+        { id: 'kraepelin-paranoia', tier: 'A', cita: 'Kraepelin, E. Lección XV: Paranoia. En <em>Introducción a la clínica psiquiátrica</em>.' },
+        { id: 'freud-1924-neurosis-psicosis', tier: 'A', cita: 'Freud, S. (1924). Neurosis y psicosis. Texto completo. <em>Obras completas</em>, tomo XIX. Amorrortu.' },
+        { id: 'schreber-memorias-i', tier: 'A', cita: 'Schreber, D. P. (1903/1979). <em>Memorias de un enfermo nervioso</em>. Capítulo I, pp. 63-72. Lohlé.' },
+        { id: 'lacan-s3-fenomeno', tier: 'A', cita: 'Lacan, J. (1955-1956/1984). <em>El Seminario, libro 3: Las psicosis</em>. Capítulo VI: El fenómeno psicótico y su mecanismo, pp. 107-128. Paidós.' },
         { id: 'bercherie-psicosis', tier: 'A', cita: 'Bercherie, P. (1987). La constitución del concepto freudiano de psicosis. Siglo XXI.' }
       ]
     },
@@ -228,8 +234,8 @@ window.CAMPUS_DATA = (function () {
       id: 'p02', tipo: 'parcial',
       fecha: { año: 2026, mes: 11, dia: 2 },
       titulo: 'Segundo parcial',
-      desc: 'Contenidos de las clases 6 a 8: la unidad 3 completa y la construcción ' +
-            'histórica y freudiana de la psicosis. En el horario de la cursada.',
+      desc: 'Contenidos de las clases 6 a 8: la unidad 3 completa y la clase de psicosis, ' +
+            'de la paranoia a Schreber y la pérdida de realidad. En el horario de la cursada.',
       alcance: 'Unidades 3 y 4 · Clases 6 a 8'
     },
     {
@@ -237,27 +243,7 @@ window.CAMPUS_DATA = (function () {
       fecha: { año: 2026, mes: 11, dia: 9 },
       titulo: 'Feriado nacional · Sin clase',
       desc: 'Visita del papa León XIV a la Argentina (Decreto 1103/2026). Era la fecha de ' +
-            'la Clase 9, que se reprograma.'
-    },
-    {
-      // Sin fecha: el 9/11 pasó a feriado y la nueva fecha está a definir. Con
-      // fecha: null queda fuera de "Lo que viene" y el cronograma la muestra
-      // como "a definir".
-      id: 'c09', tipo: 'clase', unidad: 4, numero: 9, estado: 'sin-definir',
-      fecha: null,
-      titulo: 'Schreber, delirio y formulación integradora',
-      desc: 'El delirio como intento de curación, y el cierre que formula juntas las dos ' +
-            'series: neurosis y psicosis.',
-      href: 'units/clase-09.html',
-      nota: 'Clase de cierre, no evaluable. Fecha a definir: el 9/11 pasó a ser feriado.',
-      biblio: [
-        { id: 'freud-1911-schreber', tier: 'C', cita: 'Freud, S. (1911). Puntualizaciones psicoanalíticas sobre un caso de paranoia (Schreber). Sección III: Acerca del mecanismo paranoico, pp. 55-73. <em>Obras completas</em>, tomo XII. Amorrortu.' },
-        { id: 'schreber-memorias-i', tier: 'F', cita: 'Schreber, D. P. (1903/1979). <em>Memorias de un enfermo nervioso</em>. Capítulo I, pp. 63-72. Lohlé.' },
-        // Textos gemelos de 1924: se publican consecutivos en el tomo XIX, se reparten
-        // en un solo PDF y cuentan como una sola lectura.
-        { id: 'freud-1924-realidad', tier: 'F', cita: 'Freud, S. (1924). Neurosis y psicosis <em>y</em> La pérdida de realidad en la neurosis y la psicosis. Textos completos. <em>Obras completas</em>, tomo XIX. Amorrortu.' },
-        { id: 'lacan-s3-fenomeno', tier: 'A', cita: 'Lacan, J. (1955-1956/1984). <em>El Seminario, libro 3: Las psicosis</em>. Capítulo VI: El fenómeno psicótico y su mecanismo, pp. 107-128. Paidós.' }
-      ]
+            'la Clase 9, que se integró a la Clase 8.'
     },
     {
       id: 'r01', tipo: 'recuperatorio',
