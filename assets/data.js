@@ -225,9 +225,7 @@ window.CAMPUS_DATA = (function () {
         { id: 'freud-1924-perdida', tier: 'F', cita: 'Freud, S. (1924). La pérdida de realidad en la neurosis y la psicosis. Texto completo, pp. 193-197. <em>Obras completas</em>, tomo XIX. Amorrortu.' },
         { id: 'kraepelin-paranoia', tier: 'A', cita: 'Kraepelin, E. Lección XV: Paranoia. En <em>Introducción a la clínica psiquiátrica</em>.' },
         { id: 'freud-1924-neurosis-psicosis', tier: 'A', cita: 'Freud, S. (1924). Neurosis y psicosis. Texto completo. <em>Obras completas</em>, tomo XIX. Amorrortu.' },
-        { id: 'schreber-memorias-i', tier: 'A', cita: 'Schreber, D. P. (1903/1979). <em>Memorias de un enfermo nervioso</em>. Capítulo I, pp. 63-72. Lohlé.' },
-        { id: 'lacan-s3-fenomeno', tier: 'A', cita: 'Lacan, J. (1955-1956/1984). <em>El Seminario, libro 3: Las psicosis</em>. Capítulo VI: El fenómeno psicótico y su mecanismo, pp. 107-128. Paidós.' },
-        { id: 'bercherie-psicosis', tier: 'A', cita: 'Bercherie, P. (1987). La constitución del concepto freudiano de psicosis. Siglo XXI.' }
+        { id: 'lacan-s3-fenomeno', tier: 'A', cita: 'Lacan, J. (1955-1956/1984). <em>El Seminario, libro 3: Las psicosis</em>. Capítulo VI: El fenómeno psicótico y su mecanismo, pp. 107-128. Paidós.' }
       ]
     },
     {

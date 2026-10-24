@@ -219,16 +219,6 @@ const classContent = {
         questions: ['¿Qué se pierde si uno se queda con esta fórmula sin leer el texto siguiente?']
       },
       {
-        id: 'schreber-memorias-i',
-        title: 'Memorias de un enfermo nervioso',
-        cite: 'Schreber, D. P. (1903/1979). Lohlé.',
-        pages: 'Capítulo I completo · pp. 63–72 · apoyo',
-        file: 'Schreber_1903_Memorias_de_un_enfermo_nervioso.pdf',
-        page: 13,
-        look: ['El vocabulario propio con el que Schreber describe nervios, rayos, voces y transformaciones.', 'La distancia entre la experiencia escrita y las categorías con que luego será leída.'],
-        questions: ['Elegí una expresión de Schreber y explicá qué se pierde si se la reemplaza enseguida por una categoría.']
-      },
-      {
         id: 'lacan-s3-fenomeno',
         title: 'El fenómeno psicótico y su mecanismo',
         cite: 'Lacan, J. (1955-1956/1984). <em>El Seminario, libro 3: Las psicosis</em>. Capítulo VI. Paidós.',
@@ -236,15 +226,6 @@ const classContent = {
         file: 'Lacan_1955-1956_Seminario_3_Cap_VI_El_fenomeno_psicotico_y_su_mecanismo.pdf',
         look: ['El carácter no dialectizable del fenómeno y la certeza de que algo concierne al sujeto.', 'La Verwerfung y el retorno en lo real, leídos desde la frase de Freud sobre lo cancelado adentro.'],
         questions: ['¿Qué distingue una certeza de alusión de una interpretación que todavía puede ponerse en duda?']
-      },
-      {
-        id: 'bercherie-psicosis',
-        title: 'La constitución del concepto freudiano de psicosis',
-        cite: 'Bercherie, P. (1987). Siglo XXI.',
-        pages: 'Texto completo · 16 páginas · apoyo',
-        file: 'Bercherie_1987_La_constitucion_del_concepto_freudiano_de_psicosis.pdf',
-        look: ['Las dificultades históricas para formar una categoría unificada de psicosis.', 'Los préstamos y desplazamientos entre psiquiatría y psicoanálisis.'],
-        questions: ['¿Qué se pierde cuando se presenta la historia como sucesión de definiciones ya cerradas?']
       }
     ],
     closeTitle: 'El recorrido termina con una forma de preguntar',
@@ -280,7 +261,7 @@ const unitContent = {
       ['¿Qué trabajo realiza el delirio?', 'El narcisismo explica el retiro de la libido sobre el yo; el delirio es el intento de devolverla al mundo y volver a habitarlo.'],
       ['¿Cómo se pierde la realidad?', 'Los textos de 1924 comparan los dos pasos de la neurosis con los de la psicosis y cierran el recorrido de la materia.']
     ],
-    total: 'Nueve textos en una clase: una lectura central, tres obligatorias breves y cinco de apoyo.'
+    total: 'Siete textos en una clase: una lectura central, tres obligatorias breves y tres de apoyo.'
   }
 };
 
@@ -366,7 +347,7 @@ function classPage(number) {
     </div>
     <footer class="site-footer"><span><strong class="text-strong">Psicopatología I</strong> · UFLO · <span id="year"></span></span><span>Clase ${number} · Lunes ${date} de 2026</span></footer>
   </main>
-  <script src="../assets/icons.js?v=4"></script><script src="../assets/data.js?v=17"></script><script src="../assets/ui.js?v=9"></script>
+  <script src="../assets/icons.js?v=4"></script><script src="../assets/data.js?v=18"></script><script src="../assets/ui.js?v=9"></script>
 </body>
 </html>`;
 }
@@ -404,7 +385,7 @@ function unitPage(number) {
   <style>
     .moves{list-style:none;padding:0;margin:0;counter-reset:mv;display:grid;gap:var(--space-10)}.move{position:relative;padding-left:clamp(var(--space-8),7vw,var(--space-16));padding-top:var(--space-6);border-top:1px solid var(--border)}.move::before{counter-increment:mv;content:counter(mv,decimal-leading-zero);position:absolute;left:0;top:var(--space-6);font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;color:var(--accent-text)}.move__q{font-size:var(--text-2xl);margin-bottom:var(--space-4);max-width:26ch}.move__a{color:var(--text-muted);max-width:var(--measure)}.move__where{margin-top:var(--space-4);font-size:var(--text-xs);font-weight:700;letter-spacing:var(--tracking-wide);text-transform:uppercase;color:var(--text-subtle)}.biblio-unit{display:grid;gap:var(--space-10)}.biblio-group__title{font-size:var(--text-sm);font-weight:700;color:var(--text-strong);padding-bottom:var(--space-3);margin-bottom:var(--space-4);border-bottom:1px solid var(--border)}.biblio-list{display:grid;gap:var(--space-3);list-style:none;padding:0}.biblio-list li{display:grid;grid-template-columns:26px minmax(0,1fr);gap:var(--space-4);align-items:start;font-size:var(--text-sm);color:var(--text)}.biblio-list b{display:grid;place-items:center;width:26px;height:26px;border-radius:var(--radius-sm);font-size:var(--text-xs);font-weight:800;background:var(--surface-hover);color:var(--text-muted)}.biblio-list li[data-tier="C"] b{background:var(--accent-fill);color:var(--on-accent-fill)}@media(min-width:900px){.moves--three,.moves--two{grid-template-columns:repeat(auto-fit,minmax(0,1fr))}.moves--three .move,.moves--two .move{padding-top:var(--space-16);padding-left:0}.moves--three .move::before,.moves--two .move::before{top:var(--space-6)}.biblio-unit{grid-template-columns:repeat(3,minmax(0,1fr))}}
   </style>
-  <script src="../assets/icons.js?v=4"></script><script src="../assets/data.js?v=17"></script><script src="../assets/ui.js?v=9"></script>
+  <script src="../assets/icons.js?v=4"></script><script src="../assets/data.js?v=18"></script><script src="../assets/ui.js?v=9"></script>
 </body></html>`;
 }
 
