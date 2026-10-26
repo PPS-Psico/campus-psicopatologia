@@ -49,8 +49,6 @@ const ANSWER_KEY = Object.freeze({
   "b0000000-0000-4000-8000-000000000046": "c0000000-0000-4000-8000-000000000462",
   "b0000000-0000-4000-8000-000000000047": "c0000000-0000-4000-8000-000000000473",
   "b0000000-0000-4000-8000-000000000048": "c0000000-0000-4000-8000-000000000484",
-  "b0000000-0000-4000-8000-000000000049": "c0000000-0000-4000-8000-000000000491",
-  "b0000000-0000-4000-8000-000000000050": "c0000000-0000-4000-8000-000000000502",
 });
 
 const ITEMS = [
@@ -665,7 +663,7 @@ const ITEMS = [
       { id: "c0000000-0000-4000-8000-000000000411", label: "La conversión del afecto en una inervación corporal" },
       { id: "c0000000-0000-4000-8000-000000000412", label: "La proyección: el reproche se reprime erigiendo el síntoma de la desconfianza hacia los otros" },
       { id: "c0000000-0000-4000-8000-000000000413", label: "La formación reactiva, igual que en la neurosis obsesiva" },
-      { id: "c0000000-0000-4000-8000-000000000414", label: "La forclusión de un significante" },
+      { id: "c0000000-0000-4000-8000-000000000414", label: "La sustitución de una representación por otra, como en las obsesiones" },
     ],
     response: null,
   },
@@ -774,36 +772,6 @@ const ITEMS = [
     ],
     response: null,
   },
-  {
-    id: "b0000000-0000-4000-8000-000000000049",
-    position: 49,
-    section: "Clase 8",
-    kind: "single_choice",
-    prompt: "Según «La pérdida de realidad en la neurosis y la psicosis» (1924), ¿en qué paso se pierde la realidad en cada caso?",
-    points: 1,
-    options: [
-      { id: "c0000000-0000-4000-8000-000000000491", label: "En la neurosis, en el segundo paso, como consecuencia del fracaso de la represión; en la psicosis, en el primero, cuando el yo se arranca de la realidad" },
-      { id: "c0000000-0000-4000-8000-000000000492", label: "En la neurosis, en el primer paso; en la psicosis, en el segundo" },
-      { id: "c0000000-0000-4000-8000-000000000493", label: "En las dos, en el primer paso" },
-      { id: "c0000000-0000-4000-8000-000000000494", label: "En la neurosis no hay ninguna pérdida de realidad" },
-    ],
-    response: null,
-  },
-  {
-    id: "b0000000-0000-4000-8000-000000000050",
-    position: 50,
-    section: "Clase 8",
-    kind: "single_choice",
-    prompt: "En 1924, ¿qué diferencia encuentra Freud entre la actitud de la neurosis y la de la psicosis frente a la realidad?",
-    points: 1,
-    options: [
-      { id: "c0000000-0000-4000-8000-000000000501", label: "La neurosis desmiente la realidad; la psicosis se limita a evitarla" },
-      { id: "c0000000-0000-4000-8000-000000000502", label: "La neurosis no desmiente la realidad, se limita a no querer saber nada de ella; la psicosis la desmiente y procura sustituirla" },
-      { id: "c0000000-0000-4000-8000-000000000503", label: "Ninguna de las dos se relaciona con la fantasía" },
-      { id: "c0000000-0000-4000-8000-000000000504", label: "La psicosis modifica el mundo exterior y la neurosis se modifica a sí misma" },
-    ],
-    response: null,
-  },
 ];
 
 export const DEMO_ITEMS = ITEMS;
@@ -819,9 +787,11 @@ const PRACTICES = {
   "4": "Respondé diez preguntas sobre formación de síntoma, represión y etiología.",
   "6": "Respondé diez preguntas sobre la neurosis obsesiva en Freud (1926) y en Lacan (Seminario 5).",
   "7": "Respondé diez preguntas sobre la fobia de Juanito, la angustia señal y el cambio de la teoría entre 1895, 1909 y 1926.",
-  "8": "Respondé diez preguntas sobre el mecanismo de la paranoia en 1896 y en Schreber, el narcisismo y la pérdida de realidad en 1924.",
+  "8": "Respondé ocho preguntas sobre el mecanismo de la paranoia en 1896 y en Schreber y sobre el narcisismo.",
 };
 export const PRACTICE_CLASSES = Object.freeze(Object.keys(PRACTICES));
+// Sube cuando cambian las preguntas de una práctica, para no retomar una versión vieja.
+const PRACTICE_STORAGE_VERSION = { "8": 2 };
 
 export function buildDemoDefinition(practiceClass = null) {
   const normalizedClass = PRACTICE_CLASSES.includes(String(practiceClass))
@@ -829,7 +799,7 @@ export function buildDemoDefinition(practiceClass = null) {
     : null;
   if (normalizedClass) {
     return {
-      storageKey: `psicopato-practice-clase-${normalizedClass}-v1`,
+      storageKey: `psicopato-practice-clase-${normalizedClass}-v${PRACTICE_STORAGE_VERSION[normalizedClass] ?? 1}`,
       title: `Práctica para el parcial · Clase ${normalizedClass}`,
       instructions: `${PRACTICES[normalizedClass]} Podés repetir esta práctica y revisar las respuestas al finalizar.`,
       durationMinutes: 20,

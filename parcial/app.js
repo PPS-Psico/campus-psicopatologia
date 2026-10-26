@@ -1,5 +1,5 @@
 import { ExamApi, requestMoodleContext } from "./api.js?v=3";
-import { MockExamApi } from "./mock-api.js?v=9";
+import { MockExamApi } from "./mock-api.js?v=10";
 import { assertSafeExamBrowser, getSafeExamBrowserProof } from "./seb-guard.js?v=3";
 import {
   buildResponse,
