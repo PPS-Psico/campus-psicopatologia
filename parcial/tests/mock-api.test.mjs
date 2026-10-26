@@ -2,10 +2,11 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { buildDemoDefinition, buildDemoReview, DEMO_ANSWER_KEY, DEMO_ITEMS } from "../mock-api.js";
 
-test("el simulacro combina diez preguntas de Clase 3 y diez de Clase 4", () => {
-  assert.equal(DEMO_ITEMS.length, 20);
-  assert.equal(DEMO_ITEMS.filter((item) => item.section === "Clase 3").length, 10);
-  assert.equal(DEMO_ITEMS.filter((item) => item.section === "Clase 4").length, 10);
+test("el banco reúne diez preguntas por cada clase con práctica", () => {
+  assert.equal(DEMO_ITEMS.length, 50);
+  for (const clase of ["3", "4", "6", "7", "8"]) {
+    assert.equal(DEMO_ITEMS.filter((item) => item.section === `Clase ${clase}`).length, 10);
+  }
   assert.equal(new Set(DEMO_ITEMS.map((item) => item.id)).size, DEMO_ITEMS.length);
 
   for (const item of DEMO_ITEMS) {
@@ -28,7 +29,27 @@ test("las prácticas de Clase 3 y Clase 4 son recorridos separados", () => {
   assert.equal(class4.durationMinutes, 20);
   assert.equal(internal.items.length, 20);
   assert.equal(internal.durationMinutes, 30);
+  assert.ok(internal.items.every((item) => item.section === "Clase 3" || item.section === "Clase 4"));
   assert.notEqual(class3.storageKey, class4.storageKey);
+});
+
+test("las prácticas de las Clases 6, 7 y 8 son recorridos propios de diez preguntas", () => {
+  for (const clase of ["6", "7", "8"]) {
+    const practica = buildDemoDefinition(clase);
+    assert.equal(practica.items.length, 10);
+    assert.ok(practica.items.every((item) => item.section === `Clase ${clase}`));
+    assert.equal(practica.durationMinutes, 20);
+    assert.equal(practica.storageKey, `psicopato-practice-clase-${clase}-v1`);
+    assert.equal(practica.title, `Práctica para el parcial · Clase ${clase}`);
+  }
+});
+
+test("la respuesta correcta no cae siempre en la misma opción", () => {
+  for (const clase of ["7", "8"]) {
+    const lugares = buildDemoDefinition(clase).items
+      .map((item) => item.options.findIndex((option) => option.id === DEMO_ANSWER_KEY[item.id]));
+    assert.ok(new Set(lugares).size >= 3, `Clase ${clase}: ${lugares}`);
+  }
 });
 
 test("corrige automáticamente opciones múltiples y conserva el detalle", () => {
