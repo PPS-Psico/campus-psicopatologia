@@ -21,6 +21,9 @@ window.EXAM_CONFIG = Object.freeze({
   requireSafeExamBrowser: true,
   allowUnsafeBrowser: isLocalExam && examParams.get("dev") === "1",
   practiceClass,
+  // Si la dirección pide una práctica que esta versión no conoce, la página no
+  // tiene que caer en el examen real: muestra un aviso y nada más.
+  practiceRequested: examParams.has("clase"),
   // Safe Exam Browser agrega este parámetro a la URL de inicio, tomándolo del
   // enlace sebs:// que arma el Campus con la identidad ya resuelta.
   launchPass: (examParams.get("pase") || "").slice(0, 256),

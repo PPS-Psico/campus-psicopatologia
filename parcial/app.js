@@ -67,6 +67,7 @@ const errorCopy = {
   exam_has_no_questions: ["El parcial todavía no tiene consignas", "El equipo docente debe revisar el banco de preguntas antes de habilitar esta actividad."],
   safe_exam_browser_required: ["Abrí esta actividad con Safe Exam Browser", "Cerrá esta pestaña, volvé a la sección Parcial del Campus y abrí el archivo de acceso .seb de esta actividad. Las preguntas, también las de práctica, no están disponibles en un navegador común."],
   safe_browser_invalid: ["La configuración del navegador no es válida", "Volvé al Campus y abrí nuevamente el archivo .seb publicado para este parcial."],
+  practice_not_available: ["Esta práctica no se pudo cargar", "Cerrá el navegador seguro, recargá la sección Parcial del Campus y volvé a abrir la práctica. Si sigue igual, avisale al equipo docente."],
   safe_browser_not_configured: ["El acceso seguro todavía no está habilitado", "El equipo docente debe terminar la configuración técnica antes de publicar esta actividad."],
 };
 
@@ -494,6 +495,7 @@ function openSubmitDialog() {
 
 async function bootstrap() {
   try {
+    if (config.practiceRequested && !config.practiceClass) throw new Error("practice_not_available");
     setBoot(config.practiceClass ? "Preparando la práctica…" : "Verificando el navegador seguro…");
     assertSafeExamBrowser(config);
     if (!config.demo) {
