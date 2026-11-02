@@ -12,6 +12,10 @@ window.EXAM_CONFIG = Object.freeze({
   // Las devoluciones y las notas siguen mostrando el primer parcial hasta que se
   // publique la corrección del segundo.
   feedbackExamId: "0b2f7900-acd5-4f9c-bb47-455127829e48",
+  // Copia abierta del segundo parcial para que el equipo docente pruebe el
+  // ingreso antes de la hora. Sólo la recibe una cuenta que el servidor
+  // reconoce como correctora; los estudiantes siguen en examId.
+  staffExamId: "827f57cd-4cfd-4067-a2c0-5d69ea5b3c13",
   rehearsalExamId: "22222222-2222-4222-8222-222222222222",
   apiUrl: "https://zprvefdhcxnivdgsbpkw.supabase.co/functions/v1/exam-api",
   graderApiUrl: "https://zprvefdhcxnivdgsbpkw.supabase.co/functions/v1/grader-api",

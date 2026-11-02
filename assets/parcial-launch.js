@@ -75,15 +75,17 @@ function formatTime(value) {
 // El acceso a la corrección no figura en la página: aparece sólo si el servidor
 // confirma que esta identidad del Campus está cargada como correctora. Para el
 // resto del curso el bloque no existe, y nadie tiene que escribir un DNI.
+let sesionDocente = null;
+function loginDocente(context) {
+  sesionDocente ??= graderApi.login(context).catch(() => null);
+  return sesionDocente;
+}
+
 async function revelarCorreccion(context) {
   const panel = document.getElementById("docencia");
   if (!panel) return;
-  let sesion;
-  try {
-    sesion = await graderApi.login(context);
-  } catch {
-    return; // no es correctora, o el servidor no respondió: el bloque no aparece
-  }
+  const sesion = await loginDocente(context);
+  if (!sesion) return; // no es correctora, o el servidor no respondió: el bloque no aparece
 
   document.getElementById("staff-copy").textContent =
     `Entraste como ${sesion.displayName}. El Campus te reconoce como parte del equipo docente, `
@@ -105,8 +107,12 @@ async function revelarCorreccion(context) {
 // está habilitado, se intenta con el simulacro. Si el simulacro ya cerró, se
 // vuelve al parcial para mostrar cuándo se abre.
 async function pedirPase(context) {
+  // El equipo docente entra a la copia de prueba, abierta antes de la hora.
+  const examId = config.staffExamId && await loginDocente(context)
+    ? config.staffExamId
+    : MODOS.parcial.examId;
   try {
-    return { modo: "parcial", data: await api.issuePass(MODOS.parcial.examId, context) };
+    return { modo: "parcial", data: await api.issuePass(examId, context) };
   } catch (error) {
     const code = error instanceof Error ? error.message : String(error);
     const todaviaNo = code === "exam_not_open" || code === "exam_not_available";
