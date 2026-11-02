@@ -14,7 +14,7 @@ const graderApi = new GraderApi(config);
 const MODOS = {
   parcial: {
     examId: config.examId,
-    seb: "parcial/parcial-1.seb",
+    seb: "parcial/parcial-2.seb",
     notOpen: ["Se abre hoy a las 8:35", "El acceso se habilita a las 8:35. Recargá la página en ese momento."],
     closed: ["El parcial ya cerró", "El acceso terminó a las 10:30. Si tuviste un problema para entrar, avisale al equipo docente."],
     done: "Ya entregaste el parcial",

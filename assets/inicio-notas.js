@@ -3,7 +3,7 @@
 // que no figura, ve la lista completa antes de publicar, para revisarla.
 import { requestMoodleContext } from "../parcial/api.js?v=4";
 import { GraderApi } from "../docentes/api.js?v=5";
-import { devolucionPropia, pintarListaNotas } from "./devolucion-vista.js?v=2";
+import { devolucionPropia, pintarListaNotas } from "./devolucion-vista.js?v=3";
 
 const config = window.EXAM_CONFIG ?? {};
 const $ = (id) => document.getElementById(id);
@@ -13,7 +13,7 @@ async function listaDocente() {
     const context = await requestMoodleContext(config);
     const grader = new GraderApi(config);
     await grader.login(context);
-    const datos = await grader.overview(config.examId);
+    const datos = await grader.overview((config.feedbackExamId ?? config.examId));
     const filas = (datos.attempts ?? []).map((a) => ({ studentName: a.studentName, finalScore: a.finalScore, publicada: a.gradingStatus === "published" }));
     const todas = filas.length && filas.every((f) => f.publicada);
     return { filas, nota: todas ? "" : "Vista docente: el curso ve esta lista recién cuando se publique." };

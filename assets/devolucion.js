@@ -5,7 +5,7 @@
 import { requestMoodleContext } from "../parcial/api.js?v=4";
 import { GraderApi } from "../docentes/api.js?v=5";
 import { FeedbackApi } from "../devolucion/api.js?v=2";
-import { crear, numero, etiquetaResultado, pintarDevolucion, pintarListaNotas } from "./devolucion-vista.js?v=2";
+import { crear, numero, etiquetaResultado, pintarDevolucion, pintarListaNotas } from "./devolucion-vista.js?v=3";
 
 const config = window.EXAM_CONFIG ?? {};
 const $ = (id) => document.getElementById(id);
@@ -43,7 +43,7 @@ async function vistaDocente(grader, sesion) {
   $("page-title").textContent = "Devoluciones del parcial";
   $("dev-lead").textContent = `Entraste como ${sesion.displayName}, del equipo docente. `
     + "Acá ves todas las notas y, tocando cada estudiante, su devolución tal como la va a leer.";
-  const datos = await grader.overview(config.examId);
+  const datos = await grader.overview((config.feedbackExamId ?? config.examId));
   const filas = datos.attempts ?? [];
   const publicadas = filas.filter((f) => f.gradingStatus === "published").length;
   const desaprobados = filas.filter((f) => f.result === "desaprobado").length;
@@ -130,7 +130,7 @@ async function iniciar() {
   try {
     await feedback.launch(context);
     const datos = await feedback.get();
-    const propia = (datos.releases ?? []).find((r) => r.examId === config.examId) ?? (datos.releases ?? [])[0];
+    const propia = (datos.releases ?? []).find((r) => r.examId === (config.feedbackExamId ?? config.examId)) ?? (datos.releases ?? [])[0];
     if (!propia) {
       $("dev-lead").textContent = `${datos.studentName ?? ""}, tu devolución todavía no se publicó. Cuando esté lista, aparece acá.`;
       return;

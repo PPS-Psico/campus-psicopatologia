@@ -162,7 +162,7 @@ export async function devolucionPropia(config) {
     const releases = datos.releases ?? [];
     return {
       studentName: datos.studentName,
-      propia: releases.find((r) => r.examId === config.examId) ?? releases[0] ?? null,
+      propia: releases.find((r) => r.examId === (config.feedbackExamId ?? config.examId)) ?? releases[0] ?? null,
       notas: datos.courseGrades ?? [],
       context,
     };

@@ -1,5 +1,5 @@
 begin;
-select plan(76);
+select plan(77);
 
 insert into auth.users (id, email)
 values
@@ -1034,6 +1034,58 @@ select throws_ok(
 );
 
 reset role;
+
+-- Consignas optativas: tres consignas de 3,75 y se eligen dos.
+insert into exam_private.exams (
+  public_id, slug, course_id, title, opens_at, closes_at,
+  duration_minutes, published, essays_to_answer
+) values (
+  '20000000-0000-4000-8000-000000000009',
+  'choose-two-test',
+  'grading-test-course',
+  'Parcial con consignas optativas',
+  clock_timestamp() - interval '1 hour',
+  clock_timestamp() + interval '1 hour',
+  60,
+  true,
+  2
+);
+
+insert into exam_private.questions (public_id, exam_id, kind, prompt, points, position)
+select ('30000000-0000-4000-8000-00000000009' || n)::uuid,
+       (select id from exam_private.exams where slug = 'choose-two-test'),
+       'essay', 'Consigna optativa ' || n, 3.75, n
+from generate_series(1, 3) n;
+
+insert into exam_private.attempts (
+  public_id, exam_id, roster_id, moodle_user_id, display_name,
+  deadline_at, attempt_token_hash
+) values (
+  '50000000-0000-4000-8000-000000000009',
+  (select id from exam_private.exams where slug = 'choose-two-test'),
+  (select id from exam_private.course_roster where course_id = 'grading-test-course' and dni = 30999888),
+  '900001',
+  'Estudiante Correccion',
+  clock_timestamp() + interval '45 minutes',
+  repeat('e', 64)
+);
+
+insert into exam_private.attempt_items (public_id, attempt_id, question_id, position)
+select ('60000000-0000-4000-8000-00000000009' || n)::uuid,
+       (select id from exam_private.attempts where public_id = '50000000-0000-4000-8000-000000000009'),
+       (select id from exam_private.questions where public_id = ('30000000-0000-4000-8000-00000000009' || n)::uuid),
+       n
+from generate_series(1, 3) n;
+
+update exam_private.attempts
+set status = 'submitted', submitted_at = clock_timestamp()
+where public_id = '50000000-0000-4000-8000-000000000009';
+
+select is(
+  (select manual_max_score from exam_private.attempts where public_id = '50000000-0000-4000-8000-000000000009'),
+  7.50::numeric,
+  'con dos consignas para elegir, el maximo de desarrollo suma solo dos'
+);
 
 select * from finish();
 rollback;

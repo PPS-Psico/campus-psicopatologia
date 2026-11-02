@@ -70,12 +70,12 @@
         <div class="exam-overview__status">
           <span class="badge badge--accent">Confirmado</span>
         </div>
-        <h2 class="sr-only" id="first-exam-title">Datos del primer parcial</h2>
-        <p class="exam-overview__date" id="first-exam-date">28 de septiembre · 8:35 a 10:30</p>
-        <p class="exam-overview__scope" id="first-exam-scope">Unidades 1 y 2 · Clases 1 a 5</p>
+        <h2 class="sr-only" id="first-exam-title">Datos del segundo parcial</h2>
+        <p class="exam-overview__date" id="first-exam-date">2 de noviembre · 8:35 a 10:30</p>
+        <p class="exam-overview__scope" id="first-exam-scope">Unidades 3 y 4 · Clases 6 a 8</p>
         <ul class="exam-overview__facts">
           <li><span data-icon="calendar" data-size="18"></span><span>La fecha, el horario y los contenidos ya están confirmados.</span></li>
-          <li><span data-icon="alert" data-size="18"></span><span>Diez preguntas de opción múltiple y dos consignas para desarrollar, hasta las 10:30.</span></li>
+          <li><span data-icon="alert" data-size="18"></span><span>Cinco preguntas de opción múltiple y tres consignas, de las que elegís dos, hasta las 10:30.</span></li>
         </ul>
       </aside>
     </section>
@@ -93,10 +93,10 @@
 
     <section class="section settle" id="simulacro" aria-labelledby="rehearsal-title">
       <div class="section-head" data-modo="parcial">
-        <h2 class="section-head__title" id="rehearsal-title">Primer parcial · Unidades 1 y 2</h2>
+        <h2 class="section-head__title" id="rehearsal-title">Segundo parcial · Unidades 3 y 4</h2>
         <p class="section-head__subtitle">
-          Lunes 28 de septiembre, de 8:35 a 10:30. Evalúa las clases 1 a 5: campo,
-          paradigmas, método, síntoma, caso y transferencia.
+          Lunes 2 de noviembre, de 8:35 a 10:30. Evalúa las clases 6 a 8: neurosis
+          obsesiva, fobia y angustia, paranoia y Schreber.
         </p>
       </div>
       <div class="section-head" data-modo="simulacro" hidden>
@@ -125,11 +125,20 @@
               </dd>
             </div>
             <div>
-              <dt>Diez preguntas de opción múltiple y dos para desarrollar</dt>
+              <dt>Cinco preguntas de opción múltiple y tres consignas: elegís dos</dt>
               <dd>
-                Primero las diez de opción múltiple, con una sola respuesta correcta y medio
-                punto cada una. Al final, dos consignas para desarrollar de 2,5 puntos cada
-                una. Guardá tiempo para las escritas: valen la mitad de la nota.
+                Primero las cinco de opción múltiple, con una sola respuesta correcta y medio
+                punto cada una. Al final, tres consignas para desarrollar de 3,75 puntos cada
+                una: elegí dos y dejá la otra en blanco. Las escritas valen 7,5 de los 10
+                puntos, así que guardá la mayor parte del tiempo para ellas.
+              </dd>
+            </div>
+            <div>
+              <dt>Para aprobar hay que desarrollar</dt>
+              <dd>
+                La opción múltiple sola no alcanza. Se aprueba con una consigna muy bien
+                desarrollada, o con las dos desarrolladas de manera aceptable aunque
+                incompleta.
               </dd>
             </div>
             <div>
@@ -507,9 +516,9 @@
     </footer>
   </main>
 
-  <script src="parcial/config.js?v=9"></script>
-  <script type="module" src="assets/parcial-launch.js?v=5"></script>
-  <script type="module" src="assets/parcial-devolucion.js?v=2"></script>
+  <script src="parcial/config.js?v=12"></script>
+  <script type="module" src="assets/parcial-launch.js?v=6"></script>
+  <script type="module" src="assets/parcial-devolucion.js?v=3"></script>
 
   <script src="assets/icons.js?v=4"></script>
 <script src="assets/data.js?v=18"></script>
@@ -517,7 +526,7 @@
   <script>
     (function () {
       'use strict';
-      const firstExam = CAMPUS_DATA.PROGRAMA.find((entry) => entry.id === 'p01');
+      const firstExam = CAMPUS_DATA.PROGRAMA.find((entry) => entry.id === 'p02');
       if (!firstExam) return;
       document.getElementById('first-exam-date').textContent =
         `${CampusUI.Dates.short(firstExam.fecha)} · 8:35 a 10:30`;
