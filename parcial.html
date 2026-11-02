@@ -35,6 +35,27 @@
   <div data-ui="nav" data-active="parcial"></div>
 
   <main class="container" id="contenido">
+    <!-- El acceso va primero: el día del parcial es lo único que se busca. -->
+    <section class="section parcial-acceso" id="acceso" aria-label="Acceso al parcial" style="max-width: 720px; padding-block: 0 var(--space-6);">
+    <aside class="rehearsal__launch" id="launch-panel">
+      <div class="rehearsal__launch-status">
+        <span class="badge badge--quiet" id="launch-badge">Reconociéndote…</span>
+      </div>
+      <p class="rehearsal__launch-title" id="launch-title">Abrir el parcial</p>
+      <p class="rehearsal__launch-copy" id="launch-copy">
+        Estamos leyendo tus datos del Campus para prepararte el acceso.
+      </p>
+      <a class="btn btn--primary btn--lg" id="launch-button" href="#" hidden>
+        Abrir el parcial en el navegador seguro
+        <span data-icon="arrowRight" data-size="18"></span>
+      </a>
+      <p class="exam-step__fallback" id="launch-note">
+        Necesitás Safe Exam Browser instalado: si todavía no lo tenés, seguí primero
+        <a href="#instalacion">los pasos de instalación</a>.
+      </p>
+    </aside>
+    </section>
+
     <!-- El parcial corregido de quien entra: aparece sólo si ya se publicó. -->
     <section class="section dev-en-parcial" id="mi-devolucion" aria-label="Tu parcial corregido" hidden></section>
 
@@ -56,7 +77,7 @@
           reconoce por tu cuenta del aula y guarda cada respuesta en el servidor.
         </p>
         <div class="exam-info-hero__actions">
-          <a class="btn btn--primary btn--lg" href="#simulacro">
+          <a class="btn btn--primary btn--lg" href="#acceso">
             Ir al acceso del parcial
             <span data-icon="arrowRight" data-size="18"></span>
           </a>
@@ -107,7 +128,7 @@
         </p>
       </div>
 
-      <div class="rehearsal">
+      <div class="rehearsal" style="grid-template-columns: 1fr;">
         <div>
           <p class="rehearsal__lead">
             Se abre desde acá mismo, con tu cuenta de siempre. Como entraste al aula, el
@@ -190,23 +211,6 @@
           </dl>
         </div>
 
-        <aside class="rehearsal__launch" id="launch-panel">
-          <div class="rehearsal__launch-status">
-            <span class="badge badge--quiet" id="launch-badge">Reconociéndote…</span>
-          </div>
-          <p class="rehearsal__launch-title" id="launch-title">Abrir el parcial</p>
-          <p class="rehearsal__launch-copy" id="launch-copy">
-            Estamos leyendo tus datos del Campus para prepararte el acceso.
-          </p>
-          <a class="btn btn--primary btn--lg" id="launch-button" href="#" hidden>
-            Abrir el parcial en el navegador seguro
-            <span data-icon="arrowRight" data-size="18"></span>
-          </a>
-          <p class="exam-step__fallback" id="launch-note">
-            Necesitás Safe Exam Browser instalado: si todavía no lo tenés, seguí primero
-            <a href="#instalacion">los pasos de instalación</a>.
-          </p>
-        </aside>
       </div>
     </section>
 
